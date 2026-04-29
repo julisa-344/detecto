@@ -3,6 +3,7 @@ import Hero from './components/Hero'
 import Especialidades from './components/Especialidades'
 import StaffMedico from './components/StaffMedico'
 import PorQueNosotros from './components/PorQueNosotros'
+import Partners from './components/Partners'
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Especialidades />
       <StaffMedico />
       <PorQueNosotros />
+      <Partners />
     </div>
   )
 }

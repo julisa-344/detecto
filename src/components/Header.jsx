@@ -3,24 +3,32 @@ import { useState, useEffect } from 'react'
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [ethicsOpen, setEthicsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
+  const [visible, setVisible] = useState(true)
+  const [lastScroll, setLastScroll] = useState(0)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
+    const handleScroll = () => {
+      const currentScroll = window.scrollY
+
+      if (currentScroll > lastScroll && currentScroll > 80) {
+        setVisible(false)
+      } else if (currentScroll < lastScroll) {
+        setVisible(true)
+      }
+
+      setLastScroll(currentScroll)
+    }
+
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [lastScroll])
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled ? 'py-2' : 'py-4'
+      visible ? 'translate-y-0' : '-translate-y-full'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`rounded-2xl transition-all duration-500 ${
-          scrolled
-            ? 'bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 border border-white/40'
-            : 'bg-white/50 backdrop-blur-lg border border-white/30'
-        }`}>
+        <div className="rounded-2xl bg-white/60 backdrop-blur-xl shadow-lg shadow-black/5 border border-white/40">
           <div className="flex items-center justify-between h-16 lg:h-18 px-5 lg:px-6">
 
             {/* Logo */}
@@ -37,7 +45,7 @@ export default function Header() {
             </a>
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
+            <nav className="hidden lg:flex items-center gap-2">
               <a href="#pacientes" className="nav-link">
                 Pacientes
               </a>
@@ -168,7 +176,7 @@ export default function Header() {
 
       <style>{`
         .nav-link {
-          @apply px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-medium transition-colors rounded-lg hover:bg-white/40;
+          @apply px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-medium transition-colors rounded-lg hover:bg-white/40;
         }
         .dropdown-item {
           @apply block px-4 py-3 text-sm font-medium text-gray-700 hover:text-primary-medium hover:bg-primary-lighter/50 transition-colors;

@@ -61,14 +61,14 @@ export default function StaffMedico() {
   }, [])
 
   return (
-    <section className="bg-black">
+    <section className="bg-gradient-to-b from-primary-dark via-primary-dark to-primary-medium">
 
       {/* HEADER (YA NO ABSOLUTE) */}
       <div className="max-w-7xl mx-auto px-6 pt-32 pb-20">
         <h2 className="text-5xl sm:text-6xl font-semibold text-white tracking-tight">
           Equipo médico
         </h2>
-        <p className="mt-4 text-white/60 max-w-md">
+        <p className="mt-4 text-primary-light/80 max-w-md">
           Especialistas con experiencia respaldada por tecnología avanzada.
         </p>
       </div>
@@ -100,22 +100,22 @@ export default function StaffMedico() {
                   />
 
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/30 to-transparent" />
 
                   {/* Info */}
                   <div className="absolute bottom-6 left-6 right-6">
                     <h3 className="text-2xl font-semibold text-white">
                       {doctor.name}
                     </h3>
-                    <p className="text-white/70 text-sm">
+                    <p className="text-primary-light text-sm">
                       {doctor.specialty}
                     </p>
                   </div>
 
                   {/* Glass hover */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-xl bg-white/10 border border-white/10 flex items-end">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-xl bg-white/15 border border-white/20 flex items-end">
                     <div className="p-6">
-                      <p className="text-sm text-white/90 leading-relaxed">
+                      <p className="text-sm text-white leading-relaxed">
                         {doctor.description}
                       </p>
                     </div>

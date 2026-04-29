@@ -86,7 +86,7 @@ export default function Especialidades() {
   }, [])
 
   return (
-    <section className="relative h-[200vh] bg-black">
+    <section className="relative h-[200vh] bg-primary-dark">
 
       {/* Video */}
       <video
@@ -99,8 +99,8 @@ export default function Especialidades() {
         <source src={videoBg} type="video/mp4" />
       </video>
 
-      {/* Overlay elegante oscuro */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black"></div>
+      {/* Overlay elegante con azul oscuro */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-primary-dark/90 via-primary-medium/80 to-primary-dark"></div>
 
       {/* Contenido */}
       <div className="absolute inset-0 flex items-center justify-center">
