@@ -1,158 +1,103 @@
-import { useEffect, useRef } from 'react'
-import detecto from '../assets/detecto.png'
-
-const PARTICLE_COUNT = 60
-
-function initParticles(width, height) {
-  return Array.from({ length: PARTICLE_COUNT }, () => ({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    radius: Math.random() * 2.5 + 0.5,
-    vx: (Math.random() - 0.5) * 0.3,
-    vy: -(Math.random() * 0.4 + 0.1), // drift upward
-    opacity: Math.random() * 0.5 + 0.15,
-  }))
-}
+import { useCallback } from "react"
+import Particles from "@tsparticles/react"
+import { loadFull } from "tsparticles"
+import detecto from "../assets/detecto.png"
 
 export default function Hero({ slotRef }) {
-  const canvasRef = useRef(null)
-  const mouseRef = useRef({ x: -9999, y: -9999 })
-  const particlesRef = useRef([])
-  const rafRef = useRef(null)
 
-  useEffect(() => {
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext('2d')
-
-    const resize = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-      particlesRef.current = initParticles(canvas.width, canvas.height)
-    }
-
-    resize()
-    window.addEventListener('resize', resize)
-
-    const onMouseMove = (e) => {
-      const rect = canvas.getBoundingClientRect()
-      mouseRef.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      }
-    }
-
-    const onMouseLeave = () => {
-      mouseRef.current = { x: -9999, y: -9999 }
-    }
-
-    canvas.addEventListener('mousemove', onMouseMove)
-    canvas.addEventListener('mouseleave', onMouseLeave)
-
-    // primary color: approximate from Tailwind config — use a teal/blue-green
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      const { x: mx, y: my } = mouseRef.current
-      const REPEL_RADIUS = 100
-      const REPEL_STRENGTH = 1.8
-
-      for (const p of particlesRef.current) {
-        // Mouse repulsion
-        const dx = p.x - mx
-        const dy = p.y - my
-        const dist = Math.sqrt(dx * dx + dy * dy)
-
-        if (dist < REPEL_RADIUS && dist > 0) {
-          const force = (1 - dist / REPEL_RADIUS) * REPEL_STRENGTH
-          p.x += (dx / dist) * force
-          p.y += (dy / dist) * force
-        }
-
-        // Move
-        p.x += p.vx
-        p.y += p.vy
-
-        // Wrap vertically
-        if (p.y < -p.radius) {
-          p.y = canvas.height + p.radius
-          p.x = Math.random() * canvas.width
-        }
-        if (p.x < -p.radius) p.x = canvas.width + p.radius
-        if (p.x > canvas.width + p.radius) p.x = -p.radius
-
-        // Draw
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(0, 153, 198, ${p.opacity})`
-        ctx.fill()
-      }
-
-      // Draw subtle connecting lines between nearby particles
-      const ps = particlesRef.current
-      for (let i = 0; i < ps.length; i++) {
-        for (let j = i + 1; j < ps.length; j++) {
-          const dx = ps[i].x - ps[j].x
-          const dy = ps[i].y - ps[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 90) {
-            ctx.beginPath()
-            ctx.moveTo(ps[i].x, ps[i].y)
-            ctx.lineTo(ps[j].x, ps[j].y)
-            ctx.strokeStyle = `rgba(0, 153, 198, ${0.1 * (1 - dist / 90)})`
-            ctx.lineWidth = 0.8
-            ctx.stroke()
-          }
-        }
-      }
-
-      rafRef.current = requestAnimationFrame(draw)
-    }
-
-    draw()
-
-    return () => {
-      window.removeEventListener('resize', resize)
-      canvas.removeEventListener('mousemove', onMouseMove)
-      canvas.removeEventListener('mouseleave', onMouseLeave)
-      cancelAnimationFrame(rafRef.current)
-    }
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine)
   }, [])
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-24">
-      
-      {/* Bottom gradient fuerte */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-primary/25 to-transparent"></div>
-      </div>
 
-      {/* Glow sutil tecnológico */}
-      <div className="absolute -bottom-40 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-primary/30 blur-[160px] opacity-60"></div>
+      {/* 🔥 FONDO BASE (NO tapa partículas) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f5fbfd] to-[#e6f7fb] z-0" />
 
-      {/* Grid ultra sutil */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, #000 1px, transparent 0)",
-          backgroundSize: "40px 40px",
+      {/* 🔥 PARTICULAS */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        className="absolute inset-0 z-0"
+
+        options={{
+          fullScreen: false,
+
+          particles: {
+            number: {
+              value: 350,
+              density: {
+                enable: true,
+                area: 800,
+              },
+            },
+
+            color: {
+              value: "#0070A5", // 👈 un solo color para efecto nube
+            },
+
+            shape: {
+              type: "circle",
+            },
+
+            opacity: {
+              value: 1, // 👈 clave para efecto degradé
+              random: true,
+            },
+
+            size: {
+              value: { min: 1, max: 2 }, // 👈 puntos pequeños
+            },
+
+            links: {
+              enable: false, // 👈 QUITAMOS estilo constelación
+            },
+
+            move: {
+              enable: true,
+              speed: 0.4,
+              direction: "none",
+              random: true,
+              outModes: {
+                default: "out",
+              },
+            },
+          },
+
+          interactivity: {
+            events: {
+              onHover: {
+                enable: true,
+                mode: "bubble",
+              },
+            },
+            modes: {
+              bubble: {
+                distance: 180,
+                size: 3,
+                opacity: 0.3,
+              },
+            },
+          },
+
+          detectRetina: true,
         }}
+
       />
 
-      {/* Canvas de partículas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ pointerEvents: 'all' }}
-      />
+      {/* 🌫 Glow base (NO invade demasiado) */}
+      <div className="absolute w-[600px] h-[600px] bg-primary/20 rounded-full blur-[140px] opacity-25 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-0"></div>
 
+      {/* CONTENIDO */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          
+
           {/* LEFT */}
           <div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight leading-tight text-gray-900">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-gray-900">
               Detectar a tiempo
-              <span className="block text-primary">
+              <span className="block text-primary font-semibold">
                 cambia todo
               </span>
             </h1>
@@ -162,7 +107,6 @@ export default function Hero({ slotRef }) {
               que necesitas y la tranquilidad que buscas.
             </p>
 
-            {/* CTA mejorado */}
             <div className="mt-10">
               <a
                 href="#agendar"
@@ -183,11 +127,8 @@ export default function Hero({ slotRef }) {
 
           {/* RIGHT */}
           <div className="relative flex justify-center">
-            
-            {/* Halo detrás */}
             <div className="absolute w-[460px] h-[460px] bg-primary/20 rounded-full blur-3xl"></div>
 
-            {/* Mascota — placeholder invisible (la real es renderizada en App como fixed) */}
             <img
               ref={slotRef}
               src={detecto}
@@ -195,8 +136,8 @@ export default function Hero({ slotRef }) {
               className="relative z-10 w-72 sm:w-80 lg:w-[420px] drop-shadow-2xl"
               style={{ visibility: 'hidden' }}
             />
-
           </div>
+
         </div>
       </div>
     </section>
