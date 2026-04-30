@@ -196,8 +196,6 @@ export default function Hero({ slotRef }) {
               style={{ visibility: 'hidden' }}
             />
 
-            {/* Detalle innovador: orb flotante */}
-            <div className="absolute -top-6 right-10 w-6 h-6 bg-secondary rounded-full animate-pulse"></div>
           </div>
         </div>
       </div>

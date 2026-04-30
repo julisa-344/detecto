@@ -237,16 +237,7 @@ export default function Especialidades() {
               {active.description}
             </p>
 
-            {/* Indicador de scroll */}
-            <div
-              className={`mt-14 flex items-center gap-3 transition-all duration-500 ${
-                animating ? 'opacity-0' : 'opacity-100'
-              }`}
-            >
-              <span className="text-xs tracking-[0.25em] uppercase text-white/25">
-                Scroll para explorar
-              </span>
-            </div>
+    
           </div>
         </div>
       </div>

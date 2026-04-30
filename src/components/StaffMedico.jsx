@@ -128,9 +128,6 @@ export default function StaffMedico() {
                   <span className="text-xs font-mono text-gray-400 tracking-widest">
                     {String(activeCard + 1).padStart(2, '0')} / {String(doctors.length).padStart(2, '0')}
                   </span>
-                  <span className="text-xs text-gray-400 tracking-wider">
-                    scroll para explorar
-                  </span>
                 </div>
               </div>
             </div>
