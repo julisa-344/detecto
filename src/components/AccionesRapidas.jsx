@@ -1,16 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
+import detecto from '../assets/detecto.png'
 
 const actions = [
   {
     key: 'agendar',
     title: 'Agendar Cita',
-    description: 'Reserva tu consulta con un especialista en menos de 2 minutos.',
-    cta: 'Reservar ahora',
+    description: 'Reserva tu consulta en menos de 2 minutos.',
     color: '#0199C6',
     glow: 'rgba(82,192,225,0.18)',
     bg: 'linear-gradient(135deg, #EEFBFF 0%, #ffffff 100%)',
-    span: 'lg:col-span-2 lg:row-span-2',
-    big: true,
     icon: (
       <svg viewBox="0 0 64 64" fill="none" className="w-full h-full">
         <rect x="10" y="14" width="44" height="42" rx="4" stroke="currentColor" strokeWidth="2" />
@@ -24,11 +22,9 @@ const actions = [
     key: 'rosa',
     title: 'Preventivo Rosa',
     description: 'Detección temprana de cáncer de mama.',
-    cta: 'Conocer más',
     color: '#E91E8C',
     glow: 'rgba(233,30,140,0.16)',
     bg: 'linear-gradient(135deg, #FFF0F8 0%, #ffffff 100%)',
-    span: '',
     icon: (
       <svg viewBox="0 0 64 64" fill="none" className="w-full h-full">
         <path d="M32 56C20 48 10 38 10 26a12 12 0 0122-7 12 12 0 0122 7c0 12-10 22-22 30z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
@@ -39,12 +35,10 @@ const actions = [
   {
     key: 'azul',
     title: 'Preventivo Azul',
-    description: 'Chequeo de próstata para hombres mayores de 40.',
-    cta: 'Conocer más',
+    description: 'Chequeo de próstata para hombres +40.',
     color: '#1976D2',
     glow: 'rgba(25,118,210,0.16)',
     bg: 'linear-gradient(135deg, #EAF3FC 0%, #ffffff 100%)',
-    span: '',
     icon: (
       <svg viewBox="0 0 64 64" fill="none" className="w-full h-full">
         <path d="M32 8l20 8v14c0 14-9 22-20 26-11-4-20-12-20-26V16l20-8z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
@@ -55,13 +49,10 @@ const actions = [
   {
     key: 'pulmon',
     title: 'Pulmón Sano',
-    description: 'Evaluación respiratoria integral con tecnología avanzada.',
-    cta: 'Conocer más',
+    description: 'Evaluación respiratoria integral.',
     color: '#0F8C7E',
     glow: 'rgba(15,140,126,0.16)',
     bg: 'linear-gradient(135deg, #E8F7F4 0%, #ffffff 100%)',
-    span: 'lg:col-span-2',
-    wide: true,
     icon: (
       <svg viewBox="0 0 64 64" fill="none" className="w-full h-full">
         <path d="M32 12v32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -96,12 +87,11 @@ function ActionCard({ action, visible, delay }) {
 
   return (
     <div
-      className={`relative ${action.span}`}
       style={{
         perspective: '900px',
         opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(30px)',
-        transition: `opacity 700ms ease ${delay}ms, transform 700ms cubic-bezier(0.34,1.4,0.64,1) ${delay}ms`,
+        transform: visible ? 'translateY(0)' : 'translateY(24px)',
+        transition: `opacity 600ms ease ${delay}ms, transform 600ms cubic-bezier(0.34,1.4,0.64,1) ${delay}ms`,
       }}
     >
       <div
@@ -109,97 +99,54 @@ function ActionCard({ action, visible, delay }) {
         onMouseMove={onMouseMove}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={onMouseLeave}
-        className="group relative h-full w-full rounded-3xl border border-gray-100 overflow-hidden cursor-pointer"
+        className="group relative h-full w-full rounded-2xl border border-white/80 overflow-hidden cursor-pointer"
         style={{
-          background: action.bg,
-          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${hover ? 'scale(1.015)' : 'scale(1)'}`,
+          background: 'rgba(255,255,255,0.6)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) ${hover ? 'scale(1.02)' : 'scale(1)'}`,
           transformStyle: 'preserve-3d',
           transition: hover
             ? 'transform 120ms ease-out, box-shadow 300ms'
             : 'transform 500ms cubic-bezier(0.22,1,0.36,1), box-shadow 300ms',
           boxShadow: hover
-            ? `0 30px 60px -20px ${action.glow}, 0 12px 30px -10px rgba(0,0,0,0.10)`
-            : '0 8px 24px -12px rgba(0,0,0,0.05)',
+            ? `0 24px 50px -20px ${action.glow}, 0 10px 24px -10px rgba(0,0,0,0.08)`
+            : '0 4px 24px -8px rgba(0,0,0,0.06), 0 1px 4px -1px rgba(0,0,0,0.04)',
         }}
       >
-        {/* Glow radial */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            top: '-20%',
-            right: '-10%',
-            width: action.big ? 380 : 260,
-            height: action.big ? 380 : 260,
-            background: `radial-gradient(circle, ${action.glow} 0%, transparent 70%)`,
-            opacity: hover ? 1 : 0.6,
-            transition: 'opacity 400ms ease',
-          }}
-        />
-
         {/* Contenido */}
-        <div
-          className={`relative h-full flex flex-col ${action.big ? 'p-10 lg:p-12' : 'p-7 lg:p-8'}`}
-          style={{ transformStyle: 'preserve-3d' }}
-        >
-          {/* Ícono flotante en 3D */}
+        <div className="relative h-full flex flex-col p-5" style={{ transformStyle: 'preserve-3d' }}>
+          {/* Ícono */}
           <div
-            className={`${action.big ? 'w-20 h-20' : 'w-14 h-14'} mb-auto`}
+            className="w-11 h-11 mb-3"
             style={{
               color: action.color,
-              transform: 'translateZ(40px)',
-              transition: 'transform 500ms ease',
+              transform: 'translateZ(35px)',
             }}
           >
             {action.icon}
           </div>
 
           {/* Texto */}
-          <div style={{ transform: 'translateZ(20px)' }}>
-            <h3
-              className={`${action.big ? 'text-3xl lg:text-4xl' : 'text-xl lg:text-2xl'} font-semibold tracking-tight text-gray-900 leading-tight`}
-            >
+          <div style={{ transform: 'translateZ(18px)' }}>
+            <h3 className="text-base lg:text-lg font-semibold tracking-tight text-gray-900 leading-tight">
               {action.title}
             </h3>
-            <p className={`mt-3 ${action.big ? 'text-base max-w-md' : 'text-sm'} text-gray-500 leading-relaxed`}>
+            <p className="mt-1.5 text-xs lg:text-sm text-gray-500 leading-snug">
               {action.description}
             </p>
-
-            {/* CTA */}
-            <div
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold tracking-wide"
-              style={{ color: action.color }}
-            >
-              <span>{action.cta}</span>
-              <svg
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
           </div>
 
-          {/* Línea decorativa lateral */}
-          <div
-            className="absolute left-0 top-1/4 bottom-1/4 w-[3px] rounded-r-full transition-all duration-500"
-            style={{
-              backgroundColor: action.color,
-              opacity: hover ? 0.9 : 0.25,
-              transform: hover ? 'scaleY(1.15)' : 'scaleY(1)',
-            }}
-          />
+          {/* CTA flecha — eliminado */}
+
+          {/* Línea decorativa — eliminada */}
         </div>
       </div>
     </div>
   )
 }
 
-export default function AccionesRapidas() {
+export default function AccionesRapidas({ slotRef, landed }) {
   const sectionRef = useRef(null)
   const [visible, setVisible] = useState(false)
 
@@ -214,8 +161,8 @@ export default function AccionesRapidas() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-white relative overflow-hidden">
-      {/* Sutil dot grid de fondo */}
+    <section ref={sectionRef} className="relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #f0f9ff 0%, #f8fafc 60%, #f0fdf4 100%)' }}>
+      {/* Dot grid sutil */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
@@ -224,40 +171,131 @@ export default function AccionesRapidas() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-24 lg:py-32">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
+        <div className="grid lg:grid-cols-[1fr_1.4fr] gap-10 lg:gap-14 items-center">
 
-        {/* Header */}
-        <div
-          className="max-w-2xl mb-14"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(20px)',
-            transition: 'opacity 700ms ease, transform 700ms ease',
-          }}
-        >
-          <p className="text-xs font-semibold tracking-[0.3em] uppercase text-primary mb-4">
-            Acciones rápidas
-          </p>
-          <h2 className="text-4xl lg:text-5xl font-semibold text-gray-900 tracking-tight leading-[1.1]">
-            Tu salud, a un clic
-          </h2>
-          <p className="mt-5 text-lg text-gray-500 leading-relaxed max-w-lg">
-            Servicios diseñados para tu bienestar. Comienza con la acción que te corresponde.
-          </p>
+          {/* ── IZQUIERDA: slot del Detecto + globo de pensamiento ── */}
+          <div className="relative flex justify-center lg:justify-start">
+
+            {/* Wrapper relativo al placeholder para anclar el globo */}
+            <div className="relative">
+
+              {/* Globo de pensamiento — aparece a la IZQUIERDA del Detecto cuando aterriza */}
+              <div
+                className="absolute z-20 pointer-events-none"
+                style={{
+                  top: '12%',
+                  right: 'calc(100% + 16px)',
+                  opacity: landed ? 1 : 0,
+                  transform: landed ? 'translateX(0) scale(1)' : 'translateX(14px) scale(0.88)',
+                  transition: 'opacity 500ms cubic-bezier(0.34,1.4,0.64,1), transform 500ms cubic-bezier(0.34,1.4,0.64,1)',
+                  transformOrigin: 'right center',
+                }}
+              >
+                {/* Burbuja principal */}
+                <div
+                  className="relative px-4 py-3 rounded-2xl whitespace-nowrap"
+                  style={{
+                    background: '#ffffff',
+                    border: '1.5px solid #0199C6',
+                    boxShadow: '0 4px 24px -6px rgba(1,153,198,0.22), 0 1px 6px -1px rgba(0,0,0,0.06)',
+                  }}
+                >
+                  {/* Icono sparkle */}
+                  <div className="flex items-center gap-2">
+                    <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4 shrink-0" style={{ color: '#0199C6' }}>
+                      <path d="M10 2l1.5 4.5L16 8l-4.5 1.5L10 14l-1.5-4.5L4 8l4.5-1.5L10 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+                    </svg>
+                    <span className="text-sm font-semibold text-gray-800 tracking-tight">
+                      Hola, ¿qué necesitas hacer?
+                    </span>
+                  </div>
+
+                  {/* Cola de pensamiento → hacia la derecha */}
+                  <span
+                    className="absolute rounded-full"
+                    style={{
+                      width: 9, height: 9,
+                      top: '55%',
+                      right: -16,
+                      transform: 'translateY(-50%)',
+                      background: '#ffffff',
+                      border: '1.5px solid #0199C6',
+                    }}
+                  />
+                  <span
+                    className="absolute rounded-full"
+                    style={{
+                      width: 5, height: 5,
+                      top: '55%',
+                      right: -26,
+                      transform: 'translateY(-50%)',
+                      background: '#ffffff',
+                      border: '1.5px solid #0199C6',
+                    }}
+                  />
+                  <span
+                    className="absolute rounded-full"
+                    style={{
+                      width: 3, height: 3,
+                      top: '55%',
+                      right: -34,
+                      transform: 'translateY(-50%)',
+                      background: '#0199C6',
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Placeholder invisible — reserva el espacio donde aterriza el Detecto */}
+              <img
+                ref={slotRef}
+                src={detecto}
+                alt=""
+                aria-hidden="true"
+                className="relative z-10 w-60 sm:w-64 lg:w-80 select-none pointer-events-none"
+                style={{ visibility: 'hidden' }}
+              />
+            </div>
+          </div>
+
+          {/* ── DERECHA: texto arriba + cards abajo ── */}
+          <div className="flex flex-col gap-8 lg:gap-10">
+
+            {/* Texto */}
+            <div
+              className="text-center lg:text-left"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity 700ms ease 200ms, transform 700ms ease 200ms',
+              }}
+            >
+              <p className="text-xs font-semibold tracking-[0.3em] uppercase text-primary mb-3">
+                Acciones rápidas
+              </p>
+              <h2 className="text-3xl lg:text-4xl font-semibold text-gray-900 tracking-tight leading-[1.1]">
+                ¿En qué te puedo <span className="text-primary">ayudar?</span>
+              </h2>
+              <p className="mt-4 text-sm lg:text-base text-gray-500 leading-relaxed max-w-md mx-auto lg:mx-0">
+                Servicios diseñados para tu bienestar. Elige el que necesites.
+              </p>
+            </div>
+
+            {/* 2x2 grid de cards */}
+            <div className="grid grid-cols-2 gap-4 lg:gap-5 auto-rows-[180px] lg:auto-rows-[200px]">
+              {actions.map((action, i) => (
+                <ActionCard
+                  key={action.key}
+                  action={action}
+                  visible={visible}
+                  delay={500 + i * 100}
+                />
+              ))}
+            </div>
+          </div>
+
         </div>
-
-        {/* Grid Bento */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 auto-rows-[220px] lg:auto-rows-[240px]">
-          {actions.map((action, i) => (
-            <ActionCard
-              key={action.key}
-              action={action}
-              visible={visible}
-              delay={i * 90}
-            />
-          ))}
-        </div>
-
       </div>
     </section>
   )

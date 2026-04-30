@@ -14,7 +14,7 @@ function initParticles(width, height) {
   }))
 }
 
-export default function Hero() {
+export default function Hero({ slotRef }) {
   const canvasRef = useRef(null)
   const mouseRef = useRef({ x: -9999, y: -9999 })
   const particlesRef = useRef([])
@@ -187,11 +187,13 @@ export default function Hero() {
             {/* Halo detrás */}
             <div className="absolute w-[460px] h-[460px] bg-primary/20 rounded-full blur-3xl"></div>
 
-            {/* Mascota */}
+            {/* Mascota — placeholder invisible (la real es renderizada en App como fixed) */}
             <img
+              ref={slotRef}
               src={detecto}
               alt="Detecto IA"
               className="relative z-10 w-72 sm:w-80 lg:w-[420px] drop-shadow-2xl"
+              style={{ visibility: 'hidden' }}
             />
 
             {/* Detalle innovador: orb flotante */}

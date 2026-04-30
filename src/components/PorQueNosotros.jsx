@@ -7,12 +7,6 @@ const metrics = [
   { prefix: '+', value: 120,   suffix: '',  label: 'Especialistas', duration: 1000 },
 ]
 
-const pills = [
-  'IA certificada',
-  'Diagnóstico en 24h',
-  'Cobertura nacional',
-  'Resultados digitales',
-]
 
 function useCounter(target, duration, active) {
   const [count, setCount] = useState(0)
@@ -188,18 +182,6 @@ export default function PorQueNosotros() {
                   Utilizamos inteligencia artificial avanzada para lograr diagnósticos más tempranos, precisos y confiables.
                 </p>
 
-                {/* Pills */}
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {pills.map((pill) => (
-                    <span
-                      key={pill}
-                      className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide text-primary-dark bg-primary/10 border border-primary/20"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-primary inline-block" />
-                      {pill}
-                    </span>
-                  ))}
-                </div>
 
                 {/* CTA */}
                 <div className="mt-10 flex items-center gap-4">
