@@ -85,7 +85,7 @@ export default function StaffMedico() {
     <section className="bg-white">
       <div ref={sectionRef} className="relative h-[350vh]">
         <div className="sticky top-0 h-screen overflow-hidden">
-          <div className="h-full grid lg:grid-cols-[1fr_2.5fr]">
+          <div className="h-full max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1fr_2.5fr]">
 
             {/* ── COLUMNA IZQUIERDA ── */}
             <div className="flex flex-col justify-between px-8 lg:px-12 py-28
@@ -139,7 +139,7 @@ export default function StaffMedico() {
             <div ref={columnRef} className="relative overflow-hidden">
               <div
                 ref={trackRef}
-                className="flex h-full items-center gap-5 px-10 py-16"
+                className="flex h-full items-center gap-5 px-8 lg:px-12 py-16"
                 style={{
                   transform: `translateX(-${translateX}px)`,
                   transition: 'transform 0.08s linear',
@@ -174,17 +174,17 @@ export default function StaffMedico() {
 
                     {/* Panel hover glass */}
                     <div className="absolute inset-0 flex flex-col justify-end
-                                    backdrop-blur-xl bg-white/15 border border-white/20
+                                    backdrop-blur-xl bg-primary-dark/70 border border-white/20
                                     translate-y-full group-hover:translate-y-0
                                     transition-transform duration-500 ease-out rounded-2xl">
                       <div className="p-6">
-                        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-2">
+                        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-2">
                           {doctor.specialty}
                         </p>
                         <h3 className="text-xl font-semibold text-white mb-3 leading-snug">
                           {doctor.name}
                         </h3>
-                        <p className="text-sm text-white/80 leading-relaxed">
+                        <p className="text-sm text-white/85 leading-relaxed">
                           {doctor.description}
                         </p>
                       </div>
