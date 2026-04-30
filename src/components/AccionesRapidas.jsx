@@ -161,7 +161,7 @@ export default function AccionesRapidas({ slotRef, landed }) {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden" style={{ background: 'linear-gradient(160deg, #f0f9ff 0%, #f8fafc 60%, #f0fdf4 100%)' }}>
+    <section ref={sectionRef} className="relative overflow-hidden min-h-screen flex items-center" style={{ background: 'linear-gradient(160deg, #f0f9ff 0%, #f8fafc 60%, #f0fdf4 100%)' }}>
       {/* Dot grid sutil */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"

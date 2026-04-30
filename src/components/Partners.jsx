@@ -56,7 +56,7 @@ export default function Partners() {
       <div className="relative z-10 h-full flex flex-col justify-between">
 
         {/* 🔝 TEXTO ARRIBA */}
-        <div className="max-w-7xl mx-auto w-full px-6 pt-24">
+        <div className="max-w-7xl mx-auto w-full px-6 pt-48">
 
           <div className="max-w-2xl">
             <h2 className="text-5xl md:text-6xl font-semibold text-white leading-tight">
@@ -78,11 +78,11 @@ export default function Partners() {
             <div className="w-full h-px bg-white/20" />
           </div>
 
-          {/* Carrusel */}
-          <div className="overflow-hidden">
+          {/* Carrusel — cortado al mismo ancho que la línea */}
+          <div className="max-w-7xl mx-auto px-6 overflow-hidden">
             <div
               ref={trackRef}
-              className="flex items-center gap-20 whitespace-nowrap px-6"
+              className="flex items-center gap-20 whitespace-nowrap"
             >
               {[...logos, ...logos].map((logo, i) => (
                 <img
