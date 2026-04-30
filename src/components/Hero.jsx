@@ -1,6 +1,122 @@
+import { useEffect, useRef } from 'react'
 import detecto from '../assets/detecto.png'
 
+const PARTICLE_COUNT = 60
+
+function initParticles(width, height) {
+  return Array.from({ length: PARTICLE_COUNT }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    radius: Math.random() * 2.5 + 0.5,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: -(Math.random() * 0.4 + 0.1), // drift upward
+    opacity: Math.random() * 0.5 + 0.15,
+  }))
+}
+
 export default function Hero() {
+  const canvasRef = useRef(null)
+  const mouseRef = useRef({ x: -9999, y: -9999 })
+  const particlesRef = useRef([])
+  const rafRef = useRef(null)
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    const ctx = canvas.getContext('2d')
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth
+      canvas.height = canvas.offsetHeight
+      particlesRef.current = initParticles(canvas.width, canvas.height)
+    }
+
+    resize()
+    window.addEventListener('resize', resize)
+
+    const onMouseMove = (e) => {
+      const rect = canvas.getBoundingClientRect()
+      mouseRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      }
+    }
+
+    const onMouseLeave = () => {
+      mouseRef.current = { x: -9999, y: -9999 }
+    }
+
+    canvas.addEventListener('mousemove', onMouseMove)
+    canvas.addEventListener('mouseleave', onMouseLeave)
+
+    // primary color: approximate from Tailwind config — use a teal/blue-green
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      const { x: mx, y: my } = mouseRef.current
+      const REPEL_RADIUS = 100
+      const REPEL_STRENGTH = 1.8
+
+      for (const p of particlesRef.current) {
+        // Mouse repulsion
+        const dx = p.x - mx
+        const dy = p.y - my
+        const dist = Math.sqrt(dx * dx + dy * dy)
+
+        if (dist < REPEL_RADIUS && dist > 0) {
+          const force = (1 - dist / REPEL_RADIUS) * REPEL_STRENGTH
+          p.x += (dx / dist) * force
+          p.y += (dy / dist) * force
+        }
+
+        // Move
+        p.x += p.vx
+        p.y += p.vy
+
+        // Wrap vertically
+        if (p.y < -p.radius) {
+          p.y = canvas.height + p.radius
+          p.x = Math.random() * canvas.width
+        }
+        if (p.x < -p.radius) p.x = canvas.width + p.radius
+        if (p.x > canvas.width + p.radius) p.x = -p.radius
+
+        // Draw
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(0, 153, 198, ${p.opacity})`
+        ctx.fill()
+      }
+
+      // Draw subtle connecting lines between nearby particles
+      const ps = particlesRef.current
+      for (let i = 0; i < ps.length; i++) {
+        for (let j = i + 1; j < ps.length; j++) {
+          const dx = ps[i].x - ps[j].x
+          const dy = ps[i].y - ps[j].y
+          const dist = Math.sqrt(dx * dx + dy * dy)
+          if (dist < 90) {
+            ctx.beginPath()
+            ctx.moveTo(ps[i].x, ps[i].y)
+            ctx.lineTo(ps[j].x, ps[j].y)
+            ctx.strokeStyle = `rgba(0, 153, 198, ${0.1 * (1 - dist / 90)})`
+            ctx.lineWidth = 0.8
+            ctx.stroke()
+          }
+        }
+      }
+
+      rafRef.current = requestAnimationFrame(draw)
+    }
+
+    draw()
+
+    return () => {
+      window.removeEventListener('resize', resize)
+      canvas.removeEventListener('mousemove', onMouseMove)
+      canvas.removeEventListener('mouseleave', onMouseLeave)
+      cancelAnimationFrame(rafRef.current)
+    }
+  }, [])
+
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-24">
       
@@ -22,7 +138,14 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-24">
+      {/* Canvas de partículas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        style={{ pointerEvents: 'all' }}
+      />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
           {/* LEFT */}
@@ -78,5 +201,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  );
+  )
 }
