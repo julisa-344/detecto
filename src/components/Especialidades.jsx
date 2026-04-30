@@ -122,7 +122,7 @@ export default function Especialidades() {
         </video>
 
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-dark/96 via-primary-dark/90 to-primary-medium/88" />
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950/80 via-gray-900/70 to-gray-950/75" />
 
         {/* Layout principal */}
         <div className="relative z-10 h-full max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[2fr_3fr] gap-0">
