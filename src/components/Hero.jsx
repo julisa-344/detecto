@@ -122,7 +122,7 @@ export default function Hero() {
       
       {/* Bottom gradient fuerte */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/30 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/80 via-primary/25 to-transparent"></div>
       </div>
 
       {/* Glow sutil tecnológico */}
@@ -166,13 +166,12 @@ export default function Hero() {
             <div className="mt-10">
               <a
                 href="#agendar"
-                className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary text-white font-medium overflow-hidden"
+                className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary-dark text-white font-medium overflow-hidden"
               >
                 <span className="relative z-10">
                   Comenzar evaluación
                 </span>
 
-                {/* efecto innovador */}
                 <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
                 <div className="relative z-10 transition-transform group-hover:translate-x-1">
@@ -186,13 +185,13 @@ export default function Hero() {
           <div className="relative flex justify-center">
             
             {/* Halo detrás */}
-            <div className="absolute w-[320px] h-[320px] bg-primary/20 rounded-full blur-3xl"></div>
+            <div className="absolute w-[460px] h-[460px] bg-primary/20 rounded-full blur-3xl"></div>
 
             {/* Mascota */}
             <img
               src={detecto}
               alt="Detecto IA"
-              className="relative z-10 w-56 sm:w-64 lg:w-72 drop-shadow-2xl"
+              className="relative z-10 w-72 sm:w-80 lg:w-[420px] drop-shadow-2xl"
             />
 
             {/* Detalle innovador: orb flotante */}
