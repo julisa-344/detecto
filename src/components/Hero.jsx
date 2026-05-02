@@ -1,134 +1,111 @@
-import { useCallback } from "react"
-import Particles from "@tsparticles/react"
-import { loadFull } from "tsparticles"
+import { MeshGradient } from "@paper-design/shaders-react"
+import { useEffect, useState } from "react"
 import detecto from "../assets/detecto.png"
+import { motion } from "framer-motion"
 
 export default function Hero({ slotRef }) {
+  const [dimensions, setDimensions] = useState({ width: 1920, height: 1080 })
+  const [mounted, setMounted] = useState(false)
 
-  const particlesInit = useCallback(async (engine) => {
-    await loadFull(engine)
+  useEffect(() => {
+    setMounted(true)
+
+    const update = () =>
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+
+    update()
+    window.addEventListener("resize", update)
+    return () => window.removeEventListener("resize", update)
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-white pt-24">
+    <section className="relative min-h-screen flex items-center overflow-hidden">
 
-      {/* 🔥 FONDO BASE (NO tapa partículas) */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-[#f5fbfd] to-[#e6f7fb] z-0" />
+      {/* 🔥 FONDO MESH */}
+      <div className="absolute inset-0 -z-10">
+        {mounted && (
+          <>
+            <MeshGradient
+              width={dimensions.width}
+              height={dimensions.height}
+              colors={[
+                "#0199C6",  // Azul Principal
+                "#5CC8E6",  // Celeste claro
+                "#0B6E8E",  // Azul profundo
+                "#7AC8F5",  // Celeste claro
+                "#00367e",  // Azul oscuro
+              ]}
+              distortion={0.6}
+              swirl={0.5}
+              speed={0.9}
+              offsetX={0.1}
+            />
 
-      {/* 🔥 PARTICULAS */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        className="absolute inset-0 z-0"
-
-        options={{
-          fullScreen: false,
-
-          particles: {
-            number: {
-              value: 350,
-              density: {
-                enable: true,
-                area: 800,
-              },
-            },
-
-            color: {
-              value: "#0070A5", // 👈 un solo color para efecto nube
-            },
-
-            shape: {
-              type: "circle",
-            },
-
-            opacity: {
-              value: 1, // 👈 clave para efecto degradé
-              random: true,
-            },
-
-            size: {
-              value: { min: 1, max: 2 }, // 👈 puntos pequeños
-            },
-
-            links: {
-              enable: false, // 👈 QUITAMOS estilo constelación
-            },
-
-            move: {
-              enable: true,
-              speed: 0.4,
-              direction: "none",
-              random: true,
-              outModes: {
-                default: "out",
-              },
-            },
-          },
-
-          interactivity: {
-            events: {
-              onHover: {
-                enable: true,
-                mode: "bubble",
-              },
-            },
-            modes: {
-              bubble: {
-                distance: 180,
-                size: 3,
-                opacity: 0.3,
-              },
-            },
-          },
-
-          detectRetina: true,
-        }}
-
-      />
-
-      {/* 🌫 Glow base (NO invade demasiado) */}
-      <div className="absolute w-[600px] h-[600px] bg-primary/20 rounded-full blur-[140px] opacity-25 left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-0"></div>
+            {/* VEIL PARA CONTRASTE */}
+            <div className="absolute inset-0 bg-white/15" />
+          </>
+        )}
+      </div>
 
       {/* CONTENIDO */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 w-full">
+        {/* El contenedor principal DEBE ser un grid para que aparezca la imagen al lado del texto */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* LEFT */}
-          <div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-medium tracking-tight text-gray-900">
-              Detectar a tiempo
-              <span className="block text-primary font-semibold">
-                cambia todo
+          {/* COLUMNA IZQUIERDA: Texto y Botón (Ya optimizado) */}
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1 }}
+          >
+            {/* Pre-title */}
+            <span className="text-primary-dark font-bold text-sm tracking-[0.2em] uppercase mb-4 block">
+              DIAGNÓSTICO DE PRECISIÓN
+            </span>
+
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight text-gray-900 leading-[1.1]">
+              Cuidamos de ti, <br />
+              <span className="block text-primary-dark">
+                en cada etapa.
               </span>
             </h1>
 
-            <p className="mt-6 text-lg text-gray-600 max-w-xl">
-              Tecnología avanzada para diagnóstico temprano, con la precisión
-              que necesitas y la tranquilidad que buscas.
+            {/* Bajada */}
+            <p className="mt-6 text-xl lg:text-2xl text-gray-600 max-w-xl leading-relaxed">
+              Tecnología de vanguardia para diagnósticos rápidos, precisos y confiables.
             </p>
 
-            <div className="mt-10">
+            {/* Botón */}
+            <div className="mt-10 flex gap-4">
               <a
                 href="#agendar"
-                className="group relative inline-flex items-center gap-3 px-8 py-4 rounded-full bg-primary-dark text-white font-medium overflow-hidden"
+                className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-full bg-primary-dark text-white font-semibold text-lg overflow-hidden shadow-lg hover:bg-primary-dark/90 transition-all hover:scale-105 active:scale-95"
               >
-                <span className="relative z-10">
-                  Comenzar evaluación
-                </span>
+                <span className="relative z-10">Evaluación ahora</span>
 
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity"></div>
-
-                <div className="relative z-10 transition-transform group-hover:translate-x-1">
-                  →
-                </div>
+                {/* Icono SVG */}
+                <svg
+                  className="w-5 h-5 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
               </a>
             </div>
-          </div>
+          </motion.div>
 
-          {/* RIGHT */}
-          <div className="relative flex justify-center">
-            <div className="absolute w-[460px] h-[460px] bg-primary/20 rounded-full blur-3xl"></div>
-
+          {/* COLUMNA DERECHA: Tu imagen de Detecto (AÑADIDA AQUÍ) */}
+          <motion.div
+            initial={{ opacity: 0, x: 100, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }} // Un poco más lento para que sea el "gran final"
+            className="flex justify-center items-center lg:justify-end"
+          >
             <img
               ref={slotRef}
               src={detecto}
@@ -136,7 +113,7 @@ export default function Hero({ slotRef }) {
               className="relative z-10 w-72 sm:w-80 lg:w-[420px] drop-shadow-2xl"
               style={{ visibility: 'hidden' }}
             />
-          </div>
+          </motion.div>
 
         </div>
       </div>
