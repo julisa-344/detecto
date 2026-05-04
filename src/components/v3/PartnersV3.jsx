@@ -42,6 +42,7 @@ export default function PartnersV3() {
                   src={logo.src} 
                   alt={logo.alt}
                   className="h-full w-auto object-contain"
+                  style={{ filter: 'invert(1) grayscale(1) brightness(0.3)', opacity: 0.5 }}
                 />
               </div>
             ))}
