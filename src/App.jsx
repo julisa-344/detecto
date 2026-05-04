@@ -9,6 +9,7 @@ import PorQueNosotros from './components/PorQueNosotros'
 import AppDetecta from './components/AppDetecta'
 import Partners from './components/Partners'
 import detecto from './assets/detecto.png'
+import Footer from './components/Footer'
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v))
 const lerp = (a, b, t) => a + (b - a) * t
@@ -104,6 +105,8 @@ function App() {
           zIndex: 30,
         }}
       />
+
+      < Footer />
     </div>
   )
 }
