@@ -56,7 +56,7 @@ export default function HeroV2() {
               href="#agendar"
               className="inline-flex items-center gap-3 px-10 py-4 bg-[#0070A5] text-white text-base font-medium tracking-wide rounded-sm hover:bg-[#005a84] transition-colors duration-200 group"
             >
-              Iniciar evaluación
+              Agendar cita
               <svg
                 className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
                 fill="none"

@@ -2,9 +2,30 @@ import { useEffect, useRef, useState } from 'react'
 import detecto from '../assets/detecto.png'
 
 const metrics = [
-  { prefix: '+', value: 25000, suffix: '', label: 'Pacientes evaluados', duration: 1400 },
-  { prefix: '',  value: 98,    suffix: '%', label: 'Precisión diagnóstica', duration: 1200 },
-  { prefix: '+', value: 120,   suffix: '',  label: 'Especialistas', duration: 1000 },
+  { 
+    prefix: '+', 
+    value: 15, 
+    suffix: '', 
+    label: 'Años de experiencia', 
+    duration: 1400, 
+    description: 'Trayectoria consolidada liderando la innovación en detección temprana y tratamientos de alta complejidad.' 
+  },
+  { 
+    prefix: '',  
+    value: 100000,    
+    suffix: '', 
+    label: 'Pacientes atendidos', 
+    duration: 1200, 
+    description: 'Historias de éxito respaldadas por un enfoque humano y estándares clínicos de nivel internacional.' 
+  },
+  { 
+    prefix: '+', 
+    value: 3500,   
+    suffix: '',  
+    label: 'Cirugías Complejas Anuales', 
+    duration: 1000, 
+    description: 'Precisión quirúrgica excepcional realizada por especialistas de élite con la tecnología más avanzada del país.' 
+  },
 ]
 
 

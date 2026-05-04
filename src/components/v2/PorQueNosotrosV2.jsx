@@ -2,9 +2,30 @@ import { motion } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
 
 const metrics = [
-  { prefix: '+', value: 25000, suffix: '', label: 'Pacientes evaluados', duration: 1400, description: 'Miles de pacientes han confiado en Detecta para sus diagnósticos.' },
-  { prefix: '',  value: 98,    suffix: '%', label: 'Precisión diagnóstica', duration: 1200, description: 'Nuestros sistemas de IA alcanzan estándares clínicos de clase mundial.' },
-  { prefix: '+', value: 120,   suffix: '',  label: 'Especialistas médicos', duration: 1000, description: 'Un equipo multidisciplinario dedicado a tu bienestar integral.' },
+  { 
+    prefix: '+', 
+    value: 15, 
+    suffix: '', 
+    label: 'Años de experiencia', 
+    duration: 1400, 
+    description: 'Trayectoria consolidada liderando la innovación en detección temprana y tratamientos de alta complejidad.' 
+  },
+  { 
+    prefix: '',  
+    value: 100000,    
+    suffix: '', 
+    label: 'Pacientes atendidos', 
+    duration: 1200, 
+    description: 'Historias de éxito respaldadas por un enfoque humano y estándares clínicos de nivel internacional.' 
+  },
+  { 
+    prefix: '+', 
+    value: 3500,   
+    suffix: '',  
+    label: 'Cirugías Complejas Anuales', 
+    duration: 1000, 
+    description: 'Precisión quirúrgica excepcional realizada por especialistas de élite con la tecnología más avanzada del país.' 
+  },
 ]
 
 function useCounter(target, duration, active) {
