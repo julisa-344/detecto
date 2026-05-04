@@ -70,6 +70,17 @@
   --sparkles-color: #52C0E1; /* Primary Light */
 
   --font-sans: 'Lexend', system-ui, -apple-system, sans-serif;
+
+  --animate-spin: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 :root {

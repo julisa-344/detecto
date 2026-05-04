@@ -1,23 +1,35 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import logo1 from '../assets/logo1.webp'
-import logo2 from '../assets/logo2.webp'
-import logo3 from '../assets/logo3.webp'
-import logo4 from '../assets/logo4.webp'
-import logo5 from '../assets/logo5.webp'
+import {
+  FaReact, FaAws, FaDocker, FaNodeJs, FaGithub,
+  FaTwitter, FaLinkedin, FaInstagram, FaGoogle, FaApple
+} from "react-icons/fa";
+import {
+  SiNextdotjs, SiVercel, SiRedux, SiTypescript, SiFacebook
+} from "react-icons/si";
 
 const iconConfigs = [
-  { src: logo1 },
-  { src: logo2 },
-  { src: logo3 },
-  { src: logo4 },
-  { src: logo5 },
+  { Icon: FaReact, color: "#61DAFB" },
+  { Icon: FaAws, color: "#FF9900" },
+  { Icon: FaDocker, color: "#2496ED" },
+  { Icon: FaNodeJs, color: "#339933" },
+  { Icon: SiNextdotjs, color: "#000000" },
+  { Icon: SiVercel, color: "#000000" },
+  { Icon: SiRedux, color: "#764ABC" },
+  { Icon: SiTypescript, color: "#3178C6" },
+  { Icon: FaGithub, color: "#181717" },
+  { Icon: FaTwitter, color: "#1DA1F2" },
+  { Icon: FaLinkedin, color: "#0077B5" },
+  { Icon: FaInstagram, color: "#E1306C" },
+  { Icon: FaGoogle, color: "#DB4437" },
+  { Icon: FaApple, color: "#000000" },
+  { Icon: SiFacebook, color: "#1877F2" },
 ];
 
-export default function Partners() {
+export default function StackFeatureSection() {
   const orbitCount = 3;
-  const orbitGap = 8;
+  const orbitGap = 8; // rem between orbits
   const iconsPerOrbit = Math.ceil(iconConfigs.length / orbitCount);
 
   return (
@@ -25,25 +37,25 @@ export default function Partners() {
       {/* Left side: Heading and Text */}
       <div className="w-1/2 z-10">
         <h1 className="text-4xl sm:text-6xl font-bold mb-4 text-gray-900">
-          Instituciones que respaldan tu salud
+          Build your idea
         </h1>
         <p className="text-gray-500 mb-6 max-w-lg">
-          Trabajamos con las mejores clínicas y aseguradoras para ofrecerte un servicio de excelencia.
+          RUIXEN is a modern and responsive UI kit for React, Next.js, and Tailwind CSS.
         </p>
         <div className="flex items-center gap-3">
           <Button variant="default">
-            <a href="#agendar">Agendar Cita</a>
+            <a href="https://ruixen.com" target="_blank"> Get Started</a>
           </Button>
-          <Button variant="outline">Conocer Más</Button>
+          <Button variant="outline">Learn More</Button>
         </div>
       </div>
 
-      {/* Right side: Orbit animation */}
+      {/* Right side: Orbit animation cropped to 1/4 */}
       <div className="relative w-1/2 h-full flex items-center justify-start overflow-hidden">
         <div className="relative w-[50rem] h-[50rem] translate-x-[50%] flex items-center justify-center">
           {/* Center Circle */}
-          <div className="w-24 h-24 rounded-full bg-gray-50 shadow-lg flex items-center justify-center z-10">
-            <span className="text-2xl font-bold text-primary-medium">D</span>
+          <div className="w-24 h-24 rounded-full bg-gray-50 shadow-lg flex items-center justify-center">
+            <FaReact className="w-12 h-12 text-blue-400" />
           </div>
 
           {/* Generate Orbits */}
@@ -78,11 +90,7 @@ export default function Partners() {
                           transform: "translate(-50%, -50%)",
                         }}
                       >
-                        <img
-                          src={cfg.src}
-                          alt="logo"
-                          className="w-8 h-8 object-contain"
-                        />
+                        <cfg.Icon className="w-8 h-8" style={{ color: cfg.color }} />
                       </div>
                     );
                   })}
