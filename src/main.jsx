@@ -1,10 +1,21 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
-import App from './App.jsx'
+import VersionPicker from './pages/VersionPicker'
+import V1 from './pages/V1'
+import V2 from './pages/V2'
+import V3 from './pages/V3'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<VersionPicker />} />
+        <Route path="/v1" element={<V1 />} />
+        <Route path="/v2" element={<V2 />} />
+        <Route path="/v3" element={<V3 />} />
+      </Routes>
+    </BrowserRouter>
   </StrictMode>,
 )
