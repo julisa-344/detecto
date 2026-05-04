@@ -15,7 +15,6 @@ export default function V2() {
     <div className="min-h-screen bg-white">
       <HeaderV2 />
       <HeroV2 />
-      <MetricsBarV2 />
       <AccionesRapidasV2 />
       <EspecialidadesV2 />
       <StaffMedicoV2 />
