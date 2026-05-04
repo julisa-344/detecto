@@ -9,20 +9,18 @@ export default function Hero({ slotRef }) {
 
   useEffect(() => {
     setMounted(true)
-
     const update = () =>
       setDimensions({
         width: window.innerWidth,
         height: window.innerHeight,
       })
-
     update()
     window.addEventListener("resize", update)
     return () => window.removeEventListener("resize", update)
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ fontFamily: 'Lexend, sans-serif' }}>
 
       {/* 🔥 FONDO MESH */}
       <div className="absolute inset-0 -z-10">
@@ -43,50 +41,47 @@ export default function Hero({ slotRef }) {
               speed={0.9}
               offsetX={0.1}
             />
-
-            {/* VEIL PARA CONTRASTE */}
-            <div className="absolute inset-0 bg-white/15" />
+            {/* VEIL PARA CONTRASTE GENERAL */}
+            <div className="absolute inset-0 bg-white/10" />
           </>
         )}
       </div>
 
       {/* CONTENIDO */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 w-full">
-        {/* El contenedor principal DEBE ser un grid para que aparezca la imagen al lado del texto */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
 
-          {/* COLUMNA IZQUIERDA: Texto y Botón (Ya optimizado) */}
+          {/* COLUMNA IZQUIERDA: Contenedor Glassmorphism */}
           <motion.div
-            initial={{ opacity: 0, x: -100 }}
+            initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative p-8 md:p-12 rounded-[48px] bg-white/15 backdrop-blur-2xl border border-white/30 shadow-2xl shadow-blue-900/10"
           >
             {/* Pre-title */}
-            <span className="text-primary-dark font-bold text-sm tracking-[0.2em] uppercase mb-4 block">
+            <span className="text-[#0070A5] font-bold text-[10px] tracking-[0.4em] uppercase mb-6 block">
               DIAGNÓSTICO DE PRECISIÓN
             </span>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight text-gray-900 leading-[1.1]">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight text-slate-900 leading-[1.0] uppercase">
               Cuidamos de ti, <br />
-              <span className="block text-primary-dark">
+              <span className="block italic text-[#0070A5]">
                 en cada etapa.
               </span>
             </h1>
 
-            {/* Bajada */}
-            <p className="mt-6 text-xl lg:text-2xl text-gray-600 max-w-xl leading-relaxed">
-              Tecnología de vanguardia para diagnósticos rápidos, precisos y confiables.
+            {/* Bajada con contraste mejorado */}
+            <p className="mt-8 text-lg lg:text-xl font-light text-slate-700 max-w-xl leading-relaxed">
+              Tecnología de vanguardia para diagnósticos rápidos, precisos y confiables respaldados por expertos.
             </p>
 
-            {/* Botón */}
-            <div className="mt-10 flex gap-4">
+            {/* Botón Estilo Detecta */}
+            <div className="mt-12 flex gap-4">
               <a
                 href="#agendar"
-                className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-full bg-primary-dark text-white font-semibold text-lg overflow-hidden shadow-lg hover:bg-primary-dark/90 transition-all hover:scale-105 active:scale-95"
+                className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-full bg-[#0070A5] text-white font-semibold text-sm tracking-widest transition-all hover:bg-[#0199C6] hover:scale-105 active:scale-95 shadow-lg shadow-[#0070A5]/20"
               >
-                <span className="relative z-10">Evaluación ahora</span>
-
-                {/* Icono SVG */}
+                <span className="relative z-10 uppercase">Agendar cita</span>
                 <svg
                   className="w-5 h-5 transition-transform group-hover:translate-x-1"
                   fill="none"
@@ -99,19 +94,18 @@ export default function Hero({ slotRef }) {
             </div>
           </motion.div>
 
-          {/* COLUMNA DERECHA: Tu imagen de Detecto (AÑADIDA AQUÍ) */}
+          {/* COLUMNA DERECHA: Imagen Detecto (Limpia, fuera del glass) */}
           <motion.div
-            initial={{ opacity: 0, x: 100, scale: 0.9 }}
+            initial={{ opacity: 0, x: 60, scale: 0.9 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.3 }} // Un poco más lento para que sea el "gran final"
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="flex justify-center items-center lg:justify-end"
           >
             <img
               ref={slotRef}
               src={detecto}
               alt="Detecto IA"
-              className="relative z-10 w-72 sm:w-80 lg:w-[420px] drop-shadow-2xl"
-              style={{ visibility: 'hidden' }}
+              className="relative z-10 w-72 sm:w-80 lg:w-[480px] drop-shadow-[0_20px_50px_rgba(0,112,165,0.3)]"
             />
           </motion.div>
 
