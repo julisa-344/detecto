@@ -40,7 +40,7 @@ export default function PartnersV3() {
             animation: 'marquee-v3 30s linear infinite',
           }}
         >
-          {[...logos, ...logos].map((logo, i) => (
+          {[...logos, ...logos, ...logos].map((logo, i) => (
             <img
               key={i}
               src={logo}
@@ -52,15 +52,15 @@ export default function PartnersV3() {
 
         {/* Blur progresivo — izquierda */}
         <ProgressiveBlur
-          className="pointer-events-none absolute top-0 left-0 h-full w-[160px]"
+          className="pointer-events-none absolute top-0 left-0 h-full w-[80px]"
           direction="left"
-          blurIntensity={0.5}
+          blurIntensity={0.4}
         />
         {/* Blur progresivo — derecha */}
         <ProgressiveBlur
-          className="pointer-events-none absolute top-0 right-0 h-full w-[160px]"
+          className="pointer-events-none absolute top-0 right-0 h-full w-[80px]"
           direction="right"
-          blurIntensity={0.5}
+          blurIntensity={0.4}
         />
       </div>
 
@@ -88,7 +88,7 @@ export default function PartnersV3() {
       <style>{`
         @keyframes marquee-v3 {
           from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
+          to { transform: translateX(-33.333%); }
         }
       `}</style>
     </section>
