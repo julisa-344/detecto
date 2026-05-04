@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
-import logo1 from '../../assets/logo1.webp'
-import logo2 from '../../assets/logo2.webp'
-import logo3 from '../../assets/logo3.webp'
-import logo4 from '../../assets/logo4.webp'
-import logo5 from '../../assets/logo5.webp'
+import logo1 from '../../assets/logo1negro.webp'
+import logo2 from '../../assets/logo2negro.webp'
+import logo3 from '../../assets/logo3negro.webp'
+import logo4 from '../../assets/logo4negro.webp'
+import logo5 from '../../assets/logo5negro.webp'
 
 const logos = [logo1, logo2, logo3, logo4, logo5]
 
@@ -36,18 +36,9 @@ export default function PartnersV2() {
                 src={logo}
                 alt="Partner"
                 className="h-8 w-auto object-contain transition-all duration-300"
-                style={{
-                  filter: 'invert(1) grayscale(1) brightness(0.3)',
-                  opacity: 0.5,
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.filter = 'invert(1) grayscale(0) brightness(0.5)'
-                  e.currentTarget.style.opacity = '0.85'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.filter = 'invert(1) grayscale(1) brightness(0.3)'
-                  e.currentTarget.style.opacity = '0.5'
-                }}
+                style={{ opacity: 0.6 }}
+                onMouseEnter={e => { e.currentTarget.style.opacity = '1' }}
+                onMouseLeave={e => { e.currentTarget.style.opacity = '0.6' }}
               />
             ))}
           </div>
