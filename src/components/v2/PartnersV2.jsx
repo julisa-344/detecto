@@ -35,7 +35,19 @@ export default function PartnersV2() {
                 key={i}
                 src={logo}
                 alt="Partner"
-                className="h-8 w-auto object-contain grayscale opacity-40 hover:opacity-70 hover:grayscale-0 transition-all duration-300"
+                className="h-8 w-auto object-contain transition-all duration-300"
+                style={{
+                  filter: 'invert(1) grayscale(1) brightness(0.3)',
+                  opacity: 0.5,
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.filter = 'invert(1) grayscale(0) brightness(0.5)'
+                  e.currentTarget.style.opacity = '0.85'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.filter = 'invert(1) grayscale(1) brightness(0.3)'
+                  e.currentTarget.style.opacity = '0.5'
+                }}
               />
             ))}
           </div>

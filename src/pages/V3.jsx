@@ -15,6 +15,7 @@ export default function V3() {
     <div className="min-h-screen" style={{ background: '#0a0c12' }}>
       <HeaderV3 />
       <HeroV3 />
+      <MetricsV3 />
       <VersionNavWidget current="Versión 03 — Futurista Disruptiva" />
       <AccionesRapidasv3 />
       <StaffMedico />
