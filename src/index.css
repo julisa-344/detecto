@@ -66,12 +66,22 @@
   --color-primary-lighter: #EEFBFF;
   --color-secondary: #CAD507;
 
+  --gradient-color: #0199C6; /* Primary Medium */
+  --sparkles-color: #52C0E1; /* Primary Light */
+
   --font-sans: 'Lexend', system-ui, -apple-system, sans-serif;
 }
 
 :root {
   color-scheme: light;
+  --gradient-color: #0199C6; /* Primary Medium */
+    --sparkles-color: #52C0E1; /* Primary Light */
 }
+
+.dark {
+    --gradient-color: #0070A5;
+    --sparkles-color: #ffffff;
+  }
 
 body {
   margin: 0;
