@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { Sparkles } from '../ui/sparkles'
 import { ProgressiveBlur } from '../ui/progressive-blur'
 import logo1 from '../../assets/logo1negro.webp'
@@ -13,7 +14,13 @@ export default function PartnersV3() {
     <section className="relative w-full bg-white overflow-hidden flex flex-col items-center pt-24">
 
       {/* Header */}
-      <div className="relative z-20 max-w-2xl w-full text-center px-6 mb-16">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-20 max-w-2xl w-full text-center px-6 mb-16"
+      >
         <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-primary-medium mb-4">
           Red de Confianza
         </p>
@@ -21,7 +28,7 @@ export default function PartnersV3() {
           Instituciones que <br />
           <span className="font-normal italic text-gray-900">respaldan tu salud.</span>
         </h2>
-      </div>
+      </motion.div>
 
       {/* Marquee con blur progresivo en bordes */}
       <div className="relative z-20 w-full max-w-5xl h-[100px] overflow-hidden">

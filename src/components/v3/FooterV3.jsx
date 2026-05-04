@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import logoColor from '../../assets/logo.png';
 import { ArrowUpRight } from "lucide-react";
 
@@ -10,7 +11,13 @@ export default function FooterV3() {
       <div className="relative w-full bg-white pb-0 text-center">
 
         {/* Contenido centrado */}
-        <div className="relative z-10 px-6 pb-24">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 px-6 pb-24"
+        >
           <h2 className="text-4xl md:text-7xl font-light text-[#0070A5] mb-8 tracking-tighter leading-none uppercase">
             Toma el control de <br />
             <span className="font-normal italic text-slate-900">tu salud hoy mismo.</span>
@@ -19,7 +26,13 @@ export default function FooterV3() {
             Diagnósticos de precisión con tecnología de última generación y el respaldo de los mejores especialistas del país.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-wrap justify-center gap-6"
+          >
             <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
               <span
                 className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-[#0070A5] transition-all duration-500 ease-in-out bg-[#0070A5]/10 group-hover:bg-[#0070A5] group-hover:text-white"
@@ -50,8 +63,8 @@ export default function FooterV3() {
             <button className="px-10 py-4 bg-slate-50 text-slate-600 border border-slate-200 font-medium rounded-full hover:bg-slate-100 transition-all active:scale-95 text-sm tracking-wide">
               Hablar con un asesor
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Arco SVG que curva hacia el fondo de gradiente */}
         <div className="relative w-full overflow-hidden leading-none" style={{ height: '80px' }}>
@@ -75,7 +88,11 @@ export default function FooterV3() {
         <div className="max-w-[1400px] mx-auto relative z-10 pt-10">
 
         {/* --- 3. CONTENEDOR NAV: Glass Exacto del Header V3 --- */}
-        <div 
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="rounded-[56px] shadow-2xl shadow-blue-900/5 overflow-hidden transition-all duration-500"
           style={{
             background: 'rgba(255,255,255,0.15)',
@@ -88,7 +105,13 @@ export default function FooterV3() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
 
               {/* Brand Column */}
-              <div className="lg:col-span-4 flex flex-col gap-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="lg:col-span-4 flex flex-col gap-10"
+              >
                 <img src={logoColor} alt="Detecta Clínica" className="h-12 w-auto object-contain self-start" />
                 <p className="text-[14px] font-light text-slate-600 leading-relaxed max-w-[280px]">
                   Líderes en detección temprana e innovación oncológica en el Perú. Tecnología que salva vidas.
@@ -106,10 +129,16 @@ export default function FooterV3() {
                     <span className="text-xs font-bold">I</span>
                   </a>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Links Grid */}
-              <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-12"
+              >
                 <div className="flex flex-col gap-6">
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0070A5]">Servicios</h3>
                   <ul className="flex flex-col gap-4 text-[13px] font-light text-slate-600">
@@ -138,7 +167,7 @@ export default function FooterV3() {
                     <li><a href="#" className="hover:text-[#0199C6] transition-colors">Libro de Reclamaciones</a></li>
                   </ul>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Barra Inferior Final */}
@@ -154,9 +183,10 @@ export default function FooterV3() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
         </div>
       </div>
     </footer>
   );
 }
+

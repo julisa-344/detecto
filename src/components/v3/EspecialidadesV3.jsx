@@ -31,7 +31,13 @@ export default function EspecialidadesV3() {
 
         {/* ENCABEZADO CON CTA INTEGRADO A LA IZQUIERDA */}
         <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 mb-20 items-start" style={{ fontFamily: 'Lexend, sans-serif' }}>
-          <div className="flex flex-col items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-start"
+          >
             <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">
               Nuestras Unidades
             </p>
@@ -39,9 +45,15 @@ export default function EspecialidadesV3() {
               Explora nuestras <br />
               <span className="font-normal italic">especialidades.</span>
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="hidden lg:flex flex-col items-start pt-12">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:flex flex-col items-start pt-12"
+          >
             {/* Bajada de texto */}
             <p className="text-sm font-light text-slate-400 leading-relaxed border-l border-[#C0DDE5] pl-8 mb-12 max-w-sm">
               En Detecta Clínica, combinamos el rigor científico con tecnología avanzada para ofrecer resultados exactos cuando más se necesitan.
@@ -77,15 +89,19 @@ export default function EspecialidadesV3() {
                 <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
               </div>
             </button>
-          </div>
+          </motion.div>
         </div>
 
         {/* GRID DE ESPECIALIDADES CON HOVER INNOVADOR */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {departments.map((dept) => (
+          {departments.map((dept, index) => (
             <motion.div
               key={dept.id}
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -5 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
               className="group relative p-8 rounded-[24px] border border-[#C0DDE5]/30 bg-white transition-all duration-500 cursor-pointer overflow-hidden"
             >
               {/* Efecto de Luz de Escaneo (Hover) */}
