@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import doctor1 from '../assets/doctor1.webp'
 import doctor2 from '../assets/doctor2.webp'
 import doctor3 from '../assets/doctor3.webp'
@@ -6,193 +6,117 @@ import doctor4 from '../assets/doctor4.webp'
 import doctor5 from '../assets/doctor5.webp'
 
 const doctors = [
-  {
-    name: 'Dr. Alexis Alva Pinto',
-    specialty: 'Oncología Clínica',
-    description: 'Especialista en diagnóstico y tratamiento oncológico con más de 15 años de experiencia en protocolos internacionales.',
-    image: doctor1,
-    bg: '#C8E9F2',
-  },
-  {
-    name: 'Dra. María Elena Ríos',
-    specialty: 'Cirugía Oncológica',
-    description: 'Cirujana oncológica referente en técnicas mínimamente invasivas y cirugía robótica.',
-    image: doctor2,
-    bg: '#D6EFF5',
-  },
-  {
-    name: 'Dr. Carlos Mendoza Luna',
-    specialty: 'Radioterapia',
-    description: 'Experto en radioterapia estereotáctica y tratamientos de alta precisión con tecnología de última generación.',
-    image: doctor3,
-    bg: '#BFE4EF',
-  },
-  {
-    name: 'Dra. Lucía Fernández Torres',
-    specialty: 'Detección Temprana',
-    description: 'Líder en programas de screening preventivo y detección temprana con enfoque en medicina personalizada.',
-    image: doctor4,
-    bg: '#CCEDF7',
-  },
-  {
-    name: 'Dr. Roberto Guzmán Paredes',
-    specialty: 'Quimioterapia',
-    description: 'Especialista en diseño de protocolos personalizados de quimioterapia con acompañamiento integral al paciente.',
-    image: doctor5,
-    bg: '#C0DDE5',
-  },
+  { name: 'Dr. Alexis Alva Pinto', specialty: 'Oncología Clínica', description: 'Especialista en diagnóstico oncológico con más de 15 años de experiencia.', image: doctor1, bg: '#E0F2FE' },
+  { name: 'Dra. María Elena Ríos', specialty: 'Cirugía Oncológica', description: 'Cirujana referente en técnicas mínimamente invasivas y robótica.', image: doctor2, bg: '#F0F9FF' },
+  { name: 'Dr. Carlos Mendoza Luna', specialty: 'Radioterapia', description: 'Experto en radioterapia estereotáctica de alta precisión.', image: doctor3, bg: '#E0F2FE' },
+  { name: 'Dra. Lucía Fernández Torres', specialty: 'Detección Temprana', description: 'Líder en programas de screening preventivo y medicina personalizada.', image: doctor4, bg: '#F0F9FF' },
+  { name: 'Dr. Roberto Guzmán Paredes', specialty: 'Quimioterapia', description: 'Especialista en diseño de protocolos personalizados integrales.', image: doctor5, bg: '#E0F2FE' },
 ]
 
 export default function StaffMedico() {
-  const sectionRef = useRef(null)
-  const trackRef = useRef(null)
-  const columnRef = useRef(null)
-  const [progress, setProgress] = useState(0)
-  const [maxTranslate, setMaxTranslate] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const [animating, setAnimating] = useState(false)
 
+  const nextDoctor = useCallback(() => {
+    if (animating) return
+    setAnimating(true)
+    setActiveIndex((prev) => (prev + 1) % doctors.length)
+    setTimeout(() => setAnimating(false), 500) // Transición más rápida
+  }, [animating])
+
+  const prevDoctor = () => {
+    if (animating) return
+    setAnimating(true)
+    setActiveIndex((prev) => (prev - 1 + doctors.length) % doctors.length)
+    setTimeout(() => setAnimating(false), 500)
+  }
+
+  // CX: 3 segundos es el estándar para carruseles de información rápida
   useEffect(() => {
-    const calcMax = () => {
-      if (!trackRef.current || !columnRef.current) return
-      const trackWidth = trackRef.current.scrollWidth
-      const colWidth = columnRef.current.offsetWidth
-      setMaxTranslate(Math.max(0, trackWidth - colWidth))
-    }
-    calcMax()
-    window.addEventListener('resize', calcMax)
-    return () => window.removeEventListener('resize', calcMax)
-  }, [])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return
-      const rect = sectionRef.current.getBoundingClientRect()
-      const total = rect.height - window.innerHeight
-      const current = -rect.top
-      setProgress(Math.min(Math.max(current / total, 0), 1))
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const activeCard = Math.min(
-    Math.floor(progress * doctors.length),
-    doctors.length - 1
-  )
-
-  const translateX = progress * maxTranslate
+    if (isPaused) return
+    const interval = setInterval(nextDoctor, 2000) 
+    return () => clearInterval(interval)
+  }, [nextDoctor, isPaused])
 
   return (
-    <section className="bg-white">
-      <div ref={sectionRef} className="relative h-[350vh]">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <div className="h-full max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1fr_2.5fr]">
+    <section className="bg-white h-screen min-h-[700px] overflow-hidden relative">
+      
+      <div className="relative h-full max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1.2fr_2.8fr] gap-0">
 
-            {/* ── COLUMNA IZQUIERDA ── */}
-            <div className="flex flex-col justify-between px-8 lg:px-12 py-28
-                            backdrop-blur-md bg-white/70 border-r border-gray-100">
-              <div>
-                <p className="text-xs font-semibold tracking-[0.3em] uppercase text-primary mb-4">
-                  Equipo médico
-                </p>
-                <h2 className="text-4xl lg:text-5xl font-semibold text-gray-900 tracking-tight leading-[1.1]">
-                  Especialistas que marcan la diferencia
-                </h2>
-              </div>
+        {/* ── COLUMNA IZQUIERDA: Sidebar Fija con Z-Index ── */}
+        <div className="relative z-30 bg-white/95 backdrop-blur-xl flex flex-col justify-between py-24 pr-12 border-r border-gray-100 shadow-[20px_0_40px_rgba(255,255,255,1)]">
+          <div className="space-y-6">
+            <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-primary-dark opacity-60">
+              Nuestro Staff
+            </p>
+            <h2 className="text-4xl lg:text-5xl font-extralight text-slate-900 tracking-tighter leading-tight">
+              Especialistas de <br />
+              <span className="font-light italic text-primary-dark">clase mundial.</span>
+            </h2>
+          </div>
 
-              {/* Doctor activo */}
-              <div className="space-y-1">
-                <p className="text-xs tracking-[0.2em] uppercase text-gray-400 mb-3">
-                  Ahora viendo
-                </p>
-                <p className="text-lg font-semibold text-gray-900 transition-all duration-300">
-                  {doctors[activeCard].name}
-                </p>
-                <p className="text-sm text-primary font-medium">
-                  {doctors[activeCard].specialty}
-                </p>
-              </div>
+          {/* Info Dinámica: CX centrado en legibilidad instantánea */}
+          <div className={`min-h-[180px] transition-all duration-400 ${animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+            <p className="text-[10px] tracking-[0.3em] uppercase text-slate-400 mb-6">Perfil Profesional</p>
+            <p className="text-2xl font-light text-slate-900 mb-2">{doctors[activeIndex].name}</p>
+            <p className="text-sm text-primary-dark font-medium mb-4">{doctors[activeIndex].specialty}</p>
+            <p className="text-sm font-light text-slate-500 leading-relaxed leading-6">{doctors[activeIndex].description}</p>
+          </div>
 
-              {/* Progreso */}
-              <div className="space-y-4">
-                <div className="flex gap-1.5 w-3/4">
-                  {doctors.map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-px flex-1 transition-all duration-500 ${
-                        i <= activeCard ? 'bg-primary' : 'bg-gray-200'
-                      }`}
-                    />
-                  ))}
-                </div>
-                <div className="flex justify-between w-3/4">
-                  <span className="text-xs font-mono text-gray-400 tracking-widest">
-                    {String(activeCard + 1).padStart(2, '0')} / {String(doctors.length).padStart(2, '0')}
-                  </span>
-                </div>
-              </div>
+          {/* Navegación manual */}
+          <div className="flex items-center gap-6">
+            <div className="flex gap-2">
+              <button onClick={prevDoctor} className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all group">
+                <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button onClick={nextDoctor} className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-900 hover:text-white transition-all group">
+                <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5l7 7-7 7"/></svg>
+              </button>
             </div>
-
-            {/* ── COLUMNA DERECHA: CARDS ── */}
-            <div ref={columnRef} className="relative overflow-hidden">
-              <div
-                ref={trackRef}
-                className="flex h-full items-center gap-5 px-8 lg:px-12 py-16"
-                style={{
-                  transform: `translateX(-${translateX}px)`,
-                  transition: 'transform 0.08s linear',
-                  width: 'max-content',
-                }}
-              >
-                {doctors.map((doctor, index) => (
-                  <div
-                    key={index}
-                    className="group relative flex-shrink-0 w-[280px] h-[420px] overflow-hidden rounded-2xl"
-                    style={{ backgroundColor: doctor.bg }}
-                  >
-                    {/* Imagen sin fondo, anclada abajo */}
-                    <img
-                      src={doctor.image}
-                      alt={doctor.name}
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[90%] w-auto object-contain object-bottom
-                                 transition-transform duration-700 group-hover:scale-105"
-                    />
-
-                    {/* Info base siempre visible */}
-                    <div className="absolute bottom-0 left-0 right-0 px-5 py-4
-                                    bg-gradient-to-t from-black/40 to-transparent
-                                    transition-transform duration-500 group-hover:-translate-y-1">
-                      <p className="text-[11px] font-semibold tracking-[0.2em] uppercase text-white/80 mb-0.5">
-                        {doctor.specialty}
-                      </p>
-                      <h3 className="text-base font-semibold text-white leading-snug">
-                        {doctor.name}
-                      </h3>
-                    </div>
-
-                    {/* Panel hover glass */}
-                    <div className="absolute inset-0 flex flex-col justify-end
-                                    backdrop-blur-xl bg-primary-dark/70 border border-white/20
-                                    translate-y-full group-hover:translate-y-0
-                                    transition-transform duration-500 ease-out rounded-2xl">
-                      <div className="p-6">
-                        <p className="text-xs font-semibold tracking-[0.2em] uppercase text-secondary mb-2">
-                          {doctor.specialty}
-                        </p>
-                        <h3 className="text-xl font-semibold text-white mb-3 leading-snug">
-                          {doctor.name}
-                        </h3>
-                        <p className="text-sm text-white/85 leading-relaxed">
-                          {doctor.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
+            <span className="text-[10px] font-mono text-slate-300 tracking-[0.3em]">0{activeIndex + 1} / 0{doctors.length}</span>
           </div>
         </div>
+
+        {/* ── COLUMNA DERECHA: Carrusel con Máscara de Entrada ── */}
+        <div 
+          className="relative z-10 flex items-center overflow-hidden pl-16 pr-10"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Sombra de entrada para que las tarjetas no "choquen" al aparecer */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white via-white/50 to-transparent z-20 pointer-events-none" />
+
+          <div 
+            className="flex gap-8 transition-transform duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]"
+            style={{ transform: `translateX(calc(-${activeIndex * 340}px))` }}
+          >
+            {doctors.map((doctor, index) => (
+              <div
+                key={index}
+                className={`relative flex-shrink-0 w-[310px] h-[460px] rounded-[40px] overflow-hidden transition-all duration-500 ${
+                  index === activeIndex ? 'scale-100 shadow-2xl shadow-blue-900/10' : 'scale-[0.9] opacity-40 blur-[1px]'
+                }`}
+                style={{ backgroundColor: doctor.bg }}
+              >
+                {/* Imagen del doctor optimizada visualmente */}
+                <img
+                  src={doctor.image}
+                  alt={doctor.name}
+                  className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[90%] w-auto object-contain object-bottom pointer-events-none transition-transform duration-1000"
+                />
+
+                {/* Info Overlay sutil para las tarjetas inactivas */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/10 to-transparent">
+                  <h3 className="text-slate-900 text-base font-light leading-tight">
+                    {doctor.name}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   )
