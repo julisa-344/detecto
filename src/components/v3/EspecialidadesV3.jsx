@@ -69,10 +69,11 @@ export default function EspecialidadesV3() {
                   WebkitBackdropFilter: 'blur(12px)',
                   border: '1px solid #C0DDE5',
                   position: 'relative',
+                  marginRight: '-15px',
                   zIndex: 1,
                 }}
               >
-                AGENDAR CITA
+                 Especialidades
               </span>
 
               {/* Lado del Icono (Círculo) */}

@@ -24,9 +24,9 @@ export default function PartnersV3() {
         <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-primary-medium mb-4">
           Red de Confianza
         </p>
-        <h2 className="text-4xl lg:text-5xl font-light text-primary-dark tracking-tighter leading-tight uppercase">
+        <h2 className="text-4xl lg:text-5xl font-light text-primary-dark tracking-tighter leading-tight">
           Instituciones que <br />
-          <span className="font-normal italic text-gray-900">respaldan tu salud.</span>
+          <span className="font-normal text-gray-900">respaldan tu salud.</span>
         </h2>
       </motion.div>
 

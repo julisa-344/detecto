@@ -56,12 +56,12 @@ export default function Hero({ slotRef }) {
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="relative p-8 md:p-12 rounded-[48px] bg-white/15 backdrop-blur-2xl border border-white/30 shadow-2xl shadow-blue-900/10"
+            className="relative p-8 md:p-12 rounded-[48px] bg-white/25 backdrop-blur-2xl border border-white/30 shadow-2xl shadow-blue-900/10"
           >
             {/* Pre-title */}
-            <span className="text-[#0070A5] font-bold text-[10px] tracking-[0.4em] uppercase mb-6 block">
+            {/* <span className="text-[#0070A5] font-bold text-[10px] tracking-[0.4em] uppercase mb-6 block">
               DIAGNÓSTICO DE PRECISIÓN
-            </span>
+            </span> */}
 
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight text-slate-900 leading-[1.0] uppercase">
               Cuidamos de ti, <br />

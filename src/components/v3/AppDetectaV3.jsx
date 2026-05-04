@@ -46,7 +46,7 @@ export default function AppDetectaV3() {
           
           <h2 className="text-5xl lg:text-7xl font-light text-[#0070A5] tracking-tighter leading-none uppercase mb-8">
             Tu salud, <br />
-            <span className="font-normal italic text-slate-900">en tu bolsillo.</span>
+            <span className="font-normal text-slate-900">en tu bolsillo.</span>
           </h2>
 
           <p className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mb-12">
