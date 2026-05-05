@@ -11,12 +11,42 @@ import img05 from '../../assets/img-05.avif'
 import img06 from '../../assets/img-06.avif'
 
 const specialties = [
-  { number: '01', title: 'Detección Temprana', description: 'Diagnóstico oportuno con tecnología de vanguardia para prevenir complicaciones.', image: img01 },
-  { number: '02', title: 'Oncología Clínica', description: 'Atención multidisciplinaria bajo protocolos internacionales de alto nivel.', image: img02 },
-  { number: '03', title: 'Quimioterapia', description: 'Tratamiento personalizado en un entorno cómodo con acompañamiento.', image: img03 },
-  { number: '04', title: 'Cirugía Oncológica', description: 'Procedimientos mínimamente invasivos con máxima precisión y seguridad.', image: img04 },
-  { number: '05', title: 'Radioterapia', description: 'Eliminación de células cancerosas con alta precisión, protegiendo tejido.', image: img05 },
-  { number: '06', title: 'Medicina Preventiva', description: 'Enfoque integral para el cuidado de tu salud a largo plazo.', image: img06 },
+  { 
+    number: '01', 
+    title: 'Ginecología', 
+    description: 'Cuidado integral de la salud femenina en todas las etapas de la vida con enfoque preventivo.', 
+    image: img01 
+  },
+  { 
+    number: '02', 
+    title: 'Obstetricia', 
+    description: 'Acompañamiento especializado y seguro durante el embarazo, parto y periodo de postparto.', 
+    image: img02 
+  },
+  { 
+    number: '03', 
+    title: 'Urología', 
+    description: 'Diagnóstico y tratamiento avanzado de patologías del sistema urinario y reproductor.', 
+    image: img03 
+  },
+  { 
+    number: '04', 
+    title: 'Mastología', 
+    description: 'Especialistas en la prevención, diagnóstico y tratamiento de diversas afecciones mamarias.', 
+    image: img04 
+  },
+  { 
+    number: '05', 
+    title: 'Gastroenterología', 
+    description: 'Atención especializada en la salud del sistema digestivo con tecnología de alta precisión.', 
+    image: img05 
+  },
+  { 
+    number: '06', 
+    title: 'Oncología de Cabeza y Cuello', 
+    description: 'Tratamiento complejo de patologías tumorales en la región maxilofacial y cervical.', 
+    image: img06 
+  },
 ]
 
 // Variantes para la animación del contenedor (Grid)
@@ -25,7 +55,7 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Retraso entre la aparición de cada tarjeta
+      staggerChildren: 0.1,
     },
   },
 }
