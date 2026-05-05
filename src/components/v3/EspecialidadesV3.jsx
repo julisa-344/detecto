@@ -8,10 +8,8 @@ import {
   Venus,
   Target,
   Scan,
-  Plus,
   ArrowUpRight
 } from "lucide-react"
-
 
 const departments = [
   { id: '01', title: 'Cardiología', description: 'Cuidado integral del corazón incluyendo angioplastia y ECG.', icon: <HeartPulse className="w-5 h-5" /> },
@@ -29,14 +27,13 @@ export default function EspecialidadesV3() {
     <section className="bg-white py-24 px-6 lg:px-10" style={{ fontFamily: 'Lexend, sans-serif' }}>
       <div className="max-w-7xl mx-auto">
 
-        {/* ENCABEZADO CON CTA INTEGRADO A LA IZQUIERDA */}
-        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 mb-20 items-start" style={{ fontFamily: 'Lexend, sans-serif' }}>
+        {/* ENCABEZADO */}
+        <div className="grid lg:grid-cols-[1.5fr_1fr] gap-12 mb-20 items-start">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-start"
           >
             <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">
               Nuestras Unidades
@@ -54,19 +51,15 @@ export default function EspecialidadesV3() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="hidden lg:flex flex-col items-start pt-12"
           >
-            {/* Bajada de texto */}
             <p className="text-sm font-light text-slate-400 leading-relaxed border-l border-[#C0DDE5] pl-8 mb-12 max-w-sm">
               En Detecta Clínica, combinamos el rigor científico con tecnología avanzada para ofrecer resultados exactos cuando más se necesitan.
             </p>
 
-            {/* Botón CTA con Colores Detecta y sin márgenes negativos */}
             <button className="group flex cursor-pointer items-center gap-4 bg-transparent p-0 transition-all active:scale-95">
-              {/* Lado del Texto (Pill) */}
               <span
                 className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-[#0070A5] transition-all duration-500 ease-in-out bg-[#EEFBFF]/60 group-hover:bg-[#0070A5] group-hover:text-white"
                 style={{
                   backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
                   border: '1px solid #C0DDE5',
                   position: 'relative',
                   marginRight: '-15px',
@@ -75,13 +68,10 @@ export default function EspecialidadesV3() {
               >
                  Especialidades
               </span>
-
-              {/* Lado del Icono (Círculo) */}
               <div
                 className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-[#C0DDE5]/40 text-[#0070A5] group-hover:bg-[#0070A5] group-hover:text-white"
                 style={{
                   backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
                   border: '1px solid #C0DDE5',
                   zIndex: 2
                 }}
@@ -93,20 +83,22 @@ export default function EspecialidadesV3() {
           </motion.div>
         </div>
 
-        {/* GRID DE ESPECIALIDADES CON HOVER INNOVADOR */}
+        {/* GRID DE ESPECIALIDADES */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {departments.map((dept, index) => (
             <motion.div
               key={dept.id}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -5 }}
+              // Hover más notorio: levanta, escala un poquito y añade sombra
+              whileHover={{ y: -10, scale: 1.02 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative p-8 rounded-[24px] border border-[#C0DDE5]/30 bg-white transition-all duration-500 cursor-pointer overflow-hidden"
+              // Añadidas clases de hover: border brillante y sombra suave
+              className="group relative p-8 rounded-[24px] border border-[#C0DDE5]/30 bg-white transition-all duration-500 cursor-pointer overflow-hidden hover:border-[#52C0E1]/50 hover:shadow-[0_20px_40px_-15px_rgba(82,192,225,0.2)]"
             >
-              {/* Efecto de Luz de Escaneo (Hover) */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#52C0E1]/0 via-[#52C0E1]/5 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+              {/* Efecto de Luz de Escaneo (más intenso) */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
 
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-10">
@@ -127,7 +119,6 @@ export default function EspecialidadesV3() {
                   </p>
                 </div>
 
-                {/* Micro-indicador de acción */}
                 <div className="mt-8 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                   <span className="text-[9px] font-bold tracking-widest text-[#52C0E1]">SOLICITAR</span>
                   <div className="w-6 h-px bg-[#52C0E1]" />

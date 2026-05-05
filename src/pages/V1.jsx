@@ -1,4 +1,3 @@
-// V1 — Versión original (glass morphism / premium azul)
 import { useCallback, useEffect, useRef, useState } from 'react'
 import VersionNavWidget from '../components/VersionNavWidget'
 import Splash from '../components/Splash'
@@ -10,8 +9,9 @@ import StaffMedico from '../components/StaffMedico'
 import PorQueNosotros from '../components/PorQueNosotros'
 import AppDetecta from '../components/AppDetecta'
 import Partners from '../components/Partners'
-import detecto from '../assets/detecto.png'
+import WhatsAppButton from '../components/WhatsAppButton'
 import Footer from '../components/Footer'
+import detecto from '../assets/detecto.png'
 
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v))
 const lerp = (a, b, t) => a + (b - a) * t
@@ -106,6 +106,7 @@ export default function V1() {
       />
 
       <Footer />
+      <WhatsAppButton />
       <VersionNavWidget current="Versión 01 — Glass Premium" />
     </div>
   )

@@ -7,6 +7,7 @@ import StaffMedicoV2 from '../components/v2/StaffMedicoV2'
 import PorQueNosotrosV2 from '../components/v2/PorQueNosotrosV2'
 import AppDetectaV2 from '../components/v2/AppDetectaV2'
 import PartnersV2 from '../components/v2/PartnersV2'
+import WhatsAppButton from '../components/WhatsAppButton'
 import FooterV2 from '../components/v2/FooterV2'
 import VersionNavWidget from '../components/VersionNavWidget'
 
@@ -22,6 +23,7 @@ export default function V2() {
       <AppDetectaV2 />
       <PartnersV2 />
       <FooterV2 />
+      <WhatsAppButton />
       <VersionNavWidget current="Versión 02 — Clinical Futurista" />
     </div>
   )

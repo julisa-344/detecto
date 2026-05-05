@@ -42,7 +42,7 @@ export default function HeaderV3() {
               border: '1px solid rgba(255,255,255,0.25)',
             }}
           >
-            {['Pacientes', 'Médico', 'Investigación', 'Sobre Detecta'].map((item) => (
+            {['Pacientes', 'Staff Médico', 'Investigación', 'Sobre Detecta'].map((item) => (
               <a
                 key={item}
                 href="#"
