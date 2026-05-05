@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Plus } from 'lucide-react'
 import doctor1 from '../../assets/doctor1.webp'
 import doctor2 from '../../assets/doctor2.webp'
@@ -115,9 +115,12 @@ export default function StaffMedico() {
   }, [nextDoctor, paused])
 
   // ── Animación de entrada de la sección ──────────────────────
+  const sectionRef = useRef(null)
+  const inView = useInView(sectionRef, { once: true, margin: '0px 0px -80px 0px' })
 
   return (
     <section
+      ref={sectionRef}
       className="h-screen w-full bg-white relative flex flex-col pt-16 pb-8 px-6 lg:px-12 overflow-hidden"
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
@@ -126,10 +129,9 @@ export default function StaffMedico() {
         {/* Header — entra con fade + slide */}
         <motion.div
           className="flex justify-between items-start w-full mb-6"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+          transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
           <div>
             <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">
@@ -150,15 +152,14 @@ export default function StaffMedico() {
         </motion.div>
 
         {/* Grid principal */}
-        <div className="grid lg:grid-cols-[1fr_2.5fr] gap-12 items-center flex-grow pb-16">
+        <div className="grid lg:grid-cols-[1fr_2.5fr] gap-20 items-center flex-grow pb-16">
 
           {/* Info del doctor — entra con delay */}
           <motion.div
             className="flex flex-col h-[430px] justify-end pb-4"
-            initial={{ opacity: 0, x: -28 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            initial={{ opacity: 0, x: -40 }}
+            animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           >
             <p className="text-[9px] tracking-[0.3em] uppercase text-[#0199C6] font-bold mb-8">
               PERFIL PROFESIONAL
@@ -242,9 +243,8 @@ export default function StaffMedico() {
       {/* Navegación */}
       <motion.div
         className="absolute bottom-24 right-64 flex items-center gap-10 z-50"
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
       >
         <div className="flex items-center gap-5">

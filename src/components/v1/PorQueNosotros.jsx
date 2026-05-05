@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
 import detecto from '../../assets/detecto.png'
 
 const metrics = [
@@ -185,14 +184,16 @@ export default function PorQueNosotros() {
             </div>
 
             {/* ── COLUMNA DERECHA: CONTENIDO ── */}
-            <div className="relative">
+            <div
+              className="relative"
+              style={{
+                opacity: easedPhase1,
+                transform: `translateY(${(1 - easedPhase1) * 30}px)`,
+              }}
+            >
 
               {/* FASE 1 — Título + descripción */}
-              <motion.div
-                initial={{ opacity: 0, y: 36 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              <div
                 className={`transition-all duration-700 ${
                   !isPhase2 ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8 pointer-events-none absolute inset-0'
                 }`}
@@ -222,7 +223,7 @@ export default function PorQueNosotros() {
                   </a>
                   <div className="h-px w-12 bg-primary/20" />
                 </div>
-              </motion.div>
+              </div>
 
               {/* FASE 2 — Métricas con contadores */}
               <div
