@@ -3,7 +3,7 @@ import HeroV2 from '../components/v2/HeroV2'
 import MetricsBarV2 from '../components/v2/MetricsBarV2'
 import AccionesRapidasV2 from '../components/v2/AccionesRapidasV2'
 import EspecialidadesV2 from '../components/v2/EspecialidadesV2'
-import StaffMedico from '../components/v1/StaffMedico'
+import StaffMedicoV2 from '../components/v2/StaffMedicoV2'
 import AppDetectaV2 from '../components/v2/AppDetectaV2'
 import PartnersV2 from '../components/v2/PartnersV2'
 import WhatsAppButton from '../components/WhatsAppButton'
@@ -17,7 +17,7 @@ export default function V2() {
       <HeroV2 />
       <AccionesRapidasV2 />
       <EspecialidadesV2 />
-      <StaffMedico />
+      <StaffMedicoV2 />
       <AppDetectaV2 />
       <PartnersV2 />
       <FooterV2 />
