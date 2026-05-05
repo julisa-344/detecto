@@ -30,7 +30,7 @@ export default function AppDetecta() {
     if (!sectionRef.current) return
     const obs = new IntersectionObserver(
       ([entry]) => setScrolled(entry.isIntersecting),
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     )
     obs.observe(sectionRef.current)
     return () => obs.disconnect()
@@ -41,7 +41,7 @@ export default function AppDetecta() {
     if (!btnsRef.current) return
     const obs = new IntersectionObserver(
       ([entry]) => setBtnsVisible(entry.isIntersecting),
-      { threshold: 0.3 }
+      { threshold: 0.05 }
     )
     obs.observe(btnsRef.current)
     return () => obs.disconnect()

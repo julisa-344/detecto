@@ -48,7 +48,7 @@ export default function StaffMedicoV2() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.6 }}
           >
             <p className="text-[11px] font-semibold tracking-[0.4em] uppercase text-primary-dark mb-4">
@@ -64,7 +64,7 @@ export default function StaffMedicoV2() {
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex items-center gap-4"
           >

@@ -43,7 +43,7 @@ export default function AccionesRapidasV3() {
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             className="relative h-[500px] lg:h-full min-h-[500px] overflow-hidden rounded-2xl group"
           >
             <img 
@@ -70,7 +70,7 @@ export default function AccionesRapidasV3() {
                 key={action.key}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.08 }}
                 transition={{ delay: index * 0.1 }}
                 className={`${action.bg} p-8 rounded-2xl flex flex-col justify-between hover:shadow-lg transition-all duration-300 cursor-pointer group`}
               >

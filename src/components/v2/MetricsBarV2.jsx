@@ -17,7 +17,7 @@ export default function MetricsBarV2() {
               key={i}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="flex flex-col items-center text-center py-8 px-6"
             >

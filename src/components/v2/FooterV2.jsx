@@ -11,7 +11,7 @@ export default function FooterV2() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.7 }}
             className="text-4xl lg:text-5xl font-extralight text-white tracking-tight leading-tight mb-6"
           >
@@ -21,7 +21,7 @@ export default function FooterV2() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base font-light text-white/50 max-w-lg mx-auto mb-10 leading-relaxed"
           >
@@ -31,7 +31,7 @@ export default function FooterV2() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.6, delay: 0.35 }}
             className="flex flex-wrap justify-center gap-4"
           >

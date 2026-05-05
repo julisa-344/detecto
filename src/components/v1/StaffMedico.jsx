@@ -53,6 +53,7 @@ const doctors = [
 export default function StaffMedico() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [animating, setAnimating] = useState(false)
+  const [paused, setPaused] = useState(false)
 
   const handleIndexChange = useCallback((newIndex) => {
     if (animating) return
@@ -61,8 +62,18 @@ export default function StaffMedico() {
     setTimeout(() => setAnimating(false), 500)
   }, [animating])
 
-  const nextDoctor = () => handleIndexChange((activeIndex + 1) % doctors.length)
+  const nextDoctor = useCallback(() => {
+    handleIndexChange((activeIndex + 1) % doctors.length)
+  }, [activeIndex, handleIndexChange])
+
   const prevDoctor = () => handleIndexChange((activeIndex - 1 + doctors.length) % doctors.length)
+
+  // Autoplay — avanza cada 3.5s, se pausa al hacer hover
+  useEffect(() => {
+    if (paused) return
+    const interval = setInterval(nextDoctor, 3500)
+    return () => clearInterval(interval)
+  }, [nextDoctor, paused])
 
   return (
     <section className="h-screen w-full bg-white relative flex flex-col pt-16 pb-8 px-6 lg:px-12 overflow-hidden" style={{ fontFamily: 'Lexend, sans-serif' }}>
@@ -124,7 +135,11 @@ export default function StaffMedico() {
           </div>
 
           {/* Carrusel de Cards (430px de alto) */}
-          <div className="relative overflow-hidden h-[430px] flex items-center">
+          <div
+            className="relative overflow-hidden h-[430px] flex items-center"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
             <div 
               className="flex gap-8 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
               style={{ transform: `translateX(calc(-${activeIndex * 322}px))` }}

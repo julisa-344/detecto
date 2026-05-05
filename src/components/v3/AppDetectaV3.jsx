@@ -50,7 +50,7 @@ export default function AppDetectaV3() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6">
@@ -79,7 +79,7 @@ export default function AppDetectaV3() {
           <motion.div
             initial={{ opacity: 0, x: 30, scale: 0.95 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex justify-end"
           >
@@ -92,7 +92,7 @@ export default function AppDetectaV3() {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.08 }}
           className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-slate-100"
         >
           {[
