@@ -1,6 +1,6 @@
 import { MeshGradient } from "@paper-design/shaders-react"
 import { useEffect, useState } from "react"
-import detecto from "../assets/detecto.png"
+import detecto from "../../assets/detecto.png"
 import { motion } from "framer-motion"
 
 export default function Hero({ slotRef }) {

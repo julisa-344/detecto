@@ -1,5 +1,5 @@
 import React from 'react';
-import logoColor from '../assets/logo.png'; 
+import logoColor from '../../assets/logo.png'; 
 
 export default function Footer() {
   return (

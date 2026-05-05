@@ -7,7 +7,7 @@ import EspecialidadesV3 from '../components/v3/EspecialidadesV3'
 import PartnersV3 from '../components/v3/PartnersV3'
 import AppDetectaV3 from '../components/v3/AppDetectaV3'
 import FooterV3 from '../components/v3/FooterV3'
-import StaffMedico from '../components/StaffMedico'
+import StaffMedico from '../components/v1/StaffMedico'
 import SplashV3 from '../components/v3/SplashV3'
 
 

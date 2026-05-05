@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import mockHome from '../assets/home.webp'
-import mockTipocita from '../assets/tipocita.webp'
-import mockDoctores from '../assets/doctores.webp'
+import mockHome from '../../assets/home.webp'
+import mockTipocita from '../../assets/tipocita.webp'
+import mockDoctores from '../../assets/doctores.webp'
 
 function AppleIcon() {
   return (

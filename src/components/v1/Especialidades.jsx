@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react'
-import videoBg from '../assets/especialidades.mp4'
+import videoBg from '../../assets/especialidades.mp4'
 
 const specialties = [
   {

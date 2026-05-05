@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import logo from '../assets/logo.png'
+import logo from '../../assets/logo.png'
 
 // Puntos del path ECG: línea plana → pico → valle → pico → plana
 // Coordenadas en un viewBox de 320x80

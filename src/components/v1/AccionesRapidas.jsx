@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import detecto from '../assets/detecto.png'
+import detecto from '../../assets/detecto.png'
 
 const actions = [
   {

@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Plus } from 'lucide-react'
-import doctor1 from '../assets/doctor1.webp'
-import doctor2 from '../assets/doctor2.webp'
-import doctor3 from '../assets/doctor3.webp'
-import doctor4 from '../assets/doctor4.webp'
-import doctor5 from '../assets/doctor5.webp'
+import doctor1 from '../../assets/doctor1.webp'
+import doctor2 from '../../assets/doctor2.webp'
+import doctor3 from '../../assets/doctor3.webp'
+import doctor4 from '../../assets/doctor4.webp'
+import doctor5 from '../../assets/doctor5.webp'
 
 const doctors = [
   { 
@@ -65,7 +65,7 @@ export default function StaffMedico() {
   const prevDoctor = () => handleIndexChange((activeIndex - 1 + doctors.length) % doctors.length)
 
   return (
-    <section className="h-screen w-full bg-white relative flex flex-col pt-12 pb-8 px-6 lg:px-12 overflow-hidden" style={{ fontFamily: 'Lexend, sans-serif' }}>
+    <section className="h-screen w-full bg-white relative flex flex-col pt-16 pb-8 px-6 lg:px-12 overflow-hidden" style={{ fontFamily: 'Lexend, sans-serif' }}>
       
       <div className="max-w-[1400px] mx-auto w-full h-full flex flex-col">
         

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
-import logoWhite from '../assets/LogoDetectaHorizontalblanco.png' // Asegúrate de tener esta versión
-import logoDark from '../assets/logo.png' 
+import logoWhite from '../../assets/LogoDetectaHorizontalblanco.png' // Asegúrate de tener esta versión
+import logoDark from '../../assets/logo.png' 
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)

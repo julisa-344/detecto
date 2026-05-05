@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion } from 'framer-motion'
-import mockHome from '../../assets/home.webp'
-import mockTipocita from '../../assets/tipocita.webp'
-import mockDoctores from '../../assets/doctores.webp'
+import { motion, animate } from 'framer-motion'
+import { Star } from 'lucide-react'
+import mockup1 from '../../assets/mockup1.png'
 
+// Iconos de descarga
 function AppleIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -20,98 +20,105 @@ function GooglePlayIcon() {
   )
 }
 
-export default function AppDetectaV2() {
-  const sectionRef = useRef(null)
-  const [visible, setVisible] = useState(false)
+// Componente para el efecto de contador
+function NumberCounter({ value, prefix = "" }) {
+  const nodeRef = useRef(null);
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
 
   useEffect(() => {
-    if (!sectionRef.current) return
-    const obs = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.2 }
-    )
-    obs.observe(sectionRef.current)
-    return () => obs.disconnect()
-  }, [])
+    const node = nodeRef.current;
+    const controls = animate(0, numericValue, {
+      duration: 2.5,
+      ease: "easeOut",
+      onUpdate(value) {
+        node.textContent = prefix + Math.floor(value).toLocaleString();
+      }
+    });
+    return () => controls.stop();
+  }, [numericValue, prefix]);
 
+  return <span ref={nodeRef} />;
+}
+
+const stats = [
+  { value: "15", label: "Años de experiencia", prefix: "+" },
+  { value: "100000", label: "Pacientes atendidos", prefix: "" },
+  { value: "3500", label: "Cirugías Complejas Anuales", prefix: "+" },
+]
+
+export default function AppDetectaV3() {
   return (
-    <section ref={sectionRef} className="bg-white py-24 lg:py-32 overflow-hidden">
+    <section className="bg-gray-50 py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-[1fr_auto] gap-16 lg:gap-24 items-center">
 
-          {/* Texto — izquierda */}
+          {/* Texto, Botones y Estrellas */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-[11px] font-semibold tracking-[0.4em] uppercase text-primary-dark mb-4">
+            <p className="text-[11px] font-semibold tracking-[0.4em] uppercase text-[#0199C6] mb-4">
               Aplicativo móvil
             </p>
-            <h2 className="text-4xl lg:text-5xl font-extralight text-gray-900 tracking-tight leading-tight">
-              Tu salud,
-              <span className="block font-light text-primary-dark">en tu bolsillo.</span>
+            <h2 className="text-4xl lg:text-6xl font-light text-gray-900 tracking-tight leading-none mb-6">
+              Tu salud, <br />
+              <span className="font-normal italic">en tu bolsillo.</span>
             </h2>
-            <p className="mt-6 text-base font-light text-gray-500 leading-relaxed max-w-md">
+            <p className="text-base font-light text-gray-500 leading-relaxed max-w-md">
               Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Disponible para iOS y Android.
             </p>
 
-            {/* Botones de descarga — sharp V2 */}
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="#"
-                className="inline-flex items-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors duration-200"
-              >
-                <AppleIcon />
-                <div className="text-left">
-                  <p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p>
-                  <p className="text-sm font-medium leading-none">App Store</p>
-                </div>
-              </a>
+            {/* Botones de descarga */}
+            <div className="mt-10 flex w-full max-w-sm gap-4">
+              <button className="flex-1 flex items-center justify-center gap-3 px-5 py-4 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-800 transition-colors">
+                <AppleIcon /> App Store
+              </button>
+              <button className="flex-1 bg-white flex items-center justify-center gap-3 px-5 py-4 border border-gray-200 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-50 transition-colors">
+                <GooglePlayIcon /> Google Play
+              </button>
+            </div>
 
-              <a
-                href="#"
-                className="inline-flex items-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all duration-200"
-              >
-                <GooglePlayIcon />
-                <div className="text-left">
-                  <p className="text-[10px] text-gray-400 leading-none mb-0.5 group-hover:text-white/50">Disponible en</p>
-                  <p className="text-sm font-medium leading-none">Google Play</p>
-                </div>
-              </a>
+            {/* Puntuación */}
+            <div className="mt-6 flex items-center gap-3">
+              <div className="flex text-yellow-400">
+                {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
+              </div>
+              <span className="text-sm font-semibold text-gray-900">4.6</span>
+              <span className="text-sm text-gray-400">| Rating</span>
             </div>
           </motion.div>
 
-          {/* Mockups — derecha */}
-          <div className="relative flex justify-center items-end" style={{ height: 560 }}>
-            {[
-              { src: mockTipocita, zIndex: 1, left: '50%', ml: -240, delay: 120 },
-              { src: mockHome,    zIndex: 3, left: '50%', ml: -120, delay: 0 },
-              { src: mockDoctores, zIndex: 2, left: '50%', ml: 30,   delay: 240 },
-            ].map(({ src, zIndex, left, ml, delay }, i) => (
-              <div
-                key={i}
-                className="absolute will-change-transform"
-                style={{
-                  bottom: 0,
-                  left,
-                  marginLeft: ml,
-                  transform: visible ? 'translateY(0)' : 'translateY(120px)',
-                  opacity: visible ? 1 : 0,
-                  transition: `transform 700ms cubic-bezier(0.34,1.4,0.64,1) ${delay}ms, opacity 500ms ease ${delay}ms`,
-                  zIndex,
-                }}
-              >
-                <img
-                  src={src}
-                  alt="App Detecta"
-                  className={i === 1 ? 'w-[250px]' : 'w-[230px]'}
-                />
-              </div>
-            ))}
-          </div>
+          {/* Mockup */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative lg:w-[420px]"
+          >
+            <img src={mockup1} alt="App Detecta" className="w-full h-auto" />
+          </motion.div>
         </div>
+
+        {/* Métricas con Contador (Centradas) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="mt-20 pt-12 border-t border-gray-300 grid grid-cols-1 md:grid-cols-3 gap-12 justify-items-center"
+        >
+          {stats.map((stat, idx) => (
+            <div key={idx} className="text-center">
+              <p className="text-3xl lg:text-4xl font-light text-gray-900 mb-2">
+                <NumberCounter value={stat.value} prefix={stat.prefix} />
+              </p>
+              <p className="text-sm text-gray-400 font-light">{stat.label}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )
