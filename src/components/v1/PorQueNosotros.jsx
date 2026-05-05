@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useInView } from 'framer-motion'
 import detecto from '../../assets/detecto.png'
 
 const metrics = [
@@ -90,6 +91,12 @@ function Metric({ metric, active, index }) {
 export default function PorQueNosotros() {
   const sectionRef = useRef(null)
   const [progress, setProgress] = useState(0)
+  const inView = useInView(sectionRef, { once: true, margin: '0px 0px -120px 0px' })
+  const [hasEntered, setHasEntered] = useState(false)
+
+  useEffect(() => {
+    if (inView) setHasEntered(true)
+  }, [inView])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -169,10 +176,10 @@ export default function PorQueNosotros() {
             {/* ── COLUMNA IZQUIERDA: DETECTO ── */}
             <div className="flex justify-center lg:justify-start">
               <div
-                className="will-change-transform"
+                className="will-change-transform transition-opacity duration-700"
                 style={{
                   transform: `translateX(${detectoX}px)`,
-                  opacity: easedPhase1,
+                  opacity: hasEntered ? 1 : 0,
                 }}
               >
                 <img
@@ -185,10 +192,10 @@ export default function PorQueNosotros() {
 
             {/* ── COLUMNA DERECHA: CONTENIDO ── */}
             <div
-              className="relative"
+              className="relative transition-all duration-700"
               style={{
-                opacity: easedPhase1,
-                transform: `translateY(${(1 - easedPhase1) * 30}px)`,
+                opacity: hasEntered ? 1 : 0,
+                transform: hasEntered ? 'translateY(0px)' : 'translateY(30px)',
               }}
             >
 

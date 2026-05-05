@@ -9,6 +9,7 @@ import AppDetectaV3 from '../components/v3/AppDetectaV3'
 import FooterV3 from '../components/v3/FooterV3'
 import StaffMedico from '../components/v1/StaffMedico'
 import SplashV3 from '../components/v3/SplashV3'
+import WhatsAppButton from '../components/WhatsAppButton'
 
 
 export default function V3() {
@@ -27,6 +28,7 @@ export default function V3() {
         <AppDetectaV3 />
         <PartnersV3 />
         <FooterV3 />
+        <WhatsAppButton />
       </div>
     </>
   )

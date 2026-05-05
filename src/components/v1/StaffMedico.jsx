@@ -152,7 +152,7 @@ export default function StaffMedico() {
         </motion.div>
 
         {/* Grid principal */}
-        <div className="grid lg:grid-cols-[1fr_2.5fr] gap-20 items-center flex-grow pb-16">
+        <div className="grid lg:grid-cols-[1fr_2.5fr] gap-32 items-center flex-grow pb-16">
 
           {/* Info del doctor — entra con delay */}
           <motion.div
@@ -243,8 +243,9 @@ export default function StaffMedico() {
       {/* Navegación */}
       <motion.div
         className="absolute bottom-24 right-64 flex items-center gap-10 z-50"
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
       >
         <div className="flex items-center gap-5">
