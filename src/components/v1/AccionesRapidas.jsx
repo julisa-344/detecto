@@ -180,16 +180,16 @@ export default function AccionesRapidas({ slotRef, landed }) {
             {/* Wrapper relativo al placeholder para anclar el globo */}
             <div className="relative">
 
-              {/* Globo de pensamiento — aparece a la DERECHA del Detecto cuando aterriza */}
+              {/* Globo de pensamiento — aparece ARRIBA del Detecto cuando aterriza */}
               <div
                 className="absolute z-20 pointer-events-none"
                 style={{
-                  top: '8%',
-                  left: 'calc(100% + 28px)',
+                  bottom: 'calc(100% - 12px)',
+                  left: '12px',
                   opacity: landed ? 1 : 0,
-                  transform: landed ? 'translateX(0) scale(1)' : 'translateX(-14px) scale(0.88)',
+                  transform: landed ? 'translateY(0) scale(1)' : 'translateY(12px) scale(0.88)',
                   transition: 'opacity 500ms cubic-bezier(0.34,1.4,0.64,1), transform 500ms cubic-bezier(0.34,1.4,0.64,1)',
-                  transformOrigin: 'left center',
+                  transformOrigin: 'bottom left',
                 }}
               >
                 {/* Burbuja principal */}
@@ -202,7 +202,7 @@ export default function AccionesRapidas({ slotRef, landed }) {
                     minWidth: 160,
                   }}
                 >
-                  {/* Icono sparkle + texto con salto de línea */}
+                  {/* Icono sparkle + texto */}
                   <div className="flex items-start gap-2">
                     <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4 shrink-0 mt-0.5" style={{ color: '#0199C6' }}>
                       <path d="M10 2l1.5 4.5L16 8l-4.5 1.5L10 14l-1.5-4.5L4 8l4.5-1.5L10 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
@@ -212,14 +212,13 @@ export default function AccionesRapidas({ slotRef, landed }) {
                     </span>
                   </div>
 
-                  {/* Cola de pensamiento → hacia la izquierda */}
+                  {/* Cola de pensamiento → hacia abajo */}
                   <span
                     className="absolute rounded-full"
                     style={{
                       width: 9, height: 9,
-                      top: '50%',
-                      left: -16,
-                      transform: 'translateY(-50%)',
+                      bottom: -16,
+                      left: 24,
                       background: '#ffffff',
                       border: '1.5px solid #0199C6',
                     }}
@@ -228,9 +227,8 @@ export default function AccionesRapidas({ slotRef, landed }) {
                     className="absolute rounded-full"
                     style={{
                       width: 5, height: 5,
-                      top: '50%',
-                      left: -26,
-                      transform: 'translateY(-50%)',
+                      bottom: -26,
+                      left: 28,
                       background: '#ffffff',
                       border: '1.5px solid #0199C6',
                     }}
@@ -239,9 +237,8 @@ export default function AccionesRapidas({ slotRef, landed }) {
                     className="absolute rounded-full"
                     style={{
                       width: 3, height: 3,
-                      top: '50%',
-                      left: -34,
-                      transform: 'translateY(-50%)',
+                      bottom: -34,
+                      left: 30,
                       background: '#0199C6',
                     }}
                   />

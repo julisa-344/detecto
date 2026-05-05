@@ -59,6 +59,10 @@ export default function V1() {
         detectoEl.style.transform = `rotate(${rotate}deg)`
         detectoEl.style.opacity = '1'
 
+        // Hide the static Hero img once the floating one takes over
+        heroEl.style.opacity = eased > 0.01 ? '0' : '1'
+        heroEl.style.transition = 'opacity 200ms'
+
         setLanded(prev => {
           if (!prev && eased >= 0.97) return true
           if (prev && eased < 0.90) return false
