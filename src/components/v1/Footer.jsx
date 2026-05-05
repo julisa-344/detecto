@@ -1,21 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import { motion } from 'framer-motion';
 import logoColor from '../../assets/logo.png'; 
 
-export default function Footer() {
-  const sectionRef = useRef(null)
-  const [visible, setVisible] = useState(false)
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 36 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
+})
 
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true) },
-      { threshold: 0.05 }
-    )
-    if (sectionRef.current) obs.observe(sectionRef.current)
-    return () => obs.disconnect()
-  }, [])
+export default function Footer() {
 
   return (
-    <section ref={sectionRef} className="relative w-full py-28 px-4 md:px-10 bg-gradient-to-br from-[#EEFBFF] to-[#AFEAFC] overflow-hidden">
+    <section className="relative w-full py-28 px-4 md:px-10 bg-gradient-to-br from-[#EEFBFF] to-[#AFEAFC] overflow-hidden">
       
       {/* Brillo ambiental sutil */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/40 blur-[150px] rounded-full -mr-60 -mt-60 pointer-events-none"></div>
@@ -23,12 +20,9 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto relative z-10">
         
         {/* --- 1. CTA SUPERIOR (FUERA DEL CONTENEDOR) --- */}
-        <div
-          className="flex flex-col items-center text-center mb-24 transition-all duration-700"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(32px)',
-          }}
+        <motion.div
+          className="flex flex-col items-center text-center mb-24"
+          {...fadeUp(0)}
         >
           <h2 className="text-4xl md:text-7xl font-extralight text-slate-900 mb-8 tracking-tight leading-tight">
             Toma el control de <br /> 
@@ -49,15 +43,12 @@ export default function Footer() {
               Hablar con un asesor
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* --- 2. CONTENEDOR NAV (GLASS FROSTED) --- */}
-        <div
-          className="bg-white/30 backdrop-blur-3xl border border-white/60 rounded-[56px] shadow-2xl shadow-blue-900/5 overflow-hidden transition-all duration-700 delay-200"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(32px)',
-          }}
+        <motion.div
+          className="bg-white/30 backdrop-blur-3xl border border-white/60 rounded-[56px] shadow-2xl shadow-blue-900/5 overflow-hidden"
+          {...fadeUp(0.15)}
         >
           <div className="px-8 md:px-16 pt-20 pb-12">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
@@ -141,7 +132,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

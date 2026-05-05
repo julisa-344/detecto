@@ -115,32 +115,21 @@ export default function StaffMedico() {
   }, [nextDoctor, paused])
 
   // ── Animación de entrada de la sección ──────────────────────
-  const sectionRef = useRef(null)
-  const [visible, setVisible] = useState(false)
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true) },
-      { threshold: 0.05 }
-    )
-    if (sectionRef.current) obs.observe(sectionRef.current)
-    return () => obs.disconnect()
-  }, [])
 
   return (
     <section
-      ref={sectionRef}
       className="h-screen w-full bg-white relative flex flex-col pt-16 pb-8 px-6 lg:px-12 overflow-hidden"
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
       <div className="max-w-[1400px] mx-auto w-full h-full flex flex-col">
 
         {/* Header — entra con fade + slide */}
-        <div
-          className="flex justify-between items-start w-full mb-6 transition-all duration-700"
-          style={{
-            opacity: visible ? 1 : 0,
-            transform: visible ? 'translateY(0)' : 'translateY(24px)',
-          }}
+        <motion.div
+          className="flex justify-between items-start w-full mb-6"
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <div>
             <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">
@@ -158,18 +147,18 @@ export default function StaffMedico() {
               <Plus className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform" />
             </div>
           </button>
-        </div>
+        </motion.div>
 
         {/* Grid principal */}
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-12 items-center flex-grow pb-16">
 
           {/* Info del doctor — entra con delay */}
-          <div
-            className="flex flex-col h-[430px] justify-end pb-4 transition-all duration-700 delay-200"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateX(0)' : 'translateX(-24px)',
-            }}
+          <motion.div
+            className="flex flex-col h-[430px] justify-end pb-4"
+            initial={{ opacity: 0, x: -28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           >
             <p className="text-[9px] tracking-[0.3em] uppercase text-[#0199C6] font-bold mb-8">
               PERFIL PROFESIONAL
@@ -197,7 +186,7 @@ export default function StaffMedico() {
                 </p>
               </motion.div>
             </AnimatePresence>
-          </div>
+          </motion.div>
 
           {/* Carrusel infinito */}
           <div
@@ -251,12 +240,12 @@ export default function StaffMedico() {
       </div>
 
       {/* Navegación */}
-      <div
-        className="absolute bottom-24 right-64 flex items-center gap-10 z-50 transition-all duration-700 delay-300"
-        style={{
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(16px)',
-        }}
+      <motion.div
+        className="absolute bottom-24 right-64 flex items-center gap-10 z-50"
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
       >
         <div className="flex items-center gap-5">
           <span className="text-[10px] font-bold text-[#0070A5] tracking-[0.4em]">0{activeIndex + 1}</span>
@@ -278,7 +267,7 @@ export default function StaffMedico() {
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

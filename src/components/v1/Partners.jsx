@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import partnersVideo from '../../assets/partners.mp4'
 
 import logo1 from '../../assets/logo1.webp'
@@ -11,17 +12,6 @@ const logos = [logo1, logo2, logo3, logo4, logo5]
 
 export default function Partners() {
   const trackRef = useRef(null)
-  const sectionRef = useRef(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) setVisible(true) },
-      { threshold: 0.05 }
-    )
-    if (sectionRef.current) obs.observe(sectionRef.current)
-    return () => obs.disconnect()
-  }, [])
 
   useEffect(() => {
     let animationFrame
@@ -47,7 +37,7 @@ export default function Partners() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-screen w-full overflow-hidden">
 
       {/* 🎥 VIDEO */}
       <video
@@ -69,21 +59,18 @@ export default function Partners() {
         {/* 🔝 TEXTO ARRIBA */}
         <div className="max-w-7xl mx-auto w-full px-6 pt-48">
 
-          <div
-            className="max-w-2xl transition-all duration-700"
-            style={{
-              opacity: visible ? 1 : 0,
-              transform: visible ? 'translateY(0)' : 'translateY(32px)',
-            }}
+          <motion.div
+            className="max-w-2xl"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
             <h2 className="text-5xl md:text-6xl font-semibold text-white leading-tight">
               Aliados que confían en Detecta
             </h2>
 
-            <p className="mt-6 text-white/70">
-              Trabajamos junto a aseguradoras, empresas y organizaciones líderes para ofrecer diagnósticos más precisos y oportunos.
-            </p>
-          </div>
+          </motion.div>
 
         </div>
 
