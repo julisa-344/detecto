@@ -28,8 +28,8 @@ export default function V3() {
         <AppDetectaV3 />
         <PartnersV3 />
         <FooterV3 />
-        <WhatsAppButton />
       </div>
+      <WhatsAppButton />
     </>
   )
 }
