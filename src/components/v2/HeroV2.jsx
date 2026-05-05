@@ -24,8 +24,8 @@ export default function HeroV2() {
       </video>
 
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gray-950/65" />
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-950/80 to-transparent" />
+      <div className="absolute inset-0 bg-gray-950/45" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-950/10 to-transparent" />
 
       {/* 2. Contenido centrado (Animación Acelerada) */}
       <div className="relative z-10 flex-grow flex items-center justify-center">
@@ -38,7 +38,7 @@ export default function HeroV2() {
             className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extralight text-white tracking-tight leading-[1.05]"
           >
             Tecnología que {' '}
-            <span className="font-light italic text-cyan-400">
+            <span className="font-light text-primary">
               transforma
             </span>
             <br />

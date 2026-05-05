@@ -79,8 +79,8 @@ export default function PartnersV3() {
         <Sparkles
           density={1200}
           speed={1.5}
-          color="#0199C6"
-          opacity={0.8}
+          color="#082f3a"
+          opacity={0.9}
           className="absolute inset-x-0 bottom-0 h-full w-full [mask-image:radial-gradient(50%_50%,white,transparent_85%)]"
         />
       </div>

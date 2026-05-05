@@ -50,7 +50,7 @@ export default function Partners() {
       </video>
 
       {/* 🌑 OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-950/75 via-gray-900/65 to-gray-950/80" />
+      <div className="absolute inset-0 bg-gradient-to-b from-gray-950/55 via-gray-900/45 to-gray-950/0" />
 
       {/* CONTENIDO */}
       <div className="relative z-10 h-full flex flex-col justify-between">

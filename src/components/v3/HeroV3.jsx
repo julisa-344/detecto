@@ -52,8 +52,8 @@ export default function HeroV3() {
       </div>
 
       {/* Overlays */}
-      <div className="absolute inset-0 z-1 bg-gradient-to-br from-gray-950/70 via-gray-950/40 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-96 z-1 bg-gradient-to-t from-gray-950/90 to-transparent" />
+      <div className="absolute inset-0 z-1 bg-gradient-to-br from-gray-950/40 via-gray-950/10 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-96 z-1 bg-gradient-to-t from-gray-950/60 to-transparent" />
 
       {/* Contenido principal (Subido para no pegar con el cintillo) */}
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 pb-40 w-full">
@@ -73,7 +73,7 @@ export default function HeroV3() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base lg:text-lg font-light text-white/55 max-w-md leading-relaxed mb-10"
+            className="text-base lg:text-lg font-light text-white/95 max-w-md leading-relaxed mb-10"
           >
             Descubre cómo estamos redefiniendo el diagnóstico médico con inteligencia artificial e innovación de vanguardia.
           </motion.p>

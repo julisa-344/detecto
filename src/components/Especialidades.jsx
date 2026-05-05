@@ -78,7 +78,7 @@ export default function Especialidades() {
       </video>
 
       {/* Overlay oscuro para legibilidad */}
-      <div className="absolute inset-0 bg-gradient-to-r from-gray-950/95 via-gray-900/80 to-transparent z-0" />
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-950/55 via-gray-900/50 to-transparent z-0" />
 
       {/* Contenido Principal */}
       <div className="relative z-10 h-full max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1.5fr_3fr] gap-0">
