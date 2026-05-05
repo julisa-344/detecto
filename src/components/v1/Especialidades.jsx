@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import videoBg from '../../assets/especialidades.mp4'
 
 const specialties = [
@@ -67,8 +67,20 @@ export default function Especialidades() {
 
   const active = specialties[activeIndex]
 
+  // Animación de entrada
+  const sectionRef = useRef(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true) },
+      { threshold: 0.05 }
+    )
+    if (sectionRef.current) obs.observe(sectionRef.current)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section className="relative h-screen min-h-[700px] w-full bg-primary-dark overflow-hidden">
+    <section ref={sectionRef} className="relative h-screen min-h-[700px] w-full bg-primary-dark overflow-hidden">
       {/* Video de fondo fijo */}
       <video
         autoPlay muted loop playsInline
@@ -84,7 +96,13 @@ export default function Especialidades() {
       <div className="relative z-10 h-full max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1.5fr_3fr] gap-0">
         
         {/* COLUMNA IZQUIERDA: Navegación de Pestañas */}
-        <div className="flex flex-col justify-center gap-12 py-20 border-r border-white/5 pr-12">
+          <div
+            className="flex flex-col justify-center gap-12 py-20 border-r border-white/5 pr-12 transition-all duration-700"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateX(0)' : 'translateX(-32px)',
+            }}
+          >
           <div>
             <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-secondary mb-4 opacity-80">
               Especialidades Médicas
@@ -129,8 +147,13 @@ export default function Especialidades() {
           </nav>
         </div>
 
-        {/* COLUMNA DERECHA: Detalle dinámico */}
-        <div className="relative flex flex-col justify-center px-10 lg:px-20 py-20">
+        <div
+          className="relative flex flex-col justify-center px-10 lg:px-20 py-20 transition-all duration-700 delay-150"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateX(0)' : 'translateX(32px)',
+          }}
+        >
           
           {/* Watermark de fondo */}
           <div className={`absolute right-10 top-1/2 -translate-y-1/2 text-[25vw] font-black text-white select-none pointer-events-none transition-all duration-700 ease-in-out ${

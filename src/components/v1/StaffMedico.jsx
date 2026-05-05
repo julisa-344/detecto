@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Plus } from 'lucide-react'
 import doctor1 from '../../assets/doctor1.webp'
@@ -50,38 +50,98 @@ const doctors = [
   },
 ]
 
+const N = doctors.length
+// Triplicamos para el loop infinito: [copia A | copia B (real) | copia C]
+const tripled = [...doctors, ...doctors, ...doctors]
+const CARD_WIDTH = 322 // ancho de card + gap
+
 export default function StaffMedico() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [animating, setAnimating] = useState(false)
-  const [paused, setPaused] = useState(false)
+  // virtIdx arranca en N (mitad del array triplicado = copia B real)
+  const [virtIdx, setVirtIdx]       = useState(N)
+  const [animated, setAnimated]     = useState(true)   // controla si la tira tiene transition CSS
+  const [paused, setPaused]         = useState(false)
+  const isJumping                   = useRef(false)
 
-  const handleIndexChange = useCallback((newIndex) => {
-    if (animating) return
-    setAnimating(true)
-    setActiveIndex(newIndex)
-    setTimeout(() => setAnimating(false), 500)
-  }, [animating])
+  const activeIndex = virtIdx % N  // 0-4 para el panel de info
 
-  const nextDoctor = useCallback(() => {
-    handleIndexChange((activeIndex + 1) % doctors.length)
-  }, [activeIndex, handleIndexChange])
+  // ── Navegación ──────────────────────────────────────────────
+  const goTo = useCallback((newVirt) => {
+    if (isJumping.current) return
+    setVirtIdx(newVirt)
+  }, [])
 
-  const prevDoctor = () => handleIndexChange((activeIndex - 1 + doctors.length) % doctors.length)
+  const nextDoctor = useCallback(() => goTo(virtIdx + 1), [virtIdx, goTo])
+  const prevDoctor = useCallback(() => goTo(virtIdx - 1), [virtIdx, goTo])
 
-  // Autoplay — avanza cada 3.5s, se pausa al hacer hover
+  // ── Reset invisible al llegar al extremo ────────────────────
+  useEffect(() => {
+    // Al llegar a la copia C (índice N*2 o más), salta sin animación a la copia B
+    if (virtIdx >= N * 2) {
+      isJumping.current = true
+      const t = setTimeout(() => {
+        setAnimated(false)
+        setVirtIdx(N + (virtIdx % N))
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setAnimated(true)
+            isJumping.current = false
+          })
+        })
+      }, 700)
+      return () => clearTimeout(t)
+    }
+    // Al llegar a la copia A (índice < N), salta sin animación a la copia B
+    if (virtIdx < N) {
+      isJumping.current = true
+      const t = setTimeout(() => {
+        setAnimated(false)
+        setVirtIdx(N + (virtIdx % N))
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setAnimated(true)
+            isJumping.current = false
+          })
+        })
+      }, 700)
+      return () => clearTimeout(t)
+    }
+  }, [virtIdx])
+
+  // ── Autoplay ────────────────────────────────────────────────
   useEffect(() => {
     if (paused) return
     const interval = setInterval(nextDoctor, 3500)
     return () => clearInterval(interval)
   }, [nextDoctor, paused])
 
+  // ── Animación de entrada de la sección ──────────────────────
+  const sectionRef = useRef(null)
+  const [visible, setVisible] = useState(false)
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) setVisible(true) },
+      { threshold: 0.05 }
+    )
+    if (sectionRef.current) obs.observe(sectionRef.current)
+    return () => obs.disconnect()
+  }, [])
+
   return (
-    <section className="h-screen w-full bg-white relative flex flex-col pt-16 pb-8 px-6 lg:px-12 overflow-hidden" style={{ fontFamily: 'Lexend, sans-serif' }}>
-      
+    <section
+      ref={sectionRef}
+      className="h-screen w-full bg-white relative flex flex-col pt-16 pb-8 px-6 lg:px-12 overflow-hidden"
+      style={{ fontFamily: 'Lexend, sans-serif' }}
+    >
       <div className="max-w-[1400px] mx-auto w-full h-full flex flex-col">
-        
-        {/* 1. Header: Título refinado y Botón "Ver Todo" */}
-        <div className="flex justify-between items-start w-full mb-6">
+
+        {/* Header — entra con fade + slide */}
+        <div
+          className="flex justify-between items-start w-full mb-6 transition-all duration-700"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(24px)',
+          }}
+        >
           <div>
             <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">
               NUESTRO STAFF
@@ -100,15 +160,21 @@ export default function StaffMedico() {
           </button>
         </div>
 
-        {/* 2. Grid Principal: Bio e Imágenes */}
+        {/* Grid principal */}
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-12 items-center flex-grow pb-16">
-          
-          {/* Info del Doctor: Alineada a la BASE (justify-end) con alto de Card (430px) */}
-          <div className="flex flex-col h-[430px] justify-end pb-4">
+
+          {/* Info del doctor — entra con delay */}
+          <div
+            className="flex flex-col h-[430px] justify-end pb-4 transition-all duration-700 delay-200"
+            style={{
+              opacity: visible ? 1 : 0,
+              transform: visible ? 'translateX(0)' : 'translateX(-24px)',
+            }}
+          >
             <p className="text-[9px] tracking-[0.3em] uppercase text-[#0199C6] font-bold mb-8">
               PERFIL PROFESIONAL
             </p>
-            
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
@@ -126,7 +192,6 @@ export default function StaffMedico() {
                     {doctors[activeIndex].specialty}
                   </p>
                 </div>
-                
                 <p className="text-sm font-light text-slate-500 leading-relaxed max-w-[280px]">
                   {doctors[activeIndex].description}
                 </p>
@@ -134,61 +199,75 @@ export default function StaffMedico() {
             </AnimatePresence>
           </div>
 
-          {/* Carrusel de Cards (430px de alto) */}
+          {/* Carrusel infinito */}
           <div
             className="relative overflow-hidden h-[430px] flex items-center"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
-            <div 
-              className="flex gap-8 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
-              style={{ transform: `translateX(calc(-${activeIndex * 322}px))` }}
+            <div
+              className="flex gap-8"
+              style={{
+                transform: `translateX(calc(-${virtIdx * CARD_WIDTH}px))`,
+                transition: animated ? 'transform 700ms cubic-bezier(0.23,1,0.32,1)' : 'none',
+              }}
             >
-              {doctors.map((doctor, index) => (
-                <div
-                  key={index}
-                  onClick={() => handleIndexChange(index)}
-                  className={`relative flex-shrink-0 w-[290px] h-[430px] rounded-[40px] overflow-hidden transition-all duration-700 cursor-pointer ${
-                    index === activeIndex ? 'scale-100 shadow-xl shadow-blue-900/10' : 'scale-[0.9] opacity-20 grayscale blur-[0.5px]'
-                  }`}
-                  style={{ backgroundColor: doctor.bg }}
-                >
-                  <img
-                    src={doctor.image}
-                    alt={doctor.name}
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[92%] w-auto object-contain object-bottom pointer-events-none"
-                  />
-                  
-                  <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/30 to-transparent">
-                    <div className="border-l border-[#0070A5] pl-4">
-                      <h4 className="text-white text-xs font-bold uppercase tracking-wide leading-tight">
-                        {doctor.name}
-                      </h4>
-                      <p className="text-white/80 text-[9px] font-mono tracking-widest mt-1">
-                        {doctor.reg}
-                      </p>
+              {tripled.map((doctor, index) => {
+                const realIdx = index % N
+                const isActive = realIdx === activeIndex && 
+                  Math.abs(index - virtIdx) < N   // solo la copia activa brilla
+                return (
+                  <div
+                    key={index}
+                    onClick={() => !isJumping.current && goTo(N + realIdx)}
+                    className={`relative flex-shrink-0 w-[290px] h-[430px] rounded-[40px] overflow-hidden transition-all duration-700 cursor-pointer ${
+                      isActive
+                        ? 'scale-100 shadow-xl shadow-blue-900/10'
+                        : 'scale-[0.9] opacity-20 grayscale blur-[0.5px]'
+                    }`}
+                    style={{ backgroundColor: doctor.bg }}
+                  >
+                    <img
+                      src={doctor.image}
+                      alt={doctor.name}
+                      className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[92%] w-auto object-contain object-bottom pointer-events-none"
+                    />
+                    <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/30 to-transparent">
+                      <div className="border-l border-[#0070A5] pl-4">
+                        <h4 className="text-white text-xs font-bold uppercase tracking-wide leading-tight">
+                          {doctor.name}
+                        </h4>
+                        <p className="text-white/80 text-[9px] font-mono tracking-widest mt-1">
+                          {doctor.reg}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </div>
-
       </div>
 
-      {/* 3. Navegación: Subida y movida significativamente a la izquierda (right-64) */}
-      <div className="absolute bottom-24 right-64 flex items-center gap-10 z-50">
+      {/* Navegación */}
+      <div
+        className="absolute bottom-24 right-64 flex items-center gap-10 z-50 transition-all duration-700 delay-300"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0)' : 'translateY(16px)',
+        }}
+      >
         <div className="flex items-center gap-5">
           <span className="text-[10px] font-bold text-[#0070A5] tracking-[0.4em]">0{activeIndex + 1}</span>
           <div className="w-20 h-px bg-slate-100 relative">
-            <motion.div 
-              animate={{ width: `${((activeIndex + 1) / doctors.length) * 100}%` }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="absolute left-0 top-0 h-full bg-[#0070A5]" 
+            <motion.div
+              animate={{ width: `${((activeIndex + 1) / N) * 100}%` }}
+              transition={{ duration: 0.5, ease: 'easeInOut' }}
+              className="absolute left-0 top-0 h-full bg-[#0070A5]"
             />
           </div>
-          <span className="text-[10px] font-bold text-slate-300 tracking-[0.4em]">0{doctors.length}</span>
+          <span className="text-[10px] font-bold text-slate-300 tracking-[0.4em]">0{N}</span>
         </div>
 
         <div className="flex gap-2">
