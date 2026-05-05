@@ -9,12 +9,12 @@ import doctor5 from '../../assets/doctor5.webp'
 
 const doctors = [
   { 
-    name: 'Dr. Gastón Mendoza de Lama', 
-    specialty: 'Cirugía Oncológica y Mastología', 
-    reg: 'CMP 25779 | RNE 11470',
-    description: 'Especialista en tratamiento integral con énfasis en patologías mamarias. Prioriza la preservación de la calidad de vida y seguridad oncológica.', 
-    image: doctor1, 
-    bg: '#E0F2FE' 
+    name: 'Dr. Nicanor Rodríguez Gutarra', 
+    specialty: 'Urología General y Oncológica', 
+    reg: 'CMP 025867 | RNE 027671',
+    description: 'Pionero en cirugía robótica en el Perú. Referente en técnicas de mínima invasión, cirugía laparoscópica avanzada y tecnología láser.', 
+    image: doctor4, 
+    bg: '#F0F9FF' 
   },
   { 
     name: 'Dr. Alexis Alva Pinto', 
@@ -25,20 +25,20 @@ const doctors = [
     bg: '#F0F9FF' 
   },
   { 
+    name: 'Dr. Gastón Mendoza de Lama', 
+    specialty: 'Cirugía Oncológica y Mastología', 
+    reg: 'CMP 25779 | RNE 11470',
+    description: 'Especialista en tratamiento integral con énfasis en patologías mamarias. Prioriza la preservación de la calidad de vida y seguridad oncológica.', 
+    image: doctor1, 
+    bg: '#E0F2FE' 
+  },
+  { 
     name: 'Dr. Victor Castro', 
     specialty: 'Oncología Médica', 
     reg: 'CMP 031518',
     description: 'Reconocido por su enfoque en personalización terapéutica e inmunoterapia. Investigador activo en estudios clínicos multicéntricos.', 
     image: doctor3, 
     bg: '#E0F2FE' 
-  },
-  { 
-    name: 'Dr. Nicanor Rodríguez Gutarra', 
-    specialty: 'Urología General y Oncológica', 
-    reg: 'CMP 025867 | RNE 027671',
-    description: 'Pionero en cirugía robótica en el Perú. Referente en técnicas de mínima invasión, cirugía laparoscópica avanzada y tecnología láser.', 
-    image: doctor4, 
-    bg: '#F0F9FF' 
   },
   { 
     name: 'Dr. Carlos Oleachea Matto', 

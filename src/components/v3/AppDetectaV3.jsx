@@ -1,12 +1,26 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { motion, animate } from 'framer-motion'
 import mockup1 from '../../assets/mockup1.png'
 
-/**
- * AppDetectaV3 - Versión Split (Texto Izquierda / Imagen Derecha)
- * - Altura: 100vh (sin scroll)
- * - Tipografía: Lexend
- * - Colores: Paleta Detecta Clínica
- */
+// Componente de Contador
+function NumberCounter({ value, prefix = "", suffix = "" }) {
+  const nodeRef = useRef(null);
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
+
+  useEffect(() => {
+    const node = nodeRef.current;
+    const controls = animate(0, numericValue, {
+      duration: 2.5,
+      ease: "easeOut",
+      onUpdate(val) {
+        node.textContent = `${prefix}${Math.floor(val).toLocaleString()}${suffix}`;
+      }
+    });
+    return () => controls.stop();
+  }, [numericValue, prefix, suffix]);
+
+  return <span ref={nodeRef} />;
+}
 
 function AppleIcon() {
   return (
@@ -27,76 +41,73 @@ function GooglePlayIcon() {
 export default function AppDetectaV3() {
   return (
     <section 
-      className="h-screen w-full bg-white flex items-center overflow-hidden" 
+      className="w-full bg-white py-24" 
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-20 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        {/* COLUMNA IZQUIERDA: Texto y CTAs (Acelerado y Snappy) */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-start"
-        >
-          <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6">
-            Aplicativo Móvil
-          </p>
+      <div className="max-w-[1400px] mx-auto px-6 lg:px-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
           
-          <h2 className="text-5xl lg:text-7xl font-light text-[#0070A5] tracking-tighter leading-none uppercase mb-8">
-            Tu salud, <br />
-            <span className="font-normal text-slate-900">en tu bolsillo.</span>
-          </h2>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6">
+              Aplicativo Móvil
+            </p>
+            <h2 className="text-5xl lg:text-7xl font-light text-[#0070A5] tracking-tighter leading-none uppercase mb-8">
+              Tu salud, <br />
+              <span className="font-normal text-slate-900">en tu bolsillo.</span>
+            </h2>
+            <p className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mb-12">
+              Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Todo el control de tu bienestar en un solo lugar.
+            </p>
 
-          <p className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mb-12">
-            Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Todo el control de tu bienestar en un solo lugar.
-          </p>
-
-          {/* Botones de Descarga sin márgenes negativos */}
             <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="#"
-                className="inline-flex items-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors duration-200"
-              >
+              <a href="#" className="inline-flex items-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors">
                 <AppleIcon />
-                <div className="text-left">
-                  <p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p>
-                  <p className="text-sm font-medium leading-none">App Store</p>
-                </div>
+                <div className="text-left"><p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p><p className="text-sm font-medium leading-none">App Store</p></div>
               </a>
-
-              <a
-                href="#"
-                className="inline-flex items-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all duration-200"
-              >
+              <a href="#" className="inline-flex items-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all">
                 <GooglePlayIcon />
-                <div className="text-left">
-                  <p className="text-[10px] text-gray-400 leading-none mb-0.5 group-hover:text-white/50">Disponible en</p>
-                  <p className="text-sm font-medium leading-none">Google Play</p>
-                </div>
+                <div className="text-left"><p className="text-[10px] text-gray-400 leading-none mb-0.5">Disponible en</p><p className="text-sm font-medium leading-none">Google Play</p></div>
               </a>
             </div>
-        </motion.div>
+          </motion.div>
 
-        {/* COLUMNA DERECHA: Mockup (Sin Deformación y con profundidad) */}
-        <motion.div
-          initial={{ opacity: 0, x: 30, scale: 0.95 }}
-          whileInView={{ opacity: 1, x: 0, scale: 1 }}
+          <motion.div
+            initial={{ opacity: 0, x: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, x: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative flex justify-end"
+          >
+            <div className="absolute right-0 w-[500px] h-[500px] bg-[#EEFBFF] blur-[120px] rounded-full -z-10" />
+            <img src={mockup1} alt="Mockup" className="h-[600px] w-auto object-contain" />
+          </motion.div>
+        </div>
+
+        {/* Sección de Métricas con Contador */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative h-full flex justify-end items-center"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-slate-100"
         >
-          {/* Fondo decorativo sutil detrás del mockup */}
-          <div className="absolute right-0 w-[500px] h-[500px] bg-[#EEFBFF] blur-[120px] rounded-full -z-10" />
-          
-          <img 
-            src={mockup1} 
-            alt="App Detecta Mockup" 
-            className="h-[75vh] w-auto object-contain "
-          />
+          {[
+            { value: "15", label: "Años de experiencia", prefix: "+" },
+            { value: "100000", label: "Pacientes atendidos", prefix: "" },
+            { value: "3500", label: "Cirugías anuales", prefix: "+" }
+          ].map((stat, idx) => (
+            <div key={idx} className="text-center md:text-left">
+              <h3 className="text-4xl font-light text-[#0199C6] mb-2">
+                <NumberCounter value={stat.value} prefix={stat.prefix} />
+              </h3>
+              <p className="text-sm text-slate-500">{stat.label}</p>
+            </div>
+          ))}
         </motion.div>
-
       </div>
     </section>
   )
