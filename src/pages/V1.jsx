@@ -84,7 +84,7 @@ export default function V1() {
     <div className="min-h-screen">
       {!splashDone && <Splash onDone={handleSplashDone} />}
       <Header />
-      <Hero slotRef={heroSlotRef} />
+      <Hero slotRef={heroSlotRef} splashDone={splashDone} />
       <AccionesRapidas slotRef={targetSlotRef} landed={landed} />
       <Especialidades />
       <StaffMedico />

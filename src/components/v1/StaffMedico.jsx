@@ -128,7 +128,7 @@ export default function StaffMedico() {
           className="flex justify-between items-start w-full mb-6"
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
+          viewport={{ once: true, amount: 0 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
           <div>
@@ -157,7 +157,7 @@ export default function StaffMedico() {
             className="flex flex-col h-[430px] justify-end pb-4"
             initial={{ opacity: 0, x: -28 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
+            viewport={{ once: true, amount: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
           >
             <p className="text-[9px] tracking-[0.3em] uppercase text-[#0199C6] font-bold mb-8">
@@ -244,7 +244,7 @@ export default function StaffMedico() {
         className="absolute bottom-24 right-64 flex items-center gap-10 z-50"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
+        viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
       >
         <div className="flex items-center gap-5">
