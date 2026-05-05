@@ -19,6 +19,27 @@ const specialties = [
   { number: '06', title: 'Medicina Preventiva', description: 'Enfoque integral para el cuidado de tu salud a largo plazo.', image: img06 },
 ]
 
+// Variantes para la animación del contenedor (Grid)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, // Retraso entre la aparición de cada tarjeta
+    },
+  },
+}
+
+// Variantes para cada tarjeta individual
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.5, ease: "easeOut" } 
+  },
+}
+
 export default function EspecialidadesV3() {
   const [hoveredIndex, setHoveredIndex] = useState(null)
 
@@ -27,13 +48,13 @@ export default function EspecialidadesV3() {
       
       {/* Fondo con Zoom e Imagen Dinámica */}
       <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="popLayout">
+        <AnimatePresence mode="wait">
           <motion.div
             key={hoveredIndex !== null ? specialties[hoveredIndex].image : bgDefault}
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1.2, opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3, ease: "linear" }}
+            transition={{ duration: 0.4 }}
             className="absolute inset-0 bg-cover bg-center"
             style={{ 
               backgroundImage: `url(${hoveredIndex !== null ? specialties[hoveredIndex].image : bgDefault})` 
@@ -41,29 +62,40 @@ export default function EspecialidadesV3() {
           />
         </AnimatePresence>
         
-        {/* OVERLAY AGREGADO AQUÍ */}
-        {/* Un negro al 40% de opacidad que se coloca sobre la imagen pero debajo del contenido */}
-        <div className="absolute inset-0 bg-black/40 z-10" />
+        <div className="absolute inset-0 bg-black/50 z-10" />
       </div>
 
       {/* Contenido */}
       <div className="relative z-10 max-w-7xl w-full mx-auto px-6">
         
-        <div className="mb-16 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-16 text-center"
+        >
           <h2 className="text-4xl lg:text-5xl font-light text-white tracking-tight">
             Nuestras <span className="font-bold italic">Especialidades</span>
           </h2>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Grid con Animación de entrada Staggered */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {specialties.map((spec, index) => {
             const isHovered = hoveredIndex === index
             return (
               <motion.div
                 key={spec.number}
+                variants={cardVariants}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                layout
                 whileHover={{ scale: 1.05 }}
                 className={`group h-64 flex flex-col items-center justify-center p-8 rounded-3xl border border-white/10 backdrop-blur-md transition-colors duration-300 cursor-pointer 
                   ${isHovered ? 'bg-white text-gray-900 shadow-2xl' : 'bg-white/10 text-white'}`}
@@ -93,7 +125,7 @@ export default function EspecialidadesV3() {
               </motion.div>
             )
           })}
-        </div>
+        </motion.div>
       </div>
     </section>
   )
