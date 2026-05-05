@@ -201,7 +201,7 @@ export default function StaffMedicoV2() {
                   <div className="pt-4 pb-2">
                     <p className="text-xs font-medium text-primary-dark tracking-wide mb-1">{doctor.specialty}</p>
                     <h3 className="text-base font-light text-gray-900">{doctor.name}</h3>
-                    <p className="text-[10px] font-mono text-gray-400 tracking-wide mt-0.5">{doctor.reg}</p>
+                    <p className="text-[10px] font-mono text-gray-500 tracking-wide mt-0.5">{doctor.reg}</p>
                   </div>
                 </div>
               )
