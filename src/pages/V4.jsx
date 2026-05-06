@@ -6,7 +6,7 @@ import AccionesRapidasV4 from '../components/v4/AccionesRapidasV4'
 import EspecialidadesV3 from '../components/v3/EspecialidadesV3'
 import PartnersV3 from '../components/v3/PartnersV3'
 import AppDetectaV4 from '../components/v4/AppDetectaV4'
-import FooterV3 from '../components/v3/FooterV3'
+import FooterV4 from '../components/v4/FooterV4'
 import StaffMedicoV4 from '../components/v4/StaffMedicoV4'
 import SplashV3 from '../components/v3/SplashV3'
 import WhatsAppButton from '../components/WhatsAppButton'
@@ -27,7 +27,7 @@ export default function V4() {
         <EspecialidadesV3 />
         <AppDetectaV4 />
         <PartnersV3 />
-        <FooterV3 />
+        <FooterV4 />
       </div>
       <WhatsAppButton />
     </>
