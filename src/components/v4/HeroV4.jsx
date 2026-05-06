@@ -1,10 +1,58 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, FileText } from 'lucide-react'
 import heroVideo1 from '../../assets/herobg.mp4'
 import heroVideo2 from '../../assets/herobg1.mp4'
 import heroVideo3 from '../../assets/herobg2.mp4'
-import heroVideo4 from '../../assets/herobg3.mp4'
+import heroVideo4 from '../../assets/herobg3.mov'
+import portada1 from '../../assets/portada1.webp'
+import portada2 from '../../assets/portada2.webp'
+import portada3 from '../../assets/portada3.webp'
+import portada4 from '../../assets/portada4.webp'
+import portada5 from '../../assets/portada5.webp'
+
+const publications = [
+  {
+    short: 'WJSO',
+    title: 'World J. Surgical Oncology',
+    fullTitle: 'World Journal of Surgical Oncology',
+    link: 'https://link.springer.com/article/10.1186/s12957-025-04183-5',
+    pages: '12 páginas',
+    image: portada1,
+  },
+  {
+    short: 'Tumori',
+    title: 'Tumori Journal',
+    fullTitle: 'Tumori Journal',
+    link: 'https://journals.sagepub.com/toc/tmja/112/1_suppl',
+    pages: '8 páginas',
+    image: portada2,
+  },
+  {
+    short: 'EJC',
+    title: 'European J. of Cancer',
+    fullTitle: 'European Journal of Cancer',
+    link: 'https://www.ejcancer.com/issue/S0959-8049(26)X2004-4',
+    pages: '157 páginas',
+    image: portada3,
+  },
+  {
+    short: 'R&O',
+    title: 'Radiology and Oncology',
+    fullTitle: 'Radiology and Oncology',
+    link: 'https://reference-global.com/article/10.2478/raon-2026-0018?tab=article',
+    pages: '13 páginas',
+    image: portada4,
+  },
+  {
+    short: 'PPCR',
+    title: 'Clinical Research',
+    fullTitle: 'Clinical Research',
+    link: 'https://journal.ppcr.org/index.php/ppcrjournal/article/view/433',
+    pages: '2 páginas',
+    image: portada5,
+  },
+]
 
 const slides = [
   {
@@ -33,15 +81,17 @@ const slides = [
   },
   {
     video: heroVideo4,
-    label: 'Equipo de Élite',
-    headline: ['Especialistas de', 'clase mundial', 'a tu lado.'],
+    label: 'Investigación Clínica',
+    headline: ['Ciencia oncológica que', 'cruza fronteras'],
     highlight: 1,
-    sub: 'Más de 15 años formando el equipo oncológico más reconocido del país.',
-    cta: 'Conoce al equipo',
+    sub: 'Nuestros estudios forman parte de publicaciones internacionales orientadas a mejorar la atención del paciente oncológico.',
+    cta: 'Ver todas las publicaciones',
+    isResearch: true,
   },
 ]
 
 const INTERVAL = 3000
+const RESEARCH_INTERVAL = 9000
 
 const medicalTags = [
   'Detección Temprana', 'Oncología Clínica', 'Investigación',
@@ -56,6 +106,103 @@ const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -16 },
+}
+
+function ResearchBar() {
+  const [activeIdx, setActiveIdx] = useState(null)
+  const [paused, setPaused] = useState(false)
+  const loop = [...publications, ...publications]
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.4 }}
+      className="mt-10 max-w-3xl"
+    >
+
+
+      <div
+        className="relative rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25)] overflow-hidden"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => { setPaused(false); setActiveIdx(null) }}
+      >
+        {/* Fades laterales */}
+        {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-10 z-10 bg-gradient-to-r from-gray-950/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-10 z-10 bg-gradient-to-l from-gray-950/60 to-transparent" /> */}
+
+        <motion.div
+          className="flex gap-2 p-2 w-max"
+          animate={{ x: paused ? undefined : ['0%', '-50%'] }}
+          transition={{ ease: 'linear', duration: 30, repeat: Infinity }}
+        >
+          {loop.map((pub, i) => (
+            <a
+              key={i}
+              href={pub.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setActiveIdx(i)}
+              onMouseLeave={() => setActiveIdx(null)}
+              onFocus={() => setActiveIdx(i)}
+              onBlur={() => setActiveIdx(null)}
+              onClick={(e) => {
+                if (window.matchMedia('(hover: none)').matches && activeIdx !== i) {
+                  e.preventDefault()
+                  setActiveIdx(i)
+                }
+              }}
+              className="group relative flex items-center gap-3 pl-2 pr-4 py-2 rounded-xl whitespace-nowrap text-[11px] lg:text-xs font-light text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+            >
+              <span className="relative h-12 w-9 shrink-0 overflow-hidden rounded-[4px] ring-1 ring-white/20 shadow-md">
+                <img
+                  src={pub.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-full w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                />
+              </span>
+              <span>{pub.title}</span>
+              <ArrowUpRight className="h-3.5 w-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+
+              <AnimatePresence>
+                {activeIdx === i && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-30 w-52 rounded-xl border border-white/15 bg-gray-950/85 backdrop-blur-xl shadow-2xl overflow-hidden pointer-events-none"
+                  >
+                    <div className="aspect-[3/4] w-full bg-gray-900 overflow-hidden">
+                      <img
+                        src={pub.image}
+                        alt={pub.fullTitle}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="p-3">
+                      <p className="text-[11px] font-medium text-white leading-snug line-clamp-2">
+                        {pub.fullTitle}
+                      </p>
+                      <div className="mt-1.5 flex items-center gap-1.5 text-[10px] text-white/50">
+                        <FileText className="h-3 w-3" />
+                        <span>{pub.pages}</span>
+                      </div>
+                      <div className="mt-2 flex items-center gap-1 text-[10px] font-semibold tracking-[0.15em] uppercase text-primary">
+                        Ver publicación
+                        <ExternalLink className="h-3 w-3" />
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </a>
+          ))}
+        </motion.div>
+      </div>
+    </motion.div>
+  )
 }
 
 export default function HeroV4() {
@@ -87,9 +234,10 @@ export default function HeroV4() {
     if (paused) return
     setProgress(0)
     startRef.current = performance.now()
+    const duration = slides[current].isResearch ? RESEARCH_INTERVAL : INTERVAL
 
     const tick = (now) => {
-      const pct = Math.min((now - startRef.current) / INTERVAL, 1)
+      const pct = Math.min((now - startRef.current) / duration, 1)
       setProgress(pct)
       if (pct < 1) {
         rafRef.current = requestAnimationFrame(tick)
@@ -127,7 +275,7 @@ export default function HeroV4() {
       ))}
 
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gray-950/45 z-10" />
+      <div className={`absolute inset-0 z-10 transition-colors duration-700 ${slide.isResearch ? 'bg-gray-950/65' : 'bg-gray-950/45'}`} />
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-950/40 to-transparent z-10" />
 
       {/* Contenido */}
@@ -155,7 +303,7 @@ export default function HeroV4() {
                 <motion.h1
                   variants={itemVariants}
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extralight text-white tracking-tight leading-[1.05]"
+                  className={`${slide.isResearch ? 'text-4xl sm:text-5xl lg:text-6xl xl:text-7xl' : 'text-5xl sm:text-6xl lg:text-7xl xl:text-8xl'} font-extralight text-white tracking-tight leading-[1.05]`}
                 >
                   {slide.headline.map((line, i) => (
                     <span
@@ -175,15 +323,17 @@ export default function HeroV4() {
                   {slide.sub}
                 </motion.p>
 
+                {slide.isResearch && <ResearchBar />}
+
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
+                  transition={{ duration: 0.35, delay: 0.25 }}
                   className="hidden lg:flex items-center mt-10"
                 >
                   <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
                     <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-[#52C0E1]/100 group-hover:bg-[#0070A5] group-hover:text-white backdrop-blur-md border border-[#52C0E1]/0">
-                      AGENDAR CITA
+                      {slide.isResearch ? 'VER INVESTIGACIONES' : 'AGENDAR CITA'}
                     </span>
                     <div className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-[#52C0E1]/100 text-white group-hover:bg-[#0070A5] group-hover:text-white backdrop-blur-md border border-[#52C0E1]/0">
                       <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
