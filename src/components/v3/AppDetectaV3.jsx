@@ -1,27 +1,33 @@
 import { useEffect, useRef } from 'react'
-import { motion, animate } from 'framer-motion'
+import { motion, animate, useInView } from 'framer-motion'
 import mockup1 from '../../assets/mockup1.png'
 
-// Componente de Contador
+// Componente de Contador optimizado para activarse al hacer scroll
 function NumberCounter({ value, prefix = "", suffix = "" }) {
   const nodeRef = useRef(null);
+  // Detecta si el elemento está en pantalla (se activa una sola vez)
+  const isInView = useInView(nodeRef, { once: true, margin: "-50px" });
   const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
 
   useEffect(() => {
-    const node = nodeRef.current;
-    const controls = animate(0, numericValue, {
-      duration: 2.5,
-      ease: "easeOut",
-      onUpdate(val) {
-        node.textContent = `${prefix}${Math.floor(val).toLocaleString()}${suffix}`;
-      }
-    });
-    return () => controls.stop();
-  }, [numericValue, prefix, suffix]);
+    // Solo inicia la animación si el elemento está visible
+    if (isInView) {
+      const node = nodeRef.current;
+      const controls = animate(0, numericValue, {
+        duration: 2.5,
+        ease: [0.16, 1, 0.3, 1], // Un ease-out más suave
+        onUpdate(val) {
+          node.textContent = `${prefix}${Math.floor(val).toLocaleString()}${suffix}`;
+        }
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, numericValue, prefix, suffix]);
 
-  return <span ref={nodeRef} />;
+  return <span ref={nodeRef}>0</span>; // Empieza en 0 visualmente
 }
 
+// Iconos
 function AppleIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -47,11 +53,12 @@ export default function AppDetectaV3() {
       <div className="max-w-[1400px] mx-auto px-6 lg:px-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
           
+          {/* Columna Izquierda: Texto */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6">
               Aplicativo Móvil
@@ -65,49 +72,69 @@ export default function AppDetectaV3() {
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <a href="#" className="inline-flex items-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors">
+              <motion.a 
+                href="#" 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors"
+              >
                 <AppleIcon />
-                <div className="text-left"><p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p><p className="text-sm font-medium leading-none">App Store</p></div>
-              </a>
-              <a href="#" className="inline-flex items-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all">
+                <div className="text-left">
+                  <p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p>
+                  <p className="text-sm font-medium leading-none">App Store</p>
+                </div>
+              </motion.a>
+              <motion.a 
+                href="#" 
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all"
+              >
                 <GooglePlayIcon />
-                <div className="text-left"><p className="text-[10px] text-gray-400 leading-none mb-0.5">Disponible en</p><p className="text-sm font-medium leading-none">Google Play</p></div>
-              </a>
+                <div className="text-left">
+                  <p className="text-[10px] text-gray-400 leading-none mb-0.5">Disponible en</p>
+                  <p className="text-sm font-medium leading-none">Google Play</p>
+                </div>
+              </motion.a>
             </div>
           </motion.div>
 
+          {/* Columna Derecha: Imagen */}
           <motion.div
-            initial={{ opacity: 0, x: 30, scale: 0.95 }}
-            whileInView={{ opacity: 1, x: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, scale: 0.9, x: 20 }}
+            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="relative flex justify-end"
           >
-            <div className="absolute right-0 w-[500px] h-[500px] bg-[#EEFBFF] blur-[120px] rounded-full -z-10" />
-            <img src={mockup1} alt="Mockup" className="h-[600px] w-auto object-contain" />
+            {/* Glow de fondo */}
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#EEFBFF] blur-[100px] rounded-full -z-10" />
+            <img src={mockup1} alt="Mockup App" className="h-[600px] w-auto object-contain drop-shadow-2xl" />
           </motion.div>
         </div>
 
-        {/* Sección de Métricas con Contador */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-slate-100"
-        >
+        {/* Sección de Métricas: Animación escalonada */}
+        <div className="pt-12 border-t border-slate-100 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { value: "15", label: "Años de experiencia", prefix: "+" },
             { value: "100000", label: "Pacientes atendidos", prefix: "" },
             { value: "3500", label: "Cirugías anuales", prefix: "+" }
           ].map((stat, idx) => (
-            <div key={idx} className="text-center md:text-left">
-              <h3 className="text-4xl font-light text-[#0199C6] mb-2">
+            <motion.div 
+              key={idx} 
+              className="text-center md:text-left"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.15 }} // Staggered delay
+            >
+              <h3 className="text-4xl lg:text-5xl font-light text-[#0199C6] mb-2 tracking-tighter">
                 <NumberCounter value={stat.value} prefix={stat.prefix} />
               </h3>
-              <p className="text-sm text-slate-500">{stat.label}</p>
-            </div>
+              <p className="text-sm font-medium uppercase tracking-[0.1em] text-slate-400">{stat.label}</p>
+            </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

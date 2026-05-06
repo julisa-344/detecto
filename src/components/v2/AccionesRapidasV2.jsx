@@ -2,6 +2,26 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from "lucide-react"
 import detecto from '../../assets/detecto.png'
 
+// Definición de variantes para una animación coordinada
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15, // Tiempo de espera entre cada elemento
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+  },
+}
+
 const actions = [
   {
     key: 'agendar', number: '01', title: 'Agendar Cita', description: 'Reserva tu consulta en menos de 2 minutos con nuestro sistema de agenda inteligente.', accent: '#0070A5', accentLight: '#EEFBFF',
@@ -28,8 +48,13 @@ export default function AccionesRapidasV3() {
         
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           
-          {/* LADO IZQUIERDO: Detecto Protagonista */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+          {/* LADO IZQUIERDO */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center lg:items-start text-center lg:text-left"
+          >
             <motion.div 
               animate={{ scale: [1, 1.05, 1], y: [0, -20, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
@@ -42,21 +67,23 @@ export default function AccionesRapidasV3() {
               ¿En qué puede ayudarte <br />
               <span className="font-bold italic text-[#0070A5]">Detecto hoy?</span>
             </h2>
-          </div>
+          </motion.div>
 
-          {/* LADO DERECHO: Grid de tarjetas con estética de Especialidades */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {actions.map((action, index) => (
+          {/* LADO DERECHO: Grid de tarjetas con Variants */}
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          >
+            {actions.map((action) => (
               <motion.div
                 key={action.key}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                variants={cardVariants}
                 whileHover={{ y: -10, scale: 1.02 }}
-                transition={{ duration: 0.5, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
                 className="group relative p-8 rounded-[24px] border border-[#C0DDE5]/30 bg-white transition-all duration-500 cursor-pointer overflow-hidden hover:border-[#52C0E1]/50 hover:shadow-[0_20px_40px_-15px_rgba(82,192,225,0.2)] h-[320px]"
               >
-                {/* Efecto de Luz de Escaneo */}
                 <div className="absolute inset-0 bg-gradient-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
 
                 <div className="relative z-10">
@@ -86,7 +113,7 @@ export default function AccionesRapidasV3() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
         </div>
       </div>

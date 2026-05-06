@@ -14,7 +14,7 @@ export default function FooterV3() {
         <motion.div
           initial={{ opacity: 0, y: 32 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.08 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10 px-6 pb-24"
         >
@@ -29,7 +29,7 @@ export default function FooterV3() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-wrap justify-center gap-6"
           >
@@ -91,7 +91,7 @@ export default function FooterV3() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.08 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           className="rounded-[56px] shadow-2xl shadow-blue-900/5 overflow-hidden transition-all duration-500"
           style={{
@@ -108,7 +108,7 @@ export default function FooterV3() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.08 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="lg:col-span-4 flex flex-col gap-10"
               >
@@ -135,7 +135,7 @@ export default function FooterV3() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.08 }}
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-12"
               >

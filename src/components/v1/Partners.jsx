@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import partnersVideo from '../../assets/partners.mp4'
 
 import logo1 from '../../assets/logo1.webp'
@@ -58,15 +59,18 @@ export default function Partners() {
         {/* 🔝 TEXTO ARRIBA */}
         <div className="max-w-7xl mx-auto w-full px-6 pt-48">
 
-          <div className="max-w-2xl">
+          <motion.div
+            className="max-w-2xl"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
             <h2 className="text-5xl md:text-6xl font-semibold text-white leading-tight">
               Aliados que confían en Detecta
             </h2>
 
-            <p className="mt-6 text-white/70">
-              Trabajamos junto a aseguradoras, empresas y organizaciones líderes para ofrecer diagnósticos más precisos y oportunos.
-            </p>
-          </div>
+          </motion.div>
 
         </div>
 

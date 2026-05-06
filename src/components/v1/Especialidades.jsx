@@ -1,4 +1,5 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
+import { motion } from 'framer-motion'
 import videoBg from '../../assets/especialidades.mp4'
 
 const specialties = [
@@ -48,7 +49,6 @@ export default function Especialidades() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [animating, setAnimating] = useState(false)
 
-  // Función para cambiar de especialidad con animación
   const changeSpecialty = useCallback((index) => {
     if (index === activeIndex || animating) return
     setAnimating(true)
@@ -56,7 +56,6 @@ export default function Especialidades() {
     setTimeout(() => setAnimating(false), 500)
   }, [activeIndex, animating])
 
-  // Lógica de Autoplay (Cada 6 segundos cambia sola)
   useEffect(() => {
     const interval = setInterval(() => {
       const nextIndex = (activeIndex + 1) % specialties.length
@@ -84,7 +83,13 @@ export default function Especialidades() {
       <div className="relative z-10 h-full max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1.5fr_3fr] gap-0">
         
         {/* COLUMNA IZQUIERDA: Navegación de Pestañas */}
-        <div className="flex flex-col justify-center gap-12 py-20 border-r border-white/5 pr-12">
+          <motion.div
+            className="flex flex-col justify-center gap-12 py-20 border-r border-white/5 pr-12"
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
           <div>
             <p className="text-[10px] font-bold tracking-[0.4em] uppercase text-secondary mb-4 opacity-80">
               Especialidades Médicas
@@ -127,10 +132,15 @@ export default function Especialidades() {
               )
             })}
           </nav>
-        </div>
+          </motion.div>
 
-        {/* COLUMNA DERECHA: Detalle dinámico */}
-        <div className="relative flex flex-col justify-center px-10 lg:px-20 py-20">
+        <motion.div
+          className="relative flex flex-col justify-center px-10 lg:px-20 py-20"
+          initial={{ opacity: 0, x: 40 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
           
           {/* Watermark de fondo */}
           <div className={`absolute right-10 top-1/2 -translate-y-1/2 text-[25vw] font-black text-white select-none pointer-events-none transition-all duration-700 ease-in-out ${
@@ -160,7 +170,7 @@ export default function Especialidades() {
               Conocer más detalles
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   )

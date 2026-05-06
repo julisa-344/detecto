@@ -33,7 +33,7 @@ export default function EspecialidadesV3() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">
@@ -48,7 +48,7 @@ export default function EspecialidadesV3() {
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, amount: 0.08 }}
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="hidden lg:flex flex-col items-start pt-12"
           >
@@ -93,7 +93,7 @@ export default function EspecialidadesV3() {
               whileInView={{ opacity: 1, y: 0 }}
               // Hover más notorio: levanta, escala un poquito y añade sombra
               whileHover={{ y: -10, scale: 1.02 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.5, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
               // Añadidas clases de hover: border brillante y sombra suave
               className="group relative p-8 rounded-[24px] border border-[#C0DDE5]/30 bg-white transition-all duration-500 cursor-pointer overflow-hidden hover:border-[#52C0E1]/50 hover:shadow-[0_20px_40px_-15px_rgba(82,192,225,0.2)]"

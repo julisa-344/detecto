@@ -102,7 +102,7 @@ export default function PorQueNosotrosV2() {
     if (!sectionRef.current) return
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setActive(true) },
-      { threshold: 0.2 }
+      { threshold: 0.05 }
     )
     obs.observe(sectionRef.current)
     return () => obs.disconnect()

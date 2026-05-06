@@ -1,7 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 import mockHome from '../../assets/home.webp'
 import mockTipocita from '../../assets/tipocita.webp'
 import mockDoctores from '../../assets/doctores.webp'
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 36 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay },
+})
 
 function AppleIcon() {
   return (
@@ -19,154 +27,111 @@ function GooglePlayIcon() {
   )
 }
 
-export default function AppDetecta() {
-  const sectionRef = useRef(null)
-  const btnsRef = useRef(null)
-  const [scrolled, setScrolled] = useState(false)
-  const [btnsVisible, setBtnsVisible] = useState(false)
+const mockups = [
+  { id: 0, img: mockTipocita },
+  { id: 1, img: mockHome },
+  { id: 2, img: mockDoctores },
+]
 
-  // Resetea cuando sale del viewport, se activa cuando vuelve a entrar
-  useEffect(() => {
-    if (!sectionRef.current) return
-    const obs = new IntersectionObserver(
-      ([entry]) => setScrolled(entry.isIntersecting),
-      { threshold: 0.2 }
-    )
-    obs.observe(sectionRef.current)
-    return () => obs.disconnect()
-  }, [])
+export default function AppDetectaV3() {
+  const [activeIndex, setActiveIndex] = useState(1)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
-  // Botones — también se resetean
   useEffect(() => {
-    if (!btnsRef.current) return
-    const obs = new IntersectionObserver(
-      ([entry]) => setBtnsVisible(entry.isIntersecting),
-      { threshold: 0.3 }
-    )
-    obs.observe(btnsRef.current)
-    return () => obs.disconnect()
-  }, [])
+    if (!isAutoPlaying) return
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % mockups.length)
+    }, 1500)
+    return () => clearInterval(interval)
+  }, [isAutoPlaying])
+
+  const getVariant = (index) => {
+    if (index === activeIndex) return "center"
+    if ((activeIndex + 1) % mockups.length === index) return "right"
+    return "left"
+  }
+
+  const variants = {
+    center: { x: 0, scale: 1, zIndex: 10, opacity: 1 },
+    left: { x: -180, scale: 0.82, zIndex: 5, opacity: 0.35 },
+    right: { x: 180, scale: 0.82, zIndex: 5, opacity: 0.35 },
+  }
 
   return (
-    <section ref={sectionRef} className="bg-white overflow-hidden">
+    <section className="bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-28 lg:py-36">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-          {/* ── IZQUIERDA: texto ── */}
+          {/* ── IZQUIERDA: Texto y Botones Originales ── */}
           <div>
-            <p className="text-xs font-semibold tracking-[0.3em] uppercase text-primary mb-5">
+            <motion.p {...fadeUp(0)} className="text-xs font-semibold tracking-[0.3em] uppercase text-[#0199C6] mb-5">
               Aplicativo móvil
-            </p>
-            <h2 className="text-5xl lg:text-6xl font-semibold text-gray-900 tracking-tight leading-[1.05]">
+            </motion.p>
+            <motion.h2 {...fadeUp(0.08)} className="text-5xl lg:text-6xl font-semibold text-gray-900 tracking-tight leading-[1.05]">
               Tu salud,
-              <span className="block text-primary mt-1">en tu bolsillo</span>
-            </h2>
-            <p className="mt-7 text-lg text-gray-500 leading-relaxed max-w-md">
+              <span className="block text-[#0199C6] mt-1 italic font-light">en tu bolsillo</span>
+            </motion.h2>
+            <motion.p {...fadeUp(0.16)} className="mt-7 text-lg text-gray-500 leading-relaxed max-w-md">
               Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Disponible para iOS y Android.
-            </p>
+            </motion.p>
 
-            {/* Botones de descarga */}
-            <div ref={btnsRef} className="mt-10 flex flex-wrap gap-4">
-              <a
+            <div className="mt-10 flex flex-wrap gap-4">
+              <motion.a
                 href="#"
+                {...fadeUp(0.24)}
                 className="inline-flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-gray-900 text-white
                            hover:bg-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                style={{
-                  opacity: btnsVisible ? 1 : 0,
-                  transform: btnsVisible ? 'translateY(0)' : 'translateY(20px)',
-                  transition: 'opacity 600ms ease 100ms, transform 600ms ease 100ms, background-color 200ms, box-shadow 200ms',
-                }}
               >
                 <AppleIcon />
                 <div className="text-left">
                   <p className="text-[10px] text-white/60 leading-none mb-0.5">Disponible en</p>
                   <p className="text-sm font-semibold leading-none">App Store</p>
                 </div>
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
                 href="#"
+                {...fadeUp(0.32)}
                 className="inline-flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-gray-900 text-white
                            hover:bg-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-xl"
-                style={{
-                  opacity: btnsVisible ? 1 : 0,
-                  transform: btnsVisible ? 'translateY(0)' : 'translateY(20px)',
-                  transition: 'opacity 600ms ease 280ms, transform 600ms ease 280ms, background-color 200ms, box-shadow 200ms',
-                }}
               >
                 <GooglePlayIcon />
                 <div className="text-left">
                   <p className="text-[10px] text-white/60 leading-none mb-0.5">Disponible en</p>
                   <p className="text-sm font-semibold leading-none">Google Play</p>
                 </div>
-              </a>
+              </motion.a>
             </div>
           </div>
 
-          {/* ── DERECHA: mockups ── */}
-          <div className="relative flex justify-center items-end" style={{ height: 620 }}>
-
-            {/* Mockup IZQUIERDO */}
-            <div
-              className="absolute will-change-transform"
-              style={{
-                bottom: 0,
-                left: '50%',
-                marginLeft: -260,
-                transform: scrolled ? 'translateY(0px)' : 'translateY(140px)',
-                opacity: scrolled ? 1 : 0,
-                transition: 'transform 750ms cubic-bezier(0.34,1.4,0.64,1) 120ms, opacity 500ms ease 120ms',
-                zIndex: 1,
-              }}
-            >
-              <img
-                src={mockTipocita}
-                alt="App Detecta — Tipo de cita"
-                className="w-[240px]"
-              />
-            </div>
-
-            {/* Mockup CENTRAL */}
-            <div
-              className="absolute will-change-transform"
-              style={{
-                bottom: 0,
-                left: '50%',
-                marginLeft: -130,
-                transform: scrolled ? 'translateY(0px)' : 'translateY(140px)',
-                opacity: scrolled ? 1 : 0,
-                transition: 'transform 750ms cubic-bezier(0.34,1.4,0.64,1) 0ms, opacity 500ms ease 0ms',
-                zIndex: 3,
-              }}
-            >
-              <img
-                src={mockHome}
-                alt="App Detecta — Home"
-                className="w-[260px] "
-              />
-            </div>
-
-            {/* Mockup DERECHO */}
-            <div
-              className="absolute will-change-transform"
-              style={{
-                bottom: 0,
-                left: '50%',
-                marginLeft: 20,
-                transform: scrolled ? 'translateY(0px)' : 'translateY(140px)',
-                opacity: scrolled ? 1 : 0,
-                transition: 'transform 750ms cubic-bezier(0.34,1.4,0.64,1) 240ms, opacity 500ms ease 240ms',
-                zIndex: 2,
-              }}
-            >
-              <img
-                src={mockDoctores}
-                alt="App Detecta — Doctores"
-                className="w-[240px] "
-              />
-            </div>
-
+          {/* ── DERECHA: Mockups con Foco por Clic ── */}
+          <div 
+            className="relative flex justify-center items-center h-[580px]"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+          >
+            {mockups.map((mock, index) => (
+              <motion.div
+                key={mock.id}
+                variants={variants}
+                animate={getVariant(index)}
+                initial={false}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                onClick={() => setActiveIndex(index)}
+                className="absolute cursor-pointer will-change-transform"
+                style={{ width: '260px' }}
+              >
+                <div className={`relative transition-all duration-500 ${activeIndex === index ? 'drop-shadow-2xl' : 'drop-shadow-md'}`}>
+                  <img 
+                    src={mock.img} 
+                    alt="App Detecta" 
+                    className="w-full h-auto rounded-[2.5rem]" 
+                  />
+                </div>
+              </motion.div>
+            ))}
           </div>
+
         </div>
       </div>
     </section>

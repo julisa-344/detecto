@@ -1,5 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
+import { motion } from 'framer-motion'
 import detecto from '../../assets/detecto.png'
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 32 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.1 },
+  transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1], delay },
+})
 
 const actions = [
   {
@@ -64,7 +72,7 @@ const actions = [
   },
 ]
 
-function ActionCard({ action, visible, delay }) {
+function ActionCard({ action, index }) {
   const ref = useRef(null)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const [hover, setHover] = useState(false)
@@ -86,13 +94,9 @@ function ActionCard({ action, visible, delay }) {
   }
 
   return (
-    <div
-      style={{
-        perspective: '900px',
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(24px)',
-        transition: `opacity 600ms ease ${delay}ms, transform 600ms cubic-bezier(0.34,1.4,0.64,1) ${delay}ms`,
-      }}
+    <motion.div
+      {...fadeUp(0.1 + index * 0.08)}
+      style={{ perspective: '900px' }}
     >
       <div
         ref={ref}
@@ -142,26 +146,14 @@ function ActionCard({ action, visible, delay }) {
           {/* Línea decorativa — eliminada */}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
 export default function AccionesRapidas({ slotRef, landed }) {
-  const sectionRef = useRef(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    if (!sectionRef.current) return
-    const obs = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting),
-      { threshold: 0.2 }
-    )
-    obs.observe(sectionRef.current)
-    return () => obs.disconnect()
-  }, [])
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden min-h-screen flex items-center" style={{ background: 'linear-gradient(160deg, #f0f9ff 0%, #f8fafc 60%, #f0fdf4 100%)' }}>
+    <section className="relative overflow-hidden min-h-screen flex items-center" style={{ background: 'linear-gradient(160deg, #f0f9ff 0%, #f8fafc 60%, #f0fdf4 100%)' }}>
       {/* Dot grid sutil */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -180,45 +172,45 @@ export default function AccionesRapidas({ slotRef, landed }) {
             {/* Wrapper relativo al placeholder para anclar el globo */}
             <div className="relative">
 
-              {/* Globo de pensamiento — aparece a la IZQUIERDA del Detecto cuando aterriza */}
+              {/* Globo de pensamiento — aparece ARRIBA del Detecto cuando aterriza */}
               <div
                 className="absolute z-20 pointer-events-none"
                 style={{
-                  top: '12%',
-                  right: 'calc(100% + 16px)',
+                  bottom: 'calc(100% - 1px)',
+                  left: '-10px',
                   opacity: landed ? 1 : 0,
-                  transform: landed ? 'translateX(0) scale(1)' : 'translateX(14px) scale(0.88)',
+                  transform: landed ? 'translateY(0) scale(1)' : 'translateY(12px) scale(0.88)',
                   transition: 'opacity 500ms cubic-bezier(0.34,1.4,0.64,1), transform 500ms cubic-bezier(0.34,1.4,0.64,1)',
-                  transformOrigin: 'right center',
+                  transformOrigin: 'bottom left',
                 }}
               >
                 {/* Burbuja principal */}
                 <div
-                  className="relative px-4 py-3 rounded-2xl whitespace-nowrap"
+                  className="relative px-4 py-3 rounded-2xl"
                   style={{
                     background: '#ffffff',
                     border: '1.5px solid #0199C6',
                     boxShadow: '0 4px 24px -6px rgba(1,153,198,0.22), 0 1px 6px -1px rgba(0,0,0,0.06)',
+                    minWidth: 160,
                   }}
                 >
-                  {/* Icono sparkle */}
-                  <div className="flex items-center gap-2">
-                    <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4 shrink-0" style={{ color: '#0199C6' }}>
+                  {/* Icono sparkle + texto */}
+                  <div className="flex items-start gap-2">
+                    <svg viewBox="0 0 20 20" fill="none" className="w-4 h-4 shrink-0 mt-0.5" style={{ color: '#0199C6' }}>
                       <path d="M10 2l1.5 4.5L16 8l-4.5 1.5L10 14l-1.5-4.5L4 8l4.5-1.5L10 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
                     </svg>
-                    <span className="text-sm font-semibold text-gray-800 tracking-tight">
-                      Hola, ¿qué necesitas hacer?
+                    <span className="text-sm font-semibold text-gray-800 tracking-tight leading-snug">
+                      Hola,<br />¿qué necesitas<br />hacer hoy?
                     </span>
                   </div>
 
-                  {/* Cola de pensamiento → hacia la derecha */}
+                  {/* Cola de pensamiento → hacia abajo */}
                   <span
                     className="absolute rounded-full"
                     style={{
                       width: 9, height: 9,
-                      top: '55%',
-                      right: -16,
-                      transform: 'translateY(-50%)',
+                      bottom: -16,
+                      left: 24,
                       background: '#ffffff',
                       border: '1.5px solid #0199C6',
                     }}
@@ -227,9 +219,8 @@ export default function AccionesRapidas({ slotRef, landed }) {
                     className="absolute rounded-full"
                     style={{
                       width: 5, height: 5,
-                      top: '55%',
-                      right: -26,
-                      transform: 'translateY(-50%)',
+                      bottom: -26,
+                      left: 28,
                       background: '#ffffff',
                       border: '1.5px solid #0199C6',
                     }}
@@ -238,9 +229,8 @@ export default function AccionesRapidas({ slotRef, landed }) {
                     className="absolute rounded-full"
                     style={{
                       width: 3, height: 3,
-                      top: '55%',
-                      right: -34,
-                      transform: 'translateY(-50%)',
+                      bottom: -34,
+                      left: 30,
                       background: '#0199C6',
                     }}
                   />
@@ -263,13 +253,9 @@ export default function AccionesRapidas({ slotRef, landed }) {
           <div className="flex flex-col gap-8 lg:gap-10">
 
             {/* Texto */}
-            <div
+            <motion.div
               className="text-center lg:text-left"
-              style={{
-                opacity: visible ? 1 : 0,
-                transform: visible ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'opacity 700ms ease 200ms, transform 700ms ease 200ms',
-              }}
+              {...fadeUp(0)}
             >
               <p className="text-xs font-semibold tracking-[0.3em] uppercase text-primary mb-3">
                 Acciones rápidas
@@ -280,7 +266,7 @@ export default function AccionesRapidas({ slotRef, landed }) {
               <p className="mt-4 text-sm lg:text-base text-gray-500 leading-relaxed max-w-md mx-auto lg:mx-0">
                 Servicios diseñados para tu bienestar. Elige el que necesites.
               </p>
-            </div>
+            </motion.div>
 
             {/* 2x2 grid de cards */}
             <div className="grid grid-cols-2 gap-4 lg:gap-5 auto-rows-[180px] lg:auto-rows-[200px]">
@@ -288,8 +274,7 @@ export default function AccionesRapidas({ slotRef, landed }) {
                 <ActionCard
                   key={action.key}
                   action={action}
-                  visible={visible}
-                  delay={500 + i * 100}
+                  index={i}
                 />
               ))}
             </div>

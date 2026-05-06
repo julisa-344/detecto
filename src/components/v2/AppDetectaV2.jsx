@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion, animate } from 'framer-motion'
+import { useEffect, useRef } from 'react'
+import { motion, animate, useInView } from 'framer-motion'
 import { Star } from 'lucide-react'
 import mockup1 from '../../assets/mockup1.png'
 
@@ -20,22 +20,26 @@ function GooglePlayIcon() {
   )
 }
 
-// Componente para el efecto de contador
+// Componente para el efecto de contador con Scroll Trigger
 function NumberCounter({ value, prefix = "" }) {
   const nodeRef = useRef(null);
+  // Detecta cuando el elemento entra en pantalla (una sola vez)
+  const isInView = useInView(nodeRef, { once: true, margin: "-50px" });
   const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
 
   useEffect(() => {
-    const node = nodeRef.current;
-    const controls = animate(0, numericValue, {
-      duration: 2.5,
-      ease: "easeOut",
-      onUpdate(value) {
-        node.textContent = prefix + Math.floor(value).toLocaleString();
-      }
-    });
-    return () => controls.stop();
-  }, [numericValue, prefix]);
+    if (isInView) {
+      const node = nodeRef.current;
+      const controls = animate(0, numericValue, {
+        duration: 2.5,
+        ease: "easeOut",
+        onUpdate(value) {
+          node.textContent = prefix + Math.floor(value).toLocaleString();
+        }
+      });
+      return () => controls.stop();
+    }
+  }, [isInView, numericValue, prefix]);
 
   return <span ref={nodeRef} />;
 }
