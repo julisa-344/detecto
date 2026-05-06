@@ -1,142 +1,263 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight } from 'lucide-react'
+import heroVideo1 from '../../assets/herobg.mp4'
+import heroVideo2 from '../../assets/herobg2.mp4'
+import heroVideo3 from '../../assets/herobg3.mp4'
 
-// Importa tus videos aquí. Asegúrate de tener al menos 3.
-import video1 from '../../assets/herobg.mp4'
-import video2 from '../../assets/herobg2.mp4' // Reemplazar por videos reales
-import video3 from '../../assets/herobg3.mp4' // Reemplazar por videos reales
-
-const slides = [video1, video2, video3]
-
-const medicalTags = [
-  'Detección Temprana',
-  'Oncología Clínica',
-  'Investigación',
-  'Medicina Preventiva',
-  'Quimioterapia',
-  'Cirugía de Precisión',
-  'Radioterapia',
+const slides = [
+  {
+    video: heroVideo1,
+    label: 'Innovación Clínica',
+    headline: ['Tecnología que', 'transforma', 'la medicina.'],
+    highlight: 1,
+    sub: 'Diagnósticos más tempranos y precisos gracias a inteligencia artificial de última generación.',
+    cta: 'Agendar cita',
+  },
+  {
+    video: heroVideo2,
+    label: 'Detección Temprana',
+    headline: ['Detección que', 'salva vidas', 'hoy.'],
+    highlight: 1,
+    sub: 'Nuestros programas de screening preventivo identifican el cáncer en sus etapas más tratables.',
+    cta: 'Conoce el programa',
+  },
+  {
+    video: heroVideo3,
+    label: 'Equipo de Élite',
+    headline: ['Especialistas de', 'clase mundial', 'a tu lado.'],
+    highlight: 1,
+    sub: 'Más de 15 años formando el equipo oncológico más reconocido del país.',
+    cta: 'Conoce al equipo',
+  },
 ]
 
+const INTERVAL = 3000
+
+const medicalTags = [
+  'Detección Temprana', 'Oncología Clínica', 'Investigación',
+  'Medicina Preventiva', 'Quimioterapia', 'Cirugía de Precisión', 'Radioterapia',
+]
+
+const containerVariants = {
+  visible: { transition: { staggerChildren: 0.08 } },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -16 },
+}
+
 export default function HeroV4() {
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [current, setCurrent] = useState(0)
+  const [paused, setPaused] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const startRef = useRef(null)
+  const rafRef = useRef(null)
+  const videoRefs = useRef([])
+
+  const goTo = (idx) => {
+    if (idx === current) return
+    setCurrent(idx)
+  }
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % slides.length)
-    }, 5000) // Ajusta el tiempo de cambio entre videos
-    return () => clearInterval(timer)
-  }, [])
+    videoRefs.current.forEach((el, i) => {
+      if (!el) return
+      if (i === current) {
+        el.currentTime = 0
+        el.play().catch(() => {})
+      } else {
+        el.pause()
+      }
+    })
+  }, [current])
+
+  useEffect(() => {
+    if (paused) return
+    setProgress(0)
+    startRef.current = performance.now()
+
+    const tick = (now) => {
+      const pct = Math.min((now - startRef.current) / INTERVAL, 1)
+      setProgress(pct)
+      if (pct < 1) {
+        rafRef.current = requestAnimationFrame(tick)
+      } else {
+        setCurrent((c) => (c + 1) % slides.length)
+      }
+    }
+
+    rafRef.current = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(rafRef.current)
+  }, [current, paused])
+
+  const slide = slides[current]
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-end overflow-hidden">
-      
-      {/* Carrusel de Videos */}
-      <div className="absolute inset-0 z-0">
-        <AnimatePresence mode="wait">
-        <motion.video
-          key={currentIndex}
-          src={slides[currentIndex]}
-          initial={{ opacity: 0, filter: "brightness(0) sepia(1) hue-rotate(90deg)" }}
-          animate={{ opacity: 1, filter: "brightness(1) sepia(0) hue-rotate(0deg)" }}
-          exit={{ opacity: 0, filter: "brightness(0) sepia(1) hue-rotate(90deg)" }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          autoPlay
+    <section
+      className="relative min-h-screen flex flex-col justify-between overflow-hidden bg-gray-950"
+      style={{ fontFamily: 'Lexend, sans-serif' }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      {/* Videos — todos montados, solo el activo visible */}
+      {slides.map((s, i) => (
+        <video
+          key={i}
+          ref={(el) => (videoRefs.current[i] = el)}
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        </AnimatePresence>
-      </div>
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+          style={{ opacity: i === current ? 1 : 0, zIndex: i === current ? 1 : 0 }}
+        >
+          <source src={s.video} type="video/mp4" />
+        </video>
+      ))}
 
       {/* Overlays */}
-      <div className="absolute inset-0 z-1 bg-gradient-to-br from-gray-950/40 via-gray-950/10 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-96 z-1 bg-gradient-to-t from-gray-950/60 to-transparent" />
+      <div className="absolute inset-0 bg-gray-950/25 z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-950/20 to-transparent z-10" />
 
-      {/* Contenido principal (Subido para no pegar con el cintillo) */}
-      <div className="relative z-10 max-w-[1400px] mx-auto px-6 lg:px-10 pb-40 w-full">
-        <div className="max-w-3xl">
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="text-5xl sm:text-6xl lg:text-7xl xl:text-[80px] font-bold text-white tracking-tight leading-[1.0] mb-6"
-          >
-            Transformando <span className="italic font-light text-cyan-400">el futuro</span>
-            <br />
-            de la medicina.
-          </motion.h1>
+      {/* Contenido */}
+      <div className="relative z-20 flex-grow flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
 
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="text-base lg:text-lg font-light text-white/95 max-w-md leading-relaxed mb-10"
-          >
-            Descubre cómo estamos redefiniendo el diagnóstico médico con inteligencia artificial e innovación de vanguardia.
-          </motion.p>
+            {/* Texto del slide activo */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={containerVariants}
+              >
+                <motion.p
+                  variants={itemVariants}
+                  transition={{ duration: 0.35 }}
+                  className="text-[10px] font-semibold tracking-[0.4em] uppercase text-primary mb-6"
+                >
+                  {slide.label}
+                </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="hidden lg:flex items-center"
-          >
-            <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
-              <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-white/10 group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/20">
-                AGENDAR CITA
-              </span>
-              <div className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-white/20 text-white group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/30 ml-2">
-                <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
-                <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
-              </div>
-            </button>
-          </motion.div>
+                <motion.h1
+                  variants={itemVariants}
+                  transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                  className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extralight text-white tracking-tight leading-[1.05]"
+                >
+                  {slide.headline.map((line, i) => (
+                    <span
+                      key={i}
+                      className={`block ${i === slide.highlight ? 'font-light text-primary' : ''}`}
+                    >
+                      {line}
+                    </span>
+                  ))}
+                </motion.h1>
+
+                <motion.p
+                  variants={itemVariants}
+                  transition={{ duration: 0.4 }}
+                  className="mt-6 text-base lg:text-lg text-white/60 font-light max-w-xl leading-relaxed"
+                >
+                  {slide.sub}
+                </motion.p>
+
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                  className="hidden lg:flex items-center mt-10"
+                >
+                  <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
+                    <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-white/10 group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/20">
+                      AGENDAR CITA
+                    </span>
+                    <div className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-white/20 text-white group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/30">
+                      <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
+                      <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
+                    </div>
+                  </button>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Cards de navegación — columna derecha */}
+            <div className="hidden lg:flex flex-col gap-3">
+              {slides.map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => goTo(i)}
+                  className={`group relative text-left w-52 px-5 py-4 rounded-sm border transition-all duration-400 overflow-hidden ${
+                    i === current
+                      ? 'border-primary/60 bg-white/10 backdrop-blur-md'
+                      : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
+                  }`}
+                >
+                  {i === current && (
+                    <div
+                      className="absolute bottom-0 left-0 h-[2px] bg-primary transition-none"
+                      style={{ width: `${progress * 100}%` }}
+                    />
+                  )}
+                  <p className={`text-[9px] font-bold tracking-[0.35em] uppercase mb-1 transition-colors duration-300 ${
+                    i === current ? 'text-primary' : 'text-white/30 group-hover:text-white/50'
+                  }`}>
+                    {String(i + 1).padStart(2, '0')}
+                  </p>
+                  <p className={`text-xs font-light transition-colors duration-300 ${
+                    i === current ? 'text-white' : 'text-white/40 group-hover:text-white/60'
+                  }`}>
+                    {s.label}
+                  </p>
+                </button>
+              ))}
+            </div>
+
+            {/* Indicadores móviles */}
+            <div className="lg:hidden flex items-center gap-3 mt-4">
+              {slides.map((_, i) => (
+                <button key={i} onClick={() => goTo(i)} className="flex flex-col items-center gap-1.5">
+                  <span className={`text-[9px] font-semibold tracking-[0.25em] uppercase transition-colors duration-300 ${i === current ? 'text-white/70' : 'text-white/20'}`}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="w-12 h-[2px] bg-white/15 rounded-full overflow-hidden">
+                    <div
+                      className="h-full bg-primary rounded-full"
+                      style={{ width: i === current ? `${progress * 100}%` : i < current ? '100%' : '0%' }}
+                    />
+                  </div>
+                </button>
+              ))}
+            </div>
+
+          </div>
         </div>
       </div>
 
-      {/* Indicadores (Discretos y alineados) */}
-      <div className="absolute bottom-40 right-32 z-20 flex flex-col gap-4">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className="flex items-center justify-center w-8 h-8 text-white cursor-pointer transition-all duration-300"
-          >
-            {currentIndex === index ? (
-              <motion.span 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="font-bold text-sm"
-              >
-                0{index + 1}
-              </motion.span>
-            ) : (
-              <div className="w-2.5 h-2.5 rounded-full border border-white/50" />
-            )}
-          </button>
-        ))}
-      </div>
-
-      {/* Slider Automático Infinito (Marquee) */}
+      {/* Marquee inferior */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-0 left-0 right-0 z-10 w-full border-t border-white/10 bg-white/5 backdrop-blur-md"
+        transition={{ duration: 0.5, delay: 0.5 }}
+        className="relative z-20 w-full border-t border-white/10 bg-white/5 backdrop-blur-md"
       >
-        <div className="flex overflow-hidden select-none group">
-          <motion.div 
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+        <div className="flex overflow-hidden select-none py-5 lg:py-7">
+          <motion.div
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ ease: 'linear', duration: 25, repeat: Infinity }}
             className="flex whitespace-nowrap"
           >
             {[...medicalTags, ...medicalTags].map((tag, i) => (
-              <span key={i} className="px-12 py-6 text-[11px] font-bold tracking-[0.3em] uppercase text-white/40 hover:text-cyan-400 transition-colors duration-300 cursor-default">
-                {tag}
-              </span>
+              <div key={i} className="flex items-center">
+                <span className="px-8 lg:px-12 text-[10px] lg:text-[11px] font-bold tracking-[0.3em] uppercase text-white/30 hover:text-cyan-400 transition-colors duration-300 cursor-default">
+                  {tag}
+                </span>
+                <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mx-2" />
+              </div>
             ))}
           </motion.div>
         </div>

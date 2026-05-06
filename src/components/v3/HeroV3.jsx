@@ -88,7 +88,7 @@ export default function HeroV3() {
               <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-white/10 group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/20">
                 AGENDAR CITA
               </span>
-              <div className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-white/20 text-white group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/30 ml-2">
+              <div className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-white/20 text-white group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/30">
                 <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
                 <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
               </div>

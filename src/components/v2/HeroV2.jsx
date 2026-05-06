@@ -38,57 +38,61 @@ const medicalTags = [
   'Medicina Preventiva', 'Quimioterapia', 'Cirugía de Precisión', 'Radioterapia',
 ]
 
+const containerVariants = {
+  visible: { transition: { staggerChildren: 0.08 } },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -16 },
+}
+
 export default function HeroV2() {
   const [current, setCurrent] = useState(0)
   const [paused, setPaused] = useState(false)
   const [progress, setProgress] = useState(0)
   const startRef = useRef(null)
   const rafRef = useRef(null)
-  // Refs para los 3 videos — todos montados siempre para evitar lag
-  const videoRefs = [useRef(null), useRef(null), useRef(null)]
+  const videoRefs = useRef([])
 
   const goTo = (idx) => {
     if (idx === current) return
     setCurrent(idx)
-    setProgress(0)
-    startRef.current = performance.now()
   }
 
-  // Controlar qué video reproduce
   useEffect(() => {
-    videoRefs.forEach((ref, i) => {
-      if (!ref.current) return
+    videoRefs.current.forEach((el, i) => {
+      if (!el) return
       if (i === current) {
-        ref.current.currentTime = 0
-        ref.current.play().catch(() => {})
+        el.currentTime = 0
+        el.play().catch(() => {})
       } else {
-        ref.current.pause()
+        el.pause()
       }
     })
   }, [current])
 
-  // Barra de progreso + auto-advance
   useEffect(() => {
     if (paused) return
+    setProgress(0)
     startRef.current = performance.now()
 
     const tick = (now) => {
-      const elapsed = now - startRef.current
-      const pct = Math.min(elapsed / INTERVAL, 1)
+      const pct = Math.min((now - startRef.current) / INTERVAL, 1)
       setProgress(pct)
       if (pct < 1) {
         rafRef.current = requestAnimationFrame(tick)
       } else {
         setCurrent((c) => (c + 1) % slides.length)
-        setProgress(0)
-        startRef.current = performance.now()
-        rafRef.current = requestAnimationFrame(tick)
       }
     }
 
     rafRef.current = requestAnimationFrame(tick)
     return () => cancelAnimationFrame(rafRef.current)
   }, [current, paused])
+
+  const slide = slides[current]
 
   return (
     <section
@@ -98,23 +102,22 @@ export default function HeroV2() {
       onMouseLeave={() => setPaused(false)}
     >
       {/* Videos — todos montados, solo el activo visible */}
-      {slides.map((slide, i) => (
+      {slides.map((s, i) => (
         <video
           key={i}
-          ref={videoRefs[i]}
-          autoPlay={i === 0}
+          ref={(el) => (videoRefs.current[i] = el)}
           muted
           loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
           style={{ opacity: i === current ? 1 : 0, zIndex: i === current ? 1 : 0 }}
         >
-          <source src={slide.video} type="video/mp4" />
+          <source src={s.video} type="video/mp4" />
         </video>
       ))}
 
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gray-950/50 z-10" />
+      <div className="absolute inset-0 bg-gray-950/25 z-10" />
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-950/20 to-transparent z-10" />
 
       {/* Contenido */}
@@ -123,77 +126,66 @@ export default function HeroV2() {
           <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
 
             {/* Texto del slide activo */}
-            <div>
-              <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                variants={containerVariants}
+              >
                 <motion.p
-                  key={`label-${current}`}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
+                  variants={itemVariants}
                   transition={{ duration: 0.35 }}
                   className="text-[10px] font-semibold tracking-[0.4em] uppercase text-primary mb-6"
                 >
-                  {slides[current].label}
+                  {slide.label}
                 </motion.p>
-              </AnimatePresence>
 
-              <AnimatePresence mode="wait">
                 <motion.h1
-                  key={`headline-${current}`}
-                  initial={{ opacity: 0, y: 28 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
+                  variants={itemVariants}
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
                   className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-extralight text-white tracking-tight leading-[1.05]"
                 >
-                  {slides[current].headline.map((line, i) =>
-                    i === slides[current].highlight ? (
-                      <span key={i} className="block font-light text-primary">{line}</span>
-                    ) : (
-                      <span key={i} className="block">{line}</span>
-                    )
-                  )}
+                  {slide.headline.map((line, i) => (
+                    <span
+                      key={i}
+                      className={`block ${i === slide.highlight ? 'font-light text-primary' : ''}`}
+                    >
+                      {line}
+                    </span>
+                  ))}
                 </motion.h1>
-              </AnimatePresence>
 
-              <AnimatePresence mode="wait">
                 <motion.p
-                  key={`sub-${current}`}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -12 }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
+                  variants={itemVariants}
+                  transition={{ duration: 0.4 }}
                   className="mt-6 text-base lg:text-lg text-white/60 font-light max-w-xl leading-relaxed"
                 >
-                  {slides[current].sub}
+                  {slide.sub}
                 </motion.p>
-              </AnimatePresence>
 
-              <AnimatePresence mode="wait">
                 <motion.div
-                  key={`cta-${current}`}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.35, delay: 0.2 }}
+                  variants={itemVariants}
+                  transition={{ duration: 0.35 }}
                   className="mt-10"
                 >
                   <a
                     href="#agendar"
                     className="inline-flex items-center gap-3 px-10 py-4 bg-[#0070A5] text-white text-base font-medium tracking-wide rounded-sm hover:bg-[#005a84] transition-colors duration-200 group"
                   >
-                    {slides[current].cta}
+                    {slide.cta}
                     <svg className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                   </a>
                 </motion.div>
-              </AnimatePresence>
-            </div>
+              </motion.div>
+            </AnimatePresence>
 
             {/* Cards de navegación — columna derecha */}
             <div className="hidden lg:flex flex-col gap-3">
-              {slides.map((slide, i) => (
+              {slides.map((s, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i)}
@@ -203,7 +195,6 @@ export default function HeroV2() {
                       : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
                   }`}
                 >
-                  {/* Barra de progreso dentro de la card activa */}
                   {i === current && (
                     <div
                       className="absolute bottom-0 left-0 h-[2px] bg-primary transition-none"
@@ -218,13 +209,13 @@ export default function HeroV2() {
                   <p className={`text-xs font-light transition-colors duration-300 ${
                     i === current ? 'text-white' : 'text-white/40 group-hover:text-white/60'
                   }`}>
-                    {slide.label}
+                    {s.label}
                   </p>
                 </button>
               ))}
             </div>
 
-            {/* Indicadores móviles (solo en pantallas pequeñas) */}
+            {/* Indicadores móviles */}
             <div className="lg:hidden flex items-center gap-3 mt-4">
               {slides.map((_, i) => (
                 <button key={i} onClick={() => goTo(i)} className="flex flex-col items-center gap-1.5">

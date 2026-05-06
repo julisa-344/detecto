@@ -1,6 +1,20 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, animate, useInView } from 'framer-motion'
-import mockup1 from '../../assets/mockup1.png'
+import mockHome from '../../assets/home.webp'
+import mockTipocita from '../../assets/tipocita.webp'
+import mockDoctores from '../../assets/doctores.webp'
+
+const mockups = [
+  { id: 0, img: mockTipocita },
+  { id: 1, img: mockHome },
+  { id: 2, img: mockDoctores },
+]
+
+const mockupVariants = {
+  center: { x: 0, scale: 1, zIndex: 10, opacity: 1 },
+  left: { x: -180, scale: 0.82, zIndex: 5, opacity: 0.35 },
+  right: { x: 180, scale: 0.82, zIndex: 5, opacity: 0.35 },
+}
 
 // Componente de Contador optimizado para activarse al hacer scroll
 function NumberCounter({ value, prefix = "", suffix = "" }) {
@@ -44,7 +58,24 @@ function GooglePlayIcon() {
   )
 }
 
-export default function AppDetectaV3() {
+export default function AppDetectaV4() {
+  const [activeIndex, setActiveIndex] = useState(1)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+
+  useEffect(() => {
+    if (!isAutoPlaying) return
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % mockups.length)
+    }, 1500)
+    return () => clearInterval(interval)
+  }, [isAutoPlaying])
+
+  const getVariant = (index) => {
+    if (index === activeIndex) return "center"
+    if ((activeIndex + 1) % mockups.length === index) return "right"
+    return "left"
+  }
+
   return (
     <section 
       className="w-full bg-white py-24" 
@@ -99,18 +130,34 @@ export default function AppDetectaV3() {
             </div>
           </motion.div>
 
-          {/* Columna Derecha: Imagen */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 20 }}
-            whileInView={{ opacity: 1, scale: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex justify-end"
+          {/* Columna Derecha: Mockups con foco interactivo */}
+          <div
+            className="relative flex justify-center items-center h-[600px]"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
           >
-            {/* Glow de fondo */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#EEFBFF] blur-[100px] rounded-full -z-10" />
-            <img src={mockup1} alt="Mockup App" className="h-[600px] w-auto object-contain drop-shadow-2xl" />
-          </motion.div>
+            {mockups.map((mock, index) => (
+              <motion.div
+                key={mock.id}
+                variants={mockupVariants}
+                animate={getVariant(index)}
+                initial={false}
+                transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                onClick={() => setActiveIndex(index)}
+                className="absolute cursor-pointer will-change-transform"
+                style={{ width: '260px' }}
+              >
+                <div className={`relative transition-all duration-500 ${activeIndex === index ? 'drop-shadow-2xl' : 'drop-shadow-md'}`}>
+                  <img
+                    src={mock.img}
+                    alt="App Detecta"
+                    className="w-full h-auto rounded-[2.5rem]"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
 
         {/* Sección de Métricas: Animación escalonada */}
