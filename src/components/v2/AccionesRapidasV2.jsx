@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from "lucide-react"
 import detecto from '../../assets/detecto.png'
 
-// Definición de variantes para una animación coordinada
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
