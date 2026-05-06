@@ -1,29 +1,43 @@
-import { motion } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   HeartPulse,
   Brain,
-  Bone,
   Stethoscope,
   Baby,
   Venus,
   Target,
-  Scan,
-  ArrowUpRight
-} from "lucide-react"
+  ArrowUpRight,
+} from 'lucide-react'
+import especialidadesVideo from '../../assets/especialidades.mp4'
 
 const departments = [
-  { id: '01', title: 'Cardiología', description: 'Cuidado integral del corazón incluyendo angioplastia y ECG.', icon: <HeartPulse className="w-5 h-5" /> },
-  { id: '02', title: 'Neurología', description: 'Diagnóstico y tratamiento de condiciones del cerebro y nervios.', icon: <Brain className="w-5 h-5" /> },
-  { id: '03', title: 'Ortopedia', description: 'Cuidado de huesos y articulaciones: fracturas y reemplazos.', icon: <Bone className="w-5 h-5" /> },
-  { id: '04', title: 'Gastroenterología', description: 'Cuidado experto para el sistema digestivo e hígado.', icon: <Stethoscope className="w-5 h-5" /> },
-  { id: '05', title: 'Mastología', description: 'Servicios médicos especializados para niños y adolescentes.', icon: <Baby className="w-5 h-5" /> },
-  { id: '06', title: 'Ginecología', description: 'Salud de la mujer, cuidado del embarazo y servicios de parto.', icon: <Venus className="w-5 h-5" /> },
-  { id: '07', title: 'Urología', description: 'Tratamientos avanzados para el sistema reproductivo.', icon: <Target className="w-5 h-5" /> },
-  { id: '08', title: 'Radiología', description: 'Servicios de imagen de alta tecnología como MRI y CT scan.', icon: <Scan className="w-5 h-5" /> },
+  { id: '01', title: 'Cardiología', description: 'Cuidado integral del corazón incluyendo angioplastia y ECG.', icon: <HeartPulse className="w-5 h-5" />, video: especialidadesVideo },
+  { id: '02', title: 'Neurología', description: 'Diagnóstico y tratamiento de condiciones del cerebro y nervios.', icon: <Brain className="w-5 h-5" />, video: especialidadesVideo },
+  { id: '03', title: 'Gastroenterología', description: 'Cuidado experto para el sistema digestivo e hígado.', icon: <Stethoscope className="w-5 h-5" />, video: especialidadesVideo },
+  { id: '04', title: 'Mastología', description: 'Detección, diagnóstico y tratamiento de patologías mamarias.', icon: <Baby className="w-5 h-5" />, video: especialidadesVideo },
+  { id: '05', title: 'Ginecología', description: 'Salud de la mujer, cuidado del embarazo y servicios de parto.', icon: <Venus className="w-5 h-5" />, video: especialidadesVideo },
+  { id: '06', title: 'Urología', description: 'Tratamientos avanzados para el sistema reproductivo.', icon: <Target className="w-5 h-5" />, video: especialidadesVideo },
 ]
 
+export default function EspecialidadesV4() {
+  const [activeIdx, setActiveIdx] = useState(0)
+  const videoRefs = useRef([])
 
-export default function EspecialidadesV3() {
+  useEffect(() => {
+    videoRefs.current.forEach((el, i) => {
+      if (!el) return
+      if (i === activeIdx) {
+        el.currentTime = 0
+        el.play().catch(() => {})
+      } else {
+        el.pause()
+      }
+    })
+  }, [activeIdx])
+
+  const active = departments[activeIdx]
+
   return (
     <section className="bg-white py-24 px-6 lg:px-10" style={{ fontFamily: 'Lexend, sans-serif' }}>
       <div className="max-w-7xl mx-auto">
@@ -84,49 +98,112 @@ export default function EspecialidadesV3() {
           </motion.div>
         </div>
 
-        {/* GRID DE ESPECIALIDADES */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {departments.map((dept, index) => (
-            <motion.div
-              key={dept.id}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              // Hover más notorio: levanta, escala un poquito y añade sombra
-              whileHover={{ y: -10, scale: 1.02 }}
-              viewport={{ once: true, amount: 0.08 }}
-              transition={{ duration: 0.5, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
-              // Añadidas clases de hover: border brillante y sombra suave
-              className="group relative p-8 rounded-[24px] border border-[#C0DDE5]/30 bg-white transition-all duration-500 cursor-pointer overflow-hidden hover:border-[#52C0E1]/50 hover:shadow-[0_20px_40px_-15px_rgba(82,192,225,0.2)]"
-            >
-              {/* Efecto de Luz de Escaneo (más intenso) */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+        {/* CONTENIDO PRINCIPAL — 2 columnas */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
 
-              <div className="relative z-10">
-                <div className="flex justify-between items-start mb-10">
-                  <span className="text-[10px] font-mono font-medium text-[#0199C6]/40 group-hover:text-[#0199C6] transition-colors">
-                    {dept.id}
-                  </span>
-                  <div className="p-3 rounded-2xl bg-[#EEFBFF] text-[#0199C6] transition-all duration-500 group-hover:bg-[#52C0E1] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#52C0E1]/30">
-                    {dept.icon}
+          {/* COLUMNA IZQUIERDA — Video */}
+          <div className="lg:h-full">
+            <div className="relative aspect-[4/5] lg:aspect-auto lg:h-full rounded-[28px] overflow-hidden bg-[#0070A5] shadow-[0_30px_60px_-20px_rgba(0,112,165,0.35)]">
+              {departments.map((dept, i) => (
+                <video
+                  key={dept.id}
+                  ref={(el) => (videoRefs.current[i] = el)}
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700"
+                  style={{ opacity: i === activeIdx ? 1 : 0, zIndex: i === activeIdx ? 1 : 0 }}
+                >
+                  <source src={dept.video} type="video/mp4" />
+                </video>
+              ))}
+
+              {/* Overlay degradado */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0070A5]/80 via-[#0070A5]/20 to-transparent z-10" />
+
+              {/* Texto sobre video */}
+              <div className="absolute inset-x-0 bottom-0 p-8 lg:p-10 z-20">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={active.id}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <span className="text-[10px] font-mono font-medium text-white/60 tracking-widest">
+                      / {active.id}
+                    </span>
+                    <h3 className="mt-2 text-3xl lg:text-4xl font-light text-white tracking-tight uppercase">
+                      {active.title}
+                    </h3>
+                    <p className="mt-3 text-sm font-light text-white/70 leading-relaxed max-w-md">
+                      {active.description}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </div>
+          </div>
+
+          {/* COLUMNA DERECHA — 6 cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {departments.map((dept, index) => (
+              <motion.div
+                key={dept.id}
+                onMouseEnter={() => setActiveIdx(index)}
+                onFocus={() => setActiveIdx(index)}
+                tabIndex={0}
+                initial={{ opacity: 0, y: 28 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -6 }}
+                viewport={{ once: true, amount: 0.08 }}
+                transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                className={`group relative p-6 rounded-[20px] border bg-white transition-all duration-500 cursor-pointer overflow-hidden ${
+                  activeIdx === index
+                    ? 'border-[#52C0E1]/60 shadow-[0_20px_40px_-15px_rgba(82,192,225,0.25)]'
+                    : 'border-[#C0DDE5]/40 hover:border-[#52C0E1]/50'
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+
+                <div className="relative z-10">
+                  <div className="flex justify-between items-start mb-8">
+                    <span className={`text-[10px] font-mono font-medium transition-colors ${
+                      activeIdx === index ? 'text-[#0199C6]' : 'text-[#0199C6]/40'
+                    }`}>
+                      {dept.id}
+                    </span>
+                    <div className={`p-3 rounded-2xl transition-all duration-500 ${
+                      activeIdx === index
+                        ? 'bg-[#52C0E1] text-white shadow-lg shadow-[#52C0E1]/30'
+                        : 'bg-[#EEFBFF] text-[#0199C6]'
+                    }`}>
+                      {dept.icon}
+                    </div>
                   </div>
-                </div>
 
-                <div className="space-y-3">
-                  <h3 className="text-lg font-normal text-[#0070A5] tracking-wide uppercase transition-colors group-hover:text-[#0199C6]">
+                  <h3 className={`text-base font-normal tracking-wide uppercase transition-colors ${
+                    activeIdx === index ? 'text-[#0199C6]' : 'text-[#0070A5]'
+                  }`}>
                     {dept.title}
                   </h3>
-                  <p className="text-sm font-light text-slate-500 leading-relaxed">
-                    {dept.description}
-                  </p>
-                </div>
 
-                <div className="mt-8 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                  <span className="text-[9px] font-bold tracking-widest text-[#52C0E1]">SOLICITAR</span>
-                  <div className="w-6 h-px bg-[#52C0E1]" />
+                  <div className="mt-5 flex items-center gap-2">
+                    <span className={`text-[9px] font-bold tracking-widest transition-colors ${
+                      activeIdx === index ? 'text-[#52C0E1]' : 'text-[#52C0E1]/40'
+                    }`}>
+                      SOLICITAR
+                    </span>
+                    <div className={`h-px transition-all duration-500 ${
+                      activeIdx === index ? 'w-8 bg-[#52C0E1]' : 'w-4 bg-[#52C0E1]/40'
+                    }`} />
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>
