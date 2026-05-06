@@ -22,6 +22,7 @@ const departments = [
   { id: '08', title: 'Radiología', description: 'Servicios de imagen de alta tecnología como MRI y CT scan.', icon: <Scan className="w-5 h-5" /> },
 ]
 
+
 export default function EspecialidadesV3() {
   return (
     <section className="bg-white py-24 px-6 lg:px-10" style={{ fontFamily: 'Lexend, sans-serif' }}>

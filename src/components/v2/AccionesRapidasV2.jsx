@@ -33,7 +33,7 @@ export default function AccionesRapidasV3() {
             <motion.div 
               animate={{ scale: [1, 1.05, 1], y: [0, -20, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-              className="w-84 h-84 mb-10"
+              className="w-84 h-84 mb-10 mx-auto" 
             >
               <img src={detecto} alt="Detecto" className="w-full h-full object-contain" />
             </motion.div>

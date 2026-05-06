@@ -11,12 +11,42 @@ import img05 from '../../assets/img-05.avif'
 import img06 from '../../assets/img-06.avif'
 
 const specialties = [
-  { number: '01', title: 'Detección Temprana', description: 'Diagnóstico oportuno con tecnología de vanguardia para prevenir complicaciones.', image: img01 },
-  { number: '02', title: 'Oncología Clínica', description: 'Atención multidisciplinaria bajo protocolos internacionales de alto nivel.', image: img02 },
-  { number: '03', title: 'Quimioterapia', description: 'Tratamiento personalizado en un entorno cómodo con acompañamiento.', image: img03 },
-  { number: '04', title: 'Cirugía Oncológica', description: 'Procedimientos mínimamente invasivos con máxima precisión y seguridad.', image: img04 },
-  { number: '05', title: 'Radioterapia', description: 'Eliminación de células cancerosas con alta precisión, protegiendo tejido.', image: img05 },
-  { number: '06', title: 'Medicina Preventiva', description: 'Enfoque integral para el cuidado de tu salud a largo plazo.', image: img06 },
+  { 
+    number: '01', 
+    title: 'Ginecología', 
+    description: 'Atención integral de la salud femenina y seguimiento especializado durante el embarazo.', 
+    image: img01 
+  },
+  { 
+    number: '02', 
+    title: 'Urología', 
+    description: 'Diagnóstico y tratamiento de patologías del sistema urinario y reproductivo masculino.', 
+    image: img02 
+  },
+  { 
+    number: '03', 
+    title: 'Mastología', 
+    description: 'Evaluación y tratamiento de enfermedades mamarias con enfoque en detección temprana.', 
+    image: img03 
+  },
+  { 
+    number: '04', 
+    title: 'Oncología de Cabeza y Cuello', 
+    description: 'Manejo especializado de tumores en la región cervical y facial con técnicas avanzadas.', 
+    image: img04 
+  },
+  { 
+    number: '05', 
+    title: 'Gastroenterología', 
+    description: 'Estudio y tratamiento integral de enfermedades del tracto digestivo para tu bienestar.', 
+    image: img05 
+  },
+  { 
+    number: '06', 
+    title: 'Oncología General', 
+    description: 'Protocolos de vanguardia para el manejo integral de diversas patologías oncológicas.', 
+    image: img06 
+  },
 ]
 
 export default function EspecialidadesV3() {
