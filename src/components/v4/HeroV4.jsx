@@ -2,8 +2,9 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import heroVideo1 from '../../assets/herobg.mp4'
-import heroVideo2 from '../../assets/herobg2.mp4'
-import heroVideo3 from '../../assets/herobg3.mp4'
+import heroVideo2 from '../../assets/herobg1.mp4'
+import heroVideo3 from '../../assets/herobg2.mp4'
+import heroVideo4 from '../../assets/herobg3.mp4'
 
 const slides = [
   {
@@ -16,6 +17,14 @@ const slides = [
   },
   {
     video: heroVideo2,
+    label: 'Tecnología de Vanguardia',
+    headline: ['Equipamiento de', 'última', 'generación.'],
+    highlight: 1,
+    sub: 'Incorporamos los avances más recientes en imagenología y cirugía robótica para tratamientos más precisos.',
+    cta: 'Descubre la tecnología',
+  },
+  {
+    video: heroVideo3,
     label: 'Detección Temprana',
     headline: ['Detección que', 'salva vidas', 'hoy.'],
     highlight: 1,
@@ -23,7 +32,7 @@ const slides = [
     cta: 'Conoce el programa',
   },
   {
-    video: heroVideo3,
+    video: heroVideo4,
     label: 'Equipo de Élite',
     headline: ['Especialistas de', 'clase mundial', 'a tu lado.'],
     highlight: 1,
@@ -118,8 +127,8 @@ export default function HeroV4() {
       ))}
 
       {/* Overlays */}
-      <div className="absolute inset-0 bg-gray-950/25 z-10" />
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-950/20 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gray-950/45 z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-950/40 to-transparent z-10" />
 
       {/* Contenido */}
       <div className="relative z-20 flex-grow flex items-center">
@@ -173,10 +182,10 @@ export default function HeroV4() {
                   className="hidden lg:flex items-center mt-10"
                 >
                   <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
-                    <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-white/10 group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/20">
+                    <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-[#52C0E1]/100 group-hover:bg-[#0070A5] group-hover:text-white backdrop-blur-md border border-[#52C0E1]/0">
                       AGENDAR CITA
                     </span>
-                    <div className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-white/20 text-white group-hover:bg-white group-hover:text-slate-900 backdrop-blur-md border border-white/30">
+                    <div className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-[#52C0E1]/100 text-white group-hover:bg-[#0070A5] group-hover:text-white backdrop-blur-md border border-[#52C0E1]/0">
                       <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
                       <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
                     </div>
@@ -191,7 +200,7 @@ export default function HeroV4() {
                 <button
                   key={i}
                   onClick={() => goTo(i)}
-                  className={`group relative text-left w-52 px-5 py-4 rounded-sm border transition-all duration-400 overflow-hidden ${
+                  className={`group relative text-left w-52 px-5 py-4 rounded-sm border cursor-pointer transition-all duration-400 overflow-hidden ${
                     i === current
                       ? 'border-primary/60 bg-white/10 backdrop-blur-md'
                       : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
@@ -220,7 +229,7 @@ export default function HeroV4() {
             {/* Indicadores móviles */}
             <div className="lg:hidden flex items-center gap-3 mt-4">
               {slides.map((_, i) => (
-                <button key={i} onClick={() => goTo(i)} className="flex flex-col items-center gap-1.5">
+                <button key={i} onClick={() => goTo(i)} className="flex flex-col items-center gap-1.5 cursor-pointer">
                   <span className={`text-[9px] font-semibold tracking-[0.25em] uppercase transition-colors duration-300 ${i === current ? 'text-white/70' : 'text-white/20'}`}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
