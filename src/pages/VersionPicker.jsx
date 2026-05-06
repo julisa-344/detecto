@@ -35,6 +35,28 @@ const versions = [
     gradient: 'linear-gradient(135deg, #0a0c12 0%, #1a1f2e 100%)',
     textLight: true,
   },
+  {
+    id: 'v4',
+    path: '/v4',
+    label: 'Versión 04',
+    name: 'Disruptiva + Clinical',
+    description: 'Mezcla de la 03 con la 02: hero disruptivo en oscuro y secciones clínicas limpias para balance editorial.',
+    tags: ['Mix V3 + V2', 'Dark + Clean', 'Editorial'],
+    accent: '#52C0E1',
+    gradient: 'linear-gradient(135deg, #0a0c12 0%, #52C0E1 100%)',
+    textLight: true,
+  },
+  {
+    id: 'v5',
+    path: '/v5',
+    label: 'Versión 05',
+    name: 'Glass + Clinical',
+    description: 'Mezcla de la 01 con la 02: mascot animado y mesh gradient con secciones clínicas en blanco para legibilidad.',
+    tags: ['Mix V1 + V2', 'Mascot + Clean', 'Híbrido'],
+    accent: '#0070A5',
+    gradient: 'linear-gradient(135deg, #0199C6 0%, #f8fafc 100%)',
+    textLight: true,
+  },
 ]
 
 export default function VersionPicker() {
@@ -46,7 +68,7 @@ export default function VersionPicker() {
         <img src={logo} alt="Detecta Clínica" className="h-10 w-auto brightness-0 invert" />
         <div className="text-right">
           <p className="text-[10px] font-medium tracking-[0.3em] uppercase text-white/30">Presentación de diseño</p>
-          <p className="text-[11px] text-white/20 mt-0.5">Rediseño Home — 3 Propuestas</p>
+          <p className="text-[11px] text-white/20 mt-0.5">Rediseño Home — 5 Propuestas</p>
         </div>
       </header>
 
@@ -62,12 +84,12 @@ export default function VersionPicker() {
             Rediseño del <span className="font-light italic text-primary">Home</span>
           </h1>
           <p className="mt-4 text-base text-white/30 font-light">
-            Tres direcciones de diseño para Detecta Clínica
+            Cinco direcciones de diseño para Detecta Clínica
           </p>
         </div>
 
         {/* Cards de versiones */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
           {versions.map((v) => (
             <VersionCard key={v.id} version={v} />
           ))}
@@ -122,6 +144,37 @@ function VersionCard({ version: v }) {
               <svg viewBox="0 0 24 24" fill="none" className="w-8 h-8" stroke={v.accent} strokeWidth="1.5">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
               </svg>
+            </div>
+          )}
+          {v.id === 'v4' && (
+            <div className="flex items-center gap-3">
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center"
+                style={{ background: 'rgba(255,255,255,0.08)', border: '2px solid rgba(255,255,255,0.2)' }}>
+                <svg viewBox="0 0 24 24" fill="none" className="w-7 h-7" stroke={v.accent} strokeWidth="1.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+              <div className="text-white/60 text-xl font-extralight">+</div>
+              <div className="flex flex-col items-center gap-1.5">
+                <div className="w-16 h-1 rounded-full" style={{ background: v.accent }} />
+                <div className="w-12 h-1 rounded-full bg-white/40" />
+                <div className="w-14 h-1 rounded-full bg-white/30" />
+              </div>
+            </div>
+          )}
+          {v.id === 'v5' && (
+            <div className="flex items-center gap-3">
+              <div className="w-16 h-16 rounded-full border border-white/30 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full border border-white/40 flex items-center justify-center">
+                  <div className="w-2 h-2 rounded-full bg-white/70" />
+                </div>
+              </div>
+              <div className="text-white/60 text-xl font-extralight">+</div>
+              <div className="flex flex-col items-center gap-1.5">
+                <div className="w-16 h-1 rounded-full" style={{ background: v.accent }} />
+                <div className="w-12 h-1 rounded-full bg-white/40" />
+                <div className="w-14 h-1 rounded-full bg-white/30" />
+              </div>
             </div>
           )}
         </div>
