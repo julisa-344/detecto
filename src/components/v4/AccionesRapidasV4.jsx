@@ -100,15 +100,15 @@ export default function AccionesRapidasV4() {
               transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
               className="relative w-84 h-84 mb-10 mx-auto"
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence initial={false}>
                 <motion.img
                   key={activeKey ?? 'default'}
                   src={currentImage}
                   alt="Detecto"
-                  initial={{ opacity: 0, scale: 0.92 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.92 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, y: 14, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.98 }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                   className="absolute inset-0 w-full h-full object-contain"
                 />
               </AnimatePresence>
