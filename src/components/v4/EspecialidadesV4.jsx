@@ -10,8 +10,8 @@ import {
   ArrowUpRight,
 } from 'lucide-react'
 import especialidadesVideo from '../../assets/especialidades.mp4'
-import mastologiaVideo from '../../assets/mastologia.mp4'
-import ginecologiaVideo from '../../assets/ginecologia.mp4'
+import mastologiaVideo from '../../assets/ginecologia.mp4'
+import ginecologiaVideo from '../../assets/gine.mp4'
 
 const departments = [
   { id: '01', title: 'Mastología', description: 'Detección, diagnóstico y tratamiento de patologías mamarias.', icon: <Baby className="w-5 h-5" />, video: mastologiaVideo },
