@@ -82,7 +82,7 @@ const slides = [
   {
     video: heroVideo4,
     label: 'Investigación Clínica',
-    headline: ['Ciencia oncológica que', 'cruza fronteras'],
+    headline: ['Innovación que marca', 'un hito en el Perú'],
     highlight: 1,
     sub: 'Nuestros estudios forman parte de publicaciones internacionales orientadas a mejorar la atención del paciente oncológico.',
     cta: 'Ver todas las publicaciones',
@@ -90,7 +90,7 @@ const slides = [
   },
 ]
 
-const INTERVAL = 3000
+const INTERVAL = 7000
 const RESEARCH_INTERVAL = 9000
 
 const medicalTags = [
