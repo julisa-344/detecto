@@ -292,13 +292,7 @@ export default function HeroV4() {
                 exit="exit"
                 variants={containerVariants}
               >
-                <motion.p
-                  variants={itemVariants}
-                  transition={{ duration: 0.35 }}
-                  className="text-[10px] font-semibold tracking-[0.4em] uppercase text-primary mb-6"
-                >
-                  {slide.label}
-                </motion.p>
+       
 
                 <motion.h1
                   variants={itemVariants}

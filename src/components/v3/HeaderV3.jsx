@@ -1,12 +1,94 @@
 import { useState, useEffect, useRef } from 'react'
-import { ArrowUpRight } from "lucide-react" // Asegúrate de tener lucide-react instalado
+import { ArrowUpRight, ChevronRight } from 'lucide-react'
 import logoWhite from '../../assets/LogoDetectaHorizontalblanco.png'
+import logoDark from '../../assets/logo.png'
+
+const pacientesCategories = [
+  {
+    id: 'preventivos',
+    title: 'Programas Preventivos',
+    items: ['Preventivo Rosa', 'Preventivo Azul', 'Pulmo Scan'],
+  },
+  {
+    id: 'servicios',
+    title: 'Servicios',
+    items: [
+      'Diagnóstico por Imágenes',
+      'Farmacia',
+      'Hospitalización',
+      'Laboratorio Clínico',
+      'Resultados de Anatomía Patológica',
+      'Quimioterapia',
+      'Sala de Operaciones',
+      'Resultados de Laboratorio Clínico',
+      'Resultados de Laboratorio Patológico',
+    ],
+  },
+  {
+    id: 'oncologia',
+    title: 'Oncología',
+    items: [
+      'Oncología Médica',
+      'Oncología Pediátrica',
+      'Oncología de Cabeza y Cuello',
+      'Ginecología Oncológica',
+      'Mastología y Ginecología Oncológica',
+      'Urología Oncológica',
+      'Psicooncología',
+    ],
+  },
+  {
+    id: 'medicas',
+    title: 'Especialidades Médicas',
+    items: [
+      'Dermatología',
+      'Endocrinología',
+      'Enfermedades Infecciosas',
+      'Gastroenterología',
+      'Geriatría',
+      'Hematología',
+      'Infectología',
+      'Medicina General',
+      'Medicina Interna',
+      'Nefrología',
+    ],
+  },
+  {
+    id: 'quirurgicas',
+    title: 'Especialidades Quirúrgicas',
+    items: [
+      'Cirugía Plástica',
+      'Coloproctología',
+      'Ginecología y Obstetricia',
+      'Neurocirugía',
+      'Odontología',
+      'Otorrinolaringología',
+      'Traumatología',
+      'Urología',
+    ],
+  },
+  {
+    id: 'otras',
+    title: 'Otras Especialidades',
+    items: [
+      'Medicina Física y Rehabilitación',
+      'Oftalmología',
+      'Pediatría',
+      'Psicología',
+      'Psiquiatría',
+      'Radiología Intervencionista',
+    ],
+  },
+]
 
 export default function HeaderV3() {
   const [visible, setVisible] = useState(true)
   const [scrolled, setScrolled] = useState(false)
-  const [ethicsOpen, setEthicsOpen] = useState(false)
+  const [openMenu, setOpenMenu] = useState(null) // 'pacientes' | 'ethics' | null
+  const [activeCategory, setActiveCategory] = useState('preventivos')
+  const [ctaHover, setCtaHover] = useState(false)
   const lastScroll = useRef(0)
+  const navRef = useRef(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,34 +101,110 @@ export default function HeaderV3() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Cerrar al click fuera
+  useEffect(() => {
+    if (!openMenu) return
+    const handleClick = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setOpenMenu(null)
+      }
+    }
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setOpenMenu(null)
+    }
+    document.addEventListener('mousedown', handleClick)
+    document.addEventListener('keydown', handleKey)
+    return () => {
+      document.removeEventListener('mousedown', handleClick)
+      document.removeEventListener('keydown', handleKey)
+    }
+  }, [openMenu])
+
+  const toggle = (key) => setOpenMenu((prev) => (prev === key ? null : key))
+  const activeCategoryData = pacientesCategories.find((c) => c.id === activeCategory)
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${visible ? 'translate-y-0' : '-translate-y-full'
-        }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${visible ? 'translate-y-0' : '-translate-y-full'}`}
     >
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-10 pt-5">
+      <div
+        className="transition-all duration-500"
+        style={{
+          background: scrolled ? 'rgba(255,255,255,0.85)' : 'transparent',
+          backdropFilter: scrolled ? 'blur(16px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(15,23,42,0.06)' : '1px solid transparent',
+          boxShadow: scrolled ? '0 8px 24px -12px rgba(15,23,42,0.12)' : 'none',
+        }}
+      >
+        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-4">
         <div className="flex items-center justify-between gap-4">
 
           {/* Logo */}
-          <a href="/v3" className="flex-shrink-0 transition-opacity hover:opacity-70 duration-300">
-            <img src={logoWhite} alt="Detecta Clínica" className="h-9 w-auto" />
+          <a href="/v3" className="relative flex-shrink-0 h-9 w-[150px] transition-opacity hover:opacity-70 duration-300">
+            <img
+              src={logoWhite}
+              alt="Detecta Clínica"
+              className="absolute inset-0 h-9 w-auto transition-opacity duration-500"
+              style={{ opacity: scrolled ? 0 : 1 }}
+            />
+            <img
+              src={logoDark}
+              alt="Detecta Clínica"
+              className="absolute inset-0 h-9 w-auto transition-opacity duration-500"
+              style={{ opacity: scrolled ? 1 : 0 }}
+            />
           </a>
 
           {/* Nav central — cápsula pill translúcida */}
           <nav
+            ref={navRef}
             className="hidden lg:flex items-center gap-1 px-2 py-1.5 rounded-full transition-all duration-500"
             style={{
-              background: scrolled ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.12)',
+              background: scrolled ? 'rgba(15,23,42,0.04)' : 'rgba(255,255,255,0.12)',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255,255,255,0.25)',
+              border: scrolled
+                ? '1px solid rgba(15,23,42,0.08)'
+                : '1px solid rgba(255,255,255,0.25)',
             }}
           >
-            {['Pacientes', 'Staff Médico', 'Investigación', 'Sobre Detecta'].map((item) => (
+            {/* Pacientes con mega-menu */}
+            <div className="relative">
+              <button
+                onClick={() => toggle('pacientes')}
+                className={`px-4 py-1.5 text-[13px] font-light rounded-full transition-all duration-200 tracking-wide flex items-center gap-1 ${
+                  scrolled
+                    ? openMenu === 'pacientes'
+                      ? 'bg-slate-900/10 text-slate-900'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-900/5'
+                    : openMenu === 'pacientes'
+                      ? 'bg-white/15 text-white'
+                      : 'text-white/80 hover:text-white hover:bg-white/15'
+                }`}
+              >
+                Pacientes
+                <svg
+                  className={`w-3 h-3 transition-transform ${openMenu === 'pacientes' ? 'rotate-180' : ''}`}
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M3 4.5l3 3 3-3" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
+
+            {['Staff Médico', 'Investigación', 'Sobre Detecta'].map((item) => (
               <a
                 key={item}
                 href="#"
-                className="px-4 py-1.5 text-[13px] font-light text-white/80 hover:text-white hover:bg-white/15 rounded-full transition-all duration-200 tracking-wide"
+                className={`px-4 py-1.5 text-[13px] font-light rounded-full transition-all duration-200 tracking-wide ${
+                  scrolled
+                    ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-900/5'
+                    : 'text-white/80 hover:text-white hover:bg-white/15'
+                }`}
               >
                 {item}
               </a>
@@ -55,59 +213,156 @@ export default function HeaderV3() {
             {/* Dropdown Ética */}
             <div className="relative">
               <button
-                onClick={() => setEthicsOpen(!ethicsOpen)}
-                className="px-4 py-1.5 text-[13px] font-light text-white/80 hover:text-white hover:bg-white/15 rounded-full transition-all duration-200 tracking-wide flex items-center gap-1"
+                onClick={() => toggle('ethics')}
+                className={`px-4 py-1.5 text-[13px] font-light rounded-full transition-all duration-200 tracking-wide flex items-center gap-1 ${
+                  scrolled
+                    ? openMenu === 'ethics'
+                      ? 'bg-slate-900/10 text-slate-900'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-900/5'
+                    : openMenu === 'ethics'
+                      ? 'bg-white/15 text-white'
+                      : 'text-white/80 hover:text-white hover:bg-white/15'
+                }`}
               >
                 Ética
-                <svg className={`w-3 h-3 transition-transform ${ethicsOpen ? 'rotate-180' : ''}`} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg
+                  className={`w-3 h-3 transition-transform ${openMenu === 'ethics' ? 'rotate-180' : ''}`}
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
                   <path d="M3 4.5l3 3 3-3" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              {ethicsOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-44 py-2 rounded-2xl overflow-hidden shadow-2xl"
+              {openMenu === 'ethics' && (
+                <div
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 py-2 rounded-2xl overflow-hidden shadow-2xl"
                   style={{
-                    background: 'rgba(20,20,30,0.85)',
+                    background: 'rgba(255,255,255,0.95)',
                     backdropFilter: 'blur(24px)',
-                    border: '1px solid rgba(255,255,255,0.12)',
+                    WebkitBackdropFilter: 'blur(24px)',
+                    border: '1px solid rgba(15,23,42,0.08)',
                   }}
                 >
-                  <a href="#comite" className="block px-4 py-2.5 text-sm text-white/60 hover:text-white hover:bg-white/10 transition-colors">
+                  <a href="#comite" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-[#0070A5] hover:bg-slate-100/70 transition-colors">
                     Comité de ética
                   </a>
-                  <a href="#gestion" className="block px-4 py-2.5 text-sm text-white/60 hover:text-white hover:bg-white/10 transition-colors">
+                  <a href="#gestion" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-[#0070A5] hover:bg-slate-100/70 transition-colors">
                     Gestión ética
                   </a>
                 </div>
               )}
             </div>
+
+            {/* Mega-menu Pacientes — light glass consistente con Ética */}
+            {openMenu === 'pacientes' && (
+              <div
+                className="fixed left-1/2 -translate-x-1/2 top-[80px] w-[min(1240px,calc(100vw-48px))] rounded-3xl overflow-hidden shadow-2xl"
+                style={{
+                  background: 'rgba(255,255,255,0.95)',
+                  backdropFilter: 'blur(24px)',
+                  WebkitBackdropFilter: 'blur(24px)',
+                  border: '1px solid rgba(15,23,42,0.08)',
+                }}
+              >
+                <div className="grid grid-cols-[300px_1fr]">
+                  {/* Sidebar de categorías */}
+                  <div className="p-6 border-r border-slate-200/70">
+                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-slate-400 mb-4 px-3">
+                      Categorías
+                    </p>
+                    <ul className="space-y-0.5">
+                      {pacientesCategories.map((cat) => (
+                        <li key={cat.id}>
+                          <button
+                            onMouseEnter={() => setActiveCategory(cat.id)}
+                            onFocus={() => setActiveCategory(cat.id)}
+                            onClick={() => setActiveCategory(cat.id)}
+                            className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm transition-all duration-200 ${
+                              activeCategory === cat.id
+                                ? 'bg-slate-100 text-[#0070A5] font-medium'
+                                : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100/70'
+                            }`}
+                          >
+                            <span>{cat.title}</span>
+                            <ChevronRight
+                              className={`w-4 h-4 transition-all ${
+                                activeCategory === cat.id ? 'text-[#0199C6] opacity-100' : 'text-slate-300 opacity-70'
+                              }`}
+                            />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Items de la categoría activa */}
+                  <div className="p-8">
+                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#0199C6] mb-5">
+                      {activeCategoryData?.title}
+                    </p>
+                    <div className="grid grid-cols-2 gap-x-10 gap-y-3">
+                      {activeCategoryData?.items.map((item) => (
+                        <a
+                          key={item}
+                          href="#"
+                          className="group flex items-center gap-3 text-sm text-slate-600 hover:text-[#0070A5] transition-colors duration-200"
+                          onClick={() => setOpenMenu(null)}
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-[#0199C6] transition-colors" />
+                          {item}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </nav>
 
           {/* Botón CTA con efecto 21st dev + Glass */}
           <div className="hidden lg:flex items-center">
-            <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
-
-              {/* Lado del Texto (Pill izquierda) */}
+            <button
+              onMouseEnter={() => setCtaHover(true)}
+              onMouseLeave={() => setCtaHover(false)}
+              className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95"
+            >
               <span
-                className="rounded-full px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-white/15 group-hover:bg-white group-hover:text-slate-900"
+                className="rounded-full px-6 py-3 text-[11px] font-semibold tracking-[0.18em] transition-all duration-500 ease-in-out"
                 style={{
+                  background: ctaHover
+                    ? '#0F172A'
+                    : scrolled
+                      ? 'rgba(15,23,42,0.04)'
+                      : 'rgba(255,255,255,0.15)',
+                  color: ctaHover ? '#ffffff' : scrolled ? '#0F172A' : '#ffffff',
                   backdropFilter: 'blur(10px)',
                   WebkitBackdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255,255,255,0.3)',
+                  border: scrolled
+                    ? '1px solid rgba(15,23,42,0.1)'
+                    : '1px solid rgba(255,255,255,0.3)',
                   position: 'relative',
                   zIndex: 1,
                 }}
               >
                 AGENDAR CITA
               </span>
-
-              {/* Lado del Icono (Círculo derecha) */}
               <div
-                className="relative flex h-[44px] w-[44px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-white/25 text-white group-hover:bg-white group-hover:text-slate-900"
+                className="relative flex h-[44px] w-[44px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out"
                 style={{
+                  background: ctaHover
+                    ? '#0F172A'
+                    : scrolled
+                      ? 'rgba(15,23,42,0.08)'
+                      : 'rgba(255,255,255,0.25)',
+                  color: ctaHover ? '#ffffff' : scrolled ? '#0F172A' : '#ffffff',
                   backdropFilter: 'blur(10px)',
                   WebkitBackdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(255,255,255,0.4)',
-                  zIndex: 2
+                  border: scrolled
+                    ? '1px solid rgba(15,23,42,0.1)'
+                    : '1px solid rgba(255,255,255,0.4)',
+                  zIndex: 2,
                 }}
               >
                 <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
@@ -123,6 +378,7 @@ export default function HeaderV3() {
             </svg>
           </button>
         </div>
+      </div>
       </div>
     </header>
   )
