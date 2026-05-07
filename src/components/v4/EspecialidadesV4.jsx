@@ -10,13 +10,15 @@ import {
   ArrowUpRight,
 } from 'lucide-react'
 import especialidadesVideo from '../../assets/especialidades.mp4'
+import mastologiaVideo from '../../assets/mastologia.mp4'
+import ginecologiaVideo from '../../assets/ginecologia.mp4'
 
 const departments = [
-  { id: '01', title: 'Cardiología', description: 'Cuidado integral del corazón incluyendo angioplastia y ECG.', icon: <HeartPulse className="w-5 h-5" />, video: especialidadesVideo },
-  { id: '02', title: 'Neurología', description: 'Diagnóstico y tratamiento de condiciones del cerebro y nervios.', icon: <Brain className="w-5 h-5" />, video: especialidadesVideo },
-  { id: '03', title: 'Gastroenterología', description: 'Cuidado experto para el sistema digestivo e hígado.', icon: <Stethoscope className="w-5 h-5" />, video: especialidadesVideo },
-  { id: '04', title: 'Mastología', description: 'Detección, diagnóstico y tratamiento de patologías mamarias.', icon: <Baby className="w-5 h-5" />, video: especialidadesVideo },
-  { id: '05', title: 'Ginecología', description: 'Salud de la mujer, cuidado del embarazo y servicios de parto.', icon: <Venus className="w-5 h-5" />, video: especialidadesVideo },
+  { id: '01', title: 'Mastología', description: 'Detección, diagnóstico y tratamiento de patologías mamarias.', icon: <Baby className="w-5 h-5" />, video: mastologiaVideo },
+  { id: '02', title: 'Ginecología', description: 'Salud de la mujer, cuidado del embarazo y servicios de parto.', icon: <Venus className="w-5 h-5" />, video: ginecologiaVideo },
+  { id: '03', title: 'Cardiología', description: 'Cuidado integral del corazón incluyendo angioplastia y ECG.', icon: <HeartPulse className="w-5 h-5" />, video: especialidadesVideo },
+  { id: '04', title: 'Neurología', description: 'Diagnóstico y tratamiento de condiciones del cerebro y nervios.', icon: <Brain className="w-5 h-5" />, video: especialidadesVideo },
+  { id: '05', title: 'Gastroenterología', description: 'Cuidado experto para el sistema digestivo e hígado.', icon: <Stethoscope className="w-5 h-5" />, video: especialidadesVideo },
   { id: '06', title: 'Urología', description: 'Tratamientos avanzados para el sistema reproductivo.', icon: <Target className="w-5 h-5" />, video: especialidadesVideo },
 ]
 

@@ -2,6 +2,10 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, Calendar, Heart, Shield, Wind } from 'lucide-react'
 import detecto from '../../assets/detecto.png'
+import detectoAgendar from '../../assets/detectoagendarcita.png'
+import detectoRosa from '../../assets/DetectoPreventivoRosa.png'
+import detectoAzul from '../../assets/DetectoPreventivoAzul.png'
+import detectoPulmon from '../../assets/DetectoPulmonSano.png'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,8 +33,7 @@ const actions = [
     icon: <Calendar className="w-6 h-6" />,
     accent: '#0070A5',
     bg: '#C8E9F2',
-    // TODO: reemplazar por imagen específica de esta acción
-    hoverImage: detecto,
+    hoverImage: detectoAgendar,
   },
   {
     key: 'rosa',
@@ -38,9 +41,9 @@ const actions = [
     title: 'Preventivo Rosa',
     description: 'Detección temprana de cáncer de mama con tecnología de vanguardia.',
     icon: <Heart className="w-6 h-6" />,
-    accent: '#B5697F',
+    accent: '#E5739A',
     bg: '#D6EFF5',
-    hoverImage: detecto,
+    hoverImage: detectoRosa,
   },
   {
     key: 'azul',
@@ -50,7 +53,7 @@ const actions = [
     icon: <Shield className="w-6 h-6" />,
     accent: '#0199C6',
     bg: '#BFE4EF',
-    hoverImage: detecto,
+    hoverImage: detectoAzul,
   },
   {
     key: 'pulmon',
@@ -60,7 +63,7 @@ const actions = [
     icon: <Wind className="w-6 h-6" />,
     accent: '#4F8A9F',
     bg: '#CCEDF7',
-    hoverImage: detecto,
+    hoverImage: detectoPulmon,
   },
 ]
 
@@ -106,9 +109,16 @@ export default function AccionesRapidasV4() {
 
             <h2 className="text-4xl lg:text-5xl font-light text-[#0070A5] mb-4 tracking-tight leading-[1.1]">
               ¿En qué puede ayudarte <br />
-              <span className="font-bold italic">
+              <motion.span
+                key={activeKey ?? 'default'}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                className="font-bold italic transition-colors duration-300"
+                style={{ color: activeAction ? activeAction.accent : '#0070A5' }}
+              >
                 {activeAction ? activeAction.title : 'Detecto hoy?'}
-              </span>
+              </motion.span>
             </h2>
             <p className="text-base font-light text-slate-500 leading-relaxed max-w-md min-h-[3.5rem]">
               {activeAction
