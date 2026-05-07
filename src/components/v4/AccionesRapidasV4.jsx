@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, Calendar, Heart, Shield, Wind } from 'lucide-react'
 import detecto from '../../assets/detecto.png'
@@ -71,6 +71,13 @@ export default function AccionesRapidasV4() {
   const [activeKey, setActiveKey] = useState(null)
   const activeAction = actions.find((a) => a.key === activeKey)
   const currentImage = activeAction?.hoverImage ?? detecto
+
+  useEffect(() => {
+    actions.forEach((a) => {
+      const img = new Image()
+      img.src = a.hoverImage
+    })
+  }, [])
 
   return (
     <section
