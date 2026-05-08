@@ -16,6 +16,8 @@ const publications = [
     short: 'WJSO',
     title: 'World J. Surgical Oncology',
     fullTitle: 'World Journal of Surgical Oncology',
+    tag: 'Research / Open access',
+    authors: 'Gastón Wilmer Mendoza De Lama, Nancy Elena Muñoz Quispe, Jorge Marcelo Aguilar Cosme, Samantha Mendoza, Renson Eduardo Hidalgo Ramos, Diana Díaz-Llontop, Richard Eduardo Castillo Laborio, Juan Manuel Trejo Mena, Enrique Oswaldo Bedoya Ismodes & Luis Taxa.',
     link: 'https://link.springer.com/article/10.1186/s12957-025-04183-5',
     pages: '12 páginas',
     image: portada1,
@@ -24,6 +26,8 @@ const publications = [
     short: 'Tumori',
     title: 'Tumori Journal',
     fullTitle: 'Tumori Journal',
+    tag: 'Abstract Book / Supplement',
+    authors: 'Autores del 18th Breast, Gynecological & Immunooncology International Cancer Conference (BGIICC 2026).',
     link: 'https://journals.sagepub.com/toc/tmja/112/1_suppl',
     pages: '8 páginas',
     image: portada2,
@@ -32,6 +36,8 @@ const publications = [
     short: 'EJC',
     title: 'European J. of Cancer',
     fullTitle: 'European Journal of Cancer',
+    tag: 'Conference Supplement',
+    authors: 'Autores del 15th European Breast Cancer Conference (EBCC-15).',
     link: 'https://www.ejcancer.com/issue/S0959-8049(26)X2004-4',
     pages: '157 páginas',
     image: portada3,
@@ -40,6 +46,8 @@ const publications = [
     short: 'R&O',
     title: 'Radiology and Oncology',
     fullTitle: 'Radiology and Oncology',
+    tag: 'Article / Ahead of Print',
+    authors: 'Gaston (Wilmer) Mendoza, Nancy Muñoz, Jorge Aguilar, Jorge Ayón, Diana Díaz-Llontop, Samantha Mendoza, Claudia Quiñones, Richard Castillo & Luis Taxa.',
     link: 'https://reference-global.com/article/10.2478/raon-2026-0018?tab=article',
     pages: '13 páginas',
     image: portada4,
@@ -48,6 +56,8 @@ const publications = [
     short: 'PPCR',
     title: 'Clinical Research',
     fullTitle: 'Clinical Research',
+    tag: 'Journal Article',
+    authors: 'Gastón Wilmer Mendoza De Lama (autor principal según el registro de la serie de investigaciones en Perú).',
     link: 'https://journal.ppcr.org/index.php/ppcrjournal/article/view/433',
     pages: '2 páginas',
     image: portada5,
@@ -121,13 +131,10 @@ function ResearchBar() {
       className="mt-10 max-w-3xl"
     >
       <div
-        className="relative rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25)] overflow-hidden"
+        className="relative overflow-x-clip overflow-y-visible rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => { setPaused(false); setActiveIdx(null) }}
       >
-        {/* Fades laterales */}
-        {/* <div className="pointer-events-none absolute inset-y-0 left-0 w-10 z-10 bg-gradient-to-r from-gray-950/60 to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-10 z-10 bg-gradient-to-l from-gray-950/60 to-transparent" /> */}
 
         <motion.div
           className="flex gap-2 p-2 w-max"
@@ -170,31 +177,54 @@ function ResearchBar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 8, scale: 0.96 }}
                     transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-30 w-52 rounded-xl border border-white/15 bg-gray-950/85 backdrop-blur-xl shadow-2xl overflow-hidden pointer-events-none"
+                    className="
+                      absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-30
+                      w-[360px] overflow-hidden rounded-2xl
+                      border border-white/15
+                      bg-gray-950/85 backdrop-blur-2xl
+                      shadow-[0_12px_40px_rgba(0,0,0,0.45)]
+                      pointer-events-none
+                    "
                   >
-                    <div className="aspect-[3/4] w-full bg-gray-900 overflow-hidden">
-                      <img
-                        src={pub.image}
-                        alt={pub.fullTitle}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="p-3">
-                      <p className="text-[11px] font-medium text-white leading-snug line-clamp-2">
+                    <div className="px-5 pt-5 pb-4">
+                      {pub.tag && (
+                        <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[9px] font-semibold tracking-[0.18em] uppercase text-[#52C0E1]">
+                          {pub.tag}
+                        </span>
+                      )}
+
+                      <p className="mt-2.5 text-[13px] font-semibold leading-snug text-white">
                         {pub.fullTitle}
                       </p>
-                      <div className="mt-1.5 flex items-center gap-1.5 text-[10px] text-white/50">
+
+                      <div className="mt-1.5 flex items-center gap-1.5 text-[10.5px] text-white/60">
                         <FileText className="h-3 w-3" />
                         <span>{pub.pages}</span>
                       </div>
-                      <div className="mt-2 flex items-center gap-1 text-[10px] font-semibold tracking-[0.15em] uppercase text-primary">
-                        Ver publicación
-                        <ExternalLink className="h-3 w-3" />
-                      </div>
                     </div>
+
+                    {pub.authors && (
+                      <div className="border-t border-white/10 px-5 py-4">
+                        <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
+                          Autores
+                        </p>
+
+                        <div className="mt-2 space-y-1">
+                          {pub.authors.split(',').map((author, index) => (
+                            <p
+                              key={index}
+                              className="text-[11.5px] font-light leading-[1.45] text-white/85"
+                            >
+                              {author.trim()}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>
+              
             </a>
           ))}
         </motion.div>

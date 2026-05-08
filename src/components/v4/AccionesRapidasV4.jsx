@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowUpRight, Calendar, Heart, Shield, Wind } from 'lucide-react'
-import detecto from '../../assets/detecto.png'
-import detectoAgendar from '../../assets/detectoagendarcita.png'
-import detectoRosa from '../../assets/DetectoPreventivoRosa.png'
-import detectoAzul from '../../assets/DetectoPreventivoAzul.png'
-import detectoPulmon from '../../assets/DetectoPulmonSano.png'
+import detectoAgendar from '../../assets/agendarCita.gif'
+import detectoRosa from '../../assets/preventivoRosa.gif'
+import detectoAzul from '../../assets/preventivoAzul.gif'
+import detectoPulmon from '../../assets/pulmonSano.gif'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -70,7 +69,6 @@ const actions = [
 export default function AccionesRapidasV4() {
   const [activeKey, setActiveKey] = useState(null)
   const activeAction = actions.find((a) => a.key === activeKey)
-  const currentImage = activeAction?.hoverImage ?? detecto
 
   useEffect(() => {
     actions.forEach((a) => {
@@ -85,7 +83,7 @@ export default function AccionesRapidasV4() {
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-stretch">
 
           {/* LADO IZQUIERDO: Mascot + bajada */}
           <motion.div
@@ -93,25 +91,29 @@ export default function AccionesRapidasV4() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center lg:items-start text-center lg:text-left"
+            className="flex flex-col items-center lg:items-start text-center lg:text-left lg:h-full"
           >
             <motion.div
               animate={{ scale: [1, 1.05, 1], y: [0, -20, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-              className="relative w-84 h-84 mb-10 mx-auto"
+              className="relative w-80 h-80 lg:w-full lg:h-auto lg:max-w-[636px] lg:flex-1 lg:min-h-0 mb-2 mx-auto"
             >
-              <AnimatePresence initial={false}>
-                <motion.img
-                  key={activeKey ?? 'default'}
-                  src={currentImage}
-                  alt="Detecto"
-                  initial={{ opacity: 0, y: 14, scale: 0.96 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.98 }}
-                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 w-full h-full object-contain"
-                />
-              </AnimatePresence>
+              {actions.map((a) => {
+                const isCurrent = (activeKey ?? 'agendar') === a.key
+                return (
+                  <motion.img
+                    key={a.key}
+                    src={a.hoverImage}
+                    alt="Detecto"
+                    loading="eager"
+                    decoding="async"
+                    animate={{ opacity: isCurrent ? 1 : 0, scale: isCurrent ? 1 : 0.97 }}
+                    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 w-full h-full object-contain"
+                    style={{ pointerEvents: isCurrent ? 'auto' : 'none' }}
+                  />
+                )
+              })}
             </motion.div>
 
             <h2 className="text-4xl lg:text-5xl font-light text-[#0070A5] mb-4 tracking-tight leading-[1.1]">
