@@ -223,7 +223,6 @@ function ResearchBar() {
                     <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
                       Autores
                     </p>
-
                     <div className="mt-2 space-y-1">
                       {activePub.authors.split(',').map((author, index) => (
                         <p

@@ -207,7 +207,7 @@ export default function FooterV4() {
 
             {/* Barra Inferior Final */}
             <div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-900/5 pt-12 gap-8 text-[10px] font-medium text-slate-400 tracking-[0.2em] uppercase">
-              <p>© {new Date().getFullYear()} DETECTA CLÍNICA — Precision Medicine.</p>
+              <p>© {new Date().getFullYear()} DETECTA CLÍNICA — Área de TI.</p>
               <div className="flex gap-10 items-center">
                 <a href="#" className="hover:text-slate-900 transition-colors">Cookies</a>
                 <a href="#" className="hover:text-slate-900 transition-colors">Políticas</a>
