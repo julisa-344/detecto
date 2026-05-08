@@ -1,5 +1,6 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence, useInView, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
+import detecto from '../assets/detecto.png'
 import {
   ArrowUpRight,
   MessageCircle,
@@ -286,6 +287,237 @@ function ServicesStrip() {
 
 /* ─── Main Page ──────────────────────────────────────────────────────────────── */
 
+function TipoCancerBullet({ idx, label, total, isActive }) {
+  return (
+    <li className="relative flex gap-4 py-8 transition-all duration-500">
+      <div className="relative flex flex-col items-center">
+        <span
+          className={`mt-1.5 h-2 w-2 rounded-full transition-all duration-500 ${
+            isActive ? 'scale-150 bg-[#0199C6] shadow-[0_0_0_5px_rgba(1,153,198,0.15)]' : 'bg-slate-300'
+          }`}
+        />
+        {idx < total - 1 && (
+          <span className="mt-2 h-full w-px bg-gradient-to-b from-slate-200 to-transparent" />
+        )}
+      </div>
+
+      <div className="flex-1 pb-1">
+        <p
+          className={`mb-1 text-[9px] font-semibold uppercase tracking-[0.3em] transition-colors duration-500 ${
+            isActive ? 'text-[#0199C6]' : 'text-slate-400'
+          }`}
+        >
+          {String(idx + 1).padStart(2, '0')}
+        </p>
+        <h3
+          className={`text-base font-light leading-snug tracking-tight transition-all duration-500 sm:text-lg ${
+            isActive ? 'text-[#0070A5]' : 'text-slate-400'
+          }`}
+        >
+          {label}
+        </h3>
+      </div>
+    </li>
+  )
+}
+
+function TiposCancerScrollSync() {
+  const [activeIdx, setActiveIdx] = useState(0)
+  const listRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: listRef,
+    offset: ['start 65%', 'end 35%'],
+  })
+
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const clamped = Math.min(0.999, Math.max(0, v))
+    const next = Math.floor(clamped * tiposCancer.length)
+    setActiveIdx(next)
+  })
+
+  return (
+    <section className="relative">
+      <div className="mb-12 max-w-2xl">
+        <SectionEyebrow>Tratamientos</SectionEyebrow>
+        <SectionTitle className="mb-3">
+          Tipos de cáncer que <span className="italic">tratamos</span>
+        </SectionTitle>
+        <p className="max-w-xl text-[15px] font-light leading-7 text-slate-400">
+          Abordamos distintas patologías oncológicas con protocolos actualizados
+          y atención personalizada para cada caso.
+        </p>
+      </div>
+
+      <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
+        {/* Columna izquierda: Detecto sin fondo, sin sombra */}
+        <div className="lg:sticky lg:top-[110px] lg:self-start">
+          <div className="relative aspect-square w-full">
+            <motion.img
+              src={detecto}
+              alt="Detecto"
+              animate={{ y: [0, -14, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative z-10 h-full w-full object-contain"
+            />
+
+            {/* Card flotante con tipo activo */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIdx}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute bottom-2 left-2 right-2 z-20 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 backdrop-blur"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0199C6] text-white">
+                  <span className="h-1.5 w-1.5 rounded-full bg-white" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
+                    Tipo {String(activeIdx + 1).padStart(2, '0')}
+                  </p>
+                  <p className="mt-0.5 truncate text-[13px] font-medium text-slate-800">
+                    {tiposCancer[activeIdx]}
+                  </p>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* Columna derecha: bullets scroll-synced */}
+        <ul ref={listRef} className="relative">
+          {tiposCancer.map((t, i) => (
+            <TipoCancerBullet
+              key={i}
+              idx={i}
+              label={t}
+              total={tiposCancer.length}
+              isActive={activeIdx === i}
+            />
+          ))}
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+const SERVICIO_Y_OFFSETS = ['-22vh', '12vh', '-8vh', '18vh', '-18vh', '6vh', '-12vh']
+
+function ServiciosScrollSync() {
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  })
+
+  const total = servicios.length
+  const SLOT_VW = 37 // 34 (card) + 3 (gap)
+  const trackVW = total * SLOT_VW
+  const x = useTransform(scrollYProgress, [0, 1], ['100vw', `-${trackVW}vw`])
+
+  return (
+    <section className="relative">
+      <div className="mb-12 max-w-2xl">
+        <SectionEyebrow>Servicios</SectionEyebrow>
+        <SectionTitle className="mb-3">Lo que ofrecemos</SectionTitle>
+        <p className="max-w-xl text-[15px] font-light leading-7 text-slate-400">
+          Un ecosistema completo de atención oncológica bajo un mismo techo.
+        </p>
+      </div>
+
+      <div
+        ref={containerRef}
+        className="relative"
+        style={{ height: '220vh' }}
+      >
+        <div className="sticky top-0 flex h-screen items-center justify-center overflow-hidden">
+          {/* Imagen Detecto — debajo de las cards para que el texto sea legible */}
+          <motion.img
+            src={detecto}
+            alt="Detecto"
+            animate={{ y: [0, -14, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative z-20 h-[60vh] w-auto max-w-[60vw] object-contain"
+          />
+
+          {/* Track horizontal de cards — encima de Detecto */}
+          <motion.div
+            style={{ x }}
+            className="pointer-events-none absolute inset-y-0 left-0 z-40 flex items-center gap-[3vw] px-[2vw] will-change-transform"
+          >
+            {servicios.map((s, i) => {
+              const Icon = s.icon
+              return (
+                <div
+                  key={i}
+                  style={{ transform: `translateY(${SERVICIO_Y_OFFSETS[i]})` }}
+                  className="flex w-[34vw] shrink-0 items-center gap-4 rounded-2xl border border-white/60 bg-white/85 px-6 py-5 shadow-[0_18px_40px_-18px_rgba(1,153,198,0.3)] backdrop-blur-md"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#0199C6] text-white">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
+                      Servicio {String(i + 1).padStart(2, '0')}
+                    </p>
+                    <h3 className="mt-1 text-lg font-light leading-tight tracking-tight text-[#0070A5] sm:text-xl">
+                      {s.title}
+                    </h3>
+                  </div>
+                </div>
+              )
+            })}
+          </motion.div>
+
+          {/* Velos de blur — comentados temporalmente
+          <div
+            className="pointer-events-none absolute inset-y-0 -left-2 z-50 w-[8vw] backdrop-blur-lg"
+            style={{
+              maskImage: 'linear-gradient(to right, black 0%, black 50%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to right, black 0%, black 50%, transparent 100%)',
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-y-0 -right-2 z-50 w-[8vw] backdrop-blur-lg"
+            style={{
+              maskImage: 'linear-gradient(to left, black 0%, black 50%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to left, black 0%, black 50%, transparent 100%)',
+            }}
+          />
+          */}
+
+          {/* Indicador de progreso inferior */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-10 z-[60] mx-auto flex max-w-md items-center gap-2 px-6">
+            {servicios.map((_, i) => (
+              <ServiceProgressDot key={i} idx={i} total={total} progress={scrollYProgress} />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ServiceProgressDot({ idx, total, progress }) {
+  const start = idx / total
+  const end = (idx + 1) / total
+  const peak = (start + end) / 2
+  const before = Math.max(0, start - 0.02)
+  const after = Math.min(1, end + 0.02)
+
+  const opacity = useTransform(progress, [before, peak, after], [0.3, 1, 0.3])
+  const scale = useTransform(progress, [before, peak, after], [0.8, 1.4, 0.8])
+
+  return (
+    <motion.span
+      style={{ opacity, scale }}
+      className="h-1.5 flex-1 rounded-full bg-[#0199C6]"
+    />
+  )
+}
+
 export default function OncologiaMedica() {
   return (
     <div className="min-h-screen bg-white" style={{ fontFamily: 'Lexend, sans-serif' }}>
@@ -332,82 +564,8 @@ export default function OncologiaMedica() {
               </div>
             </motion.section>
 
-            {/* ── Tipos de cáncer — layout horizontal 2 columnas ── */}
-    <motion.section
-  variants={fadeUp}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true }}
-  className="relative"
->
-  <div className="grid items-start gap-6 md:grid-cols-[0.82fr_1.18fr] md:gap-8">
-    {/* Bloque texto */}
-    <div className="relative overflow-hidden rounded-[34px] bg-[#F3F8FB] px-7 py-8 md:px-8 md:py-10">
-      <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#C8EEF8]/45 blur-3xl" />
-      <div className="pointer-events-none absolute -bottom-20 -left-20 h-44 w-44 rounded-full bg-white/70 blur-3xl" />
-
-      <div className="relative z-10">
-        <SectionEyebrow>Tratamientos</SectionEyebrow>
-
-        <h2 className="mt-5 max-w-sm text-[38px] font-light leading-[1.03] tracking-[-0.045em] text-slate-800 md:text-[46px]">
-          Tipos de cáncer que{" "}
-          <span className="italic text-[#0070A5]">tratamos</span>
-        </h2>
-
-        <p className="mt-6 max-w-sm text-[14.5px] font-light leading-7 text-slate-500">
-          Abordamos distintas patologías oncológicas con protocolos actualizados
-          y atención personalizada.
-        </p>
-      </div>
-    </div>
-
-    {/* Sistema de chips médicos */}
-    <div className="grid gap-3 sm:grid-cols-2">
-      {tiposCancer.map((t, i) => {
-        const isLast = i === tiposCancer.length - 1
-
-        return (
-          <motion.div
-            key={i}
-            custom={i}
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className={`
-              group relative overflow-hidden rounded-[24px]
-              border border-slate-100/90 bg-white/90
-              px-5 py-4
-              shadow-[0_14px_34px_rgba(15,23,42,0.045)]
-              transition-all duration-300
-              hover:-translate-y-0.5
-              hover:border-[#52C0E1]/45
-              hover:bg-[#F3FBFE]
-              hover:shadow-[0_20px_50px_rgba(0,112,165,0.10)]
-              ${isLast ? "sm:col-span-2" : ""}
-            `}
-          >
-            {/* Glow interno sutil */}
-            <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-[#DDF4FA]/0 blur-2xl transition-all duration-300 group-hover:bg-[#DDF4FA]/80" />
-
-            {/* Línea superior médica */}
-            <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-[#52C0E1]/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-            <div className="relative z-10 flex min-h-[44px] items-center gap-3">
-              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#EAF8FC] ring-1 ring-[#D5F1F8] transition-all duration-300 group-hover:bg-white group-hover:ring-[#52C0E1]/40">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#0199C6] shadow-[0_0_0_5px_rgba(82,192,225,0.13)]" />
-              </span>
-
-              <span className="text-[14px] font-light leading-snug tracking-[-0.01em] text-slate-700 transition-colors duration-300 group-hover:text-[#006B9A]">
-                {t}
-              </span>
-            </div>
-          </motion.div>
-        )
-      })}
-    </div>
-  </div>
-</motion.section>
+            {/* ── Tipos de cáncer — sticky image + scroll-synced bullets ── */}
+            <TiposCancerScrollSync />
 
             {/* ── Mision CTA — visual con video, "Tu salud, nuestra misión" ── */}
             <motion.section
@@ -472,66 +630,9 @@ export default function OncologiaMedica() {
               </div>
             </motion.section>
 
-            {/* ── Servicios completos ── */}
-            <motion.section
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="mb-8 max-w-2xl">
-                <SectionEyebrow>Servicios</SectionEyebrow>
+            {/* ── Servicios — sticky image + scroll-synced bullets ── */}
+            <ServiciosScrollSync />
 
-                <SectionTitle className="mb-3">
-                  Lo que ofrecemos
-                </SectionTitle>
-
-                <p className="max-w-xl text-[15px] font-light leading-7 text-slate-400">
-                  Un ecosistema completo de atención oncológica bajo un mismo techo.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                {servicios.map((s, i) => (
-                  <motion.div
-                    key={i}
-                    custom={i}
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="group relative overflow-hidden rounded-[22px] border border-slate-100 bg-white px-5 py-4 shadow-[0_10px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0199C6]/25 hover:shadow-[0_16px_40px_rgba(1,153,198,0.10)]"
-                  >
-                    {/* Glow sutil */}
-                    <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#0199C6]/8 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-
-                    <div className="relative z-10 flex items-center gap-4">
-                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#EAF8FC] text-[#0199C6] transition-all duration-300 group-hover:bg-[#0199C6] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(1,153,198,0.22)]">
-                        <s.icon className="h-[18px] w-[18px]" />
-                      </div>
-
-                      <div className="min-w-0 flex-1">
-                        <div className="mb-1 flex items-center gap-2">
-                          <span className="text-[11px] font-medium tracking-[0.14em] text-[#0199C6]/60">
-                            {String(i + 1).padStart(2, '0')}
-                          </span>
-                          <span className="h-px flex-1 bg-slate-100" />
-                        </div>
-
-                        <h3 className="text-[14px] font-light leading-5 text-slate-700 transition-colors duration-300 group-hover:text-slate-950">
-                          {s.title}
-                        </h3>
-                      </div>
-
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-50 text-slate-300 transition-all duration-300 group-hover:bg-[#0199C6] group-hover:text-white">
-                        <ArrowUpRight className="h-4 w-4" />
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.section>
 
             {/* ── FAQ ── */}
             <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
