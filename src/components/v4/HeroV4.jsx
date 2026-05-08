@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, ExternalLink, FileText } from 'lucide-react'
 import heroVideo1 from '../../assets/herobg.mp4'
@@ -120,8 +121,21 @@ const itemVariants = {
 
 function ResearchBar() {
   const [activeIdx, setActiveIdx] = useState(null)
+  const [tooltipPos, setTooltipPos] = useState(null) // { x, y }
   const [paused, setPaused] = useState(false)
   const loop = [...publications, ...publications]
+
+  const handleEnter = (e, i) => {
+    setActiveIdx(i)
+    const r = e.currentTarget.getBoundingClientRect()
+    setTooltipPos({ x: r.left + r.width / 2, y: r.top })
+  }
+  const handleLeave = () => {
+    setActiveIdx(null)
+    setTooltipPos(null)
+  }
+
+  const activePub = activeIdx !== null ? loop[activeIdx] : null
 
   return (
     <motion.div
@@ -147,10 +161,10 @@ function ResearchBar() {
               href={pub.link}
               target="_blank"
               rel="noopener noreferrer"
-              onMouseEnter={() => setActiveIdx(i)}
-              onMouseLeave={() => setActiveIdx(null)}
-              onFocus={() => setActiveIdx(i)}
-              onBlur={() => setActiveIdx(null)}
+              onMouseEnter={(e) => handleEnter(e, i)}
+              onMouseLeave={handleLeave}
+              onFocus={(e) => handleEnter(e, i)}
+              onBlur={handleLeave}
               onClick={(e) => {
                 if (window.matchMedia('(hover: none)').matches && activeIdx !== i) {
                   e.preventDefault()
@@ -169,66 +183,64 @@ function ResearchBar() {
               </span>
               <span>{pub.title}</span>
               <ArrowUpRight className="h-3.5 w-3.5 opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
-
-              <AnimatePresence>
-                {activeIdx === i && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                    transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                    className="
-                      absolute left-1/2 -translate-x-1/2 bottom-full mb-3 z-30
-                      w-[360px] overflow-hidden rounded-2xl
-                      border border-white/15
-                      bg-gray-950/85 backdrop-blur-2xl
-                      shadow-[0_12px_40px_rgba(0,0,0,0.45)]
-                      pointer-events-none
-                    "
-                  >
-                    <div className="px-5 pt-5 pb-4">
-                      {pub.tag && (
-                        <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[9px] font-semibold tracking-[0.18em] uppercase text-[#52C0E1]">
-                          {pub.tag}
-                        </span>
-                      )}
-
-                      <p className="mt-2.5 text-[13px] font-semibold leading-snug text-white">
-                        {pub.fullTitle}
-                      </p>
-
-                      <div className="mt-1.5 flex items-center gap-1.5 text-[10.5px] text-white/60">
-                        <FileText className="h-3 w-3" />
-                        <span>{pub.pages}</span>
-                      </div>
-                    </div>
-
-                    {pub.authors && (
-                      <div className="border-t border-white/10 px-5 py-4">
-                        <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
-                          Autores
-                        </p>
-
-                        <div className="mt-2 space-y-1">
-                          {pub.authors.split(',').map((author, index) => (
-                            <p
-                              key={index}
-                              className="text-[11.5px] font-light leading-[1.45] text-white/85"
-                            >
-                              {author.trim()}
-                            </p>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-              
             </a>
           ))}
         </motion.div>
       </div>
+
+      {/* Tooltip portaled — fuera del marquee transformado para que el backdrop-blur funcione */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {activePub && tooltipPos && (
+              <motion.div
+                initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  position: 'fixed',
+                  left: tooltipPos.x,
+                  top: tooltipPos.y,
+                  transform: 'translate(-50%, calc(-100% - 12px))',
+                }}
+                className="
+                  pointer-events-none z-[9999]
+                  w-[360px] overflow-hidden rounded-2xl
+                  border border-white/15
+                  bg-white/10 backdrop-blur-2xl
+                  shadow-[0_12px_40px_rgba(0,0,0,0.45)]
+                "
+              >
+                <div className="px-5 pt-5 pb-4">
+                  <p className="mt-2.5 text-[13px] font-semibold leading-snug text-white">
+                    {activePub.fullTitle}
+                  </p>
+                </div>
+
+                {activePub.authors && (
+                  <div className="border-t border-white/10 px-5 py-4">
+                    <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
+                      Autores
+                    </p>
+
+                    <div className="mt-2 space-y-1">
+                      {activePub.authors.split(',').map((author, index) => (
+                        <p
+                          key={index}
+                          className="text-[11.5px] font-light leading-[1.45] text-white/85"
+                        >
+                          {author.trim()}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
     </motion.div>
   )
 }
