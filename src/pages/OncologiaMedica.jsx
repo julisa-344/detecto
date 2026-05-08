@@ -287,122 +287,6 @@ function ServicesStrip() {
 
 /* ─── Main Page ──────────────────────────────────────────────────────────────── */
 
-function TipoCancerBullet({ idx, label, total, isActive }) {
-  return (
-    <li className="relative flex gap-4 py-8 transition-all duration-500">
-      <div className="relative flex flex-col items-center">
-        <span
-          className={`mt-1.5 h-2 w-2 rounded-full transition-all duration-500 ${
-            isActive ? 'scale-150 bg-[#0199C6] shadow-[0_0_0_5px_rgba(1,153,198,0.15)]' : 'bg-slate-300'
-          }`}
-        />
-        {idx < total - 1 && (
-          <span className="mt-2 h-full w-px bg-gradient-to-b from-slate-200 to-transparent" />
-        )}
-      </div>
-
-      <div className="flex-1 pb-1">
-        <p
-          className={`mb-1 text-[9px] font-semibold uppercase tracking-[0.3em] transition-colors duration-500 ${
-            isActive ? 'text-[#0199C6]' : 'text-slate-400'
-          }`}
-        >
-          {String(idx + 1).padStart(2, '0')}
-        </p>
-        <h3
-          className={`text-base font-light leading-snug tracking-tight transition-all duration-500 sm:text-lg ${
-            isActive ? 'text-[#0070A5]' : 'text-slate-400'
-          }`}
-        >
-          {label}
-        </h3>
-      </div>
-    </li>
-  )
-}
-
-function TiposCancerScrollSync() {
-  const [activeIdx, setActiveIdx] = useState(0)
-  const listRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: listRef,
-    offset: ['start 65%', 'end 35%'],
-  })
-
-  useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    const clamped = Math.min(0.999, Math.max(0, v))
-    const next = Math.floor(clamped * tiposCancer.length)
-    setActiveIdx(next)
-  })
-
-  return (
-    <section className="relative">
-      <div className="mb-12 max-w-2xl">
-        <SectionEyebrow>Tratamientos</SectionEyebrow>
-        <SectionTitle className="mb-3">
-          Tipos de cáncer que <span className="italic">tratamos</span>
-        </SectionTitle>
-        <p className="max-w-xl text-[15px] font-light leading-7 text-slate-400">
-          Abordamos distintas patologías oncológicas con protocolos actualizados
-          y atención personalizada para cada caso.
-        </p>
-      </div>
-
-      <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
-        {/* Columna izquierda: Detecto sin fondo, sin sombra */}
-        <div className="lg:sticky lg:top-[110px] lg:self-start">
-          <div className="relative aspect-square w-full">
-            <motion.img
-              src={detecto}
-              alt="Detecto"
-              animate={{ y: [0, -14, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative z-10 h-full w-full object-contain"
-            />
-
-            {/* Card flotante con tipo activo */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeIdx}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute bottom-2 left-2 right-2 z-20 flex items-center gap-3 rounded-2xl border border-white/70 bg-white/90 px-4 py-3 backdrop-blur"
-              >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0199C6] text-white">
-                  <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
-                    Tipo {String(activeIdx + 1).padStart(2, '0')}
-                  </p>
-                  <p className="mt-0.5 truncate text-[13px] font-medium text-slate-800">
-                    {tiposCancer[activeIdx]}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-
-        {/* Columna derecha: bullets scroll-synced */}
-        <ul ref={listRef} className="relative">
-          {tiposCancer.map((t, i) => (
-            <TipoCancerBullet
-              key={i}
-              idx={i}
-              label={t}
-              total={tiposCancer.length}
-              isActive={activeIdx === i}
-            />
-          ))}
-        </ul>
-      </div>
-    </section>
-  )
-}
-
 const SERVICIO_Y_OFFSETS = ['-22vh', '12vh', '-8vh', '18vh', '-18vh', '6vh', '-12vh']
 
 function ServiciosScrollSync() {
@@ -564,8 +448,34 @@ export default function OncologiaMedica() {
               </div>
             </motion.section>
 
-            {/* ── Tipos de cáncer — sticky image + scroll-synced bullets ── */}
-            <TiposCancerScrollSync />
+            {/* ── Tipos de cáncer ── */}
+            <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+              <SectionEyebrow>Tratamientos</SectionEyebrow>
+              <SectionTitle className="mb-3">Tipos de cáncer que tratamos</SectionTitle>
+              <p className="mb-10 max-w-xl text-[15px] font-light text-slate-400">
+                Abordamos un amplio espectro de patologías oncológicas con protocolos actualizados.
+              </p>
+
+              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {tiposCancer.map((t, i) => (
+                  <motion.div
+                    key={i}
+                    custom={i % 6}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="group flex cursor-pointer items-center justify-between rounded-xl border border-slate-100 bg-white px-5 py-4 transition-all duration-200 hover:border-[#0199C6]/30 hover:bg-blue-50/40 hover:shadow-sm"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#52C0E1]" />
+                      <span className="text-[13.5px] font-light text-slate-700">{t}</span>
+                    </div>
+                    <ArrowUpRight className="h-4 w-4 text-slate-200 transition-colors duration-200 group-hover:text-[#0199C6]" />
+                  </motion.div>
+                ))}
+              </div>
+            </motion.section>
 
             {/* ── Mision CTA — visual con video, "Tu salud, nuestra misión" ── */}
             <motion.section

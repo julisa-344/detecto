@@ -50,8 +50,8 @@ export default function FooterV4() {
           className="relative z-10 px-6 pb-24"
         >
           <h2 className="text-4xl md:text-7xl font-light text-[#0070A5] mb-8 tracking-tighter leading-none uppercase">
-            Toma el control de <br />
-            <span className="font-normal text-slate-900">tu salud hoy mismo.</span>
+            Prevenir <br />
+            <span className="font-normal text-slate-900">Es quererte.</span>
           </h2>
           <p className="text-base md:text-lg font-light text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed">
             Diagnósticos de precisión con tecnología de última generación y el respaldo de los mejores especialistas del país.
