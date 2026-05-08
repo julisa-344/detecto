@@ -332,34 +332,82 @@ export default function OncologiaMedica() {
               </div>
             </motion.section>
 
-            {/* ── Tipos de cáncer ── */}
-            <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <SectionEyebrow>Tratamientos</SectionEyebrow>
-              <SectionTitle className="mb-3">Tipos de cáncer que tratamos</SectionTitle>
-              <p className="mb-10 max-w-xl text-[15px] font-light text-slate-400">
-                Abordamos un amplio espectro de patologías oncológicas con protocolos actualizados.
-              </p>
+            {/* ── Tipos de cáncer — layout horizontal 2 columnas ── */}
+    <motion.section
+  variants={fadeUp}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+  className="relative"
+>
+  <div className="grid items-start gap-6 md:grid-cols-[0.82fr_1.18fr] md:gap-8">
+    {/* Bloque texto */}
+    <div className="relative overflow-hidden rounded-[34px] bg-[#F3F8FB] px-7 py-8 md:px-8 md:py-10">
+      <div className="pointer-events-none absolute -right-16 -top-16 h-44 w-44 rounded-full bg-[#C8EEF8]/45 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-20 -left-20 h-44 w-44 rounded-full bg-white/70 blur-3xl" />
 
-              <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-                {tiposCancer.map((t, i) => (
-                  <motion.div
-                    key={i}
-                    custom={i % 6}
-                    variants={fadeUp}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    className="group flex cursor-pointer items-center justify-between rounded-xl border border-slate-100 bg-white px-5 py-4 transition-all duration-200 hover:border-[#0199C6]/30 hover:bg-blue-50/40 hover:shadow-sm"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#52C0E1]" />
-                      <span className="text-[13.5px] font-light text-slate-700">{t}</span>
-                    </div>
-                    <ArrowUpRight className="h-4 w-4 text-slate-200 transition-colors duration-200 group-hover:text-[#0199C6]" />
-                  </motion.div>
-                ))}
-              </div>
-            </motion.section>
+      <div className="relative z-10">
+        <SectionEyebrow>Tratamientos</SectionEyebrow>
+
+        <h2 className="mt-5 max-w-sm text-[38px] font-light leading-[1.03] tracking-[-0.045em] text-slate-800 md:text-[46px]">
+          Tipos de cáncer que{" "}
+          <span className="italic text-[#0070A5]">tratamos</span>
+        </h2>
+
+        <p className="mt-6 max-w-sm text-[14.5px] font-light leading-7 text-slate-500">
+          Abordamos distintas patologías oncológicas con protocolos actualizados
+          y atención personalizada.
+        </p>
+      </div>
+    </div>
+
+    {/* Sistema de chips médicos */}
+    <div className="grid gap-3 sm:grid-cols-2">
+      {tiposCancer.map((t, i) => {
+        const isLast = i === tiposCancer.length - 1
+
+        return (
+          <motion.div
+            key={i}
+            custom={i}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className={`
+              group relative overflow-hidden rounded-[24px]
+              border border-slate-100/90 bg-white/90
+              px-5 py-4
+              shadow-[0_14px_34px_rgba(15,23,42,0.045)]
+              transition-all duration-300
+              hover:-translate-y-0.5
+              hover:border-[#52C0E1]/45
+              hover:bg-[#F3FBFE]
+              hover:shadow-[0_20px_50px_rgba(0,112,165,0.10)]
+              ${isLast ? "sm:col-span-2" : ""}
+            `}
+          >
+            {/* Glow interno sutil */}
+            <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-[#DDF4FA]/0 blur-2xl transition-all duration-300 group-hover:bg-[#DDF4FA]/80" />
+
+            {/* Línea superior médica */}
+            <div className="pointer-events-none absolute inset-x-5 top-0 h-px bg-gradient-to-r from-transparent via-[#52C0E1]/35 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+            <div className="relative z-10 flex min-h-[44px] items-center gap-3">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#EAF8FC] ring-1 ring-[#D5F1F8] transition-all duration-300 group-hover:bg-white group-hover:ring-[#52C0E1]/40">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#0199C6] shadow-[0_0_0_5px_rgba(82,192,225,0.13)]" />
+              </span>
+
+              <span className="text-[14px] font-light leading-snug tracking-[-0.01em] text-slate-700 transition-colors duration-300 group-hover:text-[#006B9A]">
+                {t}
+              </span>
+            </div>
+          </motion.div>
+        )
+      })}
+    </div>
+  </div>
+</motion.section>
 
             {/* ── Mision CTA — visual con video, "Tu salud, nuestra misión" ── */}
             <motion.section
