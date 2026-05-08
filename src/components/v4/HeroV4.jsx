@@ -120,8 +120,6 @@ function ResearchBar() {
       transition={{ duration: 0.6, delay: 0.4 }}
       className="mt-10 max-w-3xl"
     >
-
-
       <div
         className="relative rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25)] overflow-hidden"
         onMouseEnter={() => setPaused(true)}
