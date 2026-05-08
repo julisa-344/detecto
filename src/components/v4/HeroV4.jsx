@@ -11,6 +11,7 @@ import portada2 from '../../assets/portada2.webp'
 import portada3 from '../../assets/portada3.webp'
 import portada4 from '../../assets/portada4.webp'
 import portada5 from '../../assets/portada5.webp'
+import gaston from '../../assets/gaston.jpg'
 
 const publications = [
   {
@@ -19,6 +20,7 @@ const publications = [
     fullTitle: 'World Journal of Surgical Oncology',
     tag: 'Research / Open access',
     authors: 'Gastón Wilmer Mendoza De Lama, Nancy Elena Muñoz Quispe, Jorge Marcelo Aguilar Cosme, Samantha Mendoza, Renson Eduardo Hidalgo Ramos, Diana Díaz-Llontop, Richard Eduardo Castillo Laborio, Juan Manuel Trejo Mena, Enrique Oswaldo Bedoya Ismodes & Luis Taxa.',
+    lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
     link: 'https://link.springer.com/article/10.1186/s12957-025-04183-5',
     pages: '12 páginas',
     image: portada1,
@@ -29,6 +31,7 @@ const publications = [
     fullTitle: 'Tumori Journal',
     tag: 'Abstract Book / Supplement',
     authors: 'Autores del 18th Breast, Gynecological & Immunooncology International Cancer Conference (BGIICC 2026).',
+    lead: { name: 'BGIICC 2026', role: 'Conferencia internacional', photo: gaston},
     link: 'https://journals.sagepub.com/toc/tmja/112/1_suppl',
     pages: '8 páginas',
     image: portada2,
@@ -39,6 +42,7 @@ const publications = [
     fullTitle: 'European Journal of Cancer',
     tag: 'Conference Supplement',
     authors: 'Autores del 15th European Breast Cancer Conference (EBCC-15).',
+    lead: { name: 'EBCC-15', role: 'Conferencia europea', photo: gaston},
     link: 'https://www.ejcancer.com/issue/S0959-8049(26)X2004-4',
     pages: '157 páginas',
     image: portada3,
@@ -49,6 +53,7 @@ const publications = [
     fullTitle: 'Radiology and Oncology',
     tag: 'Article / Ahead of Print',
     authors: 'Gaston (Wilmer) Mendoza, Nancy Muñoz, Jorge Aguilar, Jorge Ayón, Diana Díaz-Llontop, Samantha Mendoza, Claudia Quiñones, Richard Castillo & Luis Taxa.',
+    lead: { name: 'Gastón Wilmer Mendoza', role: 'Investigador principal', photo: gaston},
     link: 'https://reference-global.com/article/10.2478/raon-2026-0018?tab=article',
     pages: '13 páginas',
     image: portada4,
@@ -59,11 +64,22 @@ const publications = [
     fullTitle: 'Clinical Research',
     tag: 'Journal Article',
     authors: 'Gastón Wilmer Mendoza De Lama (autor principal según el registro de la serie de investigaciones en Perú).',
+    lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
     link: 'https://journal.ppcr.org/index.php/ppcrjournal/article/view/433',
     pages: '2 páginas',
     image: portada5,
   },
 ]
+
+function getInitials(name = '') {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+    .toUpperCase()
+}
 
 const slides = [
   {
@@ -212,10 +228,30 @@ function ResearchBar() {
                   shadow-[0_12px_40px_rgba(0,0,0,0.45)]
                 "
               >
-                <div className="px-5 pt-5 pb-4">
-                  <p className="mt-2.5 text-[13px] font-semibold leading-snug text-white">
-                    {activePub.fullTitle}
-                  </p>
+                <div className="flex items-start gap-4 px-5 pt-5 pb-4">
+                  {activePub.lead && (
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-gradient-to-br from-[#0199C6]/40 to-[#52C0E1]/30 text-[12px] font-semibold tracking-wide text-white">
+                      {activePub.lead.photo ? (
+                        <img
+                          src={activePub.lead.photo}
+                          alt={activePub.lead.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        getInitials(activePub.lead.name)
+                      )}
+                    </span>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[13px] font-semibold leading-snug text-white">
+                      {activePub.fullTitle}
+                    </p>
+                    {activePub.lead && (
+                      <p className="mt-1.5 truncate text-[11.5px] font-light text-white/65">
+                        {activePub.lead.name}
+                      </p>
+                    )}
+                  </div>
                 </div>
 
                 {activePub.authors && (
