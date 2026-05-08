@@ -104,137 +104,78 @@ function CTAButton({ label = 'AGENDAR CITA' }) {
 /* ─── Quick Contact Sidebar ──────────────────────────────────────────────────── */
 
 function QuickContact() {
-  const [activeTab, setActiveTab] = useState('cita')
-
   const contactItems = [
-    { icon: MessageCircle, label: 'WhatsApp',    val: '+51 922 335 154', href: 'https://wa.me/51922335154', color: 'bg-emerald-50 text-emerald-600' },
-    { icon: Phone,          label: 'Teléfono',   val: '(01) 217 5100',   href: 'tel:+5112175100',          color: 'bg-blue-50 text-[#0199C6]' },
-    { icon: MapPin,         label: 'Sede',        val: 'Angamos 2688, Surquillo', href: '#',              color: 'bg-slate-100 text-slate-500' },
-  ]
-
-  const horarios = [
-    { day: 'Lun – Vie', hours: '8:00 am – 7:00 pm' },
-    { day: 'Sábado',    hours: '8:00 am – 1:00 pm' },
-    { day: 'Domingo',   hours: 'Emergencias' },
+    {
+      icon: MessageCircle,
+      label: 'WhatsApp',
+      val: '+51 922 335 154',
+      href: 'https://wa.me/51922335154',
+      accent: 'text-emerald-500',
+    },
+    {
+      icon: Phone,
+      label: 'Teléfono',
+      val: '(01) 217 5100',
+      href: 'tel:+5112175100',
+      accent: 'text-[#0199C6]',
+    },
+    {
+      icon: MapPin,
+      label: 'Sede',
+      val: 'Av. Angamos 2688, Surquillo',
+      href: '#',
+      accent: 'text-slate-500',
+    },
   ]
 
   return (
-    <aside className="rounded-[28px] overflow-hidden border border-slate-100 bg-white shadow-[0_8px_48px_-12px_rgba(0,112,165,0.18)]">
-
-      {/* Header strip */}
-      <div className="bg-gradient-to-br from-[#0070A5] to-[#0199C6] px-7 py-6">
-        <div className="flex items-center gap-3 mb-1">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20">
-            <Stethoscope className="h-4 w-4 text-white" />
-          </div>
-          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/70">Contacto rápido</p>
-        </div>
-        <p className="text-xl font-light text-white leading-snug">Agenda tu evaluación <span className="font-medium">hoy</span></p>
-
-        {/* Tabs */}
-        <div className="mt-5 flex gap-1 rounded-xl bg-white/10 p-1">
-          {[{ id: 'cita', label: 'Cita' }, { id: 'info', label: 'Info' }, { id: 'horarios', label: 'Horarios' }].map(tab => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 rounded-lg py-1.5 text-[10px] font-semibold tracking-wider transition-all duration-200 ${
-                activeTab === tab.id ? 'bg-white text-[#0070A5]' : 'text-white/70 hover:text-white'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+    <aside className="overflow-hidden rounded-[24px] border border-slate-100 bg-white shadow-[0_18px_50px_rgba(15,23,42,0.06)]">
+      {/* Header */}
+      <div className="relative overflow-hidden border-b border-slate-100 bg-gradient-to-br from-white via-[#F7FCFE] to-[#EEF9FC] px-6 py-6">
+        <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#0199C6]/10 blur-2xl" />
+        <div className="relative z-10">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
+            Contacto
+          </p>
+          <h3 className="mt-2 text-[20px] font-light leading-snug text-slate-900">
+            ¿Tienes dudas? <span className="font-medium text-[#0070A5]">Estamos aquí.</span>
+          </h3>
         </div>
       </div>
 
-      {/* Tab content */}
-      <div className="px-7 py-6">
-        <AnimatePresence mode="wait">
-
-          {/* TAB: Cita */}
-          {activeTab === 'cita' && (
-            <motion.div key="cita" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.22 }} className="space-y-3">
-              {contactItems.map((item, idx) => (
-                <a key={idx} href={item.href} className="group flex items-center gap-3.5 rounded-2xl border border-slate-50 bg-slate-50/60 p-3.5 transition-all hover:border-[#0199C6]/20 hover:bg-blue-50/40 hover:shadow-sm">
-                  <span className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl ${item.color}`}>
-                    <item.icon className="h-4 w-4" />
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <span className="block text-[9px] font-semibold uppercase tracking-widest text-slate-400">{item.label}</span>
-                    <span className="block truncate text-[13px] font-medium text-[#0070A5]">{item.val}</span>
-                  </div>
-                  <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-200 transition-colors group-hover:text-[#0199C6]" />
-                </a>
-              ))}
-
-              {/* Tip */}
-              <div className="mt-5 flex gap-3 rounded-2xl bg-blue-50/60 p-4">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#0199C6]" />
-                <p className="text-[12px] font-light leading-relaxed text-slate-500">
-                  Trae tus informes previos para agilizar el diagnóstico.
-                </p>
-              </div>
-
-              {/* CTA */}
-              <div className="mt-5">
-                <CTAButton label="AGENDAR CITA" />
-              </div>
-            </motion.div>
-          )}
-
-          {/* TAB: Info */}
-          {activeTab === 'info' && (
-            <motion.div key="info" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.22 }} className="space-y-4">
-              <p className="text-[13px] font-light leading-relaxed text-slate-500">
-                Somos un equipo de oncólogos médicos especializados en tratamiento sistémico. Atendemos con cobertura de seguros, EPS y de forma particular.
-              </p>
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  { value: '15+', label: 'Años de exp.' },
-                  { value: '98%', label: 'Pacientes satisfechos' },
-                  { value: '12', label: 'Tipos de cáncer' },
-                  { value: '3', label: 'Sedes disponibles' },
-                ].map((s, i) => (
-                  <div key={i} className="rounded-2xl bg-slate-50 p-4 text-center">
-                    <p className="text-2xl font-light text-[#0070A5]">{s.value}</p>
-                    <p className="mt-0.5 text-[10px] font-medium uppercase tracking-wider text-slate-400">{s.label}</p>
-                  </div>
-                ))}
-              </div>
-              <div className="flex gap-2 rounded-2xl bg-amber-50 p-4">
-                <Star className="mt-0.5 h-4 w-4 shrink-0 text-amber-400 fill-amber-400" />
-                <p className="text-[12px] font-light leading-relaxed text-slate-500">Trabajamos con las principales EPS y aseguradoras del país.</p>
-              </div>
-            </motion.div>
-          )}
-
-          {/* TAB: Horarios */}
-          {activeTab === 'horarios' && (
-            <motion.div key="horarios" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.22 }} className="space-y-3">
-              {horarios.map((h, i) => (
-                <div key={i} className="flex items-center justify-between rounded-2xl border border-slate-50 bg-slate-50/70 px-4 py-3.5">
-                  <div className="flex items-center gap-3">
-                    <span className={`h-2 w-2 rounded-full ${i < 2 ? 'bg-emerald-400' : 'bg-amber-400'}`} />
-                    <span className="text-[13px] font-medium text-slate-700">{h.day}</span>
-                  </div>
-                  <span className="text-[12px] font-light text-slate-500">{h.hours}</span>
-                </div>
-              ))}
-              <div className="mt-5 flex gap-3 rounded-2xl bg-slate-50 p-4">
-                <Calendar className="mt-0.5 h-4 w-4 shrink-0 text-[#0199C6]" />
-                <p className="text-[12px] font-light leading-relaxed text-slate-500">Agenda con anticipación para garantizar disponibilidad con tu médico.</p>
-              </div>
-              <div className="mt-2">
-                <a href="https://wa.me/51922335154" className="flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 py-3.5 text-[11px] font-semibold tracking-wider text-white transition-colors hover:bg-emerald-600">
-                  <MessageCircle className="h-4 w-4" />
-                  ESCRIBIR POR WHATSAPP
-                </a>
-              </div>
-            </motion.div>
-          )}
-
-        </AnimatePresence>
+      {/* Datos de contacto */}
+      <div className="px-2 py-2">
+        {contactItems.map((item, idx) => (
+          <motion.a
+            key={idx}
+            href={item.href}
+            initial={{ opacity: 0, x: -8 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.35, delay: idx * 0.06 }}
+            className="group flex items-center gap-4 rounded-2xl px-4 py-4 transition-all duration-300 hover:bg-[#F7FCFE]"
+          >
+            <span className={`shrink-0 ${item.accent}`}>
+              <item.icon className="h-[18px] w-[18px]" strokeWidth={1.6} />
+            </span>
+            <div className="min-w-0 flex-1">
+              <span className="block text-[9px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+                {item.label}
+              </span>
+              <span className="mt-0.5 block truncate text-[13.5px] font-medium text-slate-800">
+                {item.val}
+              </span>
+            </div>
+            <ArrowUpRight className="h-3.5 w-3.5 shrink-0 text-slate-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-[#0199C6]" />
+          </motion.a>
+        ))}
       </div>
+
+      {/* CTA */}
+      <div className="border-t border-slate-100 px-5 pb-5 pt-5">
+        <CTAButton label="AGENDAR CITA" />
+      </div>
+
     </aside>
   )
 }
@@ -275,7 +216,7 @@ function FaqItem({ q, a, defaultOpen = false }) {
 
 function Hero() {
   return (
-    <section className="relative flex min-h-[88vh] items-end overflow-hidden bg-slate-950 pb-20 pt-24 lg:items-center lg:pb-0 lg:pt-20">
+    <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-slate-950 pb-20 pt-24 lg:items-center lg:pb-0 lg:pt-20">
       <video muted loop autoPlay playsInline className="absolute inset-0 h-full w-full object-cover opacity-55">
         <source src={heroVideo} type="video/mp4" />
       </video>
@@ -286,7 +227,6 @@ function Hero() {
 
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 py-20 lg:py-28">
         <motion.div variants={fadeUp} initial="hidden" animate="visible" className="max-w-2xl space-y-6">
-          <SectionEyebrow light>Oncología Médica</SectionEyebrow>
 
           <h1 className="text-5xl font-extralight leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
             Diagnóstico y{' '}
@@ -421,15 +361,90 @@ export default function OncologiaMedica() {
               </div>
             </motion.section>
 
-            {/* ── Servicios completos ── */}
-            <motion.section variants={fadeUp} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-              <SectionEyebrow>Servicios</SectionEyebrow>
-              <SectionTitle className="mb-3">Lo que ofrecemos</SectionTitle>
-              <p className="mb-10 max-w-xl text-[15px] font-light text-slate-400">
-                Un ecosistema completo de atención oncológica bajo un mismo techo.
-              </p>
+            {/* ── Mision CTA — visual con video, "Tu salud, nuestra misión" ── */}
+            <motion.section
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="relative -mx-6 overflow-hidden rounded-none sm:mx-0 sm:rounded-[32px]"
+            >
+              <div className="relative isolate min-h-[460px] overflow-hidden bg-slate-950 sm:rounded-[32px]">
+                <video
+                  muted
+                  loop
+                  autoPlay
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover opacity-50"
+                >
+                  <source src={heroVideo} type="video/mp4" />
+                </video>
 
-              <div className="space-y-2.5">
+                {/* Gradients */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#003F5C]/85 via-[#0070A5]/55 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+
+                {/* Orb decorativo animado */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-gradient-to-br from-[#52C0E1]/30 to-transparent blur-3xl"
+                />
+
+                {/* Líneas decorativas animadas */}
+                <motion.span
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute left-10 top-10 h-px w-24 origin-left bg-[#52C0E1]/60"
+                />
+
+                <div className="relative z-10 flex min-h-[460px] flex-col justify-between p-8 sm:p-12 lg:p-14">
+                  <SectionEyebrow light>Nuestro compromiso</SectionEyebrow>
+
+                  <div className="max-w-xl">
+                    <h3 className="text-4xl font-extralight leading-[1.05] tracking-tight text-white sm:text-5xl">
+                      Tu salud,<br />
+                      <span className="italic font-light text-[#52C0E1]">nuestra misión.</span>
+                    </h3>
+
+                    <p className="mt-5 max-w-md text-[14px] font-light leading-7 text-white/70 sm:text-[15px]">
+                      Combinamos ciencia, tecnología y humanidad para acompañarte en cada etapa del
+                      tratamiento oncológico. Da el primer paso hacia tu recuperación hoy mismo.
+                    </p>
+
+                    <div className="mt-8">
+                      <CTAButton label="AGENDAR CITA" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+
+            {/* ── Servicios completos ── */}
+            <motion.section
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <div className="mb-8 max-w-2xl">
+                <SectionEyebrow>Servicios</SectionEyebrow>
+
+                <SectionTitle className="mb-3">
+                  Lo que ofrecemos
+                </SectionTitle>
+
+                <p className="max-w-xl text-[15px] font-light leading-7 text-slate-400">
+                  Un ecosistema completo de atención oncológica bajo un mismo techo.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {servicios.map((s, i) => (
                   <motion.div
                     key={i}
@@ -438,13 +453,33 @@ export default function OncologiaMedica() {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    className="group flex items-center gap-4 rounded-2xl border border-slate-100 bg-white px-6 py-4.5 py-[18px] transition-all duration-200 hover:border-[#0199C6]/20 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-white hover:shadow-sm"
+                    className="group relative overflow-hidden rounded-[22px] border border-slate-100 bg-white px-5 py-4 shadow-[0_10px_30px_rgba(15,23,42,0.04)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#0199C6]/25 hover:shadow-[0_16px_40px_rgba(1,153,198,0.10)]"
                   >
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-[#0199C6] transition-colors duration-200 group-hover:bg-[#0199C6] group-hover:text-white">
-                      <s.icon className="h-[17px] w-[17px]" />
+                    {/* Glow sutil */}
+                    <div className="pointer-events-none absolute -right-10 -top-10 h-28 w-28 rounded-full bg-[#0199C6]/8 blur-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                    <div className="relative z-10 flex items-center gap-4">
+                      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#EAF8FC] text-[#0199C6] transition-all duration-300 group-hover:bg-[#0199C6] group-hover:text-white group-hover:shadow-[0_10px_24px_rgba(1,153,198,0.22)]">
+                        <s.icon className="h-[18px] w-[18px]" />
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <div className="mb-1 flex items-center gap-2">
+                          <span className="text-[11px] font-medium tracking-[0.14em] text-[#0199C6]/60">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          <span className="h-px flex-1 bg-slate-100" />
+                        </div>
+
+                        <h3 className="text-[14px] font-light leading-5 text-slate-700 transition-colors duration-300 group-hover:text-slate-950">
+                          {s.title}
+                        </h3>
+                      </div>
+
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-50 text-slate-300 transition-all duration-300 group-hover:bg-[#0199C6] group-hover:text-white">
+                        <ArrowUpRight className="h-4 w-4" />
+                      </div>
                     </div>
-                    <span className="text-[14px] font-light text-slate-700">{s.title}</span>
-                    <ArrowUpRight className="ml-auto h-4 w-4 text-slate-200 transition-colors duration-200 group-hover:text-[#0199C6]" />
                   </motion.div>
                 ))}
               </div>
@@ -467,24 +502,9 @@ export default function OncologiaMedica() {
 
           </main>
 
-          {/* ── Sticky Sidebar ── */}
-          <aside className="hidden lg:block">
-            <div className="sticky top-[96px] space-y-4">
-              <QuickContact />
-
-              {/* Secondary card – location */}
-              <div className="rounded-[22px] border border-slate-100 bg-slate-50 p-6">
-                <div className="mb-4 flex items-center gap-2.5">
-                  <MapPin className="h-4 w-4 text-[#0199C6]" />
-                  <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-400">Nuestra sede</p>
-                </div>
-                <p className="text-[13px] font-medium text-[#0070A5]">Surquillo, Lima</p>
-                <p className="text-[13px] font-light text-slate-500">Av. Angamos Este 2688</p>
-                <a href="#" className="mt-4 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-[#0199C6] hover:underline">
-                  Ver en mapa <ArrowUpRight className="h-3 w-3" />
-                </a>
-              </div>
-            </div>
+          {/* ── Fixed sidebar (sticky dentro del grid → solo el main scrollea) ── */}
+          <aside className="hidden self-start lg:sticky lg:top-[96px] lg:block">
+            <QuickContact />
           </aside>
 
         </div>
