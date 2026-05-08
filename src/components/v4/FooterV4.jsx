@@ -54,7 +54,7 @@ export default function FooterV4() {
             <span className="font-normal text-slate-900">Es quererte.</span>
           </h2>
           <p className="text-base md:text-lg font-light text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed">
-            Diagnósticos de precisión con tecnología de última generación y el respaldo de los mejores especialistas del país.
+            Agenda tu chequeo preventivo y da el primer paso hacia una vida más tranquila.
           </p>
 
           <motion.div
