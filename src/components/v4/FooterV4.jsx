@@ -34,11 +34,12 @@ const socials = [
   { Icon: YoutubeIcon, label: 'YouTube', href: '#' },
 ];
 
-export default function FooterV4() {
+export default function FooterV4({ showCTA = true }) {
   return (
     <footer className="relative w-full overflow-hidden" style={{ fontFamily: 'Lexend, sans-serif' }}>
 
       {/* --- 1. CTA SUPERIOR: fondo blanco full-width con arco inferior --- */}
+      {showCTA && (
       <div className="relative w-full bg-white pb-0 text-center">
 
         {/* Contenido centrado */}
@@ -109,6 +110,7 @@ export default function FooterV4() {
           </svg>
         </div>
       </div>
+      )}
 
       {/* --- 2. SECCIÓN INFERIOR: gradiente + nav glass --- */}
       <div className="relative w-full bg-gradient-to-br from-[#EEFBFF] to-[#AFEAFC] px-6 lg:px-10 pb-24">
