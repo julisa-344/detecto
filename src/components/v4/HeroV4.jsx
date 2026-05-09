@@ -63,7 +63,7 @@ const publications = [
     title: 'Clinical Research',
     fullTitle: 'Clinical Research',
     tag: 'Journal Article',
-    authors: 'Gastón Wilmer Mendoza De Lama (autor principal según el registro de la serie de investigaciones en Perú).',
+    authors: 'Gastón Wilmer Mendoza De Lama.',
     lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
     link: 'https://journal.ppcr.org/index.php/ppcrjournal/article/view/433',
     pages: '2 páginas',
