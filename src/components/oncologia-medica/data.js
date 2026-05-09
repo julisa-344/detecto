@@ -34,11 +34,11 @@ export const highlights = [
 ]
 
 export const perfilPaciente = [
-  'Has sido diagnosticado con algún tipo de cáncer',
-  'Buscas una segunda opinión médica',
-  'Estás en tratamiento y deseas una evaluación integral',
-  'Tienes antecedentes familiares de cáncer y buscas asesoramiento',
-  'Necesitas seguimiento después del tratamiento oncológico',
+  'Cuentas con un diagnóstico y buscas claridad en los siguientes pasos',
+  'Necesitas la tranquilidad de una segunda opinión experta',
+  'Deseas un enfoque integral que cuide cada detalle de tu tratamiento actual',
+  'Buscas prevención y asesoría profesional por antecedentes familiares',
+  'Has concluido tu tratamiento y necesitas un seguimiento cercano y seguro',
 ]
 
 export const faqs = [

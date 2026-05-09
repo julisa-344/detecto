@@ -16,7 +16,7 @@ export default function QueEsOncologia() {
       <SectionEyebrow>Especialidad</SectionEyebrow>
       <SectionTitle className="mb-6">
         ¿Qué es la{' '}
-        <em className="not-italic font-light text-[#52C0E1]">oncología médica?</em>
+        <em className="not-italic font-medium text-[#52C0E1]">oncología médica?</em>
       </SectionTitle>
       <p className="mb-12 max-w-2xl text-base font-light leading-[1.8] text-slate-500 sm:text-[17px]">
         La oncología médica diagnostica, trata y controla el cáncer con medicamentos (quimioterapia, inmunoterapia, terapias dirigidas y hormonoterapia). Su objetivo es frenar o reducir el crecimiento tumoral, aliviar síntomas y mejorar la calidad de vida del paciente.
@@ -53,10 +53,9 @@ export default function QueEsOncologia() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mb-8 text-[15px] font-light text-slate-600"
+            className="mb-8 text-[20px] font-medium text-primary-dark"
           >
-            Esta especialidad es para ti si{' '}
-            <span className="font-medium text-[#0070A5]">te identificas con alguno de estos casos</span>
+            Estamos aquí para acompañarte en cada etapa:
           </motion.p>
 
           <ul className="relative space-y-5">
