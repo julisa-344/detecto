@@ -33,6 +33,14 @@ export const highlights = [
   { icon: Clock,       title: 'Atención oportuna',      text: 'Seguimiento continuo desde la primera evaluación.' },
 ]
 
+export const perfilPaciente = [
+  'Has sido diagnosticado con algún tipo de cáncer',
+  'Buscas una segunda opinión médica',
+  'Estás en tratamiento y deseas una evaluación integral',
+  'Tienes antecedentes familiares de cáncer y buscas asesoramiento',
+  'Necesitas seguimiento después del tratamiento oncológico',
+]
+
 export const faqs = [
   { q: '¿Me pueden tratar si ya estoy en tratamiento en otro lugar?', a: 'Sí, podemos ofrecer una segunda opinión o complementar tu tratamiento actual..' },
   { q: '¿Qué necesito para la primera consulta?', a: 'Lleva tus estudios más recientes. Nuestro equipo evaluará si necesitas análisis adicionales.' },
