@@ -137,11 +137,11 @@ export default function HeaderV3() {
           boxShadow: scrolled ? '0 8px 24px -12px rgba(15,23,42,0.12)' : 'none',
         }}
       >
-        <div className="max-w-[1400px] mx-auto px-6 lg:px-10 py-4">
+        <div className="max-w-350 mx-auto px-6 lg:px-10 py-4">
         <div className="flex items-center justify-between gap-4">
 
           {/* Logo */}
-          <a href="/v3" className="relative flex-shrink-0 h-9 w-[150px] transition-opacity hover:opacity-70 duration-300">
+          <a href="/v3" className="relative shrink-0 h-9 w-37.5 transition-opacity hover:opacity-70 duration-300">
             <img
               src={logoWhite}
               alt="Detecta Clínica"
@@ -245,11 +245,56 @@ export default function HeaderV3() {
                     border: '1px solid rgba(15,23,42,0.08)',
                   }}
                 >
-                  <a href="#comite" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-[#0070A5] hover:bg-slate-100/70 transition-colors">
+                  <a href="#comite" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Comité de ética
                   </a>
-                  <a href="#gestion" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-[#0070A5] hover:bg-slate-100/70 transition-colors">
+                  <a href="#gestion" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Gestión ética
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* Dropdown Laboratorio */}
+            <div className="relative">
+              <button
+                onClick={() => toggle('laboratorio')}
+                className={`px-4 py-1.5 text-[13px] font-light rounded-full transition-all duration-200 tracking-wide flex items-center gap-1 ${
+                  scrolled
+                    ? openMenu === 'laboratorio'
+                      ? 'bg-slate-900/10 text-slate-900'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-900/5'
+                    : openMenu === 'laboratorio'
+                      ? 'bg-white/15 text-white'
+                      : 'text-white/80 hover:text-white hover:bg-white/15'
+                }`}
+              >
+                Laboratorio
+                <svg
+                  className={`w-3 h-3 transition-transform ${openMenu === 'laboratorio' ? 'rotate-180' : ''}`}
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M3 4.5l3 3 3-3" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {openMenu === 'laboratorio' && (
+                <div
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 py-2 rounded-2xl overflow-hidden shadow-2xl"
+                  style={{
+                    background: 'rgba(255,255,255,0.95)',
+                    backdropFilter: 'blur(24px)',
+                    WebkitBackdropFilter: 'blur(24px)',
+                    border: '1px solid rgba(15,23,42,0.08)',
+                  }}
+                >
+                  <a href="login" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                    Laboratorio Clínico
+                  </a>
+                  <a href="login" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                    Laboratorio Patológico
                   </a>
                 </div>
               )}
@@ -258,7 +303,7 @@ export default function HeaderV3() {
             {/* Mega-menu Pacientes — light glass consistente con Ética */}
             {openMenu === 'pacientes' && (
               <div
-                className="fixed left-1/2 -translate-x-1/2 top-[80px] w-[min(1240px,calc(100vw-48px))] rounded-3xl overflow-hidden shadow-2xl"
+                className="fixed left-1/2 -translate-x-1/2 top-20 w-[min(1240px,calc(100vw-48px))] rounded-3xl overflow-hidden shadow-2xl"
                 style={{
                   background: 'rgba(255,255,255,0.95)',
                   backdropFilter: 'blur(24px)',
@@ -281,14 +326,14 @@ export default function HeaderV3() {
                             onClick={() => setActiveCategory(cat.id)}
                             className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm transition-all duration-200 ${
                               activeCategory === cat.id
-                                ? 'bg-slate-100 text-[#0070A5] font-medium'
+                                ? 'bg-slate-100 text-primary-medium font-medium'
                                 : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100/70'
                             }`}
                           >
                             <span>{cat.title}</span>
                             <ChevronRight
                               className={`w-4 h-4 transition-all ${
-                                activeCategory === cat.id ? 'text-[#0199C6] opacity-100' : 'text-slate-300 opacity-70'
+                                activeCategory === cat.id ? 'text-primary-medium opacity-100' : 'text-slate-300 opacity-70'
                               }`}
                             />
                           </button>
@@ -299,7 +344,7 @@ export default function HeaderV3() {
 
                   {/* Items de la categoría activa */}
                   <div className="p-8">
-                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-[#0199C6] mb-5">
+                    <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-primary-medium mb-5">
                       {activeCategoryData?.title}
                     </p>
                     <div className="grid grid-cols-2 gap-x-10 gap-y-3">
@@ -307,10 +352,10 @@ export default function HeaderV3() {
                         <a
                           key={item}
                           href="#"
-                          className="group flex items-center gap-3 text-sm text-slate-600 hover:text-[#0070A5] transition-colors duration-200"
+                          className="group flex items-center gap-3 text-sm text-slate-600 hover:text-primary-dark transition-colors duration-200"
                           onClick={() => setOpenMenu(null)}
                         >
-                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-[#0199C6] transition-colors" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-primary-medium transition-colors" />
                           {item}
                         </a>
                       ))}
@@ -349,7 +394,7 @@ export default function HeaderV3() {
                 AGENDAR CITA
               </span>
               <div
-                className="relative flex h-[44px] w-[44px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out"
+                className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out"
                 style={{
                   background: ctaHover
                     ? '#0F172A'

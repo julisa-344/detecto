@@ -120,7 +120,8 @@ const slides = [
 ]
 
 const INTERVAL = 7000
-const RESEARCH_INTERVAL = 9000
+const RESEARCH_INTERVAL = 12000
+const SLIDE3_INTERVAL = 10000
 
 const medicalTags = [
   'Detección Temprana', 'Oncología Clínica', 'Investigación',
@@ -189,9 +190,9 @@ function ResearchBar() {
                   setActiveIdx(i)
                 }
               }}
-              className="group relative flex items-center gap-3 pl-2 pr-4 py-2 rounded-xl whitespace-nowrap text-[11px] lg:text-xs font-light text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+              className="group relative flex items-center gap-4 pl-3 pr-5 py-3 rounded-xl whitespace-nowrap text-xs lg:text-sm font-light text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
             >
-              <span className="relative h-12 w-9 shrink-0 overflow-hidden rounded-[4px] ring-1 ring-white/20 shadow-md">
+              <span className="relative h-16 w-12 shrink-0 overflow-hidden rounded-sm ring-1 ring-white/20 shadow-md">
                 <img
                   src={pub.image}
                   alt=""
@@ -223,8 +224,8 @@ function ResearchBar() {
                   transform: 'translate(-50%, calc(-100% - 12px))',
                 }}
                 className="
-                  pointer-events-none z-[9999]
-                  w-[360px] overflow-hidden rounded-2xl
+                  pointer-events-none z-9999
+                  w-90 overflow-hidden rounded-2xl
                   border border-white/15
                   bg-white/10 backdrop-blur-2xl
                   shadow-[0_12px_40px_rgba(0,0,0,0.45)]
@@ -232,7 +233,7 @@ function ResearchBar() {
               >
                 <div className="flex items-start gap-4 px-5 pt-5 pb-4">
                   {activePub.lead && (
-                    <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-gradient-to-br from-[#0199C6]/40 to-[#52C0E1]/30 text-[12px] font-semibold tracking-wide text-white">
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-full border border-white/20 bg-linear-to-br from-primary-medium/40 to-primary/30 text-[12px] font-semibold tracking-wide text-white">
                       {activePub.lead.photo ? (
                         <img
                           src={activePub.lead.photo}
@@ -343,7 +344,11 @@ export default function HeroV4() {
     if (paused) return
     setProgress(0)
     startRef.current = performance.now()
-    const duration = slides[current].isResearch ? RESEARCH_INTERVAL : INTERVAL
+    const duration = slides[current].isResearch
+      ? RESEARCH_INTERVAL
+      : current === 2
+      ? SLIDE3_INTERVAL
+      : INTERVAL
 
     const tick = (now) => {
       const pct = Math.min((now - startRef.current) / duration, 1)
@@ -385,10 +390,10 @@ export default function HeroV4() {
 
       {/* Overlays */}
       <div className={`absolute inset-0 z-10 transition-colors duration-700 ${slide.isResearch ? 'bg-gray-950/65' : 'bg-gray-950/45'}`} />
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-gray-950/40 to-transparent z-10" />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-linear-to-t from-gray-950/40 to-transparent z-10" />
 
       {/* Contenido */}
-      <div className="relative z-20 flex-grow flex items-center">
+      <div className="relative z-20 grow flex items-center">
         <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
 
@@ -435,10 +440,10 @@ export default function HeroV4() {
                   className="hidden lg:flex items-center mt-10"
                 >
                   <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
-                    <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-[#52C0E1]/100 group-hover:bg-[#0070A5] group-hover:text-white backdrop-blur-md border border-[#52C0E1]/0">
+                    <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
                       {slide.isResearch ? 'VER INVESTIGACIONES' : 'AGENDAR CITA'}
                     </span>
-                    <div className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-[#52C0E1]/100 text-white group-hover:bg-[#0070A5] group-hover:text-white backdrop-blur-md border border-[#52C0E1]/0">
+                    <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-primary text-white group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
                       <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
                       <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
                     </div>

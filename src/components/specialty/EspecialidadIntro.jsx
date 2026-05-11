@@ -41,7 +41,7 @@ export default function EspecialidadIntro({
           <div className="absolute -inset-6 -z-10 rounded-[40px] bg-linear-to-br from-[rgb(var(--brand-base)/0.2)] via-[rgb(var(--brand-med)/0.1)] to-transparent blur-2xl" />
           <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-linear-to-br from-[rgb(var(--brand-base))] to-[rgb(var(--brand-med))] opacity-20 blur-xl" />
 
-          <div>
+          <div className='rounded-[40px] overflow-hidden'>
             <img src={image} alt={imageAlt} className="h-120 w-full object-cover" />
           </div>
         </motion.div>
@@ -74,8 +74,8 @@ export default function EspecialidadIntro({
                 className="group relative flex items-start gap-4"
               >
                 <span className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[rgb(var(--brand-base)/0.3)] bg-white shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:border-[rgb(var(--brand-med))] group-hover:shadow-md group-hover:shadow-[rgb(var(--brand-base)/0.3)]">
-                  <span className="absolute inset-1 rounded-full bg-gradient-to-br from-[rgb(var(--brand-base)/0.1)] to-[rgb(var(--brand-med)/0.1)] transition-opacity duration-300 group-hover:opacity-0" />
-                  <span className="absolute inset-0 rounded-full bg-gradient-to-br from-[rgb(var(--brand-base))] to-[rgb(var(--brand-med))] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span className="absolute inset-1 rounded-full bg-linear-to-br from-[rgb(var(--brand-base)/0.1)] to-[rgb(var(--brand-med)/0.1)] transition-opacity duration-300 group-hover:opacity-0" />
+                  <span className="absolute inset-0 rounded-full bg-linear-to-br from-[rgb(var(--brand-base))] to-[rgb(var(--brand-med))] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   <Check
                     className="relative h-4 w-4 text-[rgb(var(--brand-med))] transition-colors duration-300 group-hover:text-white"
                     strokeWidth={2.5}
@@ -86,7 +86,7 @@ export default function EspecialidadIntro({
                   <p className="text-[15px] font-light leading-relaxed text-slate-600 transition-colors duration-300 group-hover:text-[rgb(var(--brand-dark))]">
                     {item}
                   </p>
-                  <span className="mt-2 block h-px w-0 bg-gradient-to-r from-[rgb(var(--brand-base))] to-transparent transition-all duration-500 group-hover:w-full" />
+                  <span className="mt-2 block h-px w-0 bg-linear-to-r from-[rgb(var(--brand-base))] to-transparent transition-all duration-500 group-hover:w-full" />
                 </div>
               </motion.li>
             ))}
