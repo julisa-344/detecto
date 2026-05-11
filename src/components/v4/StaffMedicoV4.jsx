@@ -7,13 +7,28 @@ import doctor2 from '../../assets/doctor2.webp'
 import doctor3 from '../../assets/doctor3.webp'
 import doctor4 from '../../assets/doctor4.webp'
 import doctor5 from '../../assets/doctor5.webp'
+import samanthaMendoza from '../../assets/doctores/samanthamendozarivera1.webp'
+import nancyMunoz from '../../assets/doctores/nancymuñozquispe1.webp'
+import claudiaJimenez from '../../assets/doctores/claudiajimenezorozco1.webp'
+import franciscoBerrospi from '../../assets/doctores/franciscoberrospiespinoza1.webp'
+import luisOjeda from '../../assets/doctores/luisojedamedina1.webp'
+import jorgeCalderon from '../../assets/doctores/jorgecalderonmorales1.webp'
+
+const placeholderDesc = 'Especialista del staff médico de Detecta con amplia trayectoria clínica.'
+const placeholderReg = 'CMP 026465 / RNE 13976'
 
 const doctors = [
   { name: 'Dr. Nicanor Rodríguez Gutarra', specialty: 'Urología General y Oncológica', reg: 'CMP 025867 | RNE 027671', description: 'Pionero en cirugía robótica en el Perú. Referente en técnicas de mínima invasión.', image: doctor4, bg: '#0199C6' },
   { name: 'Dr. Alexis Alva Pinto', specialty: 'Urología Oncológica', reg: 'RNE 011507', description: 'Dedicado al diagnóstico y tratamiento de enfermedades prostáticas complejas.', image: doctor2, bg: '#0199C6' },
   { name: 'Dr. Gastón Mendoza de Lama', specialty: 'Cirugía Oncológica y Mastología', reg: 'CMP 25779 | RNE 11470', description: 'Especialista en tratamiento integral con énfasis en patologías mamarias.', image: doctor1, bg: '#0199C6' },
   { name: 'Dr. Victor Castro', specialty: 'Oncología Médica', reg: 'CMP 031518', description: 'Reconocido por su enfoque en personalización terapéutica e inmunoterapia.', image: doctor3, bg: '#0199C6' },
-  { name: 'Dr. Carlos Oleachea Matto', specialty: 'Cirugía de Cabeza y Cuello', reg: 'CMP 018493 | RNE 029918', description: 'Especialista en patologías complejas de alta precisión anatómica.', image: doctor5, bg: '#0199C6  ' },
+  { name: 'Dr. Carlos Oleachea Matto', specialty: 'Cirugía de Cabeza y Cuello', reg: 'CMP 018493 | RNE 029918', description: 'Especialista en patologías complejas de alta precisión anatómica.', image: doctor5, bg: '#0199C6' },
+  { name: 'Dra. Samantha Mendoza Rivera', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: samanthaMendoza, bg: '#0199C6' },
+  { name: 'Dra. Nancy Muñoz Quispe', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: nancyMunoz, bg: '#0199C6' },
+  { name: 'Dra. Claudia Jiménez Orozco', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: claudiaJimenez, bg: '#0199C6' },
+  { name: 'Dr. Francisco Berrospi Espinoza', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: franciscoBerrospi, bg: '#0199C6' },
+  { name: 'Dr. Luis Ojeda Medina', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: luisOjeda, bg: '#0199C6' },
+  { name: 'Dr. Jorge Calderón Morales', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: jorgeCalderon, bg: '#0199C6' },
 ]
 
 const N = doctors.length
@@ -185,14 +200,14 @@ export default function StaffMedicoV4() {
         {/* Navegación Inferior */}
         <div className="flex items-center justify-between mt-auto pb-12 w-full">
           <div className="flex items-center gap-5">
-            <span className="text-[10px] font-bold text-[#0070A5] tracking-[0.4em]">0{activeIndex + 1}</span>
+            <span className="text-[10px] font-bold text-[#0070A5] tracking-[0.4em]">{String(activeIndex + 1).padStart(2, '0')}</span>
             <div className="w-20 h-px bg-slate-100 relative">
               <motion.div
                 animate={{ width: `${((activeIndex + 1) / N) * 100}%` }}
                 className="absolute left-0 top-0 h-full bg-[#0070A5]"
               />
             </div>
-            <span className="text-[10px] font-bold text-slate-300 tracking-[0.4em]">0{N}</span>
+            <span className="text-[10px] font-bold text-slate-300 tracking-[0.4em]">{String(N).padStart(2, '0')}</span>
           </div>
 
           <div className="flex gap-2">

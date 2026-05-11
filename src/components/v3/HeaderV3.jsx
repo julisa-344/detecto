@@ -142,7 +142,7 @@ export default function HeaderV3() {
         <div className="flex items-center justify-between gap-4">
 
           {/* Logo */}
-          <a href="/v3" className="relative shrink-0 h-9 w-37.5 transition-opacity hover:opacity-70 duration-300">
+          <a href="/v4" className="relative shrink-0 h-9 w-37.5 transition-opacity hover:opacity-70 duration-300">
             <img
               src={logoWhite}
               alt="Detecta Clínica"
