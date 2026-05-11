@@ -1,8 +1,7 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import detecto from '../../assets/detecto.png'
-import SectionEyebrow from './SectionEyebrow'
-import SectionTitle from './SectionTitle'
+import { SectionEyebrow, SectionTitle } from '../specialty'
 import { servicios } from './data'
 
 const SERVICIO_Y_OFFSETS = ['-22vh', '12vh', '-8vh', '18vh', '-18vh', '6vh', '-12vh']
@@ -20,7 +19,7 @@ function ServiceProgressDot({ idx, total, progress }) {
   return (
     <motion.span
       style={{ opacity, scale }}
-      className="h-1.5 flex-1 rounded-full bg-[#0199C6]"
+      className="h-1.5 flex-1 rounded-full bg-[rgb(var(--brand-med))]"
     />
   )
 }
@@ -67,16 +66,16 @@ export default function ServiciosCarruselScroll() {
                 <div
                   key={i}
                   style={{ transform: `translateY(${SERVICIO_Y_OFFSETS[i]})` }}
-                  className="flex w-[34vw] shrink-0 items-center gap-4 rounded-2xl border border-white/60 bg-white/85 px-6 py-5 shadow-[0_18px_40px_-18px_rgba(1,153,198,0.3)] backdrop-blur-md"
+                  className="flex w-[34vw] shrink-0 items-center gap-4 rounded-2xl border border-white/60 bg-white/85 px-6 py-5 shadow-[0_18px_40px_-18px_rgb(var(--brand-med)/0.3)] backdrop-blur-md"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#0199C6] text-white">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[rgb(var(--brand-med))] text-white">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
+                    <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[rgb(var(--brand-med))]">
                       Servicio {String(i + 1).padStart(2, '0')}
                     </p>
-                    <h3 className="mt-1 text-lg font-light leading-tight tracking-tight text-[#0070A5] sm:text-xl">
+                    <h3 className="mt-1 text-lg font-light leading-tight tracking-tight text-[rgb(var(--brand-dark))] sm:text-xl">
                       {s.title}
                     </h3>
                   </div>

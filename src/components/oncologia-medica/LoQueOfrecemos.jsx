@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
-import SectionEyebrow from './SectionEyebrow'
-import SectionTitle from './SectionTitle'
+import { SectionEyebrow, SectionTitle } from '../specialty'
 import { servicios } from './data'
 
 export default function LoQueOfrecemos() {
@@ -27,29 +26,29 @@ export default function LoQueOfrecemos() {
               whileHover={{ y: -6 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative p-6 rounded-[20px] border bg-white transition-all duration-500 cursor-pointer overflow-hidden border-[#C0DDE5]/40 hover:border-[#52C0E1]/60 hover:shadow-[0_20px_40px_-15px_rgba(82,192,225,0.25)]"
+              className="group relative p-6 rounded-[20px] border bg-white transition-all duration-500 cursor-pointer overflow-hidden border-[rgb(var(--brand-base)/0.25)] hover:border-[rgb(var(--brand-base)/0.6)] hover:shadow-[0_20px_40px_-15px_rgb(var(--brand-base)/0.25)]"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+              <div className="absolute inset-0 bg-gradient-to-br from-[rgb(var(--brand-base)/0)] via-[rgb(var(--brand-base)/0.15)] to-[rgb(var(--brand-base)/0)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
 
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-8">
-                  <span className="text-[10px] font-mono font-medium transition-colors text-[#0199C6]/40 group-hover:text-[#0199C6]">
+                  <span className="text-[10px] font-mono font-medium transition-colors text-[rgb(var(--brand-med)/0.4)] group-hover:text-[rgb(var(--brand-med))]">
                     {id}
                   </span>
-                  <div className="p-3 rounded-2xl transition-all duration-500 bg-[#EEFBFF] text-[#0199C6] group-hover:bg-[#52C0E1] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#52C0E1]/30">
+                  <div className="p-3 rounded-2xl transition-all duration-500 bg-[var(--brand-bg-ultra)] text-[rgb(var(--brand-med))] group-hover:bg-[rgb(var(--brand-base))] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[rgb(var(--brand-base)/0.3)]">
                     <Icon className="w-5 h-5" />
                   </div>
                 </div>
 
-                <h3 className="text-base font-normal tracking-wide uppercase transition-colors text-[#0070A5] group-hover:text-[#0199C6]">
+                <h3 className="text-base font-normal tracking-wide uppercase transition-colors text-[rgb(var(--brand-dark))] group-hover:text-[rgb(var(--brand-med))]">
                   {s.title}
                 </h3>
 
                 <div className="mt-5 flex items-center gap-2">
-                  <span className="text-[9px] font-bold tracking-widest transition-colors text-[#52C0E1]/40 group-hover:text-[#52C0E1]">
+                  <span className="text-[9px] font-bold tracking-widest transition-colors text-[rgb(var(--brand-base)/0.4)] group-hover:text-[rgb(var(--brand-base))]">
                     SOLICITAR
                   </span>
-                  <div className="h-px transition-all duration-500 w-4 bg-[#52C0E1]/40 group-hover:w-8 group-hover:bg-[#52C0E1]" />
+                  <div className="h-px transition-all duration-500 w-4 bg-[rgb(var(--brand-base)/0.4)] group-hover:w-8 group-hover:bg-[rgb(var(--brand-base))]" />
                 </div>
               </div>
             </motion.div>
