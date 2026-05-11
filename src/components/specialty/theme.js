@@ -17,11 +17,11 @@ export const PINK_THEME = {
   base: '244 114 182',    // #F472B6
   med:  '233 30 140',     // #E91E8C
   dark: '194 24 91',      // #C2185B
-  bgSoftHex: '#FFF5FA',
-  bgUltraHex: '#FFF0F6',
+  bgSoftHex: '#FFFBFD',
+  bgUltraHex: '#FFF8FB',
   pageGradient:
-    'linear-gradient(180deg, #FFFFFF 0%, #FFF5FA 35%, #FFF0F6 70%, #FBE2EE 100%)',
-  fadeHex: '#fff1f7',
+    'linear-gradient(180deg, #FFFFFF 0%, #FFFCFD 40%, #FFF8FB 75%, #FFF2F7 100%)',
+  fadeHex: '#fff8fb',
 }
 
 export const fadeUp = {

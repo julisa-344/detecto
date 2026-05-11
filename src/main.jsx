@@ -10,6 +10,7 @@ import V4 from './pages/V4'
 import V5 from './pages/V5'
 import OncologiaMedica from './pages/OncologiaMedica'
 import PreventivoRosa from './pages/PreventivoRosa'
+import Login from './pages/Login'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -23,6 +24,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v5" element={<V5 />} />
         <Route path="/v4/oncologia-medica" element={<OncologiaMedica />} />
         <Route path="/v4/preventivo-rosa" element={<PreventivoRosa />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

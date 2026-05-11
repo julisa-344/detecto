@@ -30,7 +30,8 @@ const publications = [
     title: 'Tumori Journal',
     fullTitle: 'Tumori Journal',
     tag: 'Abstract Book / Supplement',
-    authors: 'Autores del 18th Breast, Gynecological & Immunooncology International Cancer Conference (BGIICC 2026).',
+    presentedAt: '18th Breast, Gynecological & Immunooncology International Cancer Conference (BGIICC 2026)',
+    authors: 'Gastón Wilmer Mendoza De Lama',
     lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
     link: 'https://journals.sagepub.com/toc/tmja/112/1_suppl',
     pages: '8 páginas',
@@ -41,7 +42,8 @@ const publications = [
     title: 'European J. of Cancer',
     fullTitle: 'European Journal of Cancer',
     tag: 'Conference Supplement',
-    authors: 'Autores del 15th European Breast Cancer Conference (EBCC-15).',
+    presentedAt: '15th European Breast Cancer Conference (EBCC-15)',
+    authors: 'Gastón Wilmer Mendoza De Lama',
     lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
     link: 'https://www.ejcancer.com/issue/S0959-8049(26)X2004-4',
     pages: '157 páginas',
@@ -83,6 +85,15 @@ function getInitials(name = '') {
 
 const slides = [
   {
+    video: heroVideo4,
+    label: 'Investigación Clínica',
+    headline: ['Innovación que marca', 'un hito en el Perú'],
+    highlight: 1,
+    sub: 'Nuestros estudios forman parte de publicaciones internacionales orientadas a mejorar la atención del paciente oncológico.',
+    cta: 'Ver todas las publicaciones',
+    isResearch: true,
+  },
+  {
     video: heroVideo1,
     label: 'Innovación Clínica',
     headline: ['Tecnología que', 'transforma', 'la medicina.'],
@@ -105,15 +116,6 @@ const slides = [
     highlight: 1,
     sub: 'Nuestros programas de screening preventivo identifican el cáncer en sus etapas más tratables.',
     cta: 'Conoce el programa',
-  },
-  {
-    video: heroVideo4,
-    label: 'Investigación Clínica',
-    headline: ['Innovación que marca', 'un hito en el Perú'],
-    highlight: 1,
-    sub: 'Nuestros estudios forman parte de publicaciones internacionales orientadas a mejorar la atención del paciente oncológico.',
-    cta: 'Ver todas las publicaciones',
-    isResearch: true,
   },
 ]
 
@@ -254,23 +256,55 @@ function ResearchBar() {
                   </div>
                 </div>
 
-                {activePub.authors && (
-                  <div className="border-t border-white/10 px-5 py-4">
-                    <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
-                      Autores
-                    </p>
-                    <div className="mt-2 space-y-1">
-                      {activePub.authors.split(',').map((author, index) => (
-                        <p
-                          key={index}
-                          className="text-[11.5px] font-light leading-[1.45] text-white/85"
-                        >
-                          {author.trim()}
-                        </p>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                {(() => {
+                  const list = (activePub.authors || '')
+                    .split(',')
+                    .map((a) => a.replace(/\.$/, '').trim())
+                    .filter(Boolean)
+                  const principal = list[0]
+                  const coautores = list.slice(1)
+                  return (
+                    <>
+                      {principal && (
+                        <div className="border-t border-white/10 px-5 py-4">
+                          <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
+                            Autor principal
+                          </p>
+                          <p className="mt-2 text-[11.5px] font-light leading-[1.45] text-white/85">
+                            {principal}
+                          </p>
+                        </div>
+                      )}
+                      {activePub.presentedAt && (
+                        <div className="border-t border-white/10 px-5 py-4">
+                          <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
+                            Presentado en
+                          </p>
+                          <p className="mt-2 text-[11.5px] font-light leading-[1.45] text-white/85">
+                            {activePub.presentedAt}
+                          </p>
+                        </div>
+                      )}
+                      {coautores.length > 0 && (
+                        <div className="border-t border-white/10 px-5 py-4">
+                          <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
+                            Coautores
+                          </p>
+                          <div className="mt-2 space-y-1">
+                            {coautores.map((author, index) => (
+                              <p
+                                key={index}
+                                className="text-[11.5px] font-light leading-[1.45] text-white/85"
+                              >
+                                {author}
+                              </p>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </>
+                  )
+                })()}
               </motion.div>
             )}
           </AnimatePresence>,
