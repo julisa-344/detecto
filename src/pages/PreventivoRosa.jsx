@@ -4,7 +4,7 @@ import WhatsAppButton from '../components/WhatsAppButton'
 
 import heroVideo from '../assets/preventivoRosaBanner.mp4'
 import quienesImg from '../assets/preventivoRosa.gif'
-import bannerImg from '../assets/preventivoRosa1.gif'
+import bannerImg from '../assets/preventivoRosa.jpg'
 import detecto from '../assets/DetectoPreventivoRosa.png'
 
 import {

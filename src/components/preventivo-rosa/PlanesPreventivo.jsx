@@ -40,7 +40,7 @@ export default function PlanesPreventivo() {
                 featured
                   ? {
                       background:
-                        'linear-gradient(135deg, rgb(var(--brand-med)) 0%, rgb(var(--brand-dark)) 100%)',
+                        'linear-gradient(160deg, #E5739A 0%, #C1436D 100%)',
                     }
                   : undefined
               }
@@ -49,10 +49,6 @@ export default function PlanesPreventivo() {
                 <>
                   <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/10 blur-2xl" />
                   <div className="pointer-events-none absolute -left-10 bottom-0 h-40 w-40 rounded-full bg-[rgb(var(--brand-base)/0.4)] blur-3xl" />
-                  <span className="absolute right-6 top-6 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white backdrop-blur-md">
-                    <Sparkles className="h-3 w-3" />
-                    Recomendado
-                  </span>
                 </>
               )}
 
@@ -110,7 +106,7 @@ export default function PlanesPreventivo() {
                     </li>
                   ))}
                 </ul>
-
+                
                 <div className="mt-8">
                   <CTAButton label="AGENDA HOY" />
                 </div>

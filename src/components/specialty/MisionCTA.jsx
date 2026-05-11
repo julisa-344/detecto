@@ -18,27 +18,27 @@ export default function MisionCTA({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true }}
-      className="relative -mx-6 overflow-hidden rounded-none sm:mx-0 sm:rounded-[32px]"
+      className="relative -mx-6 overflow-hidden rounded-none sm:mx-0 sm:rounded-4xl"
     >
-      <div className="relative isolate min-h-[460px] overflow-hidden bg-slate-900 sm:rounded-[32px]">
+      <div className="relative isolate min-h-115 overflow-hidden bg-slate-900 sm:rounded-4xl">
         <img
           src={image}
           alt={imageAlt}
           className="absolute inset-0 h-full w-full object-cover opacity-70"
         />
 
-        <div className="absolute inset-0 bg-gradient-to-br from-[rgb(var(--brand-dark)/0.3)] via-[rgb(var(--brand-med)/0.15)] to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-br from-[rgb(var(--brand-dark)/0.3)] via-[rgb(var(--brand-med)/0.15)] to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950/20 via-transparent to-transparent" />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="pointer-events-none absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-gradient-to-br from-[rgb(var(--brand-base)/0.2)] to-transparent blur-3xl"
+          className="pointer-events-none absolute -right-32 -top-32 h-105 w-105 rounded-full bg-linear-to-br from-[rgb(var(--brand-base)/0.2)] to-transparent blur-3xl"
         />
 
-        <div className="relative z-10 flex min-h-[460px] flex-col justify-between p-8 sm:p-12 lg:p-14">
+        <div className="relative z-10 flex min-h-115 flex-col justify-between p-8 sm:p-12 lg:p-14">
           <SectionEyebrow light>{eyebrow}</SectionEyebrow>
 
           <div className="max-w-xl">

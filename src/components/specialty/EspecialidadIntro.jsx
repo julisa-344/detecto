@@ -38,12 +38,11 @@ export default function EspecialidadIntro({
           viewport={{ once: true }}
           className="relative"
         >
-          <div className="absolute -inset-6 -z-10 rounded-[40px] bg-gradient-to-br from-[rgb(var(--brand-base)/0.2)] via-[rgb(var(--brand-med)/0.1)] to-transparent blur-2xl" />
-          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-gradient-to-br from-[rgb(var(--brand-base))] to-[rgb(var(--brand-med))] opacity-20 blur-xl" />
+          <div className="absolute -inset-6 -z-10 rounded-[40px] bg-linear-to-br from-[rgb(var(--brand-base)/0.2)] via-[rgb(var(--brand-med)/0.1)] to-transparent blur-2xl" />
+          <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-linear-to-br from-[rgb(var(--brand-base))] to-[rgb(var(--brand-med))] opacity-20 blur-xl" />
 
-          <div className="relative overflow-hidden rounded-[32px] border border-white/60 bg-white shadow-xl shadow-blue-900/5">
-            <img src={image} alt={imageAlt} className="h-[480px] w-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[rgb(var(--brand-dark)/0.3)] via-transparent to-transparent" />
+          <div>
+            <img src={image} alt={imageAlt} className="h-120 w-full object-cover" />
           </div>
         </motion.div>
 
@@ -61,7 +60,7 @@ export default function EspecialidadIntro({
           <ul className="relative space-y-5">
             <span
               aria-hidden
-              className="absolute left-[19px] top-3 bottom-3 w-px bg-gradient-to-b from-[rgb(var(--brand-base)/0.6)] via-[rgb(var(--brand-med)/0.3)] to-transparent"
+              className="absolute left-4.75 top-3 bottom-3 w-px bg-linear-to-b from-[rgb(var(--brand-base)/0.6)] via-[rgb(var(--brand-med)/0.3)] to-transparent"
             />
 
             {items.map((item, i) => (

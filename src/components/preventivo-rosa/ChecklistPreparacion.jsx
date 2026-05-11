@@ -53,7 +53,7 @@ export default function ChecklistPreparacion() {
           className="relative overflow-hidden rounded-[28px] border border-white/30 p-8 text-white shadow-[0_22px_60px_-20px_rgb(var(--brand-med)/0.4)]"
           style={{
             background:
-              'linear-gradient(140deg, rgb(var(--brand-med)) 0%, rgb(var(--brand-dark)) 100%)',
+              'linear-gradient(160deg, #E5739A 0%, #C1436D 100%)',
           }}
         >
           <div className="pointer-events-none absolute -right-10 -bottom-10 h-44 w-44 rounded-full bg-white/10 blur-2xl" />
