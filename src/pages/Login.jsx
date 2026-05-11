@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, User, Lock, Eye, EyeOff, FileText } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import heroVideo from '../assets/herobg.mp4'
+import heroVideo from '../assets/login.mp4'
 import logoWhite from '../assets/LogoDetectaHorizontalblanco.png'
-import detecto from '../assets/detecto.png'
+import detecto from '../assets/detectoLaboratorio.png'
 
 export default function Login() {
   const [dni, setDni] = useState('')
@@ -59,20 +59,33 @@ export default function Login() {
           className="hidden lg:flex flex-col items-start"
         >
           <h1 className="text-5xl xl:text-6xl font-extralight text-white leading-[1.05] tracking-tight">
-            Tus resultados médicos<br />
-            <span className="font-light text-primary">siempre a tu alcance</span>
+            Tus resultados<br />
+            <span className="font-medium text-primary">siempre al alcance</span>
           </h1>
           <p className="mt-6 text-base text-white/60 font-light max-w-md leading-relaxed">
             Consulta tus exámenes, imágenes e informes clínicos en línea, de forma segura y en cualquier momento.
           </p>
-          <motion.img
-            src={detecto}
-            alt="Detecto"
-            initial={{ y: 0 }}
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="mt-8 w-72 xl:w-80 drop-shadow-[0_20px_40px_rgba(82,192,225,0.35)]"
-          />
+          {/* Mascota integrada */}
+          <div className="relative mt-10 w-80 xl:w-96">
+            {/* Halo radial detrás */}
+            <div className="pointer-events-none absolute inset-0 -translate-y-6 bg-[radial-gradient(circle_at_center,rgba(82,192,225,0.35)_0%,rgba(82,192,225,0.12)_40%,transparent_70%)] blur-2xl" />
+
+
+            <motion.img
+              src={detecto}
+              alt="Detecto"
+              initial={{ y: 0 }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative w-full drop-shadow-[0_30px_30px_rgba(0,0,0,0.55)]"
+            />
+            {/* Sombra/charco bajo la mascota */}
+            <motion.div
+              animate={{ scaleX: [1, 0.85, 1], opacity: [0.55, 0.3, 0.55] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+              className="pointer-events-none absolute left-1/2 -bottom-1 h-3 w-44 -translate-x-1/2 rounded-full bg-black/60 blur-md"
+            />
+          </div>
         </motion.div>
 
         {/* Card glass */}
@@ -98,9 +111,9 @@ export default function Login() {
 
             <div className="relative">
               {/* Logo dentro del card */}
-              <div className="flex justify-center mb-6">
+              <div className="flex justify-start mb-6">
                 <Link to="/v4">
-                  <img src={logoWhite} alt="Detecta Clínica" className="h-12" />
+                  <img src={logoWhite} alt="Detecta Clínica" className="h-8" />
                 </Link>
               </div>
 
