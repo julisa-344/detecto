@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Plus } from 'lucide-react'
 import doctor1 from '../../assets/doctor1.webp'
@@ -6,6 +7,29 @@ import doctor2 from '../../assets/doctor2.webp'
 import doctor3 from '../../assets/doctor3.webp'
 import doctor4 from '../../assets/doctor4.webp'
 import doctor5 from '../../assets/doctor5.webp'
+import abrahamAlvarado from '../../assets/doctores/abrahamalvaradohinojosa1.webp'
+import adolfoBoada from '../../assets/doctores/adolfoboada1.webp'
+import alejandroCantella from '../../assets/doctores/alejandrocantella1.webp'
+import amadoQuiroz from '../../assets/doctores/amadoquirozsanchez1.webp'
+import carlaBecerra from '../../assets/doctores/carlabecerravaldes1.webp'
+import carlosAguirre from '../../assets/doctores/carlosaguirremasson1.webp'
+import carlosLuque from '../../assets/doctores/carlosluquevasquez1.webp'
+import carlosMares from '../../assets/doctores/carlosmaresmorote1.webp'
+import carlosMorante from '../../assets/doctores/carlosmorantedeza1.webp'
+import carlosPrada from '../../assets/doctores/carlospradamedina1.webp'
+import carlosVelasquez from '../../assets/doctores/carlosvelasquezhawkins1.webp'
+import cesarBustamante from '../../assets/doctores/cesarbustamentemejia1.webp'
+import claudiaJimenez from '../../assets/doctores/claudiajimenezorozco1.webp'
+import danielValdivia from '../../assets/doctores/danielvaldivialeonardo1.webp'
+import edgardoGranda from '../../assets/doctores/edgardograndachaupis1.webp'
+import fernandoQuiroa from '../../assets/doctores/fernandoquiroavera1.webp'
+import franciscoBerrospi from '../../assets/doctores/franciscoberrospiespinoza1.webp'
+import gildaMancini from '../../assets/doctores/gildamancinigarcía1.webp'
+import giovanniLuna from '../../assets/doctores/giovannilunasánchez1.webp'
+import gloriaParedes from '../../assets/doctores/gloriaparedesguerra1.webp'
+
+const placeholderDesc = 'Especialista del staff médico de Detecta con amplia trayectoria clínica.'
+const placeholderReg = 'CMP 000000 | RNE 000000'
 
 const doctors = [
   { name: 'Dr. Nicanor Rodríguez Gutarra', specialty: 'Urología General y Oncológica', reg: 'CMP 025867 | RNE 027671', description: 'Pionero en cirugía robótica en el Perú. Referente en técnicas de mínima invasión.', image: doctor4, bg: '#F0F9FF' },
@@ -13,6 +37,26 @@ const doctors = [
   { name: 'Dr. Gastón Mendoza de Lama', specialty: 'Cirugía Oncológica y Mastología', reg: 'CMP 25779 | RNE 11470', description: 'Especialista en tratamiento integral con énfasis en patologías mamarias.', image: doctor1, bg: '#E0F2FE' },
   { name: 'Dr. Victor Castro', specialty: 'Oncología Médica', reg: 'CMP 031518', description: 'Reconocido por su enfoque en personalización terapéutica e inmunoterapia.', image: doctor3, bg: '#E0F2FE' },
   { name: 'Dr. Carlos Oleachea Matto', specialty: 'Cirugía de Cabeza y Cuello', reg: 'CMP 018493 | RNE 029918', description: 'Especialista en patologías complejas de alta precisión anatómica.', image: doctor5, bg: '#E0F2FE' },
+  { name: 'Dr. Abraham Alvarado Hinojosa', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: abrahamAlvarado, bg: '#F0F9FF' },
+  { name: 'Dr. Adolfo Boada', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: adolfoBoada, bg: '#E0F2FE' },
+  { name: 'Dr. Alejandro Cantella', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: alejandroCantella, bg: '#F0F9FF' },
+  { name: 'Dr. Amado Quiroz Sánchez', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: amadoQuiroz, bg: '#E0F2FE' },
+  { name: 'Dra. Carla Becerra Valdés', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: carlaBecerra, bg: '#F0F9FF' },
+  { name: 'Dr. Carlos Aguirre Masson', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: carlosAguirre, bg: '#E0F2FE' },
+  { name: 'Dr. Carlos Luque Vásquez', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: carlosLuque, bg: '#F0F9FF' },
+  { name: 'Dr. Carlos Mares Morote', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: carlosMares, bg: '#E0F2FE' },
+  { name: 'Dr. Carlos Morante Deza', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: carlosMorante, bg: '#F0F9FF' },
+  { name: 'Dr. Carlos Prada Medina', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: carlosPrada, bg: '#E0F2FE' },
+  { name: 'Dr. Carlos Velásquez Hawkins', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: carlosVelasquez, bg: '#F0F9FF' },
+  { name: 'Dr. César Bustamante Mejía', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: cesarBustamante, bg: '#E0F2FE' },
+  { name: 'Dra. Claudia Jiménez Orozco', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: claudiaJimenez, bg: '#F0F9FF' },
+  { name: 'Dr. Daniel Valdivia Leonardo', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: danielValdivia, bg: '#E0F2FE' },
+  { name: 'Dr. Edgardo Granda Chaupis', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: edgardoGranda, bg: '#F0F9FF' },
+  { name: 'Dr. Fernando Quiroa Vera', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: fernandoQuiroa, bg: '#E0F2FE' },
+  { name: 'Dr. Francisco Berrospi Espinoza', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: franciscoBerrospi, bg: '#F0F9FF' },
+  { name: 'Dra. Gilda Mancini García', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: gildaMancini, bg: '#E0F2FE' },
+  { name: 'Dr. Giovanni Luna Sánchez', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: giovanniLuna, bg: '#F0F9FF' },
+  { name: 'Dra. Gloria Paredes Guerra', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: gloriaParedes, bg: '#E0F2FE' },
 ]
 
 const N = doctors.length
@@ -70,7 +114,7 @@ export default function StaffMedico() {
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
       <motion.div 
-        className="max-w-[1400px] mx-auto w-full h-full flex flex-col"
+        className="max-w-350 mx-auto w-full h-full flex flex-col"
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -81,16 +125,16 @@ export default function StaffMedico() {
             <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">NUESTRO STAFF</p>
             <h2 className="text-5xl lg:text-6xl font-light text-slate-900 tracking-tighter leading-[1.0]">
               Especialistas de <br />
-              <span className="italic text-[#0070A5]">clase mundial.</span>
+              <span className="italic text-primary-dark ">clase mundial.</span>
             </h2>
           </div>
 
-          <button className="group flex items-center gap-3 text-[9px] font-bold tracking-[0.2em] text-[#0070A5] pt-2">
+          <Link to="/v4/staff-medico" className="group flex items-center gap-3 text-[9px] font-bold tracking-[0.2em] text-primary-dark pt-2">
             <span className="border-b border-transparent group-hover:border-[#0070A5] pb-1 transition-all">VER TODO EL STAFF</span>
             <div className="w-7 h-7 rounded-full bg-[#EEFBFF] flex items-center justify-center border border-[#C0DDE5]">
               <Plus className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform" />
             </div>
-          </button>
+          </Link>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-32 items-center flex-grow pb-4">
@@ -168,14 +212,14 @@ export default function StaffMedico() {
         {/* Navegación Inferior */}
         <div className="flex items-center justify-between mt-auto pb-12 w-full">
           <div className="flex items-center gap-5">
-            <span className="text-[10px] font-bold text-[#0070A5] tracking-[0.4em]">0{activeIndex + 1}</span>
+            <span className="text-[10px] font-bold text-[#0070A5] tracking-[0.4em]">{String(activeIndex + 1).padStart(2, '0')}</span>
             <div className="w-20 h-px bg-slate-100 relative">
               <motion.div
                 animate={{ width: `${((activeIndex + 1) / N) * 100}%` }}
                 className="absolute left-0 top-0 h-full bg-[#0070A5]"
               />
             </div>
-            <span className="text-[10px] font-bold text-slate-300 tracking-[0.4em]">0{N}</span>
+            <span className="text-[10px] font-bold text-slate-300 tracking-[0.4em]">{String(N).padStart(2, '0')}</span>
           </div>
 
           <div className="flex gap-2">

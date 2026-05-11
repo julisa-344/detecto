@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Plus } from 'lucide-react'
 import doctor1 from '../../assets/doctor1.webp'
@@ -101,12 +102,12 @@ export default function StaffMedicoV4() {
             </h2>
           </div>
 
-          <button className="group flex items-center gap-3 text-[9px] font-bold tracking-[0.2em] text-[#0070A5] pt-2">
+          <Link to="/v4/staff-medico" className="group flex items-center gap-3 text-[9px] font-bold tracking-[0.2em] text-primary-dark pt-2">
             <span className="border-b border-transparent group-hover:border-[#0070A5] pb-1 transition-all">VER TODO EL STAFF</span>
             <div className="w-7 h-7 rounded-full bg-[#EEFBFF] flex items-center justify-center border border-[#C0DDE5]">
               <Plus className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform" />
             </div>
-          </button>
+          </Link>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-32 items-center flex-grow pb-4">

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { ArrowUpRight, ChevronRight } from 'lucide-react'
 import logoWhite from '../../assets/LogoDetectaHorizontalblanco.png'
 import logoDark from '../../assets/logo.png'
@@ -196,19 +197,26 @@ export default function HeaderV3() {
               </button>
             </div>
 
-            {['Staff Médico', 'Investigación', 'Sobre Detecta'].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className={`px-4 py-1.5 text-[13px] font-light rounded-full transition-all duration-200 tracking-wide ${
-                  scrolled
-                    ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-900/5'
-                    : 'text-white/80 hover:text-white hover:bg-white/15'
-                }`}
-              >
-                {item}
-              </a>
-            ))}
+            {[
+              { label: 'Staff Médico', to: '/v4/staff-medico' },
+              { label: 'Investigación', to: '#' },
+              { label: 'Sobre Detecta', to: '#' },
+            ].map((item) => {
+              const className = `px-4 py-1.5 text-[13px] font-light rounded-full transition-all duration-200 tracking-wide ${
+                scrolled
+                  ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-900/5'
+                  : 'text-white/80 hover:text-white hover:bg-white/15'
+              }`
+              return item.to.startsWith('/') ? (
+                <Link key={item.label} to={item.to} className={className}>
+                  {item.label}
+                </Link>
+              ) : (
+                <a key={item.label} href={item.to} className={className}>
+                  {item.label}
+                </a>
+              )
+            })}
 
             {/* Dropdown Ética */}
             <div className="relative">
