@@ -13,6 +13,7 @@ import PreventivoRosa from './pages/PreventivoRosa'
 import StaffMedico from './pages/StaffMedico'
 import DoctorDetail from './pages/DoctorDetail'
 import SobreDetecta from './pages/SobreDetecta'
+import Dermatologia from './pages/Dermatologia'
 import Login from './pages/Login'
 
 createRoot(document.getElementById('root')).render(
@@ -30,6 +31,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/staff-medico" element={<StaffMedico />} />
         <Route path="/v4/staff-medico/:slug" element={<DoctorDetail />} />
         <Route path="/v4/sobre-detecta" element={<SobreDetecta />} />
+        <Route path="/v4/dermatologia" element={<Dermatologia />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

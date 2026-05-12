@@ -302,7 +302,7 @@ export default function HeaderV3() {
                     Laboratorio Clínico
                   </a>
                   <a href="login" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
-                    Laboratorio Patológico
+                    Anatomía Patológica
                   </a>
                 </div>
               )}
