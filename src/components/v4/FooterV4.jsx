@@ -50,12 +50,16 @@ export default function FooterV4({ showCTA = true }) {
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10 px-6 pb-24"
         >
-          <h2 className="text-4xl md:text-7xl font-light text-[#0070A5] mb-8 tracking-tighter leading-none uppercase">
-            Prevenir <br />
-            <span className="font-normal text-slate-900">Es quererte.</span>
+          <p className="text-[10px] md:text-[11px] font-semibold tracking-[0.4em] uppercase text-primary-medium mb-5">
+            Por eso no estás solo
+          </p>
+          <h2 className="text-4xl md:text-6xl font-light text-[#0070A5] mb-6 tracking-tighter leading-[1.05]">
+            Da el primer paso hacia un <br />
+            <span className="font-normal italic text-slate-900">diagnóstico claro.</span>
           </h2>
           <p className="text-base md:text-lg font-light text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed">
-            Agenda tu chequeo preventivo y da el primer paso hacia una vida más tranquila.
+            Agenda una cita con nuestros médicos y recibe un tratamiento preciso con
+            acompañamiento real.
           </p>
 
           <motion.div
@@ -76,7 +80,7 @@ export default function FooterV4({ showCTA = true }) {
                   zIndex: 1,
                 }}
               >
-                RESERVA TU CITA
+                AGENDAR CITA POR WHATSAPP
               </span>
               <div
                 className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-[#0070A5]/15 text-[#0070A5] group-hover:bg-[#0070A5] group-hover:text-white"
@@ -92,9 +96,9 @@ export default function FooterV4({ showCTA = true }) {
               </div>
             </button>
 
-            <button className="px-10 py-4 bg-slate-50 text-slate-600 border border-slate-200 font-medium rounded-full hover:bg-slate-100 transition-all active:scale-95 text-sm tracking-wide">
-              Hablar con un asesor
-            </button>
+            <a href="tel:+5112175100" className="px-10 py-4 bg-slate-50 text-slate-600 border border-slate-200 font-medium rounded-full hover:bg-slate-100 transition-all active:scale-95 text-sm tracking-wide inline-flex items-center">
+              Llamar al (01) 217 5100
+            </a>
           </motion.div>
         </motion.div>
 

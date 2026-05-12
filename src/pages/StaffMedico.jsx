@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, ArrowUpRight, ArrowDownAZ, ArrowUpAZ, ChevronDown, Check } from 'lucide-react'
 import HeaderV3 from '../components/v3/HeaderV3'
@@ -131,6 +132,7 @@ function CardClipDef() {
 function DoctorCard({ doctor, index }) {
   return (
     <motion.article
+      to={`/v4/staff-medico/${doctor.slug}`}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -160,23 +162,24 @@ function DoctorCard({ doctor, index }) {
         </div>
 
         {/* Botón en el notch (más pequeño) */}
-        <button
+        <Link
+          to={`/v4/staff-medico/${doctor.slug}`}
           aria-label={`Ver perfil de ${doctor.name}`}
           className="absolute bottom-[2%] right-[2%] flex h-[11%] w-[16%] items-center justify-center rounded-full bg-slate-900 text-white transition-all duration-300 hover:bg-[#0070A5] active:scale-95 cursor-pointer"
         >
           <ArrowUpRight className="h-4 w-4 lg:h-5 lg:w-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </button>
+        </Link>
       </div>
 
       {/* Información fuera de la card */}
-      <div className="mt-5 px-1">
-        <h3 className="text-base lg:text-lg font-normal text-slate-900 leading-tight tracking-tight">
+      <Link to={`/v4/staff-medico/${doctor.slug}`} className="block mt-5 px-1 group/info">
+        <h3 className="text-base lg:text-lg font-normal text-slate-900 leading-tight tracking-tight group-hover/info:text-primary-dark transition-colors">
           {doctor.name}
         </h3>
         <p className="mt-1.5 text-[10px] font-mono tracking-[0.18em] text-slate-500">
           {doctor.reg}
         </p>
-      </div>
+      </Link>
     </motion.article>
   )
 }

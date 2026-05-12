@@ -8,11 +8,53 @@ const img = (file) => images[`../assets/doctores/${file}`]
 
 const PLACEHOLDER_REG = 'CMP 026465 / RNE 13976'
 
-const D = (name, file, specialty = 'Oncología', reg = PLACEHOLDER_REG) => ({
+const PLACEHOLDER_BIO =
+  'Médico especialista con amplia trayectoria clínica, comprometido con la excelencia diagnóstica y el acompañamiento humano del paciente oncológico a lo largo de todo su tratamiento.'
+
+const PLACEHOLDER_AREAS = [
+  'Enfermedad de Reflujo Gastroesofágico',
+  'Esofagitis péptica',
+  'Esófago de Barrett',
+  'Diagnóstico de cáncer de esófago',
+  'Cáncer gástrico',
+  'Patología duodenal',
+  'Patología hepática',
+]
+
+const PLACEHOLDER_FORMACION = [
+  { title: 'Médico Cirujano', institucion: 'Universidad Nacional Mayor de San Marcos', pais: 'Perú', anio: '2005' },
+  { title: 'Especialidad en Oncología', institucion: 'Instituto Nacional de Enfermedades Neoplásicas', pais: 'Perú', anio: '2010' },
+  { title: 'Fellowship en Oncología Quirúrgica', institucion: 'MD Anderson Cancer Center', pais: 'Estados Unidos', anio: '2013' },
+]
+
+const PLACEHOLDER_INFO = {
+  tipoAtencion: 'Asegurados',
+  modalidad: 'Ambas',
+  trayectoriaInvestigacion: 'No registra trabajos de investigación.',
+  interesInvestigacion: 'Sí, desea recibir información del área de investigación.',
+}
+
+export function slugify(name) {
+  return name
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .replace(/^(Dr\.|Dra\.)\s*/i, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+const D = (name, file, specialty = 'Oncología', reg = PLACEHOLDER_REG, overrides = {}) => ({
   name,
   specialty,
   reg,
   image: img(file),
+  slug: slugify(name),
+  bio: PLACEHOLDER_BIO,
+  areas: PLACEHOLDER_AREAS,
+  formacion: PLACEHOLDER_FORMACION,
+  info: PLACEHOLDER_INFO,
+  ...overrides,
 })
 
 export const doctors = [
@@ -92,6 +134,10 @@ export const doctors = [
   D('Dr. Wilmer Calmet Berrocal', 'wilmercalmetberrocal1.webp'),
   D('Dr. Yhony Veliz Hurtado', 'yhonyvelizhurtado1.webp'),
 ]
+
+export function getDoctorBySlug(slug) {
+  return doctors.find((d) => d.slug === slug)
+}
 
 export const specialties = [
   'Todas',
