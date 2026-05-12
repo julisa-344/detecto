@@ -2,17 +2,12 @@ import HeaderV3 from '../components/v3/HeaderV3'
 import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-import heroVideo from '../assets/medicinaoncologicahero.mp4'
-import quienesImg from '../assets/OncologiaMedica.jpg'
 import bannerImg from '../assets/bannerOncologia.jpg'
 import detecto from '../assets/detecto.png'
 
 import {
   ThemeProvider,
   BLUE_THEME,
-  Hero,
-  ServicesStrip,
-  EspecialidadIntro,
   MisionCTA,
   FAQs,
   QuickContact,
@@ -20,10 +15,10 @@ import {
 } from '../components/specialty'
 
 import {
+  OncologiaHero,
+  QueEsOncologia,
   TiposCancer,
   LoQueOfrecemos,
-  servicios,
-  perfilPaciente,
   faqs,
 } from '../components/oncologia-medica'
 
@@ -50,30 +45,16 @@ export default function OncologiaMedica() {
     >
       <HeaderV3 />
 
-      <Hero
-        video={heroVideo}
-        titlePre="Diagnóstico y"
-        titleAccent="tratamiento integral."
-        subtitle="Tecnología de vanguardia y calidez humana para acompañarte en cada etapa de tu recuperación."
-      />
-
-      <ServicesStrip items={servicios} />
+      <OncologiaHero />
 
       <div className="mx-auto max-w-7xl px-6 py-20 lg:py-28">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
 
           <main className="min-w-0 space-y-20 lg:space-y-24">
-            <EspecialidadIntro
-              eyebrow="Especialidad"
-              titlePre="¿Qué es la"
-              titleAccent="oncología médica?"
-              paragraph="La oncología médica diagnostica, trata y controla el cáncer con medicamentos (quimioterapia, inmunoterapia, terapias dirigidas y hormonoterapia). Su objetivo es frenar o reducir el crecimiento tumoral, aliviar síntomas y mejorar la calidad de vida del paciente."
-              image={quienesImg}
-              imageAlt="Especialista en oncología médica"
-              listIntro="Estamos aquí para acompañarte en cada etapa:"
-              items={perfilPaciente}
-            />
+            <QueEsOncologia />
+
             <TiposCancer />
+
             <MisionCTA
               image={bannerImg}
               imageAlt="Misión de la oncología médica"
@@ -82,7 +63,9 @@ export default function OncologiaMedica() {
               titleAccent="nuestra misión."
               paragraph="Combinamos ciencia, tecnología y humanidad para acompañarte en cada etapa del tratamiento oncológico. Da el primer paso hacia tu recuperación hoy mismo."
             />
+
             <LoQueOfrecemos />
+
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas"
@@ -91,7 +74,7 @@ export default function OncologiaMedica() {
             />
           </main>
 
-          <aside className="hidden self-start lg:sticky lg:top-[96px] lg:block">
+          <aside className="hidden self-start lg:sticky lg:top-24 lg:block">
             <QuickContact />
           </aside>
 

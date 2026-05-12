@@ -1,37 +1,32 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Droplet, Sparkles, ShieldAlert, Sun, Stethoscope } from 'lucide-react'
+import { ClipboardList, Heart, Dna, Stethoscope, Activity } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '../specialty'
-import { perfilPaciente, dermaImages } from './data'
-import dermaImg from '../../assets/derma.jpg'
+import { perfilPaciente, oncoImages } from './data'
 
+const ITEM_ICONS = [ClipboardList, Heart, Dna, Stethoscope, Activity]
 
-const ITEM_ICONS = [Droplet, Sparkles, Stethoscope, Sun, ShieldAlert]
-
-export default function QueEsDermatologia() {
+export default function QueEsOncologia() {
   return (
     <section className="relative">
-      {/* Encabezado */}
-      <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end mb-12">
+      <div className="mb-12 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
           <SectionEyebrow>Especialidad</SectionEyebrow>
           <SectionTitle className="mb-4">
             ¿Qué es la{' '}
             <em className="not-italic font-medium text-[rgb(var(--brand-base))]">
-              dermatología?
+              oncología médica?
             </em>
           </SectionTitle>
           <p className="max-w-2xl text-[15px] font-light leading-7 text-slate-500">
-            Diagnóstico y tratamiento de enfermedades de la piel, el cabello y
-            las uñas, con un enfoque que combina excelencia clínica y cuidado
-            estético.
+            Diagnóstico, tratamiento y control del cáncer con medicamentos —
+            quimioterapia, inmunoterapia, terapias dirigidas y hormonoterapia —
+            buscando frenar el crecimiento tumoral y mejorar tu calidad de vida.
           </p>
         </div>
+   
       </div>
 
-
-
-      {/* Atendemos: lista + imagen */}
       <AtendemosBlock />
     </section>
   )
@@ -63,7 +58,7 @@ function AtendemosBlock() {
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
                   onClick={() => setActive(i)}
-                  className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3 text-left transition-all ${
+                  className={`flex w-full cursor-pointer items-center gap-3 rounded-2xl px-3 py-3 text-left transition-all ${
                     isActive
                       ? 'bg-[rgb(var(--brand-base))] text-white shadow-[0_10px_25px_-12px_rgb(var(--brand-base)/0.6)]'
                       : 'text-slate-700 hover:bg-(--brand-bg-ultra)'
@@ -88,8 +83,8 @@ function AtendemosBlock() {
 
       <div className="relative min-h-72 overflow-hidden rounded-4xl bg-slate-100 lg:min-h-full">
         <img
-          src={dermaImg}
-          alt="Atención dermatológica Detecta"
+          src={oncoImages.hero}
+          alt="Atención oncológica Detecta"
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />

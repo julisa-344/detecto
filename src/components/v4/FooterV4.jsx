@@ -55,7 +55,7 @@ export default function FooterV4({ showCTA = true }) {
           </p>
           <h2 className="text-4xl md:text-6xl font-light text-[#0070A5] mb-6 tracking-tighter leading-[1.05]">
             Da el primer paso hacia un <br />
-            <span className="font-normal italic text-slate-900">diagnóstico claro.</span>
+            <span className="font-normal italic text-slate-900">diagnóstico certero.</span>
           </h2>
           <p className="text-base md:text-lg font-light text-slate-500 max-w-xl mx-auto mb-12 leading-relaxed">
             Agenda una cita con nuestros médicos y recibe un tratamiento preciso con

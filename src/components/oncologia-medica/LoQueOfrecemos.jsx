@@ -1,54 +1,96 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { SectionEyebrow, SectionTitle } from '../specialty'
 import { servicios } from './data'
 
 export default function LoQueOfrecemos() {
+  const [activeIdx, setActiveIdx] = useState(0)
+
   return (
     <section className="relative">
       <div className="mb-12 max-w-2xl">
         <SectionEyebrow>Servicios</SectionEyebrow>
         <SectionTitle className="mb-3">Lo que ofrecemos</SectionTitle>
-        <p className="max-w-xl text-[15px] font-light leading-7 text-slate-400">
-          Un ecosistema completo de atención oncológica bajo un mismo techo.
+        <p className="max-w-xl text-[15px] font-light leading-7 text-slate-500">
+          Tratamientos oncológicos respaldados por tecnología avanzada y un
+          equipo multidisciplinario.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {servicios.map((s, index) => {
           const Icon = s.icon
           const id = String(index + 1).padStart(2, '0')
+          const isActive = activeIdx === index
+
           return (
             <motion.div
-              key={id}
+              key={s.title}
+              onMouseEnter={() => setActiveIdx(index)}
+              onFocus={() => setActiveIdx(index)}
               tabIndex={0}
               initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ y: -6 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-              className="group relative p-6 rounded-[20px] border bg-white transition-all duration-500 cursor-pointer overflow-hidden border-[rgb(var(--brand-base)/0.25)] hover:border-[rgb(var(--brand-base)/0.6)] hover:shadow-[0_20px_40px_-15px_rgb(var(--brand-base)/0.25)]"
+              className={`group relative cursor-pointer overflow-hidden rounded-[20px] border bg-white p-6 transition-all duration-500 ${
+                isActive
+                  ? 'border-[rgb(var(--brand-med)/0.6)] shadow-[0_20px_40px_-15px_rgb(var(--brand-med)/0.25)]'
+                  : 'border-[rgb(var(--brand-med)/0.25)] hover:border-[rgb(var(--brand-med)/0.5)]'
+              }`}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[rgb(var(--brand-base)/0)] via-[rgb(var(--brand-base)/0.15)] to-[rgb(var(--brand-base)/0)] translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+              <div className="pointer-events-none absolute inset-0 -translate-x-full bg-linear-to-br from-[rgb(var(--brand-med)/0)] via-[rgb(var(--brand-med)/0.15)] to-[rgb(var(--brand-med)/0)] transition-transform duration-1000 ease-in-out group-hover:translate-x-full" />
 
               <div className="relative z-10">
-                <div className="flex justify-between items-start mb-8">
-                  <span className="text-[10px] font-mono font-medium transition-colors text-[rgb(var(--brand-med)/0.4)] group-hover:text-[rgb(var(--brand-med))]">
+                <div className="mb-8 flex items-start justify-between">
+                  <span
+                    className={`font-mono text-[10px] font-medium transition-colors ${
+                      isActive
+                        ? 'text-[rgb(var(--brand-base))]'
+                        : 'text-[rgb(var(--brand-base)/0.4)]'
+                    }`}
+                  >
                     {id}
                   </span>
-                  <div className="p-3 rounded-2xl transition-all duration-500 bg-[var(--brand-bg-ultra)] text-[rgb(var(--brand-med))] group-hover:bg-[rgb(var(--brand-base))] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[rgb(var(--brand-base)/0.3)]">
-                    <Icon className="w-5 h-5" />
+                  <div
+                    className={`rounded-2xl p-3 transition-all duration-500 ${
+                      isActive
+                        ? 'bg-[rgb(var(--brand-med))] text-white shadow-lg shadow-[rgb(var(--brand-med)/0.3)]'
+                        : 'bg-(--brand-bg-ultra) text-[rgb(var(--brand-base))]'
+                    }`}
+                  >
+                    <Icon className="h-5 w-5" />
                   </div>
                 </div>
 
-                <h3 className="text-base font-normal tracking-wide uppercase transition-colors text-[rgb(var(--brand-dark))] group-hover:text-[rgb(var(--brand-med))]">
+                <h3
+                  className={`text-base font-normal uppercase tracking-wide transition-colors ${
+                    isActive
+                      ? 'text-[rgb(var(--brand-base))]'
+                      : 'text-[rgb(var(--brand-dark))]'
+                  }`}
+                >
                   {s.title}
                 </h3>
 
                 <div className="mt-5 flex items-center gap-2">
-                  <span className="text-[9px] font-bold tracking-widest transition-colors text-[rgb(var(--brand-base)/0.4)] group-hover:text-[rgb(var(--brand-base))]">
+                  <span
+                    className={`text-[9px] font-bold tracking-widest transition-colors ${
+                      isActive
+                        ? 'text-[rgb(var(--brand-med))]'
+                        : 'text-[rgb(var(--brand-med)/0.4)]'
+                    }`}
+                  >
                     SOLICITAR
                   </span>
-                  <div className="h-px transition-all duration-500 w-4 bg-[rgb(var(--brand-base)/0.4)] group-hover:w-8 group-hover:bg-[rgb(var(--brand-base))]" />
+                  <div
+                    className={`h-px transition-all duration-500 ${
+                      isActive
+                        ? 'w-8 bg-[rgb(var(--brand-med))]'
+                        : 'w-4 bg-[rgb(var(--brand-med)/0.4)]'
+                    }`}
+                  />
                 </div>
               </div>
             </motion.div>

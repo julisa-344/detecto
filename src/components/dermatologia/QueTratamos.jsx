@@ -1,158 +1,98 @@
-import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '../specialty'
+import { CardClipDef, CARD_CLIP_ID } from '../staff-medico'
 import { queTratamos, dermaImages } from './data'
 
-// Layout mosaic: definimos clases por índice (orden importa)
-const MOSAIC_LAYOUT = [
-  // 0: wide con foto
-  {
-    span: 'sm:col-span-3 sm:row-span-2',
-    variant: 'photo',
-    image: dermaImages.consultation,
-  },
-  // 1: square
-  { span: 'sm:col-span-3', variant: 'card' },
-  // 2: square
-  { span: 'sm:col-span-3', variant: 'card' },
-  // 3: tall con gradient
-  { span: 'sm:col-span-2 sm:row-span-2', variant: 'gradient' },
-  // 4: wide con foto
-  {
-    span: 'sm:col-span-4',
-    variant: 'photo',
-    image: dermaImages.laser,
-  },
-  // 5: square
-  { span: 'sm:col-span-2', variant: 'card' },
+const CLIP_STYLE = {
+  clipPath: `url(#${CARD_CLIP_ID})`,
+  WebkitClipPath: `url(#${CARD_CLIP_ID})`,
+}
+
+const SLIDE_IMAGES = [
+  dermaImages.skinCare,
+  dermaImages.laser,
+  dermaImages.procedure,
+  dermaImages.consultation,
+  dermaImages.hero,
 ]
 
-function MosaicCard({ item, layout, index, total }) {
+const AUTOPLAY_MS = 5000
+
+function TopCard({ item, index }) {
   const Icon = item.icon
   const num = String(index + 1).padStart(2, '0')
-  const totalLabel = String(total).padStart(2, '0')
 
-  // Variante con imagen de fondo
-  if (layout.variant === 'photo') {
-    return (
-      <motion.article
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-        className={`group relative overflow-hidden rounded-4xl ${layout.span} min-h-60 cursor-pointer`}
-      >
-        <img
-          src={layout.image}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/35 to-transparent" />
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative"
+    >
+      <div className="relative aspect-616/868 w-full">
+        <div
+          className="absolute inset-0 overflow-hidden bg-white transition-colors duration-500 group-hover:bg-[rgb(var(--brand-base))]"
+          style={CLIP_STYLE}
+        >
+          <div className="relative flex h-full w-full flex-col justify-between p-7 lg:p-8">
+            <div className="flex items-start justify-between">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-(--brand-bg-ultra) text-[rgb(var(--brand-med))] transition-colors duration-500 group-hover:bg-white/15 group-hover:text-white">
+                <Icon className="h-5 w-5" />
+              </span>
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 transition-colors duration-500 group-hover:text-white/70">
+                {num}
+              </span>
+            </div>
 
-        <div className="relative h-full flex flex-col justify-between p-6 lg:p-7 text-white">
-          <div className="flex items-start justify-between">
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/15 backdrop-blur-md border border-white/30">
-              <Icon className="h-4.5 w-4.5" />
-            </span>
-            <span className="text-[10px] font-mono font-semibold tracking-[0.22em] uppercase text-white/70">
-              {num} / {totalLabel}
-            </span>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-light tracking-tight leading-tight">
-              {item.title}
-            </h3>
-            <p className="mt-2 text-[13px] font-light text-white/85 max-w-sm leading-relaxed">
-              {item.desc}
-            </p>
-            <div className="mt-4 inline-flex items-center gap-1.5 text-[10px] font-semibold tracking-[0.22em] uppercase opacity-0 -translate-y-1 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0">
-              Conoce más <ArrowUpRight className="h-3.5 w-3.5" />
+            <div className="pr-[18%]">
+              <h3 className="text-2xl font-light leading-tight tracking-tight text-[rgb(var(--brand-dark))] transition-colors duration-500 group-hover:text-white lg:text-3xl">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-[13px] font-light leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/85">
+                {item.desc}
+              </p>
             </div>
           </div>
         </div>
-      </motion.article>
-    )
-  }
 
-  // Variante gradient brand
-  if (layout.variant === 'gradient') {
-    return (
-      <motion.article
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-        className={`group relative overflow-hidden rounded-4xl ${layout.span} bg-linear-to-br from-[rgb(var(--brand-dark))] via-[rgb(var(--brand-base))] to-[rgb(var(--brand-med))] text-white p-6 lg:p-7 min-h-60 cursor-pointer`}
-      >
-        <div className="pointer-events-none absolute -top-16 -right-16 h-48 w-48 rounded-full bg-white/15 blur-3xl" />
-        <div
-          className="pointer-events-none absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)',
-            backgroundSize: '22px 22px',
-          }}
+        {/* Círculo decorativo en el notch (no redirige) */}
+        <span
+          aria-hidden="true"
+          className="absolute bottom-[2%] right-[2%] flex h-[11%] w-[16%] items-center justify-center rounded-full bg-[rgb(var(--brand-base))] transition-all duration-500 group-hover:bg-white group-hover:scale-105"
         />
-
-        <div className="relative h-full flex flex-col justify-between">
-          <div className="flex items-start justify-between">
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 backdrop-blur-md border border-white/25">
-              <Icon className="h-5 w-5" />
-            </span>
-            <span className="text-[10px] font-mono font-semibold tracking-[0.22em] uppercase text-white/70">
-              {num} / {totalLabel}
-            </span>
-          </div>
-
-          <div>
-            <h3 className="text-2xl lg:text-3xl font-light tracking-tight leading-tight">
-              {item.title}
-            </h3>
-            <p className="mt-3 text-[13px] font-light text-white/85 leading-relaxed">
-              {item.desc}
-            </p>
-          </div>
-        </div>
-      </motion.article>
-    )
-  }
-
-  // Variante card simple
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.5, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative rounded-4xl border border-slate-100 bg-white p-6 ${layout.span} transition-all hover:-translate-y-1 hover:border-[rgb(var(--brand-base)/0.4)] hover:shadow-[0_15px_30px_-15px_rgb(var(--brand-base)/0.25)] cursor-pointer flex flex-col justify-between min-h-50`}
-    >
-      <div className="flex items-start justify-between">
-        <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-(--brand-bg-ultra) text-[rgb(var(--brand-med))] transition-colors group-hover:bg-[rgb(var(--brand-base))] group-hover:text-white">
-          <Icon className="h-4.5 w-4.5" />
-        </span>
-        <span className="text-[10px] font-mono font-semibold tracking-[0.22em] uppercase text-slate-300">
-          {num}
-        </span>
-      </div>
-      <div className="mt-4">
-        <h3 className="text-[17px] font-medium text-[rgb(var(--brand-dark))] leading-snug">
-          {item.title}
-        </h3>
-        <p className="mt-1.5 text-[13px] font-light text-slate-500 leading-relaxed">
-          {item.desc}
-        </p>
       </div>
     </motion.article>
   )
 }
 
 export default function QueTratamos() {
+  const topItems = queTratamos.slice(0, 3)
+  const slideItems = queTratamos.slice(3)
+  const total = slideItems.length
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    if (paused || total <= 1) return
+    const id = setInterval(() => {
+      setActive((i) => (i + 1) % total)
+    }, AUTOPLAY_MS)
+    return () => clearInterval(id)
+  }, [paused, total])
+
+  if (total === 0) return null
+
+  const current = slideItems[active]
+  const Icon = current.icon
+
   return (
-    <section className="relative">
-      <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end mb-10">
+    <section className="relative -mx-6 rounded-4xl bg-(--brand-bg-ultra) px-6 py-16 lg:-mx-12 lg:px-12 lg:py-20">
+      <CardClipDef />
+
+      <div className="mb-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
           <SectionEyebrow>Patologías</SectionEyebrow>
           <SectionTitle className="mb-4">
@@ -166,27 +106,99 @@ export default function QueTratamos() {
             protocolos personalizados y tecnología de vanguardia.
           </p>
         </div>
-
-        <a
-          href="#"
-          className="hidden lg:inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.18em] uppercase text-[rgb(var(--brand-dark))] hover:text-[rgb(var(--brand-base))] transition-colors"
-        >
-          Ver todas las áreas
-          <ArrowUpRight className="h-4 w-4" />
-        </a>
       </div>
 
-      {/* Mosaic asimétrico: 6 cols, varios tamaños */}
-      <div className="grid grid-cols-1 sm:grid-cols-6 auto-rows-[180px] gap-4">
-        {queTratamos.map((item, i) => (
-          <MosaicCard
-            key={item.title}
-            item={item}
-            layout={MOSAIC_LAYOUT[i]}
-            index={i}
-            total={queTratamos.length}
-          />
+      {/* 3 cards con forma irregular */}
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {topItems.map((item, i) => (
+          <TopCard key={item.title} item={item} index={i} />
         ))}
+      </div>
+
+      {/* Slider */}
+      <div
+        className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
+        <div className="relative aspect-4/3 overflow-hidden rounded-4xl bg-slate-100 lg:aspect-auto lg:min-h-105">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={active}
+              src={SLIDE_IMAGES[active % SLIDE_IMAGES.length]}
+              alt=""
+              aria-hidden="true"
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="absolute inset-0 h-full w-full object-cover"
+              loading="lazy"
+            />
+          </AnimatePresence>
+        </div>
+
+        <div className="relative flex min-h-80 flex-col justify-between rounded-4xl bg-white p-8 lg:p-10">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full bg-(--brand-bg-ultra) px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--brand-dark))]">
+                <Icon className="h-3.5 w-3.5 text-[rgb(var(--brand-base))]" />
+                Tratamientos
+              </span>
+
+              <h3 className="mt-6 text-3xl font-light leading-tight tracking-tight text-[rgb(var(--brand-dark))] lg:text-4xl">
+                {current.title}
+              </h3>
+              <p className="mt-4 max-w-md text-[15px] font-light leading-relaxed text-slate-600">
+                {current.desc}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="mt-10 flex items-center justify-between gap-6">
+            <div className="flex flex-1 items-center gap-2">
+              {slideItems.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-label={`Ver tratamiento ${i + 1}`}
+                  className={`relative h-1.5 cursor-pointer overflow-hidden rounded-full transition-all ${
+                    i === active ? 'flex-1 bg-slate-200' : 'w-6 bg-slate-200 hover:bg-slate-300'
+                  }`}
+                >
+                  {i === active && (
+                    <span
+                      key={`${active}-${paused ? 'p' : 'r'}`}
+                      className="absolute inset-y-0 left-0 block bg-[rgb(var(--brand-base))]"
+                      style={{
+                        animation: `tratamosProgress ${AUTOPLAY_MS}ms linear forwards`,
+                        animationPlayState: paused ? 'paused' : 'running',
+                      }}
+                    />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setActive((i) => (i + 1) % total)}
+              aria-label="Siguiente tratamiento"
+              className="group/next flex h-12 w-12 cursor-pointer items-center justify-center rounded-full border border-[rgb(var(--brand-base)/0.4)] bg-(--brand-bg-ultra) text-[rgb(var(--brand-dark))] transition-all hover:bg-[rgb(var(--brand-base))] hover:text-white hover:border-[rgb(var(--brand-base))]"
+            >
+              <ArrowRight className="h-4 w-4 transition-transform group-hover/next:translate-x-0.5" />
+            </button>
+          </div>
+
+          <style>{`@keyframes tratamosProgress { from { transform: translateX(-100%); } to { transform: translateX(0); } }`}</style>
+        </div>
       </div>
     </section>
   )

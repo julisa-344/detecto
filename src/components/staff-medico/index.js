@@ -1,4 +1,4 @@
-export { default as CardClipDef } from './CardClipDef'
+export { default as CardClipDef, CARD_CLIP_ID } from './CardClipDef'
 export { default as DoctorCard } from './DoctorCard'
 export { default as SortDropdown } from './SortDropdown'
 export { default as StaffBanner } from './StaffBanner'

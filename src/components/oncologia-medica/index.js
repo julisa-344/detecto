@@ -1,4 +1,6 @@
 export * from '../specialty'
+export { default as OncologiaHero } from './OncologiaHero'
+export { default as QueEsOncologia } from './QueEsOncologia'
 export { default as TiposCancer } from './TiposCancer'
 export { default as LoQueOfrecemos } from './LoQueOfrecemos'
 export { default as ServiciosCarruselScroll } from './ServiciosCarruselScroll'

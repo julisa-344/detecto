@@ -298,7 +298,7 @@ export default function HeaderV3() {
                     border: '1px solid rgba(15,23,42,0.08)',
                   }}
                 >
-                  <a href="login" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                  <a href="/login" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Laboratorio Clínico
                   </a>
                   <a href="login" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">

@@ -8,13 +8,37 @@ import {
   ClipboardList,
   Clock,
   Stethoscope,
+  Microscope,
+  Sparkles,
+  Sun,
 } from 'lucide-react'
 
+import oncologiaImg from '../../assets/OncologiaMedica.jpg'
+import bannerOnco from '../../assets/bannerOncologia.jpg'
+import clinicaImg from '../../assets/clinica.jpg'
+
+export const oncoImages = {
+  clinica: clinicaImg,
+  hero: oncologiaImg,
+  banner: bannerOnco,
+  procedure:
+    'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1200&q=80',
+  consultation:
+    'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80',
+  research:
+    'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',
+  care:
+    'https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1200&q=80',
+}
+
 export const tiposCancer = [
-  'Cáncer de mama',        'Cáncer de pulmón',
-  'Cáncer colorrectal',    'Cáncer de próstata',
-  'Linfomas y leucemias',  'Melanoma y cánceres de piel',
-  'Cáncer de páncreas, hígado, gástrico y otros',
+  { title: 'Cáncer de mama', desc: 'Detección temprana y tratamiento multidisciplinario.', icon: ShieldCheck },
+  { title: 'Cáncer de pulmón', desc: 'Diagnóstico oportuno y terapias dirigidas.', icon: Activity },
+  { title: 'Cáncer colorrectal', desc: 'Screening, tratamiento y seguimiento integral.', icon: Microscope },
+  { title: 'Cáncer de próstata', desc: 'Evaluación urológica y terapias personalizadas.', icon: Stethoscope },
+  { title: 'Linfomas y leucemias', desc: 'Hematología clínica con protocolos actualizados.', icon: Dna },
+  { title: 'Melanoma y cáncer de piel', desc: 'Detección dermatoscópica y terapias avanzadas.', icon: Sun },
+  { title: 'Otros tumores sólidos', desc: 'Páncreas, hígado, gástrico y más.', icon: Sparkles },
 ]
 
 export const servicios = [
