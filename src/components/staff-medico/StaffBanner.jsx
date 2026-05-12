@@ -26,8 +26,8 @@ export default function StaffBanner() {
             Nuestro Staff
           </p>
           <h1 className="text-5xl lg:text-7xl font-light tracking-tighter text-white leading-[1.02] max-w-4xl drop-shadow-sm">
-            Especialistas de{' '}
-            <span className="italic">clase mundial</span> a tu lado.
+            Los mejores especialistas{' '}
+            <span className="italic">contigo.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-base lg:text-lg font-light text-white/85 leading-relaxed">
             Un equipo multidisciplinario de médicos con trayectoria internacional,
