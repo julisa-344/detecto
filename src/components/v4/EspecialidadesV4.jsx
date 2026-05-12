@@ -12,7 +12,7 @@ import {
 import mastologiaVideo from '../../assets/mastologia.mp4'
 import ginecologiaVideo from '../../assets/gastro.mp4'
 import cardiologiaVideo from '../../assets/cardiologia.mp4'
-import neurologiaVideo from '../../assets/neurologia .mp4'
+import neurologiaVideo from '../../assets/neurologia.mp4'
 import gastroVideo from '../../assets/gastro.mp4'
 import urologiaVideo from '../../assets/urologia.MP4'
 
