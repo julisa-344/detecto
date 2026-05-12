@@ -1,68 +1,65 @@
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-export default function StackCard({ diff, index, total }) {
-  const ref = useRef(null)
+export default function StackCard({ diff, index }) {
+  const cardRef = useRef(null);
+  
   const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end start'],
-  })
-  const y = useTransform(scrollYProgress, [0, 1], [0, -180])
-  const opacity = useTransform(scrollYProgress, [0, 0.55, 1], [1, 1, 0])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.94])
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
 
-  const Icon = diff.icon
-  const numLabel = String(index + 1).padStart(2, '0')
-  const totalLabel = String(total).padStart(2, '0')
+  // Configuración de la Ilusión de Pausa
+  // 0.3 a 0.7 es el tiempo que la card se queda "pegada" y visible
+  const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [150, 0, 0, -200]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.9, 1, 1, 0.8]);
+  const opacity = useTransform(scrollYProgress, [0, 0.25, 0.75, 1], [0, 1, 1, 0]);
+  
+  // Efecto de sombra dinámica basado en el scroll
+  const shadow = useTransform(
+    scrollYProgress, 
+    [0.2, 0.3, 0.7, 0.8], 
+    ["0px 0px 0px rgba(0,0,0,0)", "0px 40px 80px rgba(10,42,63,0.15)", "0px 40px 80px rgba(10,42,63,0.15)", "0px 0px 0px rgba(0,0,0,0)"]
+  );
+
+  const Icon = diff.icon;
 
   return (
-    <section ref={ref} className="relative h-screen">
-      <div className="sticky top-0 h-screen flex items-center justify-center px-6">
+    <div
+      ref={cardRef}
+      className="relative h-[75vh] w-full flex items-start justify-center"
+    >
+      <div className="sticky top-[22vh] w-full max-w-2xl">
         <motion.article
-          style={{ y, opacity, scale }}
-          className="relative w-full max-w-3xl overflow-hidden rounded-[36px] bg-white shadow-[0_40px_80px_-30px_rgba(10,42,63,0.55)]"
+          style={{ y, scale, opacity, boxShadow: shadow }}
+          className="group relative w-full bg-white rounded-[24px] overflow-hidden border border-slate-50"
         >
-          {/* Encabezado: número + meta */}
-          <header className="relative px-8 lg:px-12 pt-8 lg:pt-10 flex items-start justify-between gap-6">
-            <span className="text-[80px] lg:text-[110px] font-light leading-none text-slate-200 select-none tracking-tighter">
-              {numLabel}
-            </span>
-            <div className="text-right pt-3">
-              <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-slate-700">
-                {diff.eyebrow}
-              </p>
-              <p className="mt-1.5 text-[10px] font-mono tracking-[0.22em] uppercase text-slate-400">
-                {numLabel} / {totalLabel}
-              </p>
-            </div>
-          </header>
+          {/* Barra de acento superior con tu color primary */}
+          <div className="h-1.5 w-full bg-primary" />
 
-          <div className="mx-8 lg:mx-12 h-px bg-slate-200" />
-
-          {/* Cuerpo */}
-          <div className="px-8 lg:px-12 py-8 lg:py-10">
-            <div className="flex items-center gap-3 mb-3">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary-dark text-white">
-                <Icon className="h-4.5 w-4.5" />
-              </span>
-              <span className="text-[10px] font-semibold tracking-[0.22em] uppercase text-primary-medium">
-                {diff.category}
+          <div className="p-6 lg:p-10 flex flex-col gap-5">
+            <div className="flex justify-between items-start">
+              <div className="h-12 w-12 rounded-full bg-primary-dark text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+                {Icon && <Icon size={20} strokeWidth={1.5} />}
+              </div>
+              <span className="text-3xl font-light text-slate-100 tracking-tighter">
+                0{index + 1}
               </span>
             </div>
 
-            <h3 className="text-3xl lg:text-5xl font-light text-slate-900 tracking-tighter leading-[1.05]">
-              {diff.title}
-            </h3>
-            <p className="mt-5 text-base lg:text-lg font-light text-slate-600 leading-relaxed max-w-2xl">
-              {diff.desc}
-            </p>
+            <div className="space-y-3">
+              <h3 className="text-2xl lg:text-4xl font-light text-primary-dark tracking-tighter leading-tight">
+                {diff.title}
+              </h3>
+              <p className="text-slate-500 text-sm lg:text-base font-light leading-relaxed max-w-lg">
+                {diff.desc}
+              </p>
+            </div>
 
-            <div className="mt-7 flex flex-wrap gap-2">
-              {diff.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="rounded-full border border-slate-200 bg-slate-50/80 px-4 py-1.5 text-[11px] font-medium text-slate-700"
-                >
+            {/* Tags minimalistas */}
+            <div className="flex flex-wrap gap-2 pt-2">
+              {diff.tags?.map((tag) => (
+                <span key={tag} className="text-[10px] font-bold tracking-widest uppercase px-3 py-1 bg-slate-50 text-primary-medium rounded-full border border-slate-100">
                   {tag}
                 </span>
               ))}
@@ -70,6 +67,6 @@ export default function StackCard({ diff, index, total }) {
           </div>
         </motion.article>
       </div>
-    </section>
-  )
+    </div>
+  );
 }

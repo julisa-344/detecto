@@ -71,8 +71,31 @@ function VisionCard() {
 
 export default function MisionVisionSection() {
   return (
-    <section className="relative py-20 lg:py-28">
+    <section className="relative py-20 lg:py-28 overflow-hidden bg-[#F0F7FA]/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        {/* Encabezado Centrado */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.08 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-20 mb-16 w-full max-w-3xl mx-auto text-center"
+        >
+          <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.5em] text-primary-medium">
+            Nuestra razón de ser
+          </p>
+
+          <h2 className="text-4xl font-light leading-tight tracking-tighter text-primary-dark lg:text-6xl mb-6">
+            Misión y <span className="italic ">Visión</span>
+          </h2>
+          
+          <p className="text-lg font-light text-slate-500 leading-relaxed max-w-2xl mx-auto">
+            Nuestro propósito y horizonte están guiados por la excelencia, 
+            la empatía y la responsabilidad.
+          </p>
+        </motion.div>
+
+        {/* Grid de Tarjetas */}
         <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
           <MisionCard />
           <VisionCard />
