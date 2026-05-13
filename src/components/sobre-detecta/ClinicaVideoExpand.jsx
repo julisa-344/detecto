@@ -1,8 +1,6 @@
 import ScrollExpandMedia from './ScrollExpandMedia'
 import clinicaBg from '../../assets/clinicafondo.png'
-
-// Video servido desde /public — coloca bg1.mp4 en public/ (no se commitea)
-const videoSrc = '/bg1.mp4'
+import videoSrc from '../../assets/bg1.mp4'
 
 export default function ClinicaVideoExpand() {
   return (
