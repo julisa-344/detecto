@@ -25,10 +25,10 @@ const slides = [
   },
 ]
 
-// Segmentos de scroll por fase (todos dentro del rango sticky 0–0.64)
-const TITLE_END = 0.3 // 0 → 0.3: el título tiene tiempo de leerse
-const SLIDE_1 = [0.34, 0.48]
-const SLIDE_2 = [0.5, 0.62]
+// Segmentos de scroll por fase (todos dentro del rango sticky 0–0.69)
+const TITLE_END = 0.42 // 0 → 0.42: el título tiene bastante tiempo de leerse
+const SLIDE_1 = [0.46, 0.56]
+const SLIDE_2 = [0.58, 0.68]
 
 export default function FuturoTimeline() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -57,13 +57,13 @@ export default function FuturoTimeline() {
   const progress1Width = useTransform(scrollYProgress, SLIDE_2, ['0%', '100%'], { clamp: true })
 
   // Visibilidad del título y del slide
-  const titleOpacity = useTransform(scrollYProgress, [0, TITLE_END * 0.82, TITLE_END], [1, 1, 0])
+  const titleOpacity = useTransform(scrollYProgress, [0, TITLE_END * 0.88, TITLE_END], [1, 1, 0])
   const titleY = useTransform(scrollYProgress, [0, TITLE_END], [0, -80])
   const titleScale = useTransform(scrollYProgress, [0, TITLE_END], [1, 0.92])
   const titleVisibility = useTransform(scrollYProgress, (v) => (v > TITLE_END + 0.005 ? 'hidden' : 'visible'))
   const titlePointer = useTransform(scrollYProgress, (v) => (v > TITLE_END - 0.06 ? 'none' : 'auto'))
 
-  const slideOpacity = useTransform(scrollYProgress, [TITLE_END - 0.02, TITLE_END + 0.03, 0.64, 0.7], [0, 1, 1, 0])
+  const slideOpacity = useTransform(scrollYProgress, [TITLE_END - 0.02, TITLE_END + 0.03, 0.7, 0.76], [0, 1, 1, 0])
   const slideY = useTransform(scrollYProgress, [TITLE_END - 0.02, TITLE_END + 0.03], [60, 0])
 
   // Navegación manual: hace scroll a la posición correspondiente
@@ -182,7 +182,7 @@ export default function FuturoTimeline() {
     <section
       ref={sectionRef}
       className="ft-section"
-      style={{ height: '280vh' }}
+      style={{ height: '320vh' }}
       id="futuro-detecta"
     >
       <style>{css}</style>
