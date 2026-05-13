@@ -1,72 +1,111 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
-import StackCard from './StackCard';
-import { DIFERENCIADORES } from './data';
+import { motion } from 'framer-motion'
+import { CardClipDef, CARD_CLIP_ID } from '../staff-medico'
+import { DIFERENCIADORES } from './data'
 
-export default function DiferenciaSection() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
+const CLIP_STYLE = {
+  clipPath: `url(#${CARD_CLIP_ID})`,
+  WebkitClipPath: `url(#${CARD_CLIP_ID})`,
+}
 
-  // Animación para el texto de fondo "DETECTA"
-  const textScale = useTransform(scrollYProgress, [0, 1], [1, 1.05]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0.03, 0.05, 0.03]);
+function PilarCard({ item, index }) {
+  const Icon = item.icon
+  const num = String(index + 1).padStart(2, '0')
 
   return (
-    /* Fondo celeste bajo inspirado en image_9ecb40.png */
-    <section ref={containerRef} className="relative bg-[#F0F7FA] text-slate-900 overflow-visible">
-      
-      {/* Texto de Fondo: DETECTA */}
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden pointer-events-none">
-        <motion.h2 
-          style={{ scale: textScale, opacity: textOpacity }}
-          className="text-[18vw] font-black tracking-tighter uppercase leading-none text-primary-dark select-none whitespace-nowrap"
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative"
+    >
+      <div className="relative aspect-616/868 w-full">
+        <div
+          className="absolute inset-0 overflow-hidden bg-white"
+          style={CLIP_STYLE}
         >
-          Detecta
-        </motion.h2>
-      </div>
+          {/* Imagen de hover */}
+          <img
+            src={item.image}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/40 to-slate-950/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-      {/* Encabezado Editorial */}
-      <div className="absolute top-0 left-0 w-full z-10 p-8 lg:p-20">
-        <div className="flex flex-col lg:flex-row justify-between items-start gap-6">
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl"
-          >
-            <p className="text-primary-medium font-bold text-[10px] tracking-[0.5em] uppercase mb-4">
-              Nuestros Pilares
-            </p>
-            <h2 className="text-5xl lg:text-7xl font-light tracking-tighter text-primary-dark leading-[0.95]">
-              Una atención <br /> 
-              <span className="italic  font-normal text-primary">pensada para ti.</span>
-            </h2>
+          <div className="relative flex h-full w-full flex-col justify-between p-7 lg:p-8">
+            <div className="flex items-start justify-between">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary-lighter text-primary transition-colors duration-500 group-hover:bg-white/15 group-hover:text-white">
+                <Icon className="h-5 w-5" />
+              </span>
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 transition-colors duration-500 group-hover:text-white/70">
+                {num}
+              </span>
+            </div>
 
-          </motion.div>
-          
-          <div className="hidden lg:block">
-            <span className="text-[10px] font-bold text-primary-medium/40 uppercase tracking-[0.3em] vertical-text">
-              Estándar Detecta — 2026
-            </span>
+            <div className="pr-[18%]">
+              <h3 className="text-2xl font-light leading-tight tracking-tight text-primary-dark transition-colors duration-500 group-hover:text-white lg:text-3xl">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-[13px] font-light leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/85">
+                {item.desc}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Stack de Cards */}
-      <div className="relative z-20 mx-auto max-w-5xl px-6 -mt-[15vh]">
-        {DIFERENCIADORES.map((d, i) => (
-          <StackCard
-            key={i}
-            diff={d}
-            index={i}
-          />
-        ))}
+        <span
+          aria-hidden="true"
+          className="absolute bottom-[2%] right-[2%] flex h-[11%] w-[16%] items-center justify-center rounded-full bg-primary transition-all duration-500 group-hover:scale-105 group-hover:bg-white"
+        />
       </div>
+    </motion.article>
+  )
+}
 
-      <div className="h-[10vh]" />
+export default function DiferenciaSection() {
+  return (
+    <section className="relative bg-[#F0F7FA] py-24 lg:py-32">
+      <CardClipDef />
+
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        {/* Encabezado */}
+        <div className="mb-16 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-2xl"
+          >
+            <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.5em] text-primary-medium">
+              Nuestros Pilares
+            </p>
+            <h2 className="text-5xl font-light leading-[0.95] tracking-tighter text-primary-dark lg:text-7xl">
+              Una atención <br />
+              <span className="font-normal italic text-primary">
+                pensada para ti.
+              </span>
+            </h2>
+            <p className="mt-6 max-w-xl text-[15px] font-light leading-7 text-slate-500">
+              Tres pilares fundamentales que guían cada decisión clínica y
+              experiencia del paciente en Detecta.
+            </p>
+          </motion.div>
+
+          <span className="hidden font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-primary-medium/60 lg:inline-flex">
+            Estándar Detecta — 2026
+          </span>
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {DIFERENCIADORES.map((item, i) => (
+            <PilarCard key={item.title} item={item} index={i} />
+          ))}
+        </div>
+      </div>
     </section>
-  );
+  )
 }

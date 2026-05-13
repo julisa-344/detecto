@@ -1,29 +1,26 @@
 import { Stethoscope, Cpu, HandHeart } from 'lucide-react'
+import oncologiaImg from '../../assets/OncologiaMedica.jpg'
+import tecnologiaImg from '../../assets/tecnologia.jpg'
+import staffImg from '../../assets/amabilidad.jpg'
 
 export const DIFERENCIADORES = [
   {
     icon: Stethoscope,
-    eyebrow: 'Pilar 01 · Cuidado',
-    category: 'Especialidad · Oncología',
     title: 'Enfoque oncológico integral',
     desc: 'Acompañamos al paciente desde el despistaje hasta el seguimiento post-tratamiento, en cada etapa de su recuperación.',
-    tags: ['Prevención', 'Diagnóstico', 'Tratamiento', 'Seguimiento'],
+    image: oncologiaImg,
   },
   {
     icon: Cpu,
-    eyebrow: 'Pilar 02 · Innovación',
-    category: 'Infraestructura · Tecnología',
-    title: 'Tecnología de clase mundial',
+    title: 'Innovación médica',
     desc: 'Diagnóstico por imágenes, cirugía, quimioterapia y laboratorio de última generación al servicio de tu salud.',
-    tags: ['Imágenes', 'Cirugía', 'Laboratorio', 'IA Clínica'],
+    image: tecnologiaImg,
   },
   {
     icon: HandHeart,
-    eyebrow: 'Pilar 03 · Personas',
-    category: 'Servicio · Humano',
     title: 'Atención humana y ágil',
     desc: 'Procesos eficientes y trato cercano para una experiencia clara, amable y centrada en la persona.',
-    tags: ['Empatía', 'Agilidad', 'Acompañamiento', 'Claridad'],
+    image: staffImg,
   },
 ]
 

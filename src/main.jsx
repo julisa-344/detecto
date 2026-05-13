@@ -17,10 +17,12 @@ import Dermatologia from './pages/Dermatologia'
 import Investigacion from './pages/Investigacion'
 import ComiteEtica from './pages/ComiteEtica'
 import Login from './pages/Login'
+import ScrollToTop from './components/ScrollToTop'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<VersionPicker />} />
         <Route path="/v1" element={<V1 />} />

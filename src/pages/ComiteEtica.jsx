@@ -10,10 +10,13 @@ import {
 import {
   ComiteEticaHero,
   QueEsCIEI,
+  Integrantes,
   Principios,
   AlcanceEvaluacion,
   ProcesoRevision,
   RequisitosFormatos,
+  Transparencia,
+  ContactoMapa,
   CTAFinal,
 } from '../components/comite-etica'
 
@@ -38,6 +41,9 @@ export default function ComiteEtica() {
           <AlcanceEvaluacion />
           <ProcesoRevision />
           <RequisitosFormatos />
+          <Integrantes />
+          <Transparencia />
+          <ContactoMapa />
           <CTAFinal />
         </main>
       </div>

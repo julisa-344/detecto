@@ -6,6 +6,7 @@ import {
   QuienesSomos,
   DiferenciaSection,
   MisionVisionSection,
+  FuturoTimeline,
 } from '../components/sobre-detecta'
 
 export default function SobreDetecta() {
@@ -14,6 +15,7 @@ export default function SobreDetecta() {
       <HeaderV3 />
       <HeroBanner />
       <QuienesSomos />
+      <FuturoTimeline />
       <DiferenciaSection />
       <MisionVisionSection />
       <FooterV4 showCTA />

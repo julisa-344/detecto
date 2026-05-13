@@ -22,6 +22,11 @@ import {
   Gavel,
   FileCheck2,
   FileText,
+  Lock,
+  GitBranch,
+  Compass,
+  MapPin,
+  Clock,
 } from 'lucide-react'
 
 export const heroStats = [
@@ -104,3 +109,29 @@ export const requisitosTabs = [
 ]
 
 export const documentosLink = FileText
+
+export const transparencia = [
+  { title: 'Confidencialidad', desc: 'Custodia y acceso restringido a expedientes y datos sensibles.', icon: Lock },
+  { title: 'Conflictos de interés', desc: 'Declaración y abstención cuando corresponde.', icon: GitBranch },
+  { title: 'Independencia', desc: 'Decisiones basadas en criterios éticos y riesgo/beneficio.', icon: Compass },
+]
+
+export const contactoInfo = [
+  { label: 'Correo', value: 'comitedeetica@detecta.pe', icon: Mail, href: 'mailto:comitedeetica@detecta.pe' },
+  { label: 'Teléfono', value: '(01) 217 5100 - 420', icon: Phone, href: 'tel:+5112175100' },
+  { label: 'Horario', value: 'Lun–Vie 8:00 am – 5:00 pm', icon: Clock },
+]
+
+export const mapLocation = MapPin
+
+export const integrantes = [
+  { initials: 'KM', name: 'Katia Mercedes Roque Pérez', role: 'Presidencia' },
+  { initials: 'SM', name: 'Sabrina Elisa Mendoza Rivera', role: 'Secretaría Técnica' },
+  { initials: 'OB', name: 'Oscar Basurco Reyes', role: 'Miembro Titular' },
+  { initials: 'LF', name: 'Lucero Fiorella Marcos Hurtado', role: 'Miembro Titular' },
+  { initials: 'ML', name: 'Myriam Linares Jara', role: 'Miembro Titular' },
+  { initials: 'KL', name: 'Katherine Lucía León Guzmán', role: 'Miembro Alterno' },
+  { initials: 'SV', name: 'Stephany Valencia Gutarra', role: 'Miembro Alterno' },
+  { initials: 'AM', name: 'Ana María Gloria Paredes Guerra', role: 'Miembro Alterno' },
+  { initials: 'RE', name: 'Renson Eduardo Hidalgo Ramos', role: 'Miembro Alterno' },
+]

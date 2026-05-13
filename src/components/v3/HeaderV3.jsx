@@ -253,7 +253,7 @@ export default function HeaderV3() {
                     border: '1px solid rgba(15,23,42,0.08)',
                   }}
                 >
-                  <a href="#comite" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                  <a href="/v4/comite-etica" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Comité de ética
                   </a>
                   <a href="#gestion" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">

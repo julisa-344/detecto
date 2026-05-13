@@ -192,15 +192,17 @@ export default function DoctorDetail() {
               </p>
 
               {/* Datos rápidos */}
-              <div className="mt-8 grid max-w-xl grid-cols-1 gap-3 sm:grid-cols-3">
+              <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
                 {[
                   {
                     label: 'CMP',
                     value:
-                      doctor.reg
-                        .replace(/^CMP\s*/i, '')
-                        .split('/')[0]
-                        .trim() || '19397',
+                      (doctor.reg.match(/CMP\s*([\w-]+)/i)?.[1] ?? '—').trim(),
+                  },
+                  {
+                    label: 'RNE',
+                    value:
+                      (doctor.reg.match(/RNE\s*([\w-]+)/i)?.[1] ?? '—').trim(),
                   },
                   {
                     label: 'Atención',
