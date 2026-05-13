@@ -9,7 +9,7 @@ const slides = [
     title: 'Torre de Contención',
     subtitle: 'Próxima apertura · 2026',
     description:
-      'Nueva infraestructura diseñada para fortalecer la capacidad clínica de Detecta, integrando tecnología avanzada y espacios pensados para una experiencia de cuidado integral.',
+      'Construiremos nuevos espacios diseñados para ampliar nuestra capacidad de atención y acompañar a más pacientes con cercanía, humanidad y especialización.',
     accent: '#0199C6',
     image: torre1,
     year: '2026',
@@ -18,7 +18,7 @@ const slides = [
     title: 'Sede principal',
     subtitle: 'En desarrollo · 2028',
     description:
-      'Expansión ambulatoria con áreas dedicadas a especialidades médicas, investigación clínica y servicios diagnósticos, consolidando el ecosistema de salud Detecta.',
+      'En Detecta Clínica, construiremos una nueva sede principal pensada para ti, donde la atención especializada, la investigación clínica y el diagnóstico se unirán para cuidar mejor de tu salud.',
     accent: '#52C0E1',
     image: torre2,
     year: '2028',
