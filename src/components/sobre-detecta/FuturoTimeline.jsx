@@ -15,7 +15,7 @@ const slides = [
     year: '2026',
   },
   {
-    title: 'Torre Ambulatoria',
+    title: 'Sede principal',
     subtitle: 'En desarrollo · 2028',
     description:
       'Expansión ambulatoria con áreas dedicadas a especialidades médicas, investigación clínica y servicios diagnósticos, consolidando el ecosistema de salud Detecta.',
