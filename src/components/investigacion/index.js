@@ -1,0 +1,7 @@
+export { default as InvestigacionHero } from './InvestigacionHero'
+export { default as Pilares } from './Pilares'
+export { default as InfoSplit } from './InfoSplit'
+export { default as AreasEstudio } from './AreasEstudio'
+export { default as Patrocinadores } from './Patrocinadores'
+export { default as CTAFinal } from './CTAFinal'
+export * from './data'

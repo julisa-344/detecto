@@ -1,0 +1,8 @@
+export { default as ComiteEticaHero } from './ComiteEticaHero'
+export { default as QueEsCIEI } from './QueEsCIEI'
+export { default as Principios } from './Principios'
+export { default as AlcanceEvaluacion } from './AlcanceEvaluacion'
+export { default as ProcesoRevision } from './ProcesoRevision'
+export { default as RequisitosFormatos } from './RequisitosFormatos'
+export { default as CTAFinal } from './CTAFinal'
+export * from './data'

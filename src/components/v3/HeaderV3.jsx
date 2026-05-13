@@ -199,7 +199,7 @@ export default function HeaderV3() {
 
             {[
               { label: 'Staff Médico', to: '/v4/staff-medico' },
-              { label: 'Investigación', to: '#' },
+              { label: 'Investigación', to: '/v4/investigacion' },
               { label: 'Sobre Detecta', to: '/v4/sobre-detecta' },
             ].map((item) => {
               const className = `px-4 py-1.5 text-[13px] font-light rounded-full transition-all duration-200 tracking-wide ${
