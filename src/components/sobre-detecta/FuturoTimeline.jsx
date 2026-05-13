@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-mot
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import torre1 from '../../assets/torre1.png'
 import torre2 from '../../assets/torre2.png'
+import detectoMascot from '../../assets/detectoConstruccion.png'
 
 const slides = [
   {
@@ -109,6 +110,29 @@ export default function FuturoTimeline() {
       50% { transform: scaleY(1); transform-origin: top; }
     }
 
+    .ft-mascot-wrap { position: absolute; bottom: 2%; right: 40%;
+      width: clamp(220px, 26vw, 420px); aspect-ratio: 1 / 1;
+      pointer-events: none; user-select: none; z-index: 4; }
+    .ft-mascot-wrap::before {
+      content: ''; position: absolute; inset: -8%;
+      background: radial-gradient(circle at 50% 55%,
+        rgba(1,153,198,0.22) 0%,
+        rgba(1,153,198,0.10) 35%,
+        rgba(82,192,225,0.05) 60%,
+        transparent 75%);
+      filter: blur(10px); z-index: -1;
+    }
+    .ft-mascot { width: 100%; height: 100%; object-fit: contain;
+      animation: ftMascotFloat 4.5s ease-in-out infinite;
+      filter: drop-shadow(0 24px 40px rgba(0,112,165,0.35)); }
+    @media (max-width: 768px) {
+      .ft-mascot-wrap { bottom: 2%; right: 0; width: 160px; }
+    }
+    @keyframes ftMascotFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-14px) rotate(2deg); }
+    }
+
     .ft-slide-block { position: absolute; inset: 0; display: flex; align-items: center; z-index: 2; }
 
     .ft-inner { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px;
@@ -213,14 +237,26 @@ export default function FuturoTimeline() {
             Innovación que{' '}
             <em>transforma la salud.</em>
           </h2>
-          <p className="ft-title-sub">
+          <br />
+          <br />
+          <br />
+          {/* <p className="ft-title-sub">
             Una visión a largo plazo que combina infraestructura de vanguardia,
             tecnología y humanidad para acompañarte en cada etapa de tu vida.
-          </p>
+          </p> */}
           <div className="ft-scroll-hint">
             <span>Desliza</span>
             <span className="line" />
           </div>
+
+          <span className="ft-mascot-wrap">
+            <img
+              src={detectoMascot}
+              alt="Detecto en construcción"
+              className="ft-mascot"
+              loading="lazy"
+            />
+          </span>
         </motion.div>
 
         {/* Slide */}
