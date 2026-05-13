@@ -210,9 +210,8 @@ export default function FuturoTimeline() {
         >
           <p className="ft-title-eyebrow">El futuro</p>
           <h2 className="ft-title-h">
-            Construyendo el{' '}
-            <em>mañana de la salud</em>
-            <br />en Lima.
+            Innovación que{' '}
+            <em>transforma la salud.</em>
           </h2>
           <p className="ft-title-sub">
             Una visión a largo plazo que combina infraestructura de vanguardia,
