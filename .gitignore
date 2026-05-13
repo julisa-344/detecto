@@ -25,3 +25,4 @@ dist-ssr
 
 # Large media (use CDN, never commit)
 src/assets/futuro.mp4
+src/assets/bg1.mp4
