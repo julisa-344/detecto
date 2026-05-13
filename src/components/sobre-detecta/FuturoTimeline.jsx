@@ -110,9 +110,9 @@ export default function FuturoTimeline() {
       50% { transform: scaleY(1); transform-origin: top; }
     }
 
-    .ft-mascot-wrap { position: absolute; bottom: 2%; right: 40%;
-      width: clamp(220px, 26vw, 420px); aspect-ratio: 1 / 1;
-      pointer-events: none; user-select: none; z-index: 4; }
+    .ft-mascot-wrap { position: relative; margin: 24px auto 0;
+      width: clamp(200px, 22vw, 360px); aspect-ratio: 1 / 1;
+      pointer-events: none; user-select: none; }
     .ft-mascot-wrap::before {
       content: ''; position: absolute; inset: -8%;
       background: radial-gradient(circle at 50% 55%,
@@ -126,7 +126,7 @@ export default function FuturoTimeline() {
       animation: ftMascotFloat 4.5s ease-in-out infinite;
       filter: drop-shadow(0 24px 40px rgba(0,112,165,0.35)); }
     @media (max-width: 768px) {
-      .ft-mascot-wrap { bottom: 2%; right: 0; width: 160px; }
+      .ft-mascot-wrap { width: 180px; }
     }
     @keyframes ftMascotFloat {
       0%, 100% { transform: translateY(0) rotate(-2deg); }
@@ -236,18 +236,16 @@ export default function FuturoTimeline() {
           <h2 className="ft-title-h">
             Innovación que{' '}
             <em>transforma la salud.</em>
+          <br />
+          <br />
           </h2>
-          <br />
-          <br />
-          <br />
+       
+          
+
           {/* <p className="ft-title-sub">
             Una visión a largo plazo que combina infraestructura de vanguardia,
             tecnología y humanidad para acompañarte en cada etapa de tu vida.
           </p> */}
-          <div className="ft-scroll-hint">
-            <span>Desliza</span>
-            <span className="line" />
-          </div>
 
           <span className="ft-mascot-wrap">
             <img
@@ -257,6 +255,11 @@ export default function FuturoTimeline() {
               loading="lazy"
             />
           </span>
+
+          <div className="ft-scroll-hint">
+            <span>Desliza</span>
+            <span className="line" />
+          </div>
         </motion.div>
 
         {/* Slide */}
