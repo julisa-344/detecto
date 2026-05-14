@@ -12,6 +12,7 @@ import {
   InfoSplit,
   AreasEstudio,
   Patrocinadores,
+  Publicaciones,
   CTAFinal,
   investigacionImages,
 } from '../components/investigacion'
@@ -60,6 +61,8 @@ export default function Investigacion() {
           />
 
           <AreasEstudio />
+
+          <Publicaciones />
 
           <Patrocinadores />
 

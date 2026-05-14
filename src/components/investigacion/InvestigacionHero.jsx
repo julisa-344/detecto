@@ -15,7 +15,8 @@ export default function InvestigacionHero() {
       >
         <source src={heroVideo} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-linear-to-r from-slate-950/70 via-slate-950/40 to-slate-950/10" />
+      <div className="absolute inset-0 bg-linear-to-tr from-slate-950/75 via-slate-950/35 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-slate-950/55 via-transparent to-transparent" />
 
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
         <motion.div
