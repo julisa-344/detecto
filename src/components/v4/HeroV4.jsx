@@ -19,8 +19,19 @@ const publications = [
     title: 'World J. Surgical Oncology',
     fullTitle: 'World Journal of Surgical Oncology',
     tag: 'Research / Open access',
-    authors: 'Gastón Wilmer Mendoza De Lama, Nancy Elena Muñoz Quispe, Jorge Marcelo Aguilar Cosme, Samantha Mendoza, Renson Eduardo Hidalgo Ramos, Diana Díaz-Llontop, Richard Eduardo Castillo Laborio, Juan Manuel Trejo Mena, Enrique Oswaldo Bedoya Ismodes & Luis Taxa.',
-    lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
+    principalAuthor: 'Dr. Gaston Mendoza De Lama',
+    coautores: [
+      'Nancy Elena Muñoz Quispe',
+      'Jorge Marcelo Aguilar Cosme',
+      'Samantha Mendoza',
+      'Renson Eduardo Hidalgo Ramos',
+      'Diana Díaz-Llontop',
+      'Richard Eduardo Castillo Laborio',
+      'Juan Manuel Trejo Mena',
+      'Enrique Oswaldo Bedoya Ismodes',
+      'Luis Taxa',
+    ],
+    lead: { name: 'Dr. Gaston Mendoza De Lama', role: 'Investigador principal', photo: gaston },
     link: 'https://link.springer.com/article/10.1186/s12957-025-04183-5',
     pages: '12 páginas',
     image: portada1,
@@ -30,9 +41,19 @@ const publications = [
     title: 'Tumori Journal',
     fullTitle: 'Tumori Journal',
     tag: 'Abstract Book / Supplement',
-    presentedAt: '18th Breast, Gynecological & Immunooncology International Cancer Conference (BGIICC 2026)',
-    authors: 'Gastón Wilmer Mendoza De Lama',
-    lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
+    principalAuthor: 'Dr. Gaston Mendoza De Lama',
+    coautores: [
+      'Nancy Muñoz-Quispe',
+      'Diana Díaz-Llontop',
+      'Samantha Mendoza-Rivera',
+      'Claudia Quiñones',
+      'Richard Castillo-Laborio',
+      'Renson Hidalgo',
+      'Luis Taxa',
+    ],
+    presentedAt:
+      '18.ª Conferencia Internacional sobre Cáncer de Mama, Ginecología e Inmunooncología — BGIICC 2026, 22–23 de enero de 2026, Hotel Hilton Heliopolis, El Cairo, Egipto.',
+    lead: { name: 'Dr. Gaston Mendoza De Lama', role: 'Investigador principal', photo: gaston },
     link: 'https://journals.sagepub.com/toc/tmja/112/1_suppl',
     pages: '8 páginas',
     image: portada2,
@@ -42,9 +63,20 @@ const publications = [
     title: 'European J. of Cancer',
     fullTitle: 'European Journal of Cancer',
     tag: 'Conference Supplement',
-    presentedAt: '15th European Breast Cancer Conference (EBCC-15)',
-    authors: 'Gastón Wilmer Mendoza De Lama',
-    lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
+    principalAuthor: 'Dr. Gaston Mendoza De Lama',
+    coautores: [
+      'N.E. Muñoz Quispe',
+      'J.M. Aguilar Cosme',
+      'J. Ayon Seminario',
+      'D. Diaz Llontop',
+      'S.E. Mendoza Rivera',
+      'C.S. Quiñones Pereyra',
+      'R.E. Castillo Laborio',
+      'L.M. Taxa Rojas',
+    ],
+    presentedAt:
+      '15th European Breast Cancer Conference (EBCC-15), 25–27 de marzo de 2026, Barcelona, España.',
+    lead: { name: 'Dr. Gaston Mendoza De Lama', role: 'Investigador principal', photo: gaston },
     link: 'https://www.ejcancer.com/issue/S0959-8049(26)X2004-4',
     pages: '157 páginas',
     image: portada3,
@@ -54,8 +86,18 @@ const publications = [
     title: 'Radiology and Oncology',
     fullTitle: 'Radiology and Oncology',
     tag: 'Article / Ahead of Print',
-    authors: 'Gaston (Wilmer) Mendoza, Nancy Muñoz, Jorge Aguilar, Jorge Ayón, Diana Díaz-Llontop, Samantha Mendoza, Claudia Quiñones, Richard Castillo & Luis Taxa.',
-    lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
+    principalAuthor: 'Dr. Gaston Mendoza De Lama',
+    coautores: [
+      'Nancy Muñoz',
+      'Jorge Aguilar',
+      'Jorge Ayón',
+      'Diana Díaz-Llontop',
+      'Samantha Mendoza',
+      'Claudia Quiñones',
+      'Richard Castillo',
+      'Luis Taxa',
+    ],
+    lead: { name: 'Dr. Gaston Mendoza De Lama', role: 'Investigador principal', photo: gaston },
     link: 'https://reference-global.com/article/10.2478/raon-2026-0018?tab=article',
     pages: '13 páginas',
     image: portada4,
@@ -65,8 +107,9 @@ const publications = [
     title: 'Clinical Research',
     fullTitle: 'Clinical Research',
     tag: 'Journal Article',
-    authors: 'Gastón Wilmer Mendoza De Lama.',
-    lead: { name: 'Gastón Wilmer Mendoza De Lama', role: 'Investigador principal', photo: gaston},
+    principalAuthor: 'Dra. Samantha Mendoza',
+    coautores: ['Gastón Mendoza de Lama', 'Enrique Oswaldo Bedoya Ismodes'],
+    lead: { name: 'Dra. Samantha Mendoza', role: 'Investigadora principal' },
     link: 'https://journal.ppcr.org/index.php/ppcrjournal/article/view/433',
     pages: '2 páginas',
     image: portada5,
@@ -246,66 +289,36 @@ function ResearchBar() {
                     </span>
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="text-[13px] font-semibold leading-snug text-white">
+                    <p className="text-[14px] font-semibold leading-snug text-white">
                       {activePub.fullTitle}
                     </p>
-                    {activePub.lead && (
-                      <p className="mt-1.5 truncate text-[11.5px] font-light text-white/65">
-                        {activePub.lead.name}
+                    {activePub.principalAuthor && (
+                      <p className="mt-1.5 text-[11.5px] font-light leading-snug text-white/75">
+                        {activePub.principalAuthor}
                       </p>
                     )}
                   </div>
                 </div>
-
-                {(() => {
-                  const list = (activePub.authors || '')
-                    .split(',')
-                    .map((a) => a.replace(/\.$/, '').trim())
-                    .filter(Boolean)
-                  const principal = list[0]
-                  const coautores = list.slice(1)
-                  return (
-                    <>
-                      {principal && (
-                        <div className="border-t border-white/10 px-5 py-4">
-                          <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
-                            Autor principal
-                          </p>
-                          <p className="mt-2 text-[11.5px] font-light leading-[1.45] text-white/85">
-                            {principal}
-                          </p>
-                        </div>
-                      )}
-                      {activePub.presentedAt && (
-                        <div className="border-t border-white/10 px-5 py-4">
-                          <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
-                            Presentado en
-                          </p>
-                          <p className="mt-2 text-[11.5px] font-light leading-[1.45] text-white/85">
-                            {activePub.presentedAt}
-                          </p>
-                        </div>
-                      )}
-                      {coautores.length > 0 && (
-                        <div className="border-t border-white/10 px-5 py-4">
-                          <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
-                            Coautores
-                          </p>
-                          <div className="mt-2 space-y-1">
-                            {coautores.map((author, index) => (
-                              <p
-                                key={index}
-                                className="text-[11.5px] font-light leading-[1.45] text-white/85"
-                              >
-                                {author}
-                              </p>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </>
-                  )
-                })()}
+                {activePub.coautores && activePub.coautores.length > 0 && (
+                  <div className="border-t border-white/10 px-5 py-4">
+                    <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
+                      Coautores
+                    </p>
+                    <p className="mt-2 text-[11.5px] font-light leading-[1.55] text-white/85">
+                      {activePub.coautores.join(', ')}
+                    </p>
+                  </div>
+                )}
+                {activePub.presentedAt && (
+                  <div className="border-t border-white/10 px-5 py-4">
+                    <p className="text-[9px] font-semibold tracking-[0.22em] uppercase text-white/50">
+                      Presentado en
+                    </p>
+                    <p className="mt-2 text-[11.5px] font-light leading-[1.45] text-white/85">
+                      {activePub.presentedAt}
+                    </p>
+                  </div>
+                )}
               </motion.div>
             )}
           </AnimatePresence>,
