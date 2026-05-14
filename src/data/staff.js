@@ -122,7 +122,6 @@ export const doctors = [
   D('Dr. Nicanor Rodríguez Gutarra', 'nicanorrodriguezgutarra1.webp', 'Urología Oncológica', 'CMP 025867 / RNE 027671'),
   D('Dr. Oscar Ricardo Paredes Torres', 'oscarricardoparedestorres1.webp'),
   D('Dr. Raúl Cantella Suito', 'raúlcantellasuito1.webp'),
-  D('Dr. Renzo Bozzo Pancorvo', 'renzobozzopancorvo1.webp'),
   D('Dr. Renzo Cañote Flores', 'renzocañoteflores1.webp'),
   D('Dra. Samantha Mendoza Rivera', 'samanthamendozarivera1.webp'),
   D('Dr. Santiago Herrera Morales', 'santiagoherreramorales1.webp'),
