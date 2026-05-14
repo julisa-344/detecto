@@ -1,0 +1,7 @@
+export * from '../specialty'
+export { default as SalaOperacionesHero } from './SalaOperacionesHero'
+export { default as PorQueOperarte } from './PorQueOperarte'
+export { default as BeneficiosPaciente } from './BeneficiosPaciente'
+export { default as TecnologiaValor } from './TecnologiaValor'
+export { default as EspecialidadesQuirurgicas } from './EspecialidadesQuirurgicas'
+export * from './data'

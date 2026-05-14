@@ -17,6 +17,9 @@ import Dermatologia from './pages/Dermatologia'
 import Investigacion from './pages/Investigacion'
 import ComiteEtica from './pages/ComiteEtica'
 import GestionEtica from './pages/GestionEtica'
+import DiagnosticoImagenes from './pages/DiagnosticoImagenes'
+import Hospitalizacion from './pages/Hospitalizacion'
+import SalaOperaciones from './pages/SalaOperaciones'
 import Login from './pages/Login'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -40,6 +43,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/investigacion" element={<Investigacion />} />
         <Route path="/v4/comite-etica" element={<ComiteEtica />} />
         <Route path="/v4/gestion-etica" element={<GestionEtica />} />
+        <Route path="/v4/diagnostico-imagenes" element={<DiagnosticoImagenes />} />
+        <Route path="/v4/hospitalizacion" element={<Hospitalizacion />} />
+        <Route path="/v4/sala-operaciones" element={<SalaOperaciones />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,5 @@
+export * from '../specialty'
+export { default as HospitalizacionHero } from './HospitalizacionHero'
+export { default as EntornosRecuperacion } from './EntornosRecuperacion'
+export { default as ValoranPacientes } from './ValoranPacientes'
+export * from './data'

@@ -37,15 +37,11 @@ export default function EticaOncologia() {
             </span>
           </h2>
           <p className="mt-6 max-w-md text-[15px] font-light leading-7 text-white/85">
-            En una clínica con enfoque preventivo y oncológico, la ética debe
-            reflejarse de forma especialmente rigurosa. Esto significa
-            acompañar, informar con claridad, evitar sesgos comerciales y
-            sostener decisiones clínicas responsables en contextos de alta
-            sensibilidad emocional.
+            En una clínica preventiva y oncológica, la ética exige un compromiso riguroso: acompañar con humanidad, informar con claridad, evitar sesgos comerciales y tomar decisiones clínicas responsables en momentos de alta sensibilidad.
           </p>
 
           {/* Bloque destacado */}
-          <div className="mt-8 rounded-3xl border border-white/20 bg-white/10 p-5 backdrop-blur-md">
+          {/* <div className="mt-8 rounded-3xl border border-white/20 bg-white/10 p-5 backdrop-blur-md">
             <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--brand-base))]">
               Lo que esto significa para el paciente
             </p>
@@ -53,7 +49,7 @@ export default function EticaOncologia() {
               Significa recibir información clara, criterio médico profesional,
               un trato digno y decisiones orientadas a su salud real.
             </p>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Cards compromisos */}

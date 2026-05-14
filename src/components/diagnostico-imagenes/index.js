@@ -1,0 +1,5 @@
+export * from '../specialty'
+export { default as DiagnosticoHero } from './DiagnosticoHero'
+export { default as EstudiosImagenes } from './EstudiosImagenes'
+export { default as PasosRapido } from './PasosRapido'
+export * from './data'
