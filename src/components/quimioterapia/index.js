@@ -1,0 +1,7 @@
+export * from '../specialty'
+export { default as QuimioterapiaHero } from './QuimioterapiaHero'
+export { default as NuestroTratamiento } from './NuestroTratamiento'
+export { default as AtencionPersonalizada } from './AtencionPersonalizada'
+export { default as BeneficiosPaciente } from './BeneficiosPaciente'
+export { default as EnsayosClinicos } from './EnsayosClinicos'
+export * from './data'

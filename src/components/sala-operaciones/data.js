@@ -40,16 +40,22 @@ export const beneficios = [
     title: 'Seguridad Quirúrgica',
     desc: 'Procesos definidos y equipamiento adecuado para brindar una experiencia más segura.',
     icon: Stethoscope,
+    image:
+      'https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Tecnología de Soporte',
     desc: 'Herramientas modernas que favorecen una mejor visualización y mayor precisión quirúrgica.',
     icon: Cpu,
+    image:
+      'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80',
   },
   {
     title: 'Equipo Preparado',
     desc: 'Profesionales y personal de apoyo alineados para acompañar procedimientos de distinta complejidad.',
     icon: Users,
+    image:
+      'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=1200&q=80',
   },
 ]
 

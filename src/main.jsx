@@ -20,6 +20,7 @@ import GestionEtica from './pages/GestionEtica'
 import DiagnosticoImagenes from './pages/DiagnosticoImagenes'
 import Hospitalizacion from './pages/Hospitalizacion'
 import SalaOperaciones from './pages/SalaOperaciones'
+import Quimioterapia from './pages/Quimioterapia'
 import Login from './pages/Login'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -46,6 +47,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/diagnostico-imagenes" element={<DiagnosticoImagenes />} />
         <Route path="/v4/hospitalizacion" element={<Hospitalizacion />} />
         <Route path="/v4/sala-operaciones" element={<SalaOperaciones />} />
+        <Route path="/v4/quimioterapia" element={<Quimioterapia />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
