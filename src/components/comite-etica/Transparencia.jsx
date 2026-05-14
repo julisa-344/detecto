@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, ArrowUpRight } from 'lucide-react'
 import { transparencia } from './data'
-import eticaImg from '../../assets/eticajpg.jpg'
+import eticaImg from '../../assets/transparencia.jpg'
 
 export default function Transparencia() {
   const [activeIdx, setActiveIdx] = useState(0)
@@ -16,7 +16,7 @@ export default function Transparencia() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-60px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="relative overflow-hidden rounded-4xl bg-slate-900 min-h-150 lg:min-h-full"
+          className="relative overflow-hidden rounded-4xl bg-slate-950 min-h-175 lg:min-h-full"
         >
           <img
             src={eticaImg}
@@ -24,8 +24,8 @@ export default function Transparencia() {
             className="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-linear-to-tr from-[rgb(var(--brand-dark)/0.85)] via-[rgb(var(--brand-dark)/0.45)] to-transparent" />
-          <div className="absolute inset-0 bg-linear-to-t from-[rgb(var(--brand-dark)/0.7)] via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-tr from-slate-950/75 via-slate-950/35 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950/55 via-transparent to-transparent" />
 
           <div className="relative z-10 flex h-full flex-col justify-between p-8 lg:p-12">
             <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-[rgb(var(--brand-base))]">
@@ -48,7 +48,7 @@ export default function Transparencia() {
         </motion.div>
 
         {/* Lado derecho — grid 2x2 estilo EspecialidadesV4 */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 min-h-150">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 min-h-175">
           {transparencia.map((t, index) => {
             const Icon = t.icon
             const id = String(index + 1).padStart(2, '0')
