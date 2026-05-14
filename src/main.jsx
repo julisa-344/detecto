@@ -16,6 +16,7 @@ import SobreDetecta from './pages/SobreDetecta'
 import Dermatologia from './pages/Dermatologia'
 import Investigacion from './pages/Investigacion'
 import ComiteEtica from './pages/ComiteEtica'
+import GestionEtica from './pages/GestionEtica'
 import Login from './pages/Login'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -38,6 +39,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/dermatologia" element={<Dermatologia />} />
         <Route path="/v4/investigacion" element={<Investigacion />} />
         <Route path="/v4/comite-etica" element={<ComiteEtica />} />
+        <Route path="/v4/gestion-etica" element={<GestionEtica />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

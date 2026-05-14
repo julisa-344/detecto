@@ -256,7 +256,7 @@ export default function HeaderV3() {
                   <a href="/v4/comite-etica" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Comité de ética
                   </a>
-                  <a href="#gestion" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                  <a href="/v4/gestion-etica" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Gestión ética
                   </a>
                 </div>
