@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { CalendarDays, Receipt, Mail, Phone } from 'lucide-react'
 import { fadeUp } from '../specialty'
-import heroVideo from '../../assets/herobg.mp4'
+import heroVideo from '../../assets/etica.mp4'
 
 const stats = [
   { label: 'Sesiones', value: 'Todos los miércoles', icon: CalendarDays },
@@ -22,8 +22,8 @@ export default function ComiteEticaHero() {
       >
         <source src={heroVideo} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-slate-950/50 to-slate-950/10" />
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-slate-950/70 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-tr from-slate-950/75 via-slate-950/35 to-transparent" />
+      <div className="absolute inset-0 bg-linear-to-t from-slate-950/55 via-transparent to-transparent" />
 
       {/* Contenido */}
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 lg:px-12">
@@ -49,25 +49,21 @@ export default function ComiteEticaHero() {
         </motion.div>
       </div>
 
-      {/* Stats band — glass dentro del hero */}
+      {/* Stats — cards separadas */}
       <div className="relative z-20 mx-auto mt-16 w-full max-w-7xl px-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 divide-y divide-white/15 rounded-3xl border border-white/20 bg-white/10 backdrop-blur-xl sm:grid-cols-2 sm:divide-y-0 lg:grid-cols-4 lg:divide-x lg:divide-white/15"
-        >
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((s, i) => {
             const Icon = s.icon
             return (
-              <div
+              <motion.div
                 key={s.label}
-                className={`group flex items-start gap-4 p-6 lg:p-7 ${
-                  i % 2 === 1 ? 'sm:border-l sm:border-white/15 lg:border-l-0' : ''
-                }`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.15 + i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex items-start gap-4 rounded-3xl border border-white/20 bg-white/10 p-5 backdrop-blur-xl transition-all hover:-translate-y-1 hover:border-[rgb(var(--brand-base)/0.5)] hover:bg-white/15 lg:p-6"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition-colors group-hover:border-[rgb(var(--brand-base))] group-hover:bg-[rgb(var(--brand-base))]">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white transition-colors group-hover:border-[rgb(var(--brand-base))] group-hover:bg-[rgb(var(--brand-base))]">
                   <Icon className="h-4 w-4" />
                 </span>
                 <div className="min-w-0">
@@ -78,10 +74,10 @@ export default function ComiteEticaHero() {
                     {s.value}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             )
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
