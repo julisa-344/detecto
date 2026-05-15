@@ -8,83 +8,88 @@ const pacientesCategories = [
   {
     id: 'preventivos',
     title: 'Programas Preventivos',
-    items: ['Preventivo Rosa', 'Preventivo Azul', 'Pulmo Scan'],
+    items: [
+      { label: 'Preventivo Rosa', to: '/v4/preventivo-rosa' },
+      { label: 'Preventivo Azul', to: '#' },
+      { label: 'Pulmo Scan', to: '#' },
+    ],
   },
   {
     id: 'servicios',
     title: 'Servicios',
     items: [
-      'Diagnóstico por Imágenes',
-      'Farmacia',
-      'Hospitalización',
-      'Laboratorio Clínico',
-      'Resultados de Anatomía Patológica',
-      'Quimioterapia',
-      'Sala de Operaciones',
-      'Resultados de Laboratorio Clínico',
-      'Resultados de Laboratorio Patológico',
+      { label: 'Diagnóstico por Imágenes', to: '/v4/diagnostico-imagenes' },
+      { label: 'Farmacia', to: '/v4/farmacia' },
+      { label: 'Hospitalización', to: '/v4/hospitalizacion' },
+      { label: 'Laboratorio Clínico', to: '#' },
+      { label: 'Resultados de Anatomía Patológica', to: '/v4/resultados-anatomia-patologica' },
+      { label: 'Quimioterapia', to: '/v4/quimioterapia' },
+      { label: 'Sala de Operaciones', to: '/v4/sala-operaciones' },
+      { label: 'Resultados de Laboratorio Clínico', to: '/v4/resultados-laboratorio-patologico' },
+      { label: 'Resultados de Laboratorio Patológico', to: '/v4/resultados-laboratorio-patologico' },
     ],
   },
   {
     id: 'oncologia',
     title: 'Oncología',
     items: [
-      'Oncología Médica',
-      'Oncología Pediátrica',
-      'Oncología de Cabeza y Cuello',
-      'Ginecología Oncológica',
-      'Mastología y Ginecología Oncológica',
-      'Urología Oncológica',
-      'Psicooncología',
+      { label: 'Oncología Médica', to: '/v4/oncologia-medica' },
+      { label: 'Oncología Pediátrica', to: '#' },
+      { label: 'Oncología de Cabeza y Cuello', to: '#' },
+      { label: 'Ginecología Oncológica', to: '#' },
+      { label: 'Mastología y Ginecología Oncológica', to: '#' },
+      { label: 'Urología Oncológica', to: '#' },
+      { label: 'Psicooncología', to: '#' },
     ],
   },
   {
     id: 'medicas',
     title: 'Especialidades Médicas',
     items: [
-      'Dermatología',
-      'Endocrinología',
-      'Enfermedades Infecciosas',
-      'Gastroenterología',
-      'Geriatría',
-      'Hematología',
-      'Infectología',
-      'Medicina General',
-      'Medicina Interna',
-      'Nefrología',
+      { label: 'Dermatología', to: '/v4/dermatologia' },
+      { label: 'Endocrinología', to: '#' },
+      { label: 'Enfermedades Infecciosas', to: '#' },
+      { label: 'Gastroenterología', to: '#' },
+      { label: 'Geriatría', to: '#' },
+      { label: 'Hematología', to: '#' },
+      { label: 'Infectología', to: '#' },
+      { label: 'Medicina General', to: '#' },
+      { label: 'Medicina Interna', to: '#' },
+      { label: 'Nefrología', to: '#' },
     ],
   },
   {
     id: 'quirurgicas',
     title: 'Especialidades Quirúrgicas',
     items: [
-      'Cirugía Plástica',
-      'Coloproctología',
-      'Ginecología y Obstetricia',
-      'Neurocirugía',
-      'Odontología',
-      'Otorrinolaringología',
-      'Traumatología',
-      'Urología',
+      { label: 'Cirugía Plástica', to: '#' },
+      { label: 'Coloproctología', to: '#' },
+      { label: 'Ginecología y Obstetricia', to: '#' },
+      { label: 'Neurocirugía', to: '#' },
+      { label: 'Odontología', to: '#' },
+      { label: 'Otorrinolaringología', to: '#' },
+      { label: 'Traumatología', to: '#' },
+      { label: 'Urología', to: '#' },
     ],
   },
   {
     id: 'otras',
     title: 'Otras Especialidades',
     items: [
-      'Medicina Física y Rehabilitación',
-      'Oftalmología',
-      'Pediatría',
-      'Psicología',
-      'Psiquiatría',
-      'Radiología Intervencionista',
+      { label: 'Medicina Física y Rehabilitación', to: '#' },
+      { label: 'Oftalmología', to: '#' },
+      { label: 'Pediatría', to: '#' },
+      { label: 'Psicología', to: '#' },
+      { label: 'Psiquiatría', to: '#' },
+      { label: 'Radiología Intervencionista', to: '#' },
     ],
   },
 ]
 
-export default function HeaderV3() {
+export default function HeaderV3({ forceLight = false }) {
   const [visible, setVisible] = useState(true)
-  const [scrolled, setScrolled] = useState(false)
+  const [scrolled, setScrolledState] = useState(forceLight)
+  const setScrolled = (v) => setScrolledState(forceLight ? true : v)
   const [openMenu, setOpenMenu] = useState(null) // 'pacientes' | 'ethics' | null
   const [activeCategory, setActiveCategory] = useState('preventivos')
   const [ctaHover, setCtaHover] = useState(false)
@@ -253,12 +258,12 @@ export default function HeaderV3() {
                     border: '1px solid rgba(15,23,42,0.08)',
                   }}
                 >
-                  <a href="/v4/comite-etica" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                  <Link to="/v4/comite-etica" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Comité de ética
-                  </a>
-                  <a href="/v4/gestion-etica" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                  </Link>
+                  <Link to="/v4/gestion-etica" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Gestión ética
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -298,12 +303,12 @@ export default function HeaderV3() {
                     border: '1px solid rgba(15,23,42,0.08)',
                   }}
                 >
-                  <a href="/login" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                  <Link to="/login" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Laboratorio Clínico
-                  </a>
-                  <a href="login" className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                  </Link>
+                  <Link to="/login" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Anatomía Patológica
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -356,17 +361,35 @@ export default function HeaderV3() {
                       {activeCategoryData?.title}
                     </p>
                     <div className="grid grid-cols-2 gap-x-10 gap-y-3">
-                      {activeCategoryData?.items.map((item) => (
-                        <a
-                          key={item}
-                          href="#"
-                          className="group flex items-center gap-3 text-sm text-slate-600 hover:text-primary-dark transition-colors duration-200"
-                          onClick={() => setOpenMenu(null)}
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-primary-medium transition-colors" />
-                          {item}
-                        </a>
-                      ))}
+                      {activeCategoryData?.items.map((item) => {
+                        const cls =
+                          'group flex items-center gap-3 text-sm text-slate-600 hover:text-primary-dark transition-colors duration-200'
+                        const inner = (
+                          <>
+                            <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-primary-medium transition-colors" />
+                            {item.label}
+                          </>
+                        )
+                        return item.to && item.to.startsWith('/') ? (
+                          <Link
+                            key={item.label}
+                            to={item.to}
+                            className={cls}
+                            onClick={() => setOpenMenu(null)}
+                          >
+                            {inner}
+                          </Link>
+                        ) : (
+                          <a
+                            key={item.label}
+                            href={item.to || '#'}
+                            className={cls}
+                            onClick={() => setOpenMenu(null)}
+                          >
+                            {inner}
+                          </a>
+                        )
+                      })}
                     </div>
                   </div>
                 </div>

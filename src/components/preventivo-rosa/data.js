@@ -8,6 +8,9 @@ import {
   ClipboardList,
   Target,
   CalendarCheck,
+  HeartHandshake,
+  Cpu,
+  Clock,
 } from 'lucide-react'
 
 export const servicios = [
@@ -24,19 +27,24 @@ export const servicios = [
 
 export const beneficios = [
   {
-    icon: CalendarCheck,
-    title: 'One Day',
-    text: 'Realiza tu despistaje en un solo día y con acompañamiento del equipo clínico.',
+    icon: Stethoscope,
+    title: 'Atención especializada',
+    text: 'Equipo médico con enfoque oncológico para una evaluación experta y precisa.',
   },
   {
-    icon: Target,
-    title: 'Enfoque',
-    text: 'Incluye evaluaciones gineco-oncológicas y de mama según tu grupo etario.',
+    icon: HeartHandshake,
+    title: 'Trato cercano',
+    text: 'Acompañamiento humano en cada paso para que tu experiencia sea tranquila.',
   },
   {
-    icon: FileText,
-    title: 'Resultados',
-    text: 'Recibe orientación con la lectura de resultados para tomar decisiones informadas.',
+    icon: Cpu,
+    title: 'Tecnología de vanguardia',
+    text: 'Equipos de última generación que respaldan diagnósticos más confiables.',
+  },
+  {
+    icon: Clock,
+    title: 'Resultados rápidos',
+    text: 'Te entregamos tus resultados el mismo día o en el menor tiempo posible.',
   },
 ]
 

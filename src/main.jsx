@@ -22,6 +22,8 @@ import Hospitalizacion from './pages/Hospitalizacion'
 import SalaOperaciones from './pages/SalaOperaciones'
 import Quimioterapia from './pages/Quimioterapia'
 import Farmacia from './pages/Farmacia'
+import ResultadosAnatomia from './pages/ResultadosAnatomia'
+import ResultadosLaboratorio from './pages/ResultadosLaboratorio'
 import Login from './pages/Login'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -50,6 +52,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/sala-operaciones" element={<SalaOperaciones />} />
         <Route path="/v4/quimioterapia" element={<Quimioterapia />} />
         <Route path="/v4/farmacia" element={<Farmacia />} />
+        <Route path="/v4/resultados-anatomia-patologica" element={<ResultadosAnatomia />} />
+        <Route path="/v4/resultados-laboratorio-patologico" element={<ResultadosLaboratorio />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
