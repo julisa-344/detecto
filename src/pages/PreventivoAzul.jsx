@@ -2,16 +2,14 @@ import HeaderV3 from '../components/v3/HeaderV3'
 import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-import heroVideo from '../assets/preventivoRosaBanner.mp4'
-import bannerImg from '../assets/preventivoRosa.jpg'
+import heroVideo from '../assets/bg1.mp4'
 
 import {
   ThemeProvider,
-  PINK_THEME,
+  BLUE_THEME,
   Hero,
   ServicesStrip,
   BeneficiosGrid,
-  MisionCTA,
   FAQs,
   QuickContact,
 } from '../components/specialty'
@@ -24,32 +22,31 @@ import {
   servicios,
   beneficios,
   faqs,
-} from '../components/preventivo-rosa'
+} from '../components/preventivo-azul'
 
-export default function PreventivoRosa() {
+export default function PreventivoAzul() {
   return (
     <ThemeProvider
-      theme={PINK_THEME}
+      theme={BLUE_THEME}
       className="min-h-screen"
       style={{
         fontFamily: 'Lexend, sans-serif',
-        background: PINK_THEME.pageGradient,
+        background: BLUE_THEME.pageGradient,
       }}
     >
       <HeaderV3 />
 
       <Hero
         video={heroVideo}
-        titlePre="Preventivo Rosa:"
+        titlePre="Preventivo Azul:"
         titleAccent="despistaje con enfoque integral."
-        subtitle="Evaluación preventiva para mama, cuello uterino, ovarios, vagina y vulva. Detectar a tiempo puede cambiarlo todo."
+        subtitle="Evaluación preventiva para próstata, testículos y salud urológica. Detectar a tiempo puede cambiarlo todo."
       />
 
       <ServicesStrip items={servicios} />
 
       <div className="mx-auto max-w-7xl px-6 py-20 lg:py-28">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
-
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <PorQueHacerlo />
 
@@ -57,8 +54,11 @@ export default function PreventivoRosa() {
               eyebrow="¿Por qué elegirnos?"
               titlePre="Una propuesta pensada"
               titleAccent="para cuidarte."
-              paragraph="Cuatro pilares que hacen del Preventivo Rosa una experiencia diferente."
+              paragraph="Cuatro pilares que hacen del Preventivo Azul una experiencia diferente."
               items={beneficios}
+              activeBg="linear-gradient(160deg, #52C0E1 0%, #0070A5 100%)"
+              idleBg="linear-gradient(160deg, #E0F4FB 0%, #A5DCEE 100%)"
+              collapsedTextColor="#0070A5"
             />
 
             <PlanesPreventivo />
@@ -76,12 +76,8 @@ export default function PreventivoRosa() {
           </main>
 
           <aside className="hidden self-start lg:sticky lg:top-24 lg:block">
-            <QuickContact
-              title="¿Tienes dudas?"
-              titleAccent="Estamos aquí."
-            />
+            <QuickContact title="¿Tienes dudas?" titleAccent="Estamos aquí." />
           </aside>
-
         </div>
       </div>
 

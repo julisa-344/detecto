@@ -10,6 +10,9 @@ export default function BeneficiosGrid({
   titleAccent,
   paragraph,
   items = [],
+  activeBg = 'linear-gradient(160deg, #E5739A 0%, #C1436D 100%)',
+  idleBg = 'linear-gradient(160deg, #F9E2E9 0%, #F0A0B9 100%)',
+  collapsedTextColor = '#C1436D',
 }) {
   const [active, setActive] = useState(0)
 
@@ -55,11 +58,7 @@ export default function BeneficiosGrid({
                   ? 'sm:flex-3 shadow-[0_30px_70px_-25px_rgb(var(--brand-med)/0.35)]'
                   : 'sm:flex-1 shadow-[0_18px_40px_-25px_rgb(var(--brand-med)/0.12)]',
               ].join(' ')}
-              style={{
-                background: isActive
-                  ? 'linear-gradient(160deg, #E5739A 0%, #C1436D 100%)' // ACTIVO: Rosa fuerte de tu marca
-                  : 'linear-gradient(160deg, #F9E2E9 0%, #F0A0B9 100%)', // NORMAL: Rosa pastel limpio
-              }}
+              style={{ background: isActive ? activeBg : idleBg }}
             >
               {/* Decorative blobs */}
               <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-white/20 blur-2xl" />
@@ -73,8 +72,10 @@ export default function BeneficiosGrid({
                   isActive ? 'pointer-events-none opacity-0' : 'opacity-100 delay-200',
                 ].join(' ')}
               >
-                {/* Texto en rosa oscuro para resaltar sobre el fondo claro colapsado */}
-                <span className="rotate-180 text-[15px] font-medium uppercase tracking-[0.35em] text-[#C1436D] [writing-mode:vertical-rl]">
+                <span
+                  className="rotate-180 text-[15px] font-medium uppercase tracking-[0.35em] [writing-mode:vertical-rl]"
+                  style={{ color: collapsedTextColor }}
+                >
                   {h.title}
                 </span>
               </div>

@@ -10,7 +10,7 @@ const pacientesCategories = [
     title: 'Programas Preventivos',
     items: [
       { label: 'Preventivo Rosa', to: '/v4/preventivo-rosa' },
-      { label: 'Preventivo Azul', to: '#' },
+      { label: 'Preventivo Azul', to: '/v4/preventivo-azul' },
       { label: 'Pulmo Scan', to: '#' },
     ],
   },

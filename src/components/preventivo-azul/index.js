@@ -1,0 +1,6 @@
+export * from '../specialty'
+export { default as PlanesPreventivo } from './PlanesPreventivo'
+export { default as ChecklistPreparacion } from './ChecklistPreparacion'
+export { default as OneDayBanner } from './OneDayBanner'
+export { default as PorQueHacerlo } from './PorQueHacerlo'
+export * from './data'

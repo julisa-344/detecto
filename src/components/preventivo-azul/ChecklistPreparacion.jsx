@@ -26,7 +26,6 @@ export default function ChecklistPreparacion() {
         </p>
       </div>
 
-      {/* Pasos como timeline horizontal */}
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
         {preparacion.map((item, i) => {
           const num = String(i + 1).padStart(2, '0')
@@ -57,7 +56,6 @@ export default function ChecklistPreparacion() {
         })}
       </div>
 
-      {/* Aviso importante como banner inferior */}
       <div className="mt-6 flex items-start gap-4 rounded-3xl bg-[rgb(var(--brand-base)/0.08)] p-5 ring-1 ring-[rgb(var(--brand-base)/0.18)]">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[rgb(var(--brand-base))] text-white">
           <Info className="h-4 w-4" strokeWidth={2.5} />
