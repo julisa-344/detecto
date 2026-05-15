@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { SectionEyebrow, SectionTitle, fadeUp } from '../specialty'
 import { perfilPaciente } from './data'
 
-const quienesImg = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/preventivoRosa.gif`
+const quienesImg = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/detecta.gif`
 
 export default function PorQueHacerlo() {
   return (
@@ -38,13 +38,16 @@ export default function PorQueHacerlo() {
           viewport={{ once: true }}
           className="relative lg:sticky lg:top-28"
         >
-          <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[40px] bg-linear-to-br from-[rgb(var(--brand-base)/0.25)] via-[rgb(var(--brand-med)/0.12)] to-transparent blur-2xl" />
-          <div className="relative overflow-hidden rounded-4xl min-h-[520px] lg:min-h-[620px] flex items-center justify-center bg-linear-to-br from-[rgb(var(--brand-base)/0.12)] to-[rgb(var(--brand-med)/0.08)]">
+          <div className="relative flex min-h-[520px] items-center justify-center lg:min-h-[620px]">
             <img
               src={quienesImg}
               alt="Despistaje preventivo rosa"
-              className="w-full h-full object-contain scale-150 lg:scale-[1.7]"
+              className="w-full h-full object-contain scale-150 lg:scale-[2.2] drop-shadow-[0_40px_30px_rgba(194,24,91,0.25)]"
               loading="lazy"
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute bottom-8 left-1/2 h-10 w-[55%] -translate-x-1/2 rounded-[50%] bg-[rgb(var(--brand-dark)/0.25)] blur-2xl"
             />
           </div>
 

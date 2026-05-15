@@ -1,20 +1,17 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, MessageCircle } from 'lucide-react'
 import { fadeUp } from '../specialty'
-import heroVideo from '../../assets/herobg.mp4'
+
+const heroImage = `${import.meta.env.VITE_BASE_IMAGE_URL}servicios/hospitalizacion.webp`
 
 export default function HospitalizacionHero() {
   return (
     <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-slate-900 pb-20 pt-24 lg:items-center lg:pb-0 lg:pt-20">
-      <video
-        muted
-        loop
-        autoPlay
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover opacity-55"
-      >
-        <source src={heroVideo} type="video/mp4" />
-      </video>
+      <img
+        src={heroImage}
+        alt="Hospitalización Detecta Clínica"
+        className="absolute inset-0 h-full w-full object-cover opacity-60"
+      />
       <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-slate-950/50 to-slate-950/10" />
 
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 py-20 lg:px-12 lg:py-28">

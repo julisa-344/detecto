@@ -1,20 +1,18 @@
 import { BedDouble, Users2, Heart, ShieldCheck, Sparkles, Clock } from 'lucide-react'
 
+const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
+
 export const habitaciones = [
   {
     title: 'Habitaciones unipersonales',
-    desc: 'Privacidad total en espacios modernos y cómodos. Atención personalizada y un ambiente sereno para tu recuperación.',
     icon: BedDouble,
-    image:
-      'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?auto=format&fit=crop&w=1200&q=80',
+    image: `${IMG_BASE}servicios/unipersonales.webp`,
     bullets: ['Privacidad total', 'Atención personalizada', 'Ambiente sereno'],
   },
   {
     title: 'Habitaciones bipersonales',
-    desc: 'Comodidad y ambiente familiar con facilidades para acompañantes. Cuidado constante para que te sientas acompañado y seguro.',
     icon: Users2,
-    image:
-      'https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&q=80',
+    image: `${IMG_BASE}servicios/bipersonales.webp`,
     bullets: ['Facilidades para acompañante', 'Cuidado constante', 'Ambiente familiar'],
   },
 ]
