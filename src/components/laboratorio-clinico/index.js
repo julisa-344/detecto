@@ -1,0 +1,5 @@
+export * from '../specialty'
+export { default as LaboratorioHero } from './LaboratorioHero'
+export { default as LaboratorioServicios } from './LaboratorioServicios'
+export { default as EquipoCompromiso } from './EquipoCompromiso'
+export * from './data'
