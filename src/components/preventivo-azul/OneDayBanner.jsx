@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { fadeUp } from '../specialty'
 
-const MAN_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/man.png`
+const MAN_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/men.png`
 
 export default function OneDayBanner() {
   return (
@@ -48,7 +48,7 @@ export default function OneDayBanner() {
           <img
             src={MAN_IMG}
             alt="Preventivo Azul"
-            className="absolute inset-0 h-full w-full object-cover object-center"
+            className="absolute inset-0 h-full w-[80%] object-cover object-center"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#52C0E1]/45 lg:to-[#52C0E1]/30" />

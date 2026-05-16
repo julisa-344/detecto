@@ -2,7 +2,7 @@ import HeaderV3 from '../components/v3/HeaderV3'
 import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-import heroVideo from '../assets/bg1.mp4'
+const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/preventivoAzul.mp4`
 
 import {
   ThemeProvider,
