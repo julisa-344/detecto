@@ -1,11 +1,12 @@
 import { Pill, HeartHandshake, Truck } from 'lucide-react'
 
+const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
+
 export const areas = [
   {
     title: 'Medicamentos generales y oncológicos',
     icon: Pill,
-    image:
-      'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=1200&q=80',
+    image: `${IMG_BASE}servicios/farmacia1.webp`,
     bullets: [
       'Amplio stock para el cuidado diario y manejo de enfermedades crónicas.',
       'Medicamentos oncológicos certificados y supervisados.',
@@ -15,8 +16,7 @@ export const areas = [
   {
     title: 'Acompañamiento farmacéutico cercano',
     icon: HeartHandshake,
-    image:
-      'https://images.unsplash.com/photo-1576602976047-174e57a47881?auto=format&fit=crop&w=1200&q=80',
+    image: `${IMG_BASE}servicios/farmacia2jpg.jpg`,
     bullets: [
       'Te explicamos cómo tomar tus medicamentos y qué efectos esperar.',
       'Te ayudamos a mantener tu tratamiento sin interrupciones.',
@@ -26,8 +26,7 @@ export const areas = [
   {
     title: 'Entrega sencilla y segura',
     icon: Truck,
-    image:
-      'https://images.unsplash.com/photo-1586528116493-ce4b1f3a8c47?auto=format&fit=crop&w=1200&q=80',
+    image: `${IMG_BASE}servicios/farmacia2.png`,
     bullets: [
       'Compra presencial o por teléfono.',
       'Medicamentos conservados bajo normas estrictas.',

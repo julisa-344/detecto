@@ -2,8 +2,7 @@ import { motion } from 'framer-motion'
 import { SectionEyebrow, SectionTitle } from '../specialty'
 import { tecnologias } from './data'
 
-const TECH_IMAGE =
-  'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1400&q=80'
+const TECH_IMAGE = `${import.meta.env.VITE_BASE_IMAGE_URL}servicios/sala.webp`
 
 export default function TecnologiaValor() {
   return (

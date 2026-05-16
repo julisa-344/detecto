@@ -65,8 +65,6 @@ export default function DiagnosticoImagenes() {
         </div>
       </div>
 
-      <FortalezasClinica image={detecto} words={fortalezas} />
-
       <FooterV4 showCTA={false} />
       <WhatsAppButton />
     </ThemeProvider>

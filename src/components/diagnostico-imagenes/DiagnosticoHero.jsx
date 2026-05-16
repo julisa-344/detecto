@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, MessageCircle } from 'lucide-react'
 import { fadeUp } from '../specialty'
 
-const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}hero-videos/11.mp4`
+const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}home-videos/11.mp4`
 
 export default function DiagnosticoHero() {
   return (
