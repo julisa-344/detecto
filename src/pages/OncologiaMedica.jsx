@@ -6,9 +6,19 @@ import bannerImg from '../assets/bannerOncologia.jpg'
 import detecto from '../assets/detecto.png'
 
 import {
+  Users2,
+  HeartHandshake,
+  Microscope,
+  ShieldCheck,
+  Stethoscope,
+  Sparkles,
+} from 'lucide-react'
+
+import {
   ThemeProvider,
   BLUE_THEME,
   MisionCTA,
+  ServicesStrip,
   FAQs,
   QuickContact,
   FortalezasClinica,
@@ -19,8 +29,18 @@ import {
   QueEsOncologia,
   TiposCancer,
   LoQueOfrecemos,
+  NuestroDiferencial,
   faqs,
 } from '../components/oncologia-medica'
+
+const stripServicios = [
+  { title: 'Oncología médica', icon: Stethoscope },
+  { title: 'Equipo multidisciplinario', icon: Users2 },
+  { title: 'Tratamientos personalizados', icon: Sparkles },
+  { title: 'Tecnología de vanguardia', icon: Microscope },
+  { title: 'Acompañamiento integral', icon: HeartHandshake },
+  { title: 'Detección temprana', icon: ShieldCheck },
+]
 
 const fortalezasWords = [
   'Excelencia médica',
@@ -47,6 +67,8 @@ export default function OncologiaMedica() {
 
       <OncologiaHero />
 
+      <ServicesStrip items={stripServicios} />
+
       <div className="mx-auto max-w-7xl px-6 py-20 lg:py-28">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
 
@@ -58,13 +80,15 @@ export default function OncologiaMedica() {
             <MisionCTA
               image={bannerImg}
               imageAlt="Misión de la oncología médica"
-              eyebrow="Nuestro compromiso"
-              titlePre="Tu salud,"
-              titleAccent="nuestra misión."
-              paragraph="Combinamos ciencia, tecnología y humanidad para acompañarte en cada etapa del tratamiento oncológico. Da el primer paso hacia tu recuperación hoy mismo."
+              eyebrow=" "
+              titlePre="Agenda una"
+              titleAccent="evaluación oncológica."
+              paragraph="Conoce tus opciones de tratamiento médico con especialistas en oncología y recibe una orientación clara para tu caso."
             />
 
             <LoQueOfrecemos />
+
+            <NuestroDiferencial />
 
             <FAQs
               eyebrow="Preguntas frecuentes"

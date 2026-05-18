@@ -24,11 +24,11 @@ export default function MisionCTA({
         <img
           src={image}
           alt={imageAlt}
-          className="absolute inset-0 h-full w-full object-cover opacity-70"
+          className="absolute inset-0 h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-linear-to-br from-[rgb(var(--brand-dark)/0.3)] via-[rgb(var(--brand-med)/0.15)] to-transparent" />
-        <div className="absolute inset-0 bg-linear-to-t from-slate-950/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-tr from-slate-950/75 via-slate-950/35 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950/55 via-transparent to-transparent" />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -44,7 +44,7 @@ export default function MisionCTA({
           <div className="max-w-xl">
             <h3 className="text-4xl font-extralight leading-[1.05] tracking-tight text-white sm:text-5xl">
               {titlePre}<br />
-              <span className="italic font-light text-[rgb(var(--brand-base))]">{titleAccent}</span>
+              <span className=" font-medium text-[rgb(var(--brand-base))]">{titleAccent}</span>
             </h3>
 
             <p className="mt-5 max-w-md text-[14px] font-light leading-7 text-white/90 sm:text-[15px]">

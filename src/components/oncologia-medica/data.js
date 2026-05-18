@@ -56,11 +56,26 @@ export const highlights = [
 ]
 
 export const perfilPaciente = [
-  'Cuentas con un diagnóstico y buscas claridad en los siguientes pasos',
-  'Necesitas la tranquilidad de una segunda opinión experta',
-  'Deseas un enfoque integral que cuide cada detalle de tu tratamiento actual',
-  'Buscas prevención y asesoría profesional por antecedentes familiares',
-  'Has concluido tu tratamiento y necesitas un seguimiento cercano y seguro',
+  {
+    title: 'Diagnóstico reciente',
+    desc: 'Para entender tu diagnóstico y conocer los siguientes pasos.',
+  },
+  {
+    title: 'Segunda opinión médica',
+    desc: 'Para revisar tu caso y decidir con mayor seguridad.',
+  },
+  {
+    title: 'Tratamiento oncológico',
+    desc: 'Para iniciar, continuar o ajustar tu plan médico.',
+  },
+  {
+    title: 'Antecedentes familiares',
+    desc: 'Para recibir orientación preventiva y evaluar riesgos.',
+  },
+  {
+    title: 'Seguimiento posterior',
+    desc: 'Para controlar tu evolución después del tratamiento.',
+  },
 ]
 
 export const faqs = [

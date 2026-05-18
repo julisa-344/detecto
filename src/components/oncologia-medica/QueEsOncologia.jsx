@@ -13,15 +13,14 @@ export default function QueEsOncologia() {
         <div>
           <SectionEyebrow>Especialidad</SectionEyebrow>
           <SectionTitle className="mb-4">
-            ¿Qué es la{' '}
+            Cuidado {' '}
             <em className="not-italic font-medium text-[rgb(var(--brand-base))]">
-              oncología médica?
+              oncológico integral
             </em>
           </SectionTitle>
           <p className="max-w-2xl text-[15px] font-light leading-7 text-slate-500">
-            Diagnóstico, tratamiento y control del cáncer con medicamentos —
-            quimioterapia, inmunoterapia, terapias dirigidas y hormonoterapia —
-            buscando frenar el crecimiento tumoral y mejorar tu calidad de vida.
+            En Detecta Clínica, acompañamos el diagnóstico, tratamiento y seguimiento del cáncer con un enfoque médico especializado, humano y seguro.
+
           </p>
         </div>
    
@@ -45,27 +44,27 @@ function AtendemosBlock() {
     >
       <div className="rounded-4xl border border-slate-100 bg-white p-5 lg:p-6">
         <p className="mb-4 px-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[rgb(var(--brand-base))]">
-          Atendemos
+          ¿Cuándo acudir a oncología médica?
         </p>
-        <ul className="space-y-2">
+        <ul className="space-y-1">
           {perfilPaciente.map((item, i) => {
             const Icon = ITEM_ICONS[i % ITEM_ICONS.length]
             const isActive = i === active
             return (
-              <li key={item}>
+              <li key={item.title}>
                 <button
                   type="button"
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
                   onClick={() => setActive(i)}
-                  className={`flex w-full cursor-pointer items-center gap-3 rounded-2xl px-3 py-3 text-left transition-all ${
+                  className={`flex w-full cursor-pointer items-start gap-3 rounded-2xl px-3 py-3 text-left transition-all ${
                     isActive
                       ? 'bg-[rgb(var(--brand-base))] text-white shadow-[0_10px_25px_-12px_rgb(var(--brand-base)/0.6)]'
                       : 'text-slate-700 hover:bg-(--brand-bg-ultra)'
                   }`}
                 >
                   <span
-                    className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors ${
+                    className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors ${
                       isActive
                         ? 'bg-white/20 text-white'
                         : 'bg-(--brand-bg-ultra) text-[rgb(var(--brand-base))]'
@@ -73,7 +72,18 @@ function AtendemosBlock() {
                   >
                     <Icon className="h-4 w-4" />
                   </span>
-                  <span className="text-[14px] font-medium">{item}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-[14px] font-medium leading-tight">
+                      {item.title}
+                    </span>
+                    <span
+                      className={`mt-1 block text-[12.5px] font-light leading-snug ${
+                        isActive ? 'text-white/85' : 'text-slate-500'
+                      }`}
+                    >
+                      {item.desc}
+                    </span>
+                  </span>
                 </button>
               </li>
             )

@@ -253,17 +253,13 @@ function ResearchBar() {
       </div>
 
       {/* Card estática: Próximamente — fuera del loop */}
-      <div className="mt-3 flex items-center gap-4 w-fit pl-1 pr-5 py-1 rounded-2xl border border-[#52C0E1]/30 bg-white/5 backdrop-blur-xl shadow-[0_0_24px_rgba(82,192,225,0.15)] cursor-default select-none overflow-hidden">
+      <div className="mt-3 flex items-center gap-2 w-fit pl-1 pr-5 py-1 rounded-2xl border border-[#52C0E1]/30 bg-white/5 backdrop-blur-xl shadow-[0_0_24px_rgba(82,192,225,0.15)] cursor-default select-none overflow-hidden">
         {/* Imagen */}
         <div className="relative h-14 w-24 shrink-0 overflow-hidden rounded-xl">
           <img src={proximamente} alt="Próximamente" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
         </div>
-        {/* Punto parpadeante + label */}
-        <span className="relative flex h-2 w-2 shrink-0">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#52C0E1] opacity-75" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#52C0E1]" />
-        </span>
+¿
         <span className="flex flex-col gap-0.5">
           <span className="text-[9px] font-semibold tracking-[0.25em] uppercase text-[#52C0E1]">Próximamente</span>
           <span className="text-white/80 text-xs font-medium">Dr. Francis Martinez</span>

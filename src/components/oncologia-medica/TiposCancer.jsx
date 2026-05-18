@@ -91,7 +91,7 @@ export default function TiposCancer() {
 
       <div className="mb-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
-          <SectionEyebrow>Tratamientos</SectionEyebrow>
+          <SectionEyebrow>PATOLOGÍAS ONCOLÓGICAS</SectionEyebrow>
           <SectionTitle className="mb-4">
             Tipos de cáncer{' '}
             <em className="not-italic font-medium text-[rgb(var(--brand-base))]">
@@ -142,10 +142,7 @@ export default function TiposCancer() {
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="inline-flex items-center gap-2 rounded-full bg-(--brand-bg-ultra) px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[rgb(var(--brand-dark))]">
-                <Icon className="h-3.5 w-3.5 text-[rgb(var(--brand-base))]" />
-                Tratamientos
-              </span>
+  
 
               <h3 className="mt-6 text-3xl font-light leading-tight tracking-tight text-[rgb(var(--brand-dark))] lg:text-4xl">
                 {current.title}
@@ -158,28 +155,34 @@ export default function TiposCancer() {
 
           <div className="mt-10 flex items-center justify-between gap-6">
             <div className="flex flex-1 items-center gap-2">
-              {slideItems.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => setActive(i)}
-                  aria-label={`Ver tratamiento ${i + 1}`}
-                  className={`relative h-1.5 cursor-pointer overflow-hidden rounded-full transition-all ${
-                    i === active ? 'flex-1 bg-slate-200' : 'w-6 bg-slate-200 hover:bg-slate-300'
-                  }`}
-                >
-                  {i === active && (
-                    <span
-                      key={`${active}-${paused ? 'p' : 'r'}`}
-                      className="absolute inset-y-0 left-0 block bg-[rgb(var(--brand-base))]"
-                      style={{
-                        animation: `tiposCancerProgress ${AUTOPLAY_MS}ms linear forwards`,
-                        animationPlayState: paused ? 'paused' : 'running',
-                      }}
-                    />
-                  )}
-                </button>
-              ))}
+              {slideItems.map((_, i) => {
+                const isActive = i === active
+                const isPast = i < active
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => setActive(i)}
+                    aria-label={`Ver tratamiento ${i + 1}`}
+                    className={`relative h-1.5 cursor-pointer overflow-hidden rounded-full bg-slate-200 transition-all ${
+                      isActive ? 'flex-1' : 'w-8 hover:bg-slate-300'
+                    }`}
+                  >
+                    {isPast && (
+                      <span className="absolute inset-0 block bg-[rgb(var(--brand-base))]" />
+                    )}
+                    {isActive && (
+                      <motion.span
+                        key={`${active}-${paused ? 'p' : 'r'}`}
+                        className="absolute inset-y-0 left-0 block w-full origin-left bg-[rgb(var(--brand-base))]"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: paused ? 0 : 1 }}
+                        transition={{ duration: AUTOPLAY_MS / 1000, ease: 'linear' }}
+                      />
+                    )}
+                  </button>
+                )
+              })}
             </div>
 
             <button
@@ -192,7 +195,6 @@ export default function TiposCancer() {
             </button>
           </div>
 
-          <style>{`@keyframes tiposCancerProgress { from { transform: translateX(-100%); } to { transform: translateX(0); } }`}</style>
         </div>
       </div>
     </section>

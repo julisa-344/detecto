@@ -13,7 +13,7 @@ export default function StaffBanner() {
           className="absolute inset-0 h-full w-full object-cover object-bottom"
         />
 
-        <div className="absolute inset-0 bg-linear-to-br from-[#0A2A3F]/85 via-primary-dark/75 to-primary-medium/60" />
+        <div className="absolute inset-0 bg-linear-to-br from-[#0A2A3F]/85 via-primary-dark/45 to-primary-medium/40" />
 
         <div className="absolute inset-0 bg-linear-to-t from-white via-transparent to-transparent" />
 
@@ -46,12 +46,7 @@ export default function StaffBanner() {
               excelencia para tu bienestar
             </span>
           </h1>
-
-          <p className="mt-7 max-w-2xl text-base font-light leading-relaxed text-white/85 lg:text-lg">
-            Un equipo multidisciplinario de médicos con trayectoria
-            internacional, comprometidos con tu diagnóstico, tratamiento y
-            recuperación.
-          </p>
+          
         </motion.div>
       </div>
     </section>
