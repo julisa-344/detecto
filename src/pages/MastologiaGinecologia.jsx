@@ -2,8 +2,6 @@ import HeaderV3 from '../components/v3/HeaderV3'
 import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-import bannerImg from '../assets/bannerOncologia.jpg'
-
 import {
   ThemeProvider,
   BLUE_THEME,
@@ -66,7 +64,7 @@ export default function MastologiaGinecologia() {
             <ConditionsGrid items={condiciones} />
 
             <MisionCTA
-              image={bannerImg}
+              image={mastoImages.cta}
               imageAlt="Compromiso oncológico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
@@ -95,8 +93,6 @@ export default function MastologiaGinecologia() {
           </aside>
         </div>
       </div>
-
-      <FortalezasClinica words={fortalezas} />
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

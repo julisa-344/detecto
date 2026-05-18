@@ -111,7 +111,7 @@ export default function OncologiaPediatrica() {
             />
 
             <MisionCTA
-              image={bannerImg}
+              image={pediatricaImages.cta}
               imageAlt="Compromiso oncológico Detecta"
               eyebrow=" "
               titlePre="Agenda una"

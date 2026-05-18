@@ -16,6 +16,7 @@ const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 export const mastoImages = {
   heroVideo: `${IMG_BASE}oncologia/mastologia.mp4`,
   side: `${IMG_BASE}oncologia/mastologia.webp`,
+  cta: `${IMG_BASE}oncologia/mastologiaCta.webp`,
 }
 
 export const sintomas = [

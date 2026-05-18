@@ -13,24 +13,28 @@ import {
   Sparkles,
 } from 'lucide-react'
 
+import { ClipboardList, Heart, Dna, Stethoscope as StethoscopeIcon, Activity } from 'lucide-react'
+
 import {
   ThemeProvider,
   BLUE_THEME,
   MisionCTA,
   ServicesStrip,
+  SpecialtyIntro,
   FAQs,
   QuickContact,
-  FortalezasClinica,
 } from '../components/specialty'
 
 import {
   OncologiaHero,
-  QueEsOncologia,
   TiposCancer,
   LoQueOfrecemos,
   NuestroDiferencial,
-  faqs,
 } from '../components/oncologia-medica'
+
+import { perfilPaciente, oncoImages, faqs } from '../components/oncologia-medica/data'
+
+const introIcons = [ClipboardList, Heart, Dna, StethoscopeIcon, Activity]
 
 const stripServicios = [
   { title: 'Oncología médica', icon: Stethoscope },
@@ -72,7 +76,16 @@ export default function OncologiaMedica() {
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
 
           <main className="min-w-0 space-y-20 lg:space-y-24">
-            <QueEsOncologia />
+            <SpecialtyIntro
+              titlePre="Cuidado"
+              titleAccent="oncológico integral"
+              paragraph="En Detecta Clínica, acompañamos el diagnóstico, tratamiento y seguimiento del cáncer con un enfoque médico especializado, humano y seguro."
+              listLabel="¿Cuándo acudir a oncología médica?"
+              items={perfilPaciente}
+              sideImage={oncoImages.hero}
+              sideAlt="Atención oncológica Detecta"
+              icons={introIcons}
+            />
 
             <TiposCancer />
 

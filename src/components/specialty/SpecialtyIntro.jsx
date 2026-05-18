@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { AlertCircle, Activity, Heart, Microscope, Sparkles } from 'lucide-react'
 import SectionEyebrow from './SectionEyebrow'
@@ -16,9 +15,10 @@ export default function SpecialtyIntro({
   sideImage,
   sideAlt = '',
   icons = DEFAULT_ICONS,
+  reverse = false,
 }) {
   return (
-    <section className="relative">
+    <section className="relative lg:pb-20">
       <div className="mb-12 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
           <SectionEyebrow>{eyebrow}</SectionEyebrow>
@@ -42,80 +42,68 @@ export default function SpecialtyIntro({
         sideImage={sideImage}
         sideAlt={sideAlt}
         icons={icons}
+        reverse={reverse}
       />
     </section>
   )
 }
 
-function SintomasBlock({ items, listLabel, sideImage, sideAlt, icons }) {
-  const [active, setActive] = useState(0)
-
+function SintomasBlock({ items, listLabel, sideImage, sideAlt, icons, reverse }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1fr] lg:items-stretch"
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="relative"
     >
-      <div className="">
-        <p className="mb-4 px-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[rgb(var(--brand-base))]">
-          {listLabel}
-        </p>
-        <ul className="space-y-2">
-          {items.map((item, i) => {
-            const Icon = icons[i % icons.length]
-            const isActive = i === active
-            return (
-              <li key={item.title}>
-                <button
-                  type="button"
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  onClick={() => setActive(i)}
-                  className={`flex w-full cursor-pointer items-start gap-3 rounded-2xl px-3 py-3 text-left transition-all ${
-                    isActive
-                      ? 'bg-[rgb(var(--brand-base))] text-white shadow-[0_10px_25px_-12px_rgb(var(--brand-base)/0.6)]'
-                      : 'text-slate-700 hover:bg-(--brand-bg-ultra) bg-primary/5 shadow'
-                  }`}
-                >
-                  <span
-                    className={`mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors ${
-                      isActive
-                        ? 'bg-white/20 text-white'
-                        : 'bg-(--brand-bg-ultra) text-[rgb(var(--brand-base))]'
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[14px] font-medium leading-tight">
-                      {item.title}
-                    </span>
-                    {item.desc && (
-                      <span
-                        className={`mt-1 block text-[12.5px] font-light leading-snug ${
-                          isActive ? 'text-white/85' : 'text-slate-500'
-                        }`}
-                      >
-                        {item.desc}
-                      </span>
-                    )}
-                  </span>
-                </button>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
-
-      <div className="relative min-h-72 overflow-hidden rounded-4xl bg-slate-100 lg:min-h-full">
+      {/* Imagen — 80% del ancho */}
+      <div
+        className={`relative aspect-4/3 w-full overflow-hidden rounded-4xl shadow-[0_25px_55px_-25px_rgb(0,112,165,0.35)] lg:aspect-auto lg:h-150 lg:w-[80%] ${
+          reverse ? 'lg:ml-auto' : ''
+        }`}
+      >
         <img
           src={sideImage}
           alt={sideAlt}
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
+      </div>
+
+      {/* Card glass con bullets — overlap */}
+      <div
+        className={`relative z-10 -mt-16 mx-4 sm:mx-8 lg:absolute lg:-bottom-16 lg:mt-0 lg:w-[60%] lg:max-w-xl lg:mx-0 ${
+          reverse ? 'lg:left-0' : 'lg:right-0'
+        }`}
+      >
+        <div className="relative overflow-hidden rounded-4xl bg-white/65 p-6 shadow-[0_30px_60px_-25px_rgb(0,112,165,0.28)] ring-1 ring-white/60 backdrop-blur-2xl lg:p-8">
+        <div className="pointer-events-none absolute -top-10 -right-10 h-36 w-36 rounded-full bg-[rgb(var(--brand-base)/0.18)] blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-12 -left-12 h-32 w-32 rounded-full bg-[rgb(var(--brand-med)/0.12)] blur-3xl" />
+        <p className="relative mb-4 px-2 text-[16px] font-semibold uppercase tracking-[0.3em] text-[rgb(var(--brand-dark))]">
+          {listLabel}
+        </p>
+        <ul className="relative space-y-1.5">
+          {items.map((item, i) => {
+            const Icon = icons[i % icons.length]
+            return (
+              <li
+                key={item.title}
+                className="flex items-start gap-3 rounded-2xl py-2 text-slate-700"
+              >
+                <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-xl text-[rgb(var(--brand-dark))]">
+                  <Icon className="h-4 w-4" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block text-[14px] font-medium leading-tight text-[rgb(var(--brand-dark))]">
+                    {item.title}
+                  </span>
+                </span>
+              </li>
+            )
+          })}
+        </ul>
+        </div>
       </div>
     </motion.div>
   )

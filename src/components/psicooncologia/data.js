@@ -15,8 +15,9 @@ import {
 const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 
 export const psicoImages = {
-  heroVideo: `${IMG_BASE}oncologia/psicooncologia.mp4`,
-  side: `${IMG_BASE}oncologia/psicooncologia.webp`,
+  heroVideo: `${IMG_BASE}oncologia/psicooncologiamp4.mp4`,
+  side: `${IMG_BASE}oncologia/psicooncologia.jpg`,
+  cta: `${IMG_BASE}oncologia/psicooncologiaCta.jpg`,
 }
 
 export const sintomas = [

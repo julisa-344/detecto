@@ -60,6 +60,7 @@ export default function OncologiaCabezaCuello() {
               items={sintomas}
               sideImage={cabezaCuelloImages.side}
               sideAlt="Especialistas en cabeza y cuello"
+              reverse
             />
 
             <ConditionsGrid
@@ -98,8 +99,6 @@ export default function OncologiaCabezaCuello() {
           </aside>
         </div>
       </div>
-
-      <FortalezasClinica words={fortalezas} />
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

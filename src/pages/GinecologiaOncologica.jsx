@@ -66,7 +66,7 @@ export default function GinecologiaOncologica() {
             <ConditionsGrid items={condiciones} />
 
             <MisionCTA
-              image={bannerImg}
+              image={ginecoImages.cta}
               imageAlt="Compromiso oncológico Detecta"
               eyebrow=" "
               titlePre="Agenda una"

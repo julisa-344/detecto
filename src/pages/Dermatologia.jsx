@@ -1,7 +1,6 @@
 import HeaderV3 from '../components/v3/HeaderV3'
 import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
-import detecto from '../assets/detecto.png'
 import bannerImg from '../assets/bannerOncologia.jpg'
 
 import {
@@ -63,14 +62,12 @@ export default function Dermatologia() {
             />
           </main>
 
-          <aside className="hidden self-start lg:sticky lg:top-[96px] lg:block">
+          <aside className="hidden self-start lg:sticky lg:top-24 lg:block">
             <QuickContact />
           </aside>
 
         </div>
       </div>
-
-      <FortalezasClinica image={detecto} words={fortalezas} />
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

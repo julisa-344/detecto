@@ -2,8 +2,6 @@ import HeaderV3 from '../components/v3/HeaderV3'
 import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-import bannerImg from '../assets/bannerOncologia.jpg'
-
 import {
   ThemeProvider,
   BLUE_THEME,
@@ -66,7 +64,7 @@ export default function UrologiaOncologica() {
             <ConditionsGrid items={condiciones} />
 
             <MisionCTA
-              image={bannerImg}
+              image={urologiaImages.cta}
               imageAlt="Compromiso oncológico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
