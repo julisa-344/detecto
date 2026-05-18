@@ -23,6 +23,14 @@ import SalaOperaciones from './pages/SalaOperaciones'
 import Quimioterapia from './pages/Quimioterapia'
 import Farmacia from './pages/Farmacia'
 import LaboratorioClinico from './pages/LaboratorioClinico'
+import OncologiaCabezaCuello from './pages/OncologiaCabezaCuello'
+import MastologiaGinecologia from './pages/MastologiaGinecologia'
+import Psicooncologia from './pages/Psicooncologia'
+import OncologiaPediatrica from './pages/OncologiaPediatrica'
+import GinecologiaOncologica from './pages/GinecologiaOncologica'
+import UrologiaOncologica from './pages/UrologiaOncologica'
+import EnfermedadesInfecciosas from './pages/EnfermedadesInfecciosas'
+import Geriatria from './pages/Geriatria'
 import ResultadosAnatomia from './pages/ResultadosAnatomia'
 import ResultadosLaboratorio from './pages/ResultadosLaboratorio'
 import PreventivoAzul from './pages/PreventivoAzul'
@@ -55,6 +63,14 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/quimioterapia" element={<Quimioterapia />} />
         <Route path="/v4/farmacia" element={<Farmacia />} />
         <Route path="/v4/laboratorio-clinico" element={<LaboratorioClinico />} />
+        <Route path="/v4/oncologia-cabeza-cuello" element={<OncologiaCabezaCuello />} />
+        <Route path="/v4/mastologia-ginecologia" element={<MastologiaGinecologia />} />
+        <Route path="/v4/psicooncologia" element={<Psicooncologia />} />
+        <Route path="/v4/oncologia-pediatrica" element={<OncologiaPediatrica />} />
+        <Route path="/v4/ginecologia-oncologica" element={<GinecologiaOncologica />} />
+        <Route path="/v4/urologia-oncologica" element={<UrologiaOncologica />} />
+        <Route path="/v4/enfermedades-infecciosas" element={<EnfermedadesInfecciosas />} />
+        <Route path="/v4/geriatria" element={<Geriatria />} />
         <Route path="/v4/resultados-anatomia-patologica" element={<ResultadosAnatomia />} />
         <Route path="/v4/resultados-laboratorio-patologico" element={<ResultadosLaboratorio />} />
         <Route path="/v4/preventivo-azul" element={<PreventivoAzul />} />

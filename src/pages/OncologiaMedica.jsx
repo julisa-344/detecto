@@ -3,7 +3,6 @@ import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
 
 import bannerImg from '../assets/bannerOncologia.jpg'
-import detecto from '../assets/detecto.png'
 
 import {
   Users2,

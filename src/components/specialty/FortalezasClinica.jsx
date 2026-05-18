@@ -27,13 +27,15 @@ export default function FortalezasClinica({ image, imageAlt = 'Detecto', words =
     <section className="relative">
       <div className="relative w-full overflow-hidden">
         <div className="relative flex min-h-[70vh] items-center justify-center py-16">
-          <motion.img
-            src={image}
-            alt={imageAlt}
-            animate={{ y: [0, -14, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            className="relative z-20 h-[55vh] w-auto max-w-[55vw] object-contain"
-          />
+          {image && (
+            <motion.img
+              src={image}
+              alt={imageAlt}
+              animate={{ y: [0, -14, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+              className="relative z-20 h-[55vh] w-auto max-w-[55vw] object-contain"
+            />
+          )}
 
           <div className="pointer-events-none absolute inset-0 z-10 flex flex-col justify-center gap-8">
             <MarqueeRow items={words} duration={55} />

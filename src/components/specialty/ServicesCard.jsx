@@ -1,0 +1,79 @@
+import { motion } from 'framer-motion'
+import { Check } from 'lucide-react'
+import SectionEyebrow from './SectionEyebrow'
+import SectionTitle from './SectionTitle'
+
+export default function ServicesCard({
+  eyebrow = 'Nuestros servicios',
+  titlePre,
+  titleAccent,
+  paragraph,
+  label = '/ Procedimientos',
+  service,
+}) {
+  if (!service) return null
+  const Icon = service.icon
+
+  return (
+    <section className="relative">
+      <div className="mb-12 max-w-2xl">
+        <SectionEyebrow>{eyebrow}</SectionEyebrow>
+        <SectionTitle className="mb-3">
+          {titlePre}{' '}
+          <em className="not-italic font-medium text-[rgb(var(--brand-base))]">
+            {titleAccent}
+          </em>
+        </SectionTitle>
+        {paragraph && (
+          <p className="max-w-xl text-[15px] font-light leading-7 text-slate-500">
+            {paragraph}
+          </p>
+        )}
+      </div>
+
+      <motion.article
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        className="relative overflow-hidden rounded-4xl bg-white p-7 ring-1 ring-slate-100 lg:p-10"
+      >
+        <div className="pointer-events-none absolute -top-20 -right-20 h-56 w-56 rounded-full bg-[rgb(var(--brand-base)/0.12)] blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-[rgb(var(--brand-med)/0.10)] blur-3xl" />
+
+        <div className="relative">
+          <div className="flex items-center gap-5">
+            {Icon && (
+              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-(--brand-bg-ultra) text-[rgb(var(--brand-base))]">
+                <Icon className="h-6 w-6" />
+              </span>
+            )}
+            <div>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-[rgb(var(--brand-base))]">
+                {label}
+              </p>
+              <h3 className="mt-1 text-2xl font-light leading-tight tracking-tight text-[rgb(var(--brand-dark))] lg:text-3xl">
+                {service.title}
+              </h3>
+            </div>
+          </div>
+
+          <div className="my-7 h-px w-full bg-linear-to-r from-[rgb(var(--brand-base)/0.4)] via-slate-200 to-transparent" />
+
+          <ul className="grid grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+            {service.bullets.map((b) => (
+              <li key={b} className="flex items-start gap-3">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-(--brand-bg-ultra) text-[rgb(var(--brand-base))]">
+                  <Check className="h-3 w-3" strokeWidth={2.5} />
+                </span>
+                <span className="text-[13.5px] font-light leading-relaxed text-slate-600">
+                  {b}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </motion.article>
+    </section>
+  )
+}

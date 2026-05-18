@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion'
-import { SectionEyebrow } from '../specialty'
-import { tiposCancer } from './data'
+import SectionEyebrow from './SectionEyebrow'
 
-function TipoCard({ item, index }) {
+function ConditionCard({ item, index }) {
   const Icon = item.icon
   const num = String(index + 1).padStart(2, '0')
 
@@ -12,12 +11,13 @@ function TipoCard({ item, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.45, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
-      className="group flex items-start gap-4 rounded-3xl bg-white p-5 shadow-[0_15px_35px_-20px_rgb(0,112,165,0.25)] ring-1 ring-white/60 transition-all hover:-translate-y-0.5 hover:shadow-[0_20px_40px_-18px_rgb(0,112,165,0.35)]"
+      className="flex items-start gap-4 rounded-3xl bg-white p-5 shadow-[0_15px_35px_-20px_rgb(0,112,165,0.25)] ring-1 ring-white/60"
     >
-      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-(--brand-bg-ultra) text-[rgb(var(--brand-base))] ring-1 ring-[rgb(var(--brand-base)/0.15)]">
-        <Icon className="h-5 w-5" />
-      </span>
-
+      {Icon && (
+        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-(--brand-bg-ultra) text-[rgb(var(--brand-base))] ring-1 ring-[rgb(var(--brand-base)/0.15)]">
+          <Icon className="h-5 w-5" />
+        </span>
+      )}
       <div className="min-w-0 flex-1">
         <p className="font-mono text-[10px] font-semibold tracking-[0.25em] text-slate-300">
           {num}
@@ -30,25 +30,28 @@ function TipoCard({ item, index }) {
   )
 }
 
-export default function TiposCancer() {
+export default function ConditionsGrid({
+  eyebrow = 'CONDICIONES TRATADAS',
+  titlePre = '¿Qué',
+  titleAccent = 'tratamos?',
+  items = [],
+}) {
   return (
     <section className="relative overflow-hidden rounded-4xl bg-linear-to-br from-[rgb(var(--brand-base)/0.18)] via-[rgb(var(--brand-base)/0.08)] to-[rgb(var(--brand-med)/0.15)] p-8 lg:p-14">
       <div className="flex flex-col gap-10 lg:gap-12">
-        {/* Panel izquierdo — título destacado */}
         <div className="relative">
-          <SectionEyebrow>PATOLOGÍAS ONCOLÓGICAS</SectionEyebrow>
+          <SectionEyebrow>{eyebrow}</SectionEyebrow>
           <h2 className="mt-4 text-4xl font-extralight leading-[1.05] tracking-tight text-[rgb(var(--brand-dark))] lg:text-5xl">
-            Tipos de cáncer{' '}
+            {titlePre}{' '}
             <span className="font-medium text-[rgb(var(--brand-base))]">
-              que tratamos.
+              {titleAccent}
             </span>
           </h2>
         </div>
 
-        {/* Panel derecho — cards */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {tiposCancer.map((item, i) => (
-            <TipoCard key={item.title} item={item} index={i} />
+          {items.map((item, i) => (
+            <ConditionCard key={item.title} item={item} index={i} />
           ))}
         </div>
       </div>
