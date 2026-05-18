@@ -58,11 +58,11 @@ function SintomasBlock({ items, listLabel, sideImage, sideAlt, icons }) {
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1fr] lg:items-stretch"
     >
-      <div className="rounded-4xl border border-slate-100 bg-white p-5 lg:p-6">
+      <div className="">
         <p className="mb-4 px-2 text-[10px] font-semibold uppercase tracking-[0.3em] text-[rgb(var(--brand-base))]">
           {listLabel}
         </p>
-        <ul className="space-y-1">
+        <ul className="space-y-2">
           {items.map((item, i) => {
             const Icon = icons[i % icons.length]
             const isActive = i === active
@@ -76,7 +76,7 @@ function SintomasBlock({ items, listLabel, sideImage, sideAlt, icons }) {
                   className={`flex w-full cursor-pointer items-start gap-3 rounded-2xl px-3 py-3 text-left transition-all ${
                     isActive
                       ? 'bg-[rgb(var(--brand-base))] text-white shadow-[0_10px_25px_-12px_rgb(var(--brand-base)/0.6)]'
-                      : 'text-slate-700 hover:bg-(--brand-bg-ultra)'
+                      : 'text-slate-700 hover:bg-(--brand-bg-ultra) bg-primary/5 shadow'
                   }`}
                 >
                   <span
