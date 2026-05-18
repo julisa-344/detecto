@@ -17,18 +17,16 @@ import oncologiaImg from '../../assets/OncologiaMedica.jpg'
 import bannerOnco from '../../assets/bannerOncologia.jpg'
 import clinicaImg from '../../assets/clinica.jpg'
 
+const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
+
 export const oncoImages = {
   clinica: clinicaImg,
   hero: oncologiaImg,
   banner: bannerOnco,
-  procedure:
-    'https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=1200&q=80',
-  consultation:
-    'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=80',
-  research:
-    'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=1200&q=80',
-  care:
-    'https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=1200&q=80',
+  procedure: `${IMG_BASE}oncologia/prostata.png`,
+  consultation: `${IMG_BASE}oncologia/leucemiajpg.jpg`,
+  research: `${IMG_BASE}oncologia/melanoma.jpg`,
+  care: `${IMG_BASE}oncologia/tumor.jpg`,
 }
 
 export const tiposCancer = [

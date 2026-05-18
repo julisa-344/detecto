@@ -81,8 +81,6 @@ export default function OncologiaMedica() {
         </div>
       </div>
 
-      <FortalezasClinica image={detecto} words={fortalezasWords} />
-
       <FooterV4 showCTA={false} />
       <WhatsAppButton />
     </ThemeProvider>

@@ -2,8 +2,7 @@ import { motion } from 'framer-motion'
 import { SectionEyebrow, SectionTitle } from '../specialty'
 import { equipo } from './data'
 
-const IMG =
-  'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?auto=format&fit=crop&w=1400&q=80'
+const IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}servicios/quimio1.webp`
 
 export default function AtencionPersonalizada() {
   return (
