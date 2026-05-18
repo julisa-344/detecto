@@ -41,9 +41,9 @@ export default function StaffBanner() {
           </span>
 
           <h1 className="max-w-4xl text-5xl font-extralight leading-[1.02] tracking-tighter text-white drop-shadow-sm lg:text-7xl">
-            Los mejores especialistas{' '}
+            Conocimiento, sensibilidad y{' '}
             <span className="italic font-medium text-[rgb(var(--brand-base))]">
-              contigo.
+              excelencia para tu bienestar
             </span>
           </h1>
 

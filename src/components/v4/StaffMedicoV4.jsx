@@ -7,7 +7,6 @@ import doctor2 from '../../assets/doctor2.webp'
 import doctor3 from '../../assets/doctor3.webp'
 import doctor4 from '../../assets/doctor4.webp'
 import doctor5 from '../../assets/doctor5.webp'
-import samanthaMendoza from '../../assets/doctores/samanthamendozarivera1.webp'
 import nancyMunoz from '../../assets/doctores/nancymuñozquispe1.webp'
 import claudiaJimenez from '../../assets/doctores/claudiajimenezorozco1.webp'
 import franciscoBerrospi from '../../assets/doctores/franciscoberrospiespinoza1.webp'
@@ -23,7 +22,6 @@ const doctors = [
   { name: 'Dr. Gastón Mendoza de Lama', specialty: 'Cirugía Oncológica y Mastología', reg: 'CMP 25779 | RNE 11470', description: 'Especialista en tratamiento integral con énfasis en patologías mamarias.', image: doctor1, bg: '#0199C6' },
   { name: 'Dr. Victor Castro', specialty: 'Oncología Médica', reg: 'CMP 031518', description: 'Reconocido por su enfoque en personalización terapéutica e inmunoterapia.', image: doctor3, bg: '#0199C6' },
   { name: 'Dr. Carlos Oleachea Matto', specialty: 'Cirugía de Cabeza y Cuello', reg: 'CMP 018493 | RNE 029918', description: 'Especialista en patologías complejas de alta precisión anatómica.', image: doctor5, bg: '#0199C6' },
-  { name: 'Dra. Samantha Mendoza Rivera', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: samanthaMendoza, bg: '#0199C6' },
   { name: 'Dra. Nancy Muñoz Quispe', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: nancyMunoz, bg: '#0199C6' },
   { name: 'Dra. Claudia Jiménez Orozco', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: claudiaJimenez, bg: '#0199C6' },
   { name: 'Dr. Francisco Berrospi Espinoza', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: franciscoBerrospi, bg: '#0199C6' },

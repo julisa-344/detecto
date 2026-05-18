@@ -12,6 +12,8 @@ import portada3 from '../../assets/portada3.webp'
 import portada4 from '../../assets/portada4.webp'
 import portada5 from '../../assets/portada5.webp'
 import gaston from '../../assets/gaston.jpg'
+import samanthaMendoza from '../../assets/doctores/samanthamendozarivera1.webp'
+import proximamente from '../../assets/proximamenteArticulo.png'
 
 const publications = [
   {
@@ -109,7 +111,7 @@ const publications = [
     tag: 'Journal Article',
     principalAuthor: 'Dra. Samantha Mendoza',
     coautores: ['Gastón Mendoza de Lama', 'Enrique Oswaldo Bedoya Ismodes'],
-    lead: { name: 'Dra. Samantha Mendoza', role: 'Investigadora principal' },
+    lead: { name: 'Dra. Samantha Mendoza', role: 'Investigadora principal', photo: samanthaMendoza },
     link: 'https://journal.ppcr.org/index.php/ppcrjournal/article/view/433',
     pages: '2 páginas',
     image: portada5,
@@ -206,12 +208,12 @@ function ResearchBar() {
       transition={{ duration: 0.6, delay: 0.4 }}
       className="mt-10 max-w-3xl"
     >
+      {/* Marquee loop */}
       <div
         className="relative overflow-x-clip overflow-y-visible rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => { setPaused(false); setActiveIdx(null) }}
       >
-
         <motion.div
           className="flex gap-2 p-2 w-max"
           animate={{ x: paused ? undefined : ['0%', '-50%'] }}
@@ -248,6 +250,25 @@ function ResearchBar() {
             </a>
           ))}
         </motion.div>
+      </div>
+
+      {/* Card estática: Próximamente — fuera del loop */}
+      <div className="mt-3 flex items-center gap-4 w-fit pl-1 pr-5 py-1 rounded-2xl border border-[#52C0E1]/30 bg-white/5 backdrop-blur-xl shadow-[0_0_24px_rgba(82,192,225,0.15)] cursor-default select-none overflow-hidden">
+        {/* Imagen */}
+        <div className="relative h-14 w-24 shrink-0 overflow-hidden rounded-xl">
+          <img src={proximamente} alt="Próximamente" className="h-full w-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
+        </div>
+        {/* Punto parpadeante + label */}
+        <span className="relative flex h-2 w-2 shrink-0">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#52C0E1] opacity-75" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-[#52C0E1]" />
+        </span>
+        <span className="flex flex-col gap-0.5">
+          <span className="text-[9px] font-semibold tracking-[0.25em] uppercase text-[#52C0E1]">Próximamente</span>
+          <span className="text-white/80 text-xs font-medium">Dr. Francis Martinez</span>
+          <span className="text-white/45 text-[11px] font-light">Cirugía de implante coclear con exoscopio</span>
+        </span>
       </div>
 
       {/* Tooltip portaled — fuera del marquee transformado para que el backdrop-blur funcione */}
@@ -459,7 +480,7 @@ export default function HeroV4() {
                     <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-primary text-white group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
                       <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
                       <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
-                    </div>
+      </div>
                   </button>
                 </motion.div>
               </motion.div>

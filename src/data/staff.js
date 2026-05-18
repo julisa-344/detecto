@@ -123,7 +123,6 @@ export const doctors = [
   D('Dr. Oscar Ricardo Paredes Torres', 'oscarricardoparedestorres1.webp'),
   D('Dr. Raúl Cantella Suito', 'raúlcantellasuito1.webp'),
   D('Dr. Renzo Cañote Flores', 'renzocañoteflores1.webp'),
-  D('Dra. Samantha Mendoza Rivera', 'samanthamendozarivera1.webp'),
   D('Dr. Santiago Herrera Morales', 'santiagoherreramorales1.webp'),
   D('Dra. Angelina Sorrentino Tipacti', 'sorrentinotipactiangelina1.webp'),
   D('Dra. Tatiana Vidaurre Rojas', 'tatianavidaurrerojas1.webp'),
