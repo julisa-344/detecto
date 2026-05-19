@@ -1,6 +1,6 @@
 import ScrollExpandMedia from './ScrollExpandMedia'
 import clinicaBg from '../../assets/clinicafondo.png'
-import videoSrc from '../../assets/bg1.mp4'
+const videoSrc = `${import.meta.env.VITE_BASE_IMAGE_URL}about/nosotros.mp4`
 
 export default function ClinicaVideoExpand() {
   return (

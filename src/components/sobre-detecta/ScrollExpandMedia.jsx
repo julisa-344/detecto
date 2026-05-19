@@ -138,8 +138,8 @@ export default function ScrollExpandMedia({
                 style={{
                   width: `${mediaWidth}px`,
                   height: `${mediaHeight}px`,
-                  maxWidth: '95vw',
-                  maxHeight: '85vh',
+                  maxWidth: '75vw',
+                  maxHeight: '90vh',
                   boxShadow: '0 0 50px rgba(0,0,0,0.3)',
                 }}
               >
