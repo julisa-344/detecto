@@ -489,20 +489,21 @@ export default function HeaderV3({ forceLight = false }) {
         <div className="pointer-events-none absolute -top-32 -right-20 h-80 w-80 rounded-full bg-primary-medium/25 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 -left-24 h-96 w-96 rounded-full bg-primary-dark/30 blur-3xl" />
 
-        <button
-          onClick={() => setMobileOpen(false)}
-          aria-label="Cerrar menú"
-          className="absolute top-5 right-5 z-10 p-2 text-white/80 hover:text-white"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 6l12 12M6 18L18 6" />
-          </svg>
-        </button>
-
-        <div className="relative h-full flex flex-col pt-20 pb-8 px-7 overflow-y-auto">
-          <p className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40 mb-8">
-            Menú
-          </p>
+        <div className="relative h-full flex flex-col pt-6 pb-8 px-7 overflow-y-auto">
+          <div className="flex items-center justify-between mb-8">
+            <p className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40">
+              Menú
+            </p>
+            <button
+              onClick={() => setMobileOpen(false)}
+              aria-label="Cerrar menú"
+              className="p-2 -mr-2 text-white/80 hover:text-white"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 6l12 12M6 18L18 6" />
+              </svg>
+            </button>
+          </div>
 
           <nav className="flex-1 flex flex-col">
             {/* Pacientes */}
