@@ -110,7 +110,7 @@ export default function StaffMedico() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen w-full bg-white relative flex flex-col pt-16 pb-8 px-6 lg:px-12 overflow-hidden"
+      className="min-h-screen w-full bg-white relative flex flex-col pt-16 pb-8 px-4 sm:px-6 lg:px-12 overflow-hidden"
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
       <motion.div 
@@ -120,16 +120,16 @@ export default function StaffMedico() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Header */}
-        <div className="flex justify-between items-start w-full mb-6">
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start w-full mb-6">
           <div>
             <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-primary-medium mb-4">NUESTRO STAFF</p>
-            <h2 className="text-5xl lg:text-6xl font-light text-slate-900 tracking-tighter leading-[1.0]">
-              Los mejores especialistas <br />
-              <span className="italic text-primary-dark ">contigo.</span>
+            <h2 className="text-3xl sm:text-4xl lg:text-6xl font-light text-slate-900 tracking-tighter leading-[1.05]">
+              Los mejores especialistas{' '}
+              <span className="italic text-primary-dark">contigo.</span>
             </h2>
           </div>
 
-          <Link to="/v4/staff-medico" className="group flex items-center gap-3 text-[9px] font-bold tracking-[0.2em] text-primary-dark pt-2">
+          <Link to="/v4/staff-medico" className="group flex items-center gap-3 text-[9px] font-bold tracking-[0.2em] text-primary-dark sm:pt-2 shrink-0">
             <span className="border-b border-transparent group-hover:border-primary-dark pb-1 transition-all">VER TODO EL STAFF</span>
             <div className="w-7 h-7 rounded-full bg-primary-lighter flex items-center justify-center border border-primary-light">
               <Plus className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform" />
@@ -137,10 +137,10 @@ export default function StaffMedico() {
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_2.5fr] gap-32 items-center grow pb-4">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.5fr] gap-8 lg:gap-32 items-center grow pb-4">
+
           {/* Panel Izquierdo: Info Detallada */}
-          <div className="flex flex-col h-[430px] justify-end pb-4">
+          <div className="flex flex-col lg:h-107.5 lg:justify-end pb-4">
             <p className="text-[9px] tracking-[0.3em] uppercase text-[#0199C6] font-bold mb-8">PERFIL PROFESIONAL</p>
             <AnimatePresence mode="wait">
               <motion.div

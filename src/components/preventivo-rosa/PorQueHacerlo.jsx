@@ -42,13 +42,10 @@ export default function PorQueHacerlo() {
             <img
               src={quienesImg}
               alt="Despistaje preventivo rosa"
-              className="w-full h-full object-contain scale-150 lg:scale-[2.2] drop-shadow-[0_40px_30px_rgba(194,24,91,0.25)]"
+              className="w-full h-full object-contain scale-150 lg:scale-[2.2] drop-shadow-[0_10px_6px_rgba(123,0,20,0.13)]"
               loading="lazy"
             />
-            <div
-              aria-hidden
-              className="pointer-events-none absolute bottom-8 left-1/2 h-10 w-[55%] -translate-x-1/2 rounded-[50%] bg-[rgb(var(--brand-dark)/0.25)] blur-2xl"
-            />
+
           </div>
 
         </motion.div>

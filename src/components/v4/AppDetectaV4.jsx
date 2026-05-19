@@ -10,11 +10,11 @@ const mockups = [
   { id: 2, img: mockDoctores },
 ]
 
-const mockupVariants = {
+const getMockupVariants = (offset) => ({
   center: { x: 0, scale: 1, zIndex: 10, opacity: 1 },
-  left: { x: -180, scale: 0.82, zIndex: 5, opacity: 0.35 },
-  right: { x: 180, scale: 0.82, zIndex: 5, opacity: 0.35 },
-}
+  left: { x: -offset, scale: 0.82, zIndex: 5, opacity: 0.35 },
+  right: { x: offset, scale: 0.82, zIndex: 5, opacity: 0.35 },
+})
 
 // Componente de Contador optimizado para activarse al hacer scroll
 function NumberCounter({ value, prefix = "", suffix = "" }) {
@@ -61,6 +61,17 @@ function GooglePlayIcon() {
 export default function AppDetectaV4() {
   const [activeIndex, setActiveIndex] = useState(1)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  const mockupVariants = getMockupVariants(isMobile ? 110 : 180)
+  const mockupWidth = isMobile ? 180 : 260
 
   useEffect(() => {
     if (!isAutoPlaying) return
@@ -132,7 +143,7 @@ export default function AppDetectaV4() {
 
           {/* Columna Derecha: Mockups con foco interactivo */}
           <div
-            className="relative flex justify-center items-center h-[600px]"
+            className="relative flex justify-center items-center h-110 sm:h-150 overflow-hidden"
             onMouseEnter={() => setIsAutoPlaying(false)}
             onMouseLeave={() => setIsAutoPlaying(true)}
           >
@@ -146,7 +157,7 @@ export default function AppDetectaV4() {
                 transition={{ type: "spring", stiffness: 200, damping: 25 }}
                 onClick={() => setActiveIndex(index)}
                 className="absolute cursor-pointer will-change-transform"
-                style={{ width: '260px' }}
+                style={{ width: `${mockupWidth}px` }}
               >
                 <div className={`relative transition-all duration-500 ${activeIndex === index ? 'drop-shadow-2xl' : 'drop-shadow-md'}`}>
                   <img

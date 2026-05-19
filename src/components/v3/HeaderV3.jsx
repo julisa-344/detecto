@@ -92,6 +92,8 @@ export default function HeaderV3({ forceLight = false }) {
   const [openMenu, setOpenMenu] = useState(null) // 'pacientes' | 'ethics' | null
   const [activeCategory, setActiveCategory] = useState('preventivos')
   const [ctaHover, setCtaHover] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileSection, setMobileSection] = useState(null)
   const lastScroll = useRef(0)
   const navRef = useRef(null)
 
@@ -447,13 +449,110 @@ export default function HeaderV3({ forceLight = false }) {
           </div>
 
           {/* Burger Mobile */}
-          <button className="lg:hidden p-2 text-white/80 hover:text-white">
+          <button
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Abrir menú"
+            className={`lg:hidden p-2 transition-colors ${
+              scrolled ? 'text-slate-700 hover:text-slate-900' : 'text-white/80 hover:text-white'
+            }`}
+          >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
+              {mobileOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 6l12 12M6 18L18 6" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
         </div>
       </div>
+
+      {/* Mobile Panel */}
+      {mobileOpen && (
+        <div className="lg:hidden border-t border-slate-200/70 bg-white/95 backdrop-blur-xl max-h-[calc(100dvh-72px)] overflow-y-auto">
+          <div className="px-6 py-4 space-y-1">
+            <button
+              onClick={() => setMobileSection((s) => (s === 'pacientes' ? null : 'pacientes'))}
+              className="w-full flex items-center justify-between py-3 text-sm font-medium text-slate-800"
+            >
+              <span>Pacientes</span>
+              <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'pacientes' ? 'rotate-90' : ''}`} />
+            </button>
+            {mobileSection === 'pacientes' && (
+              <div className="pl-3 pb-2 space-y-3">
+                {pacientesCategories.map((cat) => (
+                  <div key={cat.id}>
+                    <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-primary-medium mt-2 mb-1">{cat.title}</p>
+                    <ul className="space-y-1">
+                      {cat.items.map((it) => (
+                        <li key={it.label}>
+                          <Link
+                            to={it.to}
+                            onClick={() => { setMobileOpen(false); setMobileSection(null) }}
+                            className="block py-1.5 text-sm text-slate-600 hover:text-primary-dark"
+                          >
+                            {it.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {[
+              { label: 'Staff Médico', to: '/v4/staff-medico' },
+              { label: 'Investigación', to: '/v4/investigacion' },
+              { label: 'Sobre Detecta', to: '/v4/sobre-detecta' },
+            ].map((it) => (
+              <Link
+                key={it.label}
+                to={it.to}
+                onClick={() => setMobileOpen(false)}
+                className="block py-3 text-sm font-medium text-slate-800 border-t border-slate-100"
+              >
+                {it.label}
+              </Link>
+            ))}
+
+            <button
+              onClick={() => setMobileSection((s) => (s === 'ethics' ? null : 'ethics'))}
+              className="w-full flex items-center justify-between py-3 text-sm font-medium text-slate-800 border-t border-slate-100"
+            >
+              <span>Ética</span>
+              <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'ethics' ? 'rotate-90' : ''}`} />
+            </button>
+            {mobileSection === 'ethics' && (
+              <div className="pl-3 space-y-1 pb-2">
+                <Link to="/v4/comite-etica" onClick={() => setMobileOpen(false)} className="block py-1.5 text-sm text-slate-600">Comité de ética</Link>
+                <Link to="/v4/gestion-etica" onClick={() => setMobileOpen(false)} className="block py-1.5 text-sm text-slate-600">Gestión ética</Link>
+              </div>
+            )}
+
+            <button
+              onClick={() => setMobileSection((s) => (s === 'laboratorio' ? null : 'laboratorio'))}
+              className="w-full flex items-center justify-between py-3 text-sm font-medium text-slate-800 border-t border-slate-100"
+            >
+              <span>Laboratorio</span>
+              <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'laboratorio' ? 'rotate-90' : ''}`} />
+            </button>
+            {mobileSection === 'laboratorio' && (
+              <div className="pl-3 space-y-1 pb-2">
+                <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1.5 text-sm text-slate-600">Laboratorio Clínico</Link>
+                <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1.5 text-sm text-slate-600">Anatomía Patológica</Link>
+              </div>
+            )}
+
+            <div className="pt-4 pb-2 border-t border-slate-100">
+              <button className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-white">
+                AGENDAR CITA
+                <ArrowUpRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
     </header>
   )

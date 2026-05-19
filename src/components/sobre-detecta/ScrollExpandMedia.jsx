@@ -175,7 +175,7 @@ export default function ScrollExpandMedia({
                   </div>
                 )}
 
-                <div className="relative z-10 mt-4 flex flex-col items-center text-center transition-none">
+                <div className="absolute left-1/2 top-full z-10 mt-4 flex w-full -translate-x-1/2 flex-col items-center text-center transition-none">
                   {date && (
                     <p
                       className="text-2xl text-white"
