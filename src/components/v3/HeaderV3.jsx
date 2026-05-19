@@ -94,6 +94,7 @@ export default function HeaderV3({ forceLight = false }) {
   const [ctaHover, setCtaHover] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mobileSection, setMobileSection] = useState(null)
+  const [mobileCategory, setMobileCategory] = useState(null)
   const lastScroll = useRef(0)
   const navRef = useRef(null)
 
@@ -514,27 +515,38 @@ export default function HeaderV3({ forceLight = false }) {
             </button>
             <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'pacientes' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
               <div className="overflow-hidden">
-                <div className="py-4 pl-3 space-y-5">
-                  {pacientesCategories.map((cat) => (
-                    <div key={cat.id}>
-                      <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-[rgb(var(--brand-base))] mb-2">
-                        {cat.title}
-                      </p>
-                      <ul className="space-y-1.5">
-                        {cat.items.map((it) => (
-                          <li key={it.label}>
-                            <Link
-                              to={it.to}
-                              onClick={() => { setMobileOpen(false); setMobileSection(null) }}
-                              className="block py-1 text-sm font-light text-white/70 hover:text-white transition-colors"
-                            >
-                              {it.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  ))}
+                <div className="py-3 pl-3">
+                  {pacientesCategories.map((cat) => {
+                    const expanded = mobileCategory === cat.id
+                    return (
+                      <div key={cat.id} className="border-b border-white/5 last:border-b-0">
+                        <button
+                          onClick={() => setMobileCategory((c) => (c === cat.id ? null : cat.id))}
+                          className="w-full flex items-center justify-between py-3 text-left"
+                        >
+                          <span className="text-sm font-medium text-white/90">{cat.title}</span>
+                          <ChevronRight className={`w-4 h-4 text-white/40 transition-transform duration-300 ${expanded ? 'rotate-90 text-[rgb(var(--brand-base))]' : ''}`} />
+                        </button>
+                        <div className={`grid transition-all duration-400 ease-out ${expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                          <div className="overflow-hidden">
+                            <ul className="pb-3 pl-3 space-y-1">
+                              {cat.items.map((it) => (
+                                <li key={it.label}>
+                                  <Link
+                                    to={it.to}
+                                    onClick={() => { setMobileOpen(false); setMobileSection(null); setMobileCategory(null) }}
+                                    className="block py-1.5 text-sm font-light text-white/65 hover:text-white transition-colors"
+                                  >
+                                    {it.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             </div>
