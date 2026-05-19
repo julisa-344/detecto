@@ -22,7 +22,7 @@ export const medGeneralImages = {
 }
 
 export const sintomas = [
-  { title: 'Exámenes médicos de rutina', desc: 'Chequeos preventivos periódicos.' },
+  { title: 'Exámenes médicos de rutina', desc: 'Despistajes preventivos periódicos.' },
   { title: 'Vacunación y prevención', desc: 'Calendario de vacunas y controles preventivos.' },
   { title: 'Síntomas generales', desc: 'Fiebre, dolor o malestar sin causa clara.' },
   { title: 'Cambios recientes en tu salud', desc: 'Evaluación de signos nuevos o persistentes.' },
@@ -73,7 +73,7 @@ export const faqs = [
   },
   {
     q: '¿Es necesario estar enfermo para visitar al médico general?',
-    a: 'No. Las visitas preventivas y chequeos son fundamentales para detectar problemas a tiempo y mantener tu salud.',
+    a: 'No. Las visitas preventivas y despistajes son fundamentales para detectar problemas a tiempo y mantener tu salud.',
   },
   {
     q: '¿Qué servicios adicionales recibo durante mi consulta?',

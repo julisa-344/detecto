@@ -43,7 +43,7 @@ const actions = [
   {
     key: 'azul',
     title: 'Preventivo Azul',
-    description: 'Chequeo de próstata para hombres +40.',
+    description: 'Despistaje de próstata para hombres +40.',
     color: '#1976D2',
     glow: 'rgba(25,118,210,0.16)',
     bg: 'linear-gradient(135deg, #EAF3FC 0%, #ffffff 100%)',

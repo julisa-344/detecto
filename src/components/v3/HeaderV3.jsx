@@ -311,7 +311,7 @@ export default function HeaderV3({ forceLight = false }) {
                     border: '1px solid rgba(15,23,42,0.08)',
                   }}
                 >
-                  <Link to="/login" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                  <Link to="/v4/laboratorio-clinico" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                     Laboratorio Clínico
                   </Link>
                   <Link to="/login" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
@@ -597,7 +597,7 @@ export default function HeaderV3({ forceLight = false }) {
             <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'laboratorio' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
               <div className="overflow-hidden">
                 <div className="py-3 pl-3 space-y-1.5">
-                  <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Laboratorio Clínico</Link>
+                  <Link to="/v4/laboratorio-clinico" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Laboratorio Clínico</Link>
                   <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Anatomía Patológica</Link>
                 </div>
               </div>

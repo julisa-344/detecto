@@ -31,7 +31,7 @@ const actions = [
     icon: (<svg viewBox="0 0 48 48" fill="none" className="w-6 h-6"><path d="M24 42C14 34 6 26 6 17a9 9 0 0118-3 9 9 0 0118 3c0 9-8 17-18 25z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M20 16c-2 3 0 7 4 8M28 16c2 3 0 7-4 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/></svg>),
   },
   {
-    key: 'azul', number: '03', title: 'Preventivo Azul', description: 'Chequeo integral de próstata para hombres mayores de 40 años.', accent: '#0199C6', accentLight: '#EAF6FC',
+    key: 'azul', number: '03', title: 'Preventivo Azul', description: 'Despistaje integral de próstata para hombres mayores de 40 años.', accent: '#0199C6', accentLight: '#EAF6FC',
     icon: (<svg viewBox="0 0 48 48" fill="none" className="w-6 h-6"><path d="M24 6l16 6v10c0 10-7 17-16 20-9-3-16-10-16-20V12l16-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="M16 24l6 6 10-12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>),
   },
   {

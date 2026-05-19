@@ -110,121 +110,101 @@ export default function FooterV4({ showCTA = true }) {
             xmlns="http://www.w3.org/2000/svg"
             className="absolute bottom-0 w-full h-full"
           >
-            <path d="M0,0 Q720,80 1440,0 L1440,80 L0,80 Z" fill="#EEFBFF" />
+            <path d="M0,0 Q720,80 1440,0 L1440,80 L0,80 Z" fill="#F7FCFE" />
           </svg>
         </div>
       </div>
       )}
 
-      {/* --- 2. SECCIÓN INFERIOR: gradiente + nav glass --- */}
-      <div className="relative w-full bg-linear-to-br from-[#EEFBFF] to-[#AFEAFC] px-6 lg:px-10 pb-24">
+      {/* --- 2. SECCIÓN INFERIOR: light minimal --- */}
+      <div
+        className="relative w-full px-6 lg:px-10 pb-12 pt-16 lg:pt-20 bg-[#F7FCFE]"
+      >
+        {/* Brillo ambiental suave */}
+        <div className="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl -mr-40 -mt-20" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 rounded-full bg-primary-light/15 blur-3xl -ml-40 -mb-20" />
 
-        {/* Brillo ambiental */}
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/40 blur-[150px] rounded-full -mr-60 -mt-60 pointer-events-none" />
+        <div className="max-w-[1400px] mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 pb-12">
 
-        <div className="max-w-[1400px] mx-auto relative z-10 pt-10">
+            {/* Brand Column */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.08 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="lg:col-span-4 flex flex-col gap-7"
+            >
+              <img src={logoColor} alt="Detecta Clínica" className="h-10 w-auto object-contain self-start" />
+              <p className="text-[14px] font-light text-slate-500 leading-relaxed max-w-70">
+                Líderes en detección temprana e innovación oncológica en el Perú. Tecnología que salva vidas.
+              </p>
 
-        {/* --- 3. CONTENEDOR NAV: Glass Exacto del Header V3 --- */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.08 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="rounded-[56px] shadow-2xl shadow-blue-900/5 overflow-hidden transition-all duration-500"
-          style={{
-            background: 'rgba(255,255,255,0.15)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255,255,255,0.25)',
-          }}
-        >
-          <div className="px-8 md:px-16 pt-20 pb-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-20">
+              <div className="flex gap-2.5 items-center">
+                {socials.map(({ Icon, label, href }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    aria-label={label}
+                    className="group w-10 h-10 rounded-full bg-white flex items-center justify-center text-slate-500 border border-slate-200 transition-all duration-300 hover:bg-primary-dark hover:text-white hover:border-primary-dark hover:-translate-y-0.5 hover:shadow-md hover:shadow-primary-dark/15"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </motion.div>
 
-              {/* Brand Column */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.08 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="lg:col-span-4 flex flex-col gap-10"
-              >
-                <img src={logoColor} alt="Detecta Clínica" className="h-12 w-auto object-contain self-start" />
-                <p className="text-[14px] font-light text-slate-600 leading-relaxed max-w-[280px]">
-                  Líderes en detección temprana e innovación oncológica en el Perú. Tecnología que salva vidas.
-                </p>
+            {/* Links Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.08 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-10 lg:gap-12"
+            >
+              <div className="flex flex-col gap-5">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.35em] text-primary-dark">Servicios</h3>
+                <ul className="flex flex-col gap-3 text-[13px] font-light text-slate-600">
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Diagnóstico Precisión</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Oncología</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Select Staff</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Telemedicina</a></li>
+                </ul>
+              </div>
 
-                {/* Redes Sociales */}
-                <div className="flex flex-col gap-3">
-               
-                  <div className="flex gap-3 items-center">
-                    {socials.map(({ Icon, label, href }) => (
-                      <a
-                        key={label}
-                        href={href}
-                        aria-label={label}
-                        className="group w-11 h-11 rounded-full bg-white/50 flex items-center justify-center text-slate-600 border border-white/60 shadow-sm transition-all duration-300 hover:bg-[#0070A5] hover:text-white hover:border-[#0070A5] hover:-translate-y-0.5 hover:shadow-md hover:shadow-[#0070A5]/20"
-                      >
-                        <Icon className="w-4 h-4" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
+              <div className="flex flex-col gap-5">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.35em] text-primary-dark">Nosotros</h3>
+                <ul className="flex flex-col gap-3 text-[13px] font-light text-slate-600">
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Sobre Detecta</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Investigación</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Sostenibilidad</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Trabaja con nosotros</a></li>
+                </ul>
+              </div>
 
-              {/* Links Grid */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.08 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-12"
-              >
-                <div className="flex flex-col gap-6">
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0070A5]">Servicios</h3>
-                  <ul className="flex flex-col gap-4 text-[13px] font-light text-slate-600">
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Diagnóstico Precisión</a></li>
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Oncología</a></li>
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Select Staff</a></li>
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Telemedicina</a></li>
-                  </ul>
-                </div>
+              <div className="flex flex-col gap-5">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.35em] text-primary-dark">Legal</h3>
+                <ul className="flex flex-col gap-3 text-[13px] font-light text-slate-600">
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Privacidad</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Ética</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Libro de Reclamaciones</a></li>
+                </ul>
+              </div>
+            </motion.div>
+          </div>
 
-                <div className="flex flex-col gap-6">
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0070A5]">Nosotros</h3>
-                  <ul className="flex flex-col gap-4 text-[13px] font-light text-slate-600">
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Sobre Detecta</a></li>
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Investigación</a></li>
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Sostenibilidad</a></li>
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Trabaja con nosotros</a></li>
-                  </ul>
-                </div>
-
-                <div className="flex flex-col gap-6">
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0070A5]">Legal</h3>
-                  <ul className="flex flex-col gap-4 text-[13px] font-light text-slate-600">
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Privacidad</a></li>
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Ética</a></li>
-                    <li><a href="#" className="hover:text-primary-medium transition-colors">Libro de Reclamaciones</a></li>
-                  </ul>
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Barra Inferior Final */}
-            <div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-900/5 pt-12 gap-8 text-[10px] font-medium text-slate-400 tracking-[0.2em] uppercase">
-              <p>© {new Date().getFullYear()} DETECTA CLÍNICA — Área de TI.</p>
-              <div className="flex gap-10 items-center">
-                <a href="#" className="hover:text-slate-900 transition-colors">Cookies</a>
-                <a href="#" className="hover:text-slate-900 transition-colors">Políticas</a>
-                <div className="flex gap-3 ml-4">
-                  <div className="w-1.5 h-1.5 bg-[#0070A5] rounded-full"></div>
-                  <div className="w-1.5 h-1.5 bg-slate-200 rounded-full animate-pulse"></div>
-                </div>
+          {/* Barra Inferior Final */}
+          <div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-200/70 pt-8 gap-6 text-[10px] font-medium text-slate-400 tracking-[0.2em] uppercase">
+            <p>© {new Date().getFullYear()} Detecta Clínica — Área de TI.</p>
+            <div className="flex gap-8 items-center">
+              <a href="#" className="hover:text-primary-dark transition-colors">Cookies</a>
+              <a href="#" className="hover:text-primary-dark transition-colors">Políticas</a>
+              <div className="flex gap-2 ml-2">
+                <div className="w-1.5 h-1.5 bg-primary-dark rounded-full"></div>
+                <div className="w-1.5 h-1.5 bg-slate-200 rounded-full animate-pulse"></div>
               </div>
             </div>
           </div>
-        </motion.div>
         </div>
       </div>
     </footer>

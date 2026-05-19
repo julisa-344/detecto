@@ -22,11 +22,11 @@ export const medicinaImages = {
 }
 
 export const sintomas = [
-  { title: 'Exámenes médicos de rutina', desc: 'Chequeos preventivos para tu salud integral.' },
+  { title: 'Exámenes médicos de rutina', desc: 'despistajes preventivos para tu salud integral.' },
   { title: 'Control de enfermedades crónicas', desc: 'Hipertensión, diabetes y otras condiciones.' },
   { title: 'Evaluación de síntomas generales', desc: 'Cansancio, dolor o malestares sin causa clara.' },
   { title: 'Asesoría en salud preventiva', desc: 'Estilo de vida y hábitos saludables.' },
-  { title: 'Vacunación y chequeos periódicos', desc: 'Mantenimiento de tu calendario sanitario.' },
+  { title: 'Vacunación y despistajes periódicos', desc: 'Mantenimiento de tu calendario sanitario.' },
   { title: 'Derivación a especialistas', desc: 'Coordinación con otras áreas cuando lo necesites.' },
 ]
 

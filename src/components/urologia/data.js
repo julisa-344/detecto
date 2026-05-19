@@ -26,7 +26,7 @@ export const sintomas = [
   { title: 'Incontinencia urinaria', desc: 'Pérdida involuntaria de orina en hombres o mujeres.' },
   { title: 'Disfunción eréctil o problemas sexuales', desc: 'Evaluación y tratamiento especializado.' },
   { title: 'Cálculos renales', desc: 'Diagnóstico y manejo de litiasis urinaria.' },
-  { title: 'Control de próstata', desc: 'Chequeo preventivo y seguimiento periódico.' },
+  { title: 'Control de próstata', desc: 'Despistaje preventivo y seguimiento periódico.' },
   { title: 'Fertilidad masculina', desc: 'Estudio y tratamiento de la salud reproductiva.' },
 ]
 

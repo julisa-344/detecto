@@ -20,7 +20,7 @@ const actions = [
   {
     key: 'azul',
     title: 'Preventivo Azul',
-    description: 'Chequeo integral de próstata para hombres mayores de 40 años.',
+    description: 'Despistaje integral de próstata para hombres mayores de 40 años.',
     icon: <Shield className="w-6 h-6" />,
     bg: 'bg-[#BFE4EF]',
   },

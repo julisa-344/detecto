@@ -62,24 +62,24 @@ export const compromisos = [
 
 export const faqs = [
   {
-    q: '¿Necesito cita previa para realizarme un análisis?',
-    a: 'En la mayoría de los casos no, pero algunos estudios especializados requieren reserva previa y preparación específica.',
+    q: '¿Qué hace diferente al Laboratorio Clínico de Detecta?',
+    a: 'Combinamos tecnología avanzada, controles de calidad rigurosos y un equipo de especialistas que interpreta cada resultado para apoyar decisiones médicas confiables y oportunas.',
   },
   {
     q: '¿En cuánto tiempo entregan los resultados?',
     a: 'Los análisis de rutina están disponibles el mismo día; los estudios especializados pueden tomar entre 24 y 72 horas según la complejidad.',
   },
   {
-    q: '¿Puedo acceder a mis resultados en línea?',
+    q: '¿Los análisis están validados por especialistas?',
+    a: 'Sí, cada resultado es revisado e interpretado por médicos especialistas en diagnóstico antes de su entrega.',
+  },
+  {
+    q: '¿Puedo acceder a mis resultados desde casa?',
     a: 'Sí, entregamos los resultados de forma digital, confidencial y accesible desde cualquier dispositivo.',
   },
   {
-    q: '¿Atienden órdenes de médicos externos?',
-    a: 'Sí, procesamos órdenes emitidas por cualquier profesional autorizado, siempre que sean válidas y vigentes.',
-  },
-  {
-    q: '¿Qué controles de calidad aplican a las muestras?',
-    a: 'Trabajamos con protocolos internacionales de aseguramiento de calidad y trazabilidad en cada etapa del análisis.',
+    q: '¿Atienden sin cita previa?',
+    a: 'En la mayoría de análisis sí; algunos estudios especializados requieren reserva previa y preparación específica.',
   },
 ]
 
