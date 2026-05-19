@@ -28,23 +28,28 @@ export default function SearchFilters({
             />
           </div>
 
-          <div className="flex flex-wrap gap-2 pt-1">
-            {chips.map((chip) => {
-              const active = chip === activeChip
-              return (
-                <button
-                  key={chip}
-                  onClick={() => onChipChange(chip)}
-                  className={`rounded-full px-4 py-2 text-[11px] font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
-                    active
-                      ? 'bg-primary-dark text-white shadow-sm'
-                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-primary-dark'
-                  }`}
-                >
-                  {chip}
-                </button>
-              )
-            })}
+          <div
+            className="overflow-x-auto pt-1 [&::-webkit-scrollbar]:hidden"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            <div className="flex flex-nowrap gap-2 w-max pr-2">
+              {chips.map((chip) => {
+                const active = chip === activeChip
+                return (
+                  <button
+                    key={chip}
+                    onClick={() => onChipChange(chip)}
+                    className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-[11px] font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
+                      active
+                        ? 'bg-primary-dark text-white shadow-sm'
+                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-primary-dark'
+                    }`}
+                  >
+                    {chip}
+                  </button>
+                )
+              })}
+            </div>
           </div>
         </motion.div>
       </div>

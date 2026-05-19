@@ -136,6 +136,7 @@ export default function HeaderV3({ forceLight = false }) {
   const activeCategoryData = pacientesCategories.find((c) => c.id === activeCategory)
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${visible ? 'translate-y-0' : '-translate-y-full'}`}
     >
@@ -471,10 +472,12 @@ export default function HeaderV3({ forceLight = false }) {
           </button>
         </div>
       </div>
+      </div>
+    </header>
 
-      {/* Mobile Panel — full screen elegante */}
+      {/* Mobile Panel — full screen elegante (fuera del header para escapar al transform) */}
       <div
-        className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ${
+        className={`lg:hidden fixed inset-0 z-60 transition-all duration-500 ${
           mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         style={{
@@ -485,7 +488,17 @@ export default function HeaderV3({ forceLight = false }) {
         <div className="pointer-events-none absolute -top-32 -right-20 h-80 w-80 rounded-full bg-primary-medium/25 blur-3xl" />
         <div className="pointer-events-none absolute bottom-0 -left-24 h-96 w-96 rounded-full bg-primary-dark/30 blur-3xl" />
 
-        <div className="relative h-full flex flex-col pt-24 pb-8 px-7 overflow-y-auto">
+        <button
+          onClick={() => setMobileOpen(false)}
+          aria-label="Cerrar menú"
+          className="absolute top-5 right-5 z-10 p-2 text-white/80 hover:text-white"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 6l12 12M6 18L18 6" />
+          </svg>
+        </button>
+
+        <div className="relative h-full flex flex-col pt-20 pb-8 px-7 overflow-y-auto">
           <p className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40 mb-8">
             Menú
           </p>
@@ -592,7 +605,6 @@ export default function HeaderV3({ forceLight = false }) {
           </div>
         </div>
       </div>
-      </div>
-    </header>
+    </>
   )
 }
