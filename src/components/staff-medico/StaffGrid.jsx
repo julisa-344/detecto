@@ -13,8 +13,8 @@ export default function StaffGrid({
 }) {
   return (
     <section className="relative py-14 lg:py-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="flex items-center justify-between mb-10 gap-4 flex-wrap">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
+        <div className="flex items-center justify-between mb-8 sm:mb-10 gap-4 flex-wrap">
           <p className="text-[11px] font-semibold tracking-[0.3em] uppercase text-slate-500">
             Página{' '}
             <span className="text-slate-900">
@@ -26,7 +26,7 @@ export default function StaffGrid({
           <SortDropdown value={sort} onChange={onSortChange} />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
           {doctors.map((doctor, i) => (
             <DoctorCard key={startIndex + i} doctor={doctor} index={i} />
           ))}

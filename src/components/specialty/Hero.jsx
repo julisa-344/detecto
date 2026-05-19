@@ -9,9 +9,9 @@ export default function Hero({ video, titlePre, titleAccent, subtitle }) {
         <source src={video} type="video/mp4" />
       </video>
 
-      <div className="relative z-20 mx-auto w-full max-w-7xl px-6 py-20 lg:py-28">
+      <div className="relative z-20 mx-auto w-full max-w-7xl px-4 sm:px-6 py-20 lg:py-28">
         <motion.div variants={fadeUp} initial="hidden" animate="visible" className="max-w-2xl space-y-6">
-          <h1 className="text-5xl font-extralight leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h1 className="text-4xl font-extralight leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
             {titlePre}{' '}
             <br />
             <span className="font-light text-[rgb(var(--brand-base))]">{titleAccent}</span>

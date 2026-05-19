@@ -38,7 +38,7 @@ export default function PorQueHacerlo() {
           className="relative lg:sticky lg:top-28"
         >
           <div className="pointer-events-none absolute -inset-4 -z-10 rounded-[40px] bg-linear-to-br from-[rgb(var(--brand-base)/0.25)] via-[rgb(var(--brand-med)/0.12)] to-transparent blur-2xl" />
-          <div className="relative overflow-hidden rounded-4xl min-h-[520px] lg:min-h-[620px] flex items-center justify-center bg-linear-to-br from-[rgb(var(--brand-base)/0.12)] to-[rgb(var(--brand-med)/0.08)]">
+          <div className="relative overflow-hidden rounded-4xl min-h-105 sm:min-h-130 lg:min-h-155 flex items-center justify-center bg-linear-to-br from-[rgb(var(--brand-base)/0.12)] to-[rgb(var(--brand-med)/0.08)]">
             <img
               src={quienesImg}
               alt="Despistaje preventivo azul"

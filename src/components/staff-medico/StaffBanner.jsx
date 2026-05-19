@@ -3,7 +3,7 @@ import fondoBanner from '../../assets/staffBanner.jpg'
 
 export default function StaffBanner() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-40 lg:pt-44 lg:pb-52">
+    <section className="relative overflow-hidden pt-24 pb-32 sm:pt-32 sm:pb-40 lg:pt-44 lg:pb-52">
       {/* Imagen + degradado innovador (misma paleta que DoctorDetail) */}
       <div className="absolute inset-0">
         <img
@@ -27,7 +27,7 @@ export default function StaffBanner() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 text-center lg:px-12">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-center lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export default function StaffBanner() {
             Nuestro Staff
           </span>
 
-          <h1 className="max-w-4xl text-5xl font-extralight leading-[1.02] tracking-tighter text-white drop-shadow-sm lg:text-7xl">
+          <h1 className="max-w-4xl text-3xl sm:text-5xl lg:text-7xl font-extralight leading-[1.05] tracking-tighter text-white drop-shadow-sm">
             Conocimiento, sensibilidad y{' '}
             <span className="italic font-medium text-[rgb(var(--brand-base))]">
               excelencia para tu bienestar

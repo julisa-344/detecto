@@ -21,7 +21,6 @@ export default function V4() {
       <div className="min-h-screen" style={{ background: '#0a0c12' }}>
         <HeaderV3 />
         <HeroV4 />
-        <VersionNavWidget current="Versión 04 — Disruptiva + Clinical" />
         <AccionesRapidasV4 />
         <StaffMedico />
         <EspecialidadesV4 />

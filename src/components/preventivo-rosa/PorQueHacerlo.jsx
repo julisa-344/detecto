@@ -38,7 +38,7 @@ export default function PorQueHacerlo() {
           viewport={{ once: true }}
           className="relative lg:sticky lg:top-28"
         >
-          <div className="relative flex min-h-[520px] items-center justify-center lg:min-h-[620px]">
+          <div className="relative flex min-h-105 sm:min-h-130 lg:min-h-155 items-center justify-center overflow-hidden">
             <img
               src={quienesImg}
               alt="Despistaje preventivo rosa"
