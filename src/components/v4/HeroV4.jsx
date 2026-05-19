@@ -206,7 +206,7 @@ function ResearchBar() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.4 }}
-      className="mt-10 max-w-3xl"
+      className="mt-8 lg:mt-10 max-w-3xl"
     >
       {/* Marquee loop */}
       <div
@@ -235,9 +235,9 @@ function ResearchBar() {
                   setActiveIdx(i)
                 }
               }}
-              className="group relative flex items-center gap-4 pl-3 pr-5 py-3 rounded-xl whitespace-nowrap text-xs lg:text-sm font-light text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+              className="group relative flex items-center gap-3 lg:gap-4 pl-2 lg:pl-3 pr-4 lg:pr-5 py-2 lg:py-3 rounded-xl whitespace-nowrap text-[11px] lg:text-sm font-light text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
             >
-              <span className="relative h-16 w-12 shrink-0 overflow-hidden rounded-sm ring-1 ring-white/20 shadow-md">
+              <span className="relative h-12 w-9 lg:h-16 lg:w-12 shrink-0 overflow-hidden rounded-sm ring-1 ring-white/20 shadow-md">
                 <img
                   src={pub.image}
                   alt=""
@@ -253,14 +253,13 @@ function ResearchBar() {
       </div>
 
       {/* Card estática: Próximamente — fuera del loop */}
-      <div className="mt-3 flex items-center gap-2 w-fit pl-1 pr-5 py-1 rounded-2xl border border-[#52C0E1]/30 bg-white/5 backdrop-blur-xl shadow-[0_0_24px_rgba(82,192,225,0.15)] cursor-default select-none overflow-hidden">
+      <div className="mt-3 flex items-center gap-2 max-w-full lg:w-fit pl-1 pr-4 lg:pr-5 py-1 rounded-2xl border border-primary/30 bg-white/5 backdrop-blur-xl shadow-[0_0_24px_rgba(82,192,225,0.15)] cursor-default select-none overflow-hidden">
         {/* Imagen */}
-        <div className="relative h-14 w-24 shrink-0 overflow-hidden rounded-xl">
+        <div className="relative h-12 w-16 lg:h-14 lg:w-24 shrink-0 overflow-hidden rounded-xl">
           <img src={proximamente} alt="Próximamente" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
         </div>
-¿
-        <span className="flex flex-col gap-0.5">
+        <span className="flex flex-col gap-0.5 min-w-0">
           <span className="text-[9px] font-semibold tracking-[0.25em] uppercase text-[#52C0E1]">Próximamente</span>
           <span className="text-white/80 text-xs font-medium">Dr. Francis Martinez</span>
           <span className="text-white/45 text-[11px] font-light">Cirugía de implante coclear con exoscopio</span>
@@ -424,8 +423,8 @@ export default function HeroV4() {
 
       {/* Contenido */}
       <div className="relative z-20 grow flex items-center">
-        <div className="w-full max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[1fr_auto] gap-12 items-center">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_auto] gap-12 items-center min-w-0">
 
             {/* Texto del slide activo */}
             <AnimatePresence mode="wait">
@@ -435,13 +434,14 @@ export default function HeroV4() {
                 animate="visible"
                 exit="exit"
                 variants={containerVariants}
+                className="min-w-0"
               >
        
 
                 <motion.h1
                   variants={itemVariants}
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                  className={`${slide.isResearch ? 'text-4xl sm:text-5xl lg:text-6xl xl:text-7xl' : 'text-5xl sm:text-6xl lg:text-7xl xl:text-8xl'} font-extralight text-white tracking-tight leading-[1.05]`}
+                  className={`${slide.isResearch ? 'text-3xl sm:text-5xl lg:text-6xl xl:text-7xl' : 'text-4xl sm:text-6xl lg:text-7xl xl:text-8xl'} font-extralight text-white tracking-tight leading-[1.05] wrap-break-word hyphens-auto`}
                 >
                   {slide.headline.map((line, i) => (
                     <span
