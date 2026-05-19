@@ -34,7 +34,7 @@ export default function SpecialtyHero({
         />
       ) : null}
 
-      <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-slate-950/45 to-slate-950/10" />
+      <div className="absolute inset-0 bg-linear-to-r from-slate-950/55 via-slate-950/25 to-slate-950/5" />
 
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
         <motion.div

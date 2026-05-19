@@ -16,8 +16,9 @@ import {
 const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 
 export const infeccionesImages = {
-  heroVideo: `${IMG_BASE}especialidades/infecciosas.mp4`,
-  side: `${IMG_BASE}especialidades/infecciosas.webp`,
+  heroVideo: `${IMG_BASE}especialidades/enfermedades.mp4`,
+  side: `${IMG_BASE}especialidades/enfermedad.jpg`,
+  cta: `${IMG_BASE}especialidades/enfermedadCta.jpg`,
 }
 
 export const sintomas = [

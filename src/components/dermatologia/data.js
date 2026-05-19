@@ -8,54 +8,58 @@ import {
   Sun,
   Pill,
   ClipboardList,
+  Users2,
+  ShieldCheck,
+  HeartHandshake,
 } from 'lucide-react'
 
-import clinicaLocal from '../../assets/clinica.jpg'
-import doctoresLocal from '../../assets/doctores.webp'
-import oncologiaLocal from '../../assets/OncologiaMedica.jpg'
+const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 
-// Imágenes: mezcla de assets locales + Unsplash (reemplazables)
 export const dermaImages = {
-  // Locales
-  clinica: clinicaLocal,
-  team: doctoresLocal,
-  technology: oncologiaLocal,
-  // Unsplash — reemplazables
-  hero: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=1200&q=80',
-  procedure:
-    'https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=80',
-  consultation:
-    'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80',
-  skinCare:
-    'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=1200&q=80',
-  laser:
-    'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=1200&q=80',
+  heroVideo: `${IMG_BASE}especialidades/dermatologia.mp4`,
+  side: `${IMG_BASE}especialidades/dermatologia.jpg`,
+  cta: `${IMG_BASE}especialidades/dermatologiaCta.jpg`,
 }
 
+export const sintomas = [
+  { title: 'Acné persistente', desc: 'Brotes recurrentes o cicatrices que afectan la piel.' },
+  { title: 'Eczemas y dermatitis', desc: 'Enrojecimiento, picor o irritación crónica.' },
+  { title: 'Psoriasis', desc: 'Placas escamosas o inflamación cutánea.' },
+  { title: 'Manchas en la piel', desc: 'Melasma, hiperpigmentación u otros cambios de color.' },
+  { title: 'Lesiones sospechosas', desc: 'Lunares con cambios de forma, tamaño o color.' },
+]
+
+export const condiciones = [
+  { title: 'Enfermedades de la piel', icon: Stethoscope },
+  { title: 'Cirugía dermatológica', icon: Scissors },
+  { title: 'Cáncer de piel', icon: ShieldAlert },
+  { title: 'Rejuvenecimiento facial', icon: Sparkles },
+  { title: 'Manchas y melasma', icon: Droplet },
+  { title: 'Caída del cabello', icon: Pill },
+]
+
 export const servicios = [
-  { title: 'Exámenes dermatológicos completos', icon: ClipboardList },
-  { title: 'Biopsias de piel', icon: ScanLine },
-  { title: 'Procedimientos láser para rejuvenecimiento y manchas', icon: Sparkles },
-  { title: 'Tratamientos para acné y cicatrices', icon: Droplet },
-  { title: 'Asesoría en cuidado de la piel y protección solar', icon: Sun },
-  { title: 'Diagnóstico de lesiones sospechosas', icon: ShieldAlert },
+  {
+    title: 'Servicios y procedimientos',
+    icon: ClipboardList,
+    bullets: [
+      'Exámenes dermatológicos completos.',
+      'Biopsias de piel y diagnóstico de lesiones.',
+      'Procedimientos láser para rejuvenecimiento y manchas.',
+      'Tratamientos para acné y cicatrices.',
+      'Asesoría en cuidado de la piel y protección solar.',
+      'Diagnóstico oportuno de lesiones sospechosas.',
+    ],
+  },
 ]
 
-export const queTratamos = [
-  { title: 'Enfermedades de la piel', desc: 'Acné, dermatitis, psoriasis', icon: Stethoscope },
-  { title: 'Cirugía dermatológica', desc: 'Procedimientos quirúrgicos especializados', icon: Scissors },
-  { title: 'Cáncer de piel', desc: 'Detección y tratamiento oportuno', icon: ShieldAlert },
-  { title: 'Rejuvenecimiento facial', desc: 'Tratamiento de arrugas y signos del tiempo', icon: Sparkles },
-  { title: 'Manchas y melasma', desc: 'Tratamientos despigmentantes personalizados', icon: Droplet },
-  { title: 'Caída del cabello', desc: 'Consulta y tratamiento tricológico', icon: Pill },
-]
-
-export const perfilPaciente = [
-  'Acné',
-  'Eczemas y dermatitis',
-  'Psoriasis',
-  'Manchas en la piel',
-  'Lesiones cutáneas sospechosas',
+export const stripServicios = [
+  { title: 'Dermatología clínica', icon: Stethoscope },
+  { title: 'Diagnóstico de lesiones', icon: ScanLine },
+  { title: 'Tratamientos láser', icon: Sparkles },
+  { title: 'Cuidado preventivo', icon: Sun },
+  { title: 'Equipo especializado', icon: Users2 },
+  { title: 'Atención personalizada', icon: HeartHandshake },
 ]
 
 export const faqs = [

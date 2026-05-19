@@ -1,6 +1,0 @@
-export * from '../specialty'
-export { default as DermaHero } from './DermaHero'
-export { default as QueEsDermatologia } from './QueEsDermatologia'
-export { default as QueTratamos } from './QueTratamos'
-export { default as ServiciosEspecializados } from './ServiciosEspecializados'
-export * from './data'

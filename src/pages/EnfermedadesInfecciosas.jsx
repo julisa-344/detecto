@@ -64,7 +64,7 @@ export default function EnfermedadesInfecciosas() {
             <ConditionsGrid items={condiciones} />
 
             <MisionCTA
-              image={bannerImg}
+              image={infeccionesImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
