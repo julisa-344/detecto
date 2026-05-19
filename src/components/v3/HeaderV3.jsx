@@ -127,6 +127,11 @@ export default function HeaderV3({ forceLight = false }) {
     }
   }, [openMenu])
 
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
   const toggle = (key) => setOpenMenu((prev) => (prev === key ? null : key))
   const activeCategoryData = pacientesCategories.find((c) => c.id === activeCategory)
 
@@ -467,40 +472,61 @@ export default function HeaderV3({ forceLight = false }) {
         </div>
       </div>
 
-      {/* Mobile Panel */}
-      {mobileOpen && (
-        <div className="lg:hidden border-t border-slate-200/70 bg-white/95 backdrop-blur-xl max-h-[calc(100dvh-72px)] overflow-y-auto">
-          <div className="px-6 py-4 space-y-1">
+      {/* Mobile Panel — full screen elegante */}
+      <div
+        className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ${
+          mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{
+          background: 'linear-gradient(160deg, #0A2A3F 0%, #0F172A 60%, #0A2A3F 100%)',
+        }}
+      >
+        {/* Blobs decorativos */}
+        <div className="pointer-events-none absolute -top-32 -right-20 h-80 w-80 rounded-full bg-primary-medium/25 blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 -left-24 h-96 w-96 rounded-full bg-primary-dark/30 blur-3xl" />
+
+        <div className="relative h-full flex flex-col pt-24 pb-8 px-7 overflow-y-auto">
+          <p className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40 mb-8">
+            Menú
+          </p>
+
+          <nav className="flex-1 flex flex-col">
+            {/* Pacientes */}
             <button
               onClick={() => setMobileSection((s) => (s === 'pacientes' ? null : 'pacientes'))}
-              className="w-full flex items-center justify-between py-3 text-sm font-medium text-slate-800"
+              className="group flex items-center justify-between py-4 border-b border-white/10 text-left"
             >
-              <span>Pacientes</span>
-              <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'pacientes' ? 'rotate-90' : ''}`} />
+              <span className="text-2xl font-light tracking-tight text-white">Pacientes</span>
+              <ChevronRight className={`w-5 h-5 text-white/40 transition-all duration-300 ${mobileSection === 'pacientes' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
             </button>
-            {mobileSection === 'pacientes' && (
-              <div className="pl-3 pb-2 space-y-3">
-                {pacientesCategories.map((cat) => (
-                  <div key={cat.id}>
-                    <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-primary-medium mt-2 mb-1">{cat.title}</p>
-                    <ul className="space-y-1">
-                      {cat.items.map((it) => (
-                        <li key={it.label}>
-                          <Link
-                            to={it.to}
-                            onClick={() => { setMobileOpen(false); setMobileSection(null) }}
-                            className="block py-1.5 text-sm text-slate-600 hover:text-primary-dark"
-                          >
-                            {it.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+            <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'pacientes' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+              <div className="overflow-hidden">
+                <div className="py-4 pl-3 space-y-5">
+                  {pacientesCategories.map((cat) => (
+                    <div key={cat.id}>
+                      <p className="text-[10px] font-semibold tracking-[0.25em] uppercase text-[rgb(var(--brand-base))] mb-2">
+                        {cat.title}
+                      </p>
+                      <ul className="space-y-1.5">
+                        {cat.items.map((it) => (
+                          <li key={it.label}>
+                            <Link
+                              to={it.to}
+                              onClick={() => { setMobileOpen(false); setMobileSection(null) }}
+                              className="block py-1 text-sm font-light text-white/70 hover:text-white transition-colors"
+                            >
+                              {it.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               </div>
-            )}
+            </div>
 
+            {/* Links directos */}
             {[
               { label: 'Staff Médico', to: '/v4/staff-medico' },
               { label: 'Investigación', to: '/v4/investigacion' },
@@ -510,49 +536,62 @@ export default function HeaderV3({ forceLight = false }) {
                 key={it.label}
                 to={it.to}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 text-sm font-medium text-slate-800 border-t border-slate-100"
+                className="group flex items-center justify-between py-4 border-b border-white/10"
               >
-                {it.label}
+                <span className="text-2xl font-light tracking-tight text-white">{it.label}</span>
+                <ArrowUpRight className="w-5 h-5 text-white/40 transition-all duration-300 group-hover:text-[rgb(var(--brand-base))] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             ))}
 
+            {/* Ética */}
             <button
               onClick={() => setMobileSection((s) => (s === 'ethics' ? null : 'ethics'))}
-              className="w-full flex items-center justify-between py-3 text-sm font-medium text-slate-800 border-t border-slate-100"
+              className="group flex items-center justify-between py-4 border-b border-white/10 text-left"
             >
-              <span>Ética</span>
-              <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'ethics' ? 'rotate-90' : ''}`} />
+              <span className="text-2xl font-light tracking-tight text-white">Ética</span>
+              <ChevronRight className={`w-5 h-5 text-white/40 transition-all duration-300 ${mobileSection === 'ethics' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
             </button>
-            {mobileSection === 'ethics' && (
-              <div className="pl-3 space-y-1 pb-2">
-                <Link to="/v4/comite-etica" onClick={() => setMobileOpen(false)} className="block py-1.5 text-sm text-slate-600">Comité de ética</Link>
-                <Link to="/v4/gestion-etica" onClick={() => setMobileOpen(false)} className="block py-1.5 text-sm text-slate-600">Gestión ética</Link>
+            <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'ethics' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+              <div className="overflow-hidden">
+                <div className="py-3 pl-3 space-y-1.5">
+                  <Link to="/v4/comite-etica" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Comité de ética</Link>
+                  <Link to="/v4/gestion-etica" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Gestión ética</Link>
+                </div>
               </div>
-            )}
+            </div>
 
+            {/* Laboratorio */}
             <button
               onClick={() => setMobileSection((s) => (s === 'laboratorio' ? null : 'laboratorio'))}
-              className="w-full flex items-center justify-between py-3 text-sm font-medium text-slate-800 border-t border-slate-100"
+              className="group flex items-center justify-between py-4 border-b border-white/10 text-left"
             >
-              <span>Laboratorio</span>
-              <ChevronRight className={`w-4 h-4 transition-transform ${mobileSection === 'laboratorio' ? 'rotate-90' : ''}`} />
+              <span className="text-2xl font-light tracking-tight text-white">Laboratorio</span>
+              <ChevronRight className={`w-5 h-5 text-white/40 transition-all duration-300 ${mobileSection === 'laboratorio' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
             </button>
-            {mobileSection === 'laboratorio' && (
-              <div className="pl-3 space-y-1 pb-2">
-                <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1.5 text-sm text-slate-600">Laboratorio Clínico</Link>
-                <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1.5 text-sm text-slate-600">Anatomía Patológica</Link>
+            <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'laboratorio' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+              <div className="overflow-hidden">
+                <div className="py-3 pl-3 space-y-1.5">
+                  <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Laboratorio Clínico</Link>
+                  <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Anatomía Patológica</Link>
+                </div>
               </div>
-            )}
-
-            <div className="pt-4 pb-2 border-t border-slate-100">
-              <button className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-[11px] font-semibold tracking-[0.18em] text-white">
-                AGENDAR CITA
-                <ArrowUpRight className="w-4 h-4" />
-              </button>
             </div>
+          </nav>
+
+          {/* CTA + footer */}
+          <div className="mt-8 space-y-5">
+            <button className="group w-full flex items-center justify-between rounded-full bg-white pl-7 pr-2 py-2 transition-all active:scale-[0.98]">
+              <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-900">AGENDAR CITA</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white transition-transform group-hover:rotate-45">
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </button>
+            <p className="text-[10px] tracking-[0.3em] uppercase text-white/30 text-center">
+              Detecta Clínica
+            </p>
           </div>
         </div>
-      )}
+      </div>
       </div>
     </header>
   )
