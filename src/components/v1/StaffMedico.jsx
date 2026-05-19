@@ -192,7 +192,7 @@ export default function StaffMedico() {
                     />
                     
                     {/* Overlay con Información */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/40 to-transparent">
+                    <div className="absolute bottom-0 left-0 right-0 p-8 bg-linear-to-t from-black/40 to-transparent">
                       <div className="border-l-2 border-[#0199C6] pl-4 text-white">
                         <h4 className="text-xs font-bold uppercase tracking-wide leading-tight">
                           {doctor.name}
@@ -223,10 +223,10 @@ export default function StaffMedico() {
           </div>
 
           <div className="flex gap-2">
-            <button onClick={prevDoctor} className="w-11 h-11 rounded-full border border-[#C0DDE5] flex items-center justify-center bg-white text-[#0070A5] hover:bg-[#0070A5] hover:text-white transition-all shadow-sm active:scale-90">
+            <button onClick={prevDoctor} className="w-11 h-11 rounded-full border border-primary-light flex items-center justify-center bg-white text-[#0070A5] hover:bg-[#0070A5] hover:text-white transition-all shadow-sm active:scale-90">
               <ArrowLeft className="w-4 h-4" />
             </button>
-            <button onClick={nextDoctor} className="w-11 h-11 rounded-full border border-[#C0DDE5] flex items-center justify-center bg-white text-[#0070A5] hover:bg-[#0070A5] hover:text-white transition-all shadow-sm active:scale-90">
+            <button onClick={nextDoctor} className="w-11 h-11 rounded-full border hover:text-primary-light flex items-center justify-center bg-white text-[#0070A5] hover:bg-[#0070A5] hover:text-white transition-all shadow-sm active:scale-90">
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>

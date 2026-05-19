@@ -103,7 +103,7 @@ export default function EspecialidadesV3() {
 
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-10">
-                  <span className="text-[10px] font-mono font-medium text-[#0199C6]/40 group-hover:text-[#0199C6] transition-colors">
+                  <span className="text-[10px] font-mono font-medium text-[#0199C6]/40 group-hover:text-primary-medium transition-colors">
                     {dept.id}
                   </span>
                   <div className="p-3 rounded-2xl bg-[#EEFBFF] text-[#0199C6] transition-all duration-500 group-hover:bg-[#52C0E1] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#52C0E1]/30">
@@ -112,7 +112,7 @@ export default function EspecialidadesV3() {
                 </div>
 
                 <div className="space-y-3">
-                  <h3 className="text-lg font-normal text-[#0070A5] tracking-wide uppercase transition-colors group-hover:text-[#0199C6]">
+                  <h3 className="text-lg font-normal text-[#0070A5] tracking-wide uppercase transition-colors group-hover:text-primary-medium">
                     {dept.title}
                   </h3>
                   <p className="text-sm font-light text-slate-500 leading-relaxed">

@@ -106,7 +106,7 @@ export default function ScrollExpandMedia({
     return () => window.removeEventListener('resize', checkIfMobile)
   }, [])
 
-  const mediaWidth = 300 + scrollProgress * (isMobileState ? 650 : 1250)
+  const mediaWidth = 500 + scrollProgress * (isMobileState ? 450 : 1050)
   const mediaHeight = 400 + scrollProgress * (isMobileState ? 200 : 400)
   const textTranslateX = scrollProgress * (isMobileState ? 180 : 150)
 
@@ -137,10 +137,9 @@ export default function ScrollExpandMedia({
                 className="absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 rounded-2xl transition-none"
                 style={{
                   width: `${mediaWidth}px`,
-                  height: `${mediaHeight}px`,
-                  maxWidth: '75vw',
-                  maxHeight: '90vh',
-                  boxShadow: '0 0 50px rgba(0,0,0,0.3)',
+                  maxWidth: '70vw',
+                  aspectRatio: '16 / 9',
+                  height: 'auto',
                 }}
               >
                 {mediaType === 'video' ? (
@@ -153,25 +152,19 @@ export default function ScrollExpandMedia({
                       loop
                       playsInline
                       preload="auto"
-                      className="h-full w-full rounded-xl object-cover"
+                      className="h-full w-full rounded-xl object-contain"
                       controls={false}
                       disablePictureInPicture
                       disableRemotePlayback
                     />
                     <div className="absolute inset-0 z-10" style={{ pointerEvents: 'none' }} />
-                    <motion.div
-                      className="absolute inset-0 rounded-xl bg-black/30"
-                      initial={{ opacity: 0.7 }}
-                      animate={{ opacity: 0.5 - scrollProgress * 0.3 }}
-                      transition={{ duration: 0.2 }}
-                    />
                   </div>
                 ) : (
                   <div className="relative h-full w-full">
                     <img
                       src={mediaSrc}
                       alt={title || 'Media'}
-                      className="h-full w-full rounded-xl object-cover"
+                      className="h-full w-full rounded-xl object-contain"
                     />
                     <motion.div
                       className="absolute inset-0 rounded-xl bg-black/50"

@@ -51,7 +51,7 @@ export default function OneDayBanner() {
             className="absolute inset-0 h-full w-[80%] object-cover object-center"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#52C0E1]/45 lg:to-[#52C0E1]/30" />
+          <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#52C0E1/45 lg:to-[#52C0E1]/30" />
         </div>
       </div>
     </motion.section>

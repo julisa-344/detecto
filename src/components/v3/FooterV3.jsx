@@ -142,29 +142,29 @@ export default function FooterV3() {
                 <div className="flex flex-col gap-6">
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0070A5]">Servicios</h3>
                   <ul className="flex flex-col gap-4 text-[13px] font-light text-slate-600">
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Diagnóstico Precisión</a></li>
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Oncología</a></li>
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Select Staff</a></li>
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Telemedicina</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Diagnóstico Precisión</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Oncología</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Select Staff</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Telemedicina</a></li>
                   </ul>
                 </div>
 
                 <div className="flex flex-col gap-6">
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0070A5]">Nosotros</h3>
                   <ul className="flex flex-col gap-4 text-[13px] font-light text-slate-600">
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Sobre Detecta</a></li>
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Investigación</a></li>
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Sostenibilidad</a></li>
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Trabaja con nosotros</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Sobre Detecta</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Investigación</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Sostenibilidad</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Trabaja con nosotros</a></li>
                   </ul>
                 </div>
 
                 <div className="flex flex-col gap-6">
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#0070A5]">Legal</h3>
                   <ul className="flex flex-col gap-4 text-[13px] font-light text-slate-600">
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Privacidad</a></li>
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Ética</a></li>
-                    <li><a href="#" className="hover:text-[#0199C6] transition-colors">Libro de Reclamaciones</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Privacidad</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Ética</a></li>
+                    <li><a href="#" className="hover:text-primary-medium transition-colors">Libro de Reclamaciones</a></li>
                   </ul>
                 </div>
               </motion.div>

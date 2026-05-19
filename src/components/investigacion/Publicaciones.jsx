@@ -73,7 +73,7 @@ function PubCard({ pub, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.5, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative block aspect-[3/4] cursor-pointer overflow-hidden rounded-2xl border-[3px] border-white shadow-[0_6px_20px_rgba(0,0,0,0.16)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.24)]"
+      className="group relative block aspect-3/4 cursor-pointer overflow-hidden rounded-2xl border-[3px] border-white shadow-[0_6px_20px_rgba(0,0,0,0.16)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,0.24)]"
     >
       <img
         src={pub.image}
