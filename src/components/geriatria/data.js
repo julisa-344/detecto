@@ -17,7 +17,9 @@ const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 
 export const geriatriaImages = {
   heroVideo: `${IMG_BASE}especialidades/geriatria.mp4`,
-  side: `${IMG_BASE}especialidades/geriatria.webp`,
+  side: `${IMG_BASE}especialidades/geriatrico.jpg`,
+  cta: `${IMG_BASE}especialidades/geriatriaCta.jpg`,
+  
 }
 
 export const sintomas = [

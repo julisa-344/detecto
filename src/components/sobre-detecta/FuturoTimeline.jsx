@@ -16,7 +16,7 @@ const slides = [
     year: '2026',
   },
   {
-    title: 'Sede principal',
+    title: 'Torre principal',
     subtitle: 'En desarrollo · 2028',
     description:
       'En Detecta Clínica, construiremos una nueva sede principal pensada para ti, donde la atención especializada, la investigación clínica y el diagnóstico se unirán para cuidar mejor de tu salud.',

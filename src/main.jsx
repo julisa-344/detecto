@@ -31,6 +31,7 @@ import GinecologiaOncologica from './pages/GinecologiaOncologica'
 import UrologiaOncologica from './pages/UrologiaOncologica'
 import EnfermedadesInfecciosas from './pages/EnfermedadesInfecciosas'
 import Geriatria from './pages/Geriatria'
+import MedicinaInterna from './pages/MedicinaInterna'
 import ResultadosAnatomia from './pages/ResultadosAnatomia'
 import ResultadosLaboratorio from './pages/ResultadosLaboratorio'
 import PreventivoAzul from './pages/PreventivoAzul'
@@ -71,6 +72,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/urologia-oncologica" element={<UrologiaOncologica />} />
         <Route path="/v4/enfermedades-infecciosas" element={<EnfermedadesInfecciosas />} />
         <Route path="/v4/geriatria" element={<Geriatria />} />
+        <Route path="/v4/medicina-interna" element={<MedicinaInterna />} />
         <Route path="/v4/resultados-anatomia-patologica" element={<ResultadosAnatomia />} />
         <Route path="/v4/resultados-laboratorio-patologico" element={<ResultadosLaboratorio />} />
         <Route path="/v4/preventivo-azul" element={<PreventivoAzul />} />

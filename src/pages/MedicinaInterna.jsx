@@ -17,16 +17,16 @@ import {
 } from '../components/specialty'
 
 import {
-  geriatriaImages,
+  medicinaImages,
   sintomas,
   condiciones,
   servicios,
   stripServicios,
   faqs,
   fortalezas,
-} from '../components/geriatria/data'
+} from '../components/medicina-interna/data'
 
-export default function Geriatria() {
+export default function MedicinaInterna() {
   return (
     <ThemeProvider
       theme={BLUE_THEME}
@@ -39,10 +39,10 @@ export default function Geriatria() {
       <HeaderV3 />
 
       <SpecialtyHero
-        video={geriatriaImages.heroVideo}
-        titlePre="Geriatría"
-        titleAccent="integral."
-        paragraph="Atención especializada para la tercera edad que cuida el bienestar físico, mental y social."
+        video={medicinaImages.heroVideo}
+        titlePre="Medicina"
+        titleAccent="interna."
+        paragraph="Atención integral para tu salud y bienestar en cada etapa de la vida."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -52,35 +52,41 @@ export default function Geriatria() {
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <SpecialtyIntro
               titlePre="¿Qué trata la"
-              titleAccent="geriatría?"
-              paragraph="Estudio, diagnóstico, tratamiento y prevención de enfermedades en personas mayores, enfocada en mantener la funcionalidad, autonomía y calidad de vida."
+              titleAccent="medicina interna?"
+              paragraph="Especialidad enfocada en la prevención, diagnóstico y tratamiento de un amplio rango de enfermedades del adulto. El internista coordina tu atención y deriva a especialistas cuando es necesario."
+              listLabel="Motivos de consulta"
               items={sintomas}
-              sideImage={geriatriaImages.side}
-              sideAlt="Atención geriátrica integral"
+              sideImage={medicinaImages.side}
+              sideAlt="Atención en medicina interna"
             />
 
-            <ConditionsGrid items={condiciones} />
+            <ConditionsGrid
+              eyebrow="CONDICIONES TRATADAS"
+              titlePre="¿Qué tratamos"
+              titleAccent="en medicina interna?"
+              items={condiciones}
+            />
 
             <MisionCTA
-              image={geriatriaImages.cta}
+              image={medicinaImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
-              titleAccent="evaluación geriátrica."
-              paragraph="Atención cercana y personalizada para cuidar la salud y autonomía de los adultos mayores."
+              titleAccent="evaluación integral."
+              paragraph="Cuida tu salud con un médico internista que conoce tu historia y coordina tu atención de forma integral."
             />
 
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención multidisciplinaria pensada para cuidar tu autonomía y calidad de vida."
+              paragraph="Atención clínica completa con enfoque preventivo y seguimiento personalizado."
               service={servicios[0]}
             />
 
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas más comunes"
-              subtitle="Información clara sobre geriatría y atención del adulto mayor."
+              subtitle="Información clara sobre nuestra atención en medicina interna."
               faqs={faqs}
             />
           </main>
@@ -90,6 +96,8 @@ export default function Geriatria() {
           </aside>
         </div>
       </div>
+
+      <FortalezasClinica words={fortalezas} />
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

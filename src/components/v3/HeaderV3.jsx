@@ -54,7 +54,7 @@ const pacientesCategories = [
       { label: 'Hematología', to: '#' },
       { label: 'Infectología', to: '#' },
       { label: 'Medicina General', to: '#' },
-      { label: 'Medicina Interna', to: '#' },
+      { label: 'Medicina Interna', to: '/v4/medicina-interna' },
       { label: 'Nefrología', to: '#' },
     ],
   },

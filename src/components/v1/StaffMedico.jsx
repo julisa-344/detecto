@@ -27,7 +27,6 @@ import franciscoBerrospi from '../../assets/doctores/franciscoberrospiespinoza1.
 import gildaMancini from '../../assets/doctores/gildamancinigarcía1.webp'
 import giovanniLuna from '../../assets/doctores/giovannilunasánchez1.webp'
 import gloriaParedes from '../../assets/doctores/gloriaparedesguerra1.webp'
-import samanthaMendoza from '../../assets/doctores/samanthamendozarivera1.webp'
 
 const placeholderDesc = 'Especialista del staff médico de Detecta con amplia trayectoria clínica.'
 const placeholderReg = 'CMP 000000 | RNE 000000'
@@ -38,7 +37,6 @@ const doctors = [
   { name: 'Dr. Gastón Mendoza de Lama', specialty: 'Cirugía Oncológica y Mastología', reg: 'CMP 25779 | RNE 11470', description: 'Especialista en tratamiento integral con énfasis en patologías mamarias.', image: doctor1, bg: '#E0F2FE' },
   { name: 'Dr. Victor Castro', specialty: 'Oncología Médica', reg: 'CMP 031518', description: 'Reconocido por su enfoque en personalización terapéutica e inmunoterapia.', image: doctor3, bg: '#E0F2FE' },
   { name: 'Dr. Carlos Oleachea Matto', specialty: 'Cirugía de Cabeza y Cuello', reg: 'CMP 018493 | RNE 029918', description: 'Especialista en patologías complejas de alta precisión anatómica.', image: doctor5, bg: '#E0F2FE' },
-  { name: 'Dra. Samantha Mendoza Rivera', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: samanthaMendoza, bg: '#F0F9FF' },
   { name: 'Dr. Abraham Alvarado Hinojosa', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: abrahamAlvarado, bg: '#F0F9FF' },
   { name: 'Dr. Adolfo Boada', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: adolfoBoada, bg: '#E0F2FE' },
   { name: 'Dr. Alejandro Cantella', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: alejandroCantella, bg: '#F0F9FF' },
