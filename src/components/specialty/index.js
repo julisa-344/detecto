@@ -1,4 +1,4 @@
-export { BLUE_THEME, PINK_THEME, fadeUp } from './theme'
+export { BLUE_THEME, PINK_THEME, GREEN_THEME, fadeUp } from './theme'
 export { default as ThemeProvider } from './ThemeProvider'
 export { default as SectionEyebrow } from './SectionEyebrow'
 export { default as SectionTitle } from './SectionTitle'

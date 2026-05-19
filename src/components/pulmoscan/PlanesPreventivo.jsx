@@ -40,7 +40,7 @@ export default function PlanesPreventivo() {
                 featured
                   ? {
                       background:
-                        'linear-gradient(160deg, #52C0E1 0%, #0070A5 100%)',
+                        'linear-gradient(160deg, #34D399 0%, #047857 100%)',
                     }
                   : undefined
               }

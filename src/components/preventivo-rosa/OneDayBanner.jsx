@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { fadeUp } from '../specialty'
 
-const WOMAN_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/woman.png`
+const WOMAN_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/woman.png`
 
 export default function OneDayBanner() {
   return (
@@ -24,7 +24,7 @@ export default function OneDayBanner() {
       <div className="grid items-stretch lg:grid-cols-[1.25fr_1fr]">
         {/* Texto */}
         <div className="relative px-8 py-14 text-white sm:px-12 sm:py-16 lg:px-16 lg:py-20">
-          <h2 className="text-4xl font-light uppercase leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+          <h2 className="text-3xl font-light uppercase leading-[1.05] tracking-tight sm:text-4xl lg:text-[2.75rem]">
             Todo en un solo lugar,{' '}
             <span className="italic font-medium">en un solo día.</span>
           </h2>

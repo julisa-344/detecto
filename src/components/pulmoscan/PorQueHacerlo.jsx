@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { SectionEyebrow, SectionTitle, fadeUp } from '../specialty'
 import { perfilPaciente } from './data'
 
-const quienesImg = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/pulmoscan.gif`
+const quienesImg = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/pulmonSano.gif`
 
 export default function PorQueHacerlo() {
   return (

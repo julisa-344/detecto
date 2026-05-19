@@ -13,6 +13,17 @@ export const BLUE_THEME = {
   fadeHex: '#ecfafe',     // used by FortalezasClinica fade
 }
 
+export const GREEN_THEME = {
+  base: '52 211 153',     // #34D399
+  med:  '16 185 129',     // #10B981
+  dark: '4 120 87',       // #047857
+  bgSoftHex: '#F5FDF9',
+  bgUltraHex: '#ECFDF5',
+  pageGradient:
+    'linear-gradient(180deg, #FFFFFF 0%, #F5FDF9 35%, #ECFDF5 70%, #D1FAE5 100%)',
+  fadeHex: '#ecfdf5',
+}
+
 export const PINK_THEME = {
   base: '244 114 182',    // #F472B6
   med:  '233 30 140',     // #E91E8C

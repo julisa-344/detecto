@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { fadeUp } from '../specialty'
 
-const HERO_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/pulmoscan.png`
+const HERO_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/pulmonScan.png`
 
 export default function OneDayBanner() {
   return (
@@ -14,7 +14,7 @@ export default function OneDayBanner() {
       className="relative overflow-hidden rounded-4xl shadow-[0_30px_70px_-35px_rgba(0,112,165,0.4)]"
       style={{
         background:
-          'linear-gradient(120deg, #7DD3E8 0%, #52C0E1 55%, #0199C6 100%)',
+          'linear-gradient(120deg, #6EE7B7 0%, #34D399 55%, #047857 100%)',
       }}
     >
       <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/20 blur-3xl" />
@@ -25,8 +25,8 @@ export default function OneDayBanner() {
           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
             Promoción hasta el 31 de julio 2025
           </p>
-          <h2 className="mt-4 text-4xl font-light uppercase leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.5rem]">
-            Tu PulmoScan{' '}
+          <h2 className="mt-4 text-3xl font-light uppercase leading-[1.05] tracking-tight sm:text-4xl lg:text-[2.75rem]">
+            Tu <span className="italic font-medium">PulmoScan</span>{' '}
             <span className="italic font-medium">por solo S/ 400.</span>
           </h2>
           <p className="mt-6 text-[14.5px] font-light leading-relaxed text-white/90">
@@ -47,14 +47,14 @@ export default function OneDayBanner() {
           </button>
         </div>
 
-        <div className="relative min-h-80 overflow-hidden lg:min-h-full">
+        <div className="relative min-h-112 lg:min-h-full">
           <img
             src={HERO_IMG}
             alt="PulmoScan"
-            className="absolute inset-0 h-full w-[80%] object-cover object-center"
+            className="absolute inset-0 h-full w-full object-contain object-bottom-right"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#52C0E1]/45 lg:to-[#52C0E1]/30" />
+          <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#34D399]/45 lg:to-[#34D399]/30" />
         </div>
       </div>
     </motion.section>

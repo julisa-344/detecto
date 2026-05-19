@@ -2,11 +2,11 @@ import HeaderV3 from '../components/v3/HeaderV3'
 import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
 
-const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/pulmoscan.mp4`
+const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}preventivos/pulmonScan.mp4`
 
 import {
   ThemeProvider,
-  BLUE_THEME,
+  GREEN_THEME,
   Hero,
   ServicesStrip,
   BeneficiosGrid,
@@ -27,11 +27,11 @@ import {
 export default function PulmoScan() {
   return (
     <ThemeProvider
-      theme={BLUE_THEME}
+      theme={GREEN_THEME}
       className="min-h-screen"
       style={{
         fontFamily: 'Lexend, sans-serif',
-        background: BLUE_THEME.pageGradient,
+        background: GREEN_THEME.pageGradient,
       }}
     >
       <HeaderV3 />
@@ -56,9 +56,9 @@ export default function PulmoScan() {
               titleAccent="para cuidarte."
               paragraph="Cuatro pilares que hacen del PulmoScan una experiencia diferente."
               items={beneficios}
-              activeBg="linear-gradient(160deg, #52C0E1 0%, #0070A5 100%)"
-              idleBg="linear-gradient(160deg, #E0F4FB 0%, #A5DCEE 100%)"
-              collapsedTextColor="#0070A5"
+              activeBg="linear-gradient(160deg, #34D399 0%, #047857 100%)"
+              idleBg="linear-gradient(160deg, #ECFDF5 0%, #A7F3D0 100%)"
+              collapsedTextColor="#047857"
             />
 
             <PlanesPreventivo />

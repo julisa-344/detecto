@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Calendar, Heart, Shield, Wind } from 'lucide-react'
-import detectoAgendar from '../../assets/agendarCita.gif'
 const detectoRosa = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/detecta.gif`
-import detectoAzul from '../../assets/preventivoAzul.gif'
-import detectoPulmon from '../../assets/pulmonSano.gif'
+const detectoAzul = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/preventivoAzul.gif`
+const detectoPulmon = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/pulmonSano.gif`
+const detectoAgendar = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/agendarCita.gif`
 
 const containerVariants = {
   hidden: { opacity: 0 },
