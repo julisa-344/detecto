@@ -99,7 +99,7 @@ export default function EspecialidadesV3() {
               className="group relative p-8 rounded-[24px] border border-[#C0DDE5]/30 bg-white transition-all duration-500 cursor-pointer overflow-hidden hover:border-[#52C0E1]/50 hover:shadow-[0_20px_40px_-15px_rgba(82,192,225,0.2)]"
             >
               {/* Efecto de Luz de Escaneo (más intenso) */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+              <div className="absolute inset-0 bg-linear-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
 
               <div className="relative z-10">
                 <div className="flex justify-between items-start mb-10">

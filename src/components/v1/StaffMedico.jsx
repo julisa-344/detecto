@@ -122,7 +122,7 @@ export default function StaffMedico() {
         {/* Header */}
         <div className="flex justify-between items-start w-full mb-6">
           <div>
-            <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">NUESTRO STAFF</p>
+            <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-primary-medium mb-4">NUESTRO STAFF</p>
             <h2 className="text-5xl lg:text-6xl font-light text-slate-900 tracking-tighter leading-[1.0]">
               Los mejores especialistas <br />
               <span className="italic text-primary-dark ">contigo.</span>
@@ -130,14 +130,14 @@ export default function StaffMedico() {
           </div>
 
           <Link to="/v4/staff-medico" className="group flex items-center gap-3 text-[9px] font-bold tracking-[0.2em] text-primary-dark pt-2">
-            <span className="border-b border-transparent group-hover:border-[#0070A5] pb-1 transition-all">VER TODO EL STAFF</span>
-            <div className="w-7 h-7 rounded-full bg-[#EEFBFF] flex items-center justify-center border border-[#C0DDE5]">
+            <span className="border-b border-transparent group-hover:border-primary-dark pb-1 transition-all">VER TODO EL STAFF</span>
+            <div className="w-7 h-7 rounded-full bg-primary-lighter flex items-center justify-center border border-primary-light">
               <Plus className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform" />
             </div>
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_2.5fr] gap-32 items-center flex-grow pb-4">
+        <div className="grid lg:grid-cols-[1fr_2.5fr] gap-32 items-center grow pb-4">
           
           {/* Panel Izquierdo: Info Detallada */}
           <div className="flex flex-col h-[430px] justify-end pb-4">

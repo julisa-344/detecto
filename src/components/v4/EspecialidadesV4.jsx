@@ -170,7 +170,7 @@ export default function EspecialidadesV4() {
                     : 'border-[#C0DDE5]/40 hover:border-[#52C0E1]/50'
                 }`}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+                <div className="absolute inset-0 bg-linear-to-br from-[#52C0E1]/0 via-[#52C0E1]/15 to-[#52C0E1]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
 
                 <div className="relative z-10">
                   <div className="flex justify-between items-start mb-8">

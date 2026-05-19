@@ -12,10 +12,10 @@ const fadeUp = (delay = 0) => ({
 export default function Footer() {
 
   return (
-    <section className="relative w-full py-28 px-4 md:px-10 bg-gradient-to-br from-[#EEFBFF] to-[#AFEAFC] overflow-hidden">
+    <section className="relative w-full py-28 px-4 md:px-10 bg-linear-to-br from-primary-light to-[#AFEAFC] overflow-hidden">
       
       {/* Brillo ambiental sutil */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/40 blur-[150px] rounded-full -mr-60 -mt-60 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-200 h-200 bg-white/40 blur-[150px] rounded-full -mr-60 -mt-60 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         

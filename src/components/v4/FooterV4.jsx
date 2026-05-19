@@ -117,7 +117,7 @@ export default function FooterV4({ showCTA = true }) {
       )}
 
       {/* --- 2. SECCIÓN INFERIOR: gradiente + nav glass --- */}
-      <div className="relative w-full bg-gradient-to-br from-[#EEFBFF] to-[#AFEAFC] px-6 lg:px-10 pb-24">
+      <div className="relative w-full bg-linear-to-br from-[#EEFBFF] to-[#AFEAFC] px-6 lg:px-10 pb-24">
 
         {/* Brillo ambiental */}
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-white/40 blur-[150px] rounded-full -mr-60 -mt-60 pointer-events-none" />

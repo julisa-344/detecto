@@ -52,7 +52,7 @@ export default function HeroV3() {
       </div>
 
       {/* Overlays */}
-      <div className="absolute inset-0 z-1 bg-gradient-to-br from-gray-950/40 via-gray-950/10 to-transparent" />
+      <div className="absolute inset-0 z-1 bg-linear-to-br from-gray-950/40 via-gray-950/10 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-96 z-1 bg-gradient-to-t from-gray-950/60 to-transparent" />
 
       {/* Contenido principal (Subido para no pegar con el cintillo) */}

@@ -32,6 +32,14 @@ import UrologiaOncologica from './pages/UrologiaOncologica'
 import EnfermedadesInfecciosas from './pages/EnfermedadesInfecciosas'
 import Geriatria from './pages/Geriatria'
 import MedicinaInterna from './pages/MedicinaInterna'
+import Endocrinologia from './pages/Endocrinologia'
+import Gastroenterologia from './pages/Gastroenterologia'
+import Hematologia from './pages/Hematologia'
+import MedicinaGeneral from './pages/MedicinaGeneral'
+import Nefrologia from './pages/Nefrologia'
+import CirugiaPlastica from './pages/CirugiaPlastica'
+import GinecologiaObstetricia from './pages/GinecologiaObstetricia'
+import Odontologia from './pages/Odontologia'
 import ResultadosAnatomia from './pages/ResultadosAnatomia'
 import ResultadosLaboratorio from './pages/ResultadosLaboratorio'
 import PreventivoAzul from './pages/PreventivoAzul'
@@ -73,6 +81,14 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/enfermedades-infecciosas" element={<EnfermedadesInfecciosas />} />
         <Route path="/v4/geriatria" element={<Geriatria />} />
         <Route path="/v4/medicina-interna" element={<MedicinaInterna />} />
+        <Route path="/v4/endocrinologia" element={<Endocrinologia />} />
+        <Route path="/v4/gastroenterologia" element={<Gastroenterologia />} />
+        <Route path="/v4/hematologia" element={<Hematologia />} />
+        <Route path="/v4/medicina-general" element={<MedicinaGeneral />} />
+        <Route path="/v4/nefrologia" element={<Nefrologia />} />
+        <Route path="/v4/cirugia-plastica" element={<CirugiaPlastica />} />
+        <Route path="/v4/ginecologia-obstetricia" element={<GinecologiaObstetricia />} />
+        <Route path="/v4/odontologia" element={<Odontologia />} />
         <Route path="/v4/resultados-anatomia-patologica" element={<ResultadosAnatomia />} />
         <Route path="/v4/resultados-laboratorio-patologico" element={<ResultadosLaboratorio />} />
         <Route path="/v4/preventivo-azul" element={<PreventivoAzul />} />
