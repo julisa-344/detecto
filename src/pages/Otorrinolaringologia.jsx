@@ -10,23 +10,23 @@ import {
   SpecialtyHero,
   SpecialtyIntro,
   ConditionsGrid,
-  ServicesCard,
+  ServicesGrid,
   FAQs,
   QuickContact,
   FortalezasClinica,
 } from '../components/specialty'
 
 import {
-  hematoImages,
+  orlImages,
   sintomas,
   condiciones,
   servicios,
   stripServicios,
   faqs,
   fortalezas,
-} from '../components/hematologia/data'
+} from '../components/otorrinolaringologia/data'
 
-export default function Hematologia() {
+export default function Otorrinolaringologia() {
   return (
     <ThemeProvider
       theme={BLUE_THEME}
@@ -39,10 +39,11 @@ export default function Hematologia() {
       <HeaderV3 />
 
       <SpecialtyHero
-        video={hematoImages.heroVideo}
-        titlePre="Hematología"
+        eyebrow="Especialidad ORL"
+        video={orlImages.heroVideo}
+        titlePre="Otorrinolaringología"
         titleAccent="clínica."
-        paragraph="Cuidamos tu salud a través del diagnóstico y tratamiento de enfermedades de la sangre y la médula ósea."
+        paragraph="Salud de oído, nariz y garganta con precisión, tecnología y un trato humano que te devuelve la calidad de vida."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -52,41 +53,42 @@ export default function Hematologia() {
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <SpecialtyIntro
               titlePre="¿Qué es la"
-              titleAccent="hematología?"
-              paragraph="Especialidad médica que estudia, diagnostica y trata enfermedades de la sangre y la médula ósea, abarcando glóbulos rojos, blancos y plaquetas, tanto en cánceres hematológicos como en trastornos no oncológicos."
+              titleAccent="otorrinolaringología?"
+              paragraph="Especialidad médica que previene, diagnostica y trata enfermedades del oído, nariz y garganta en niños y adultos, con tecnología avanzada y especialistas experimentados."
               listLabel="Motivos de consulta"
               items={sintomas}
-              sideImage={hematoImages.side}
-              sideAlt="Atención hematológica"
+              sideImage={orlImages.side}
+              sideAlt="Atención en otorrinolaringología"
             />
 
             <ConditionsGrid
               eyebrow="CONDICIONES TRATADAS"
               titlePre="¿Qué tratamos"
-              titleAccent="en hematología?"
+              titleAccent="en ORL?"
               items={condiciones}
             />
 
             <MisionCTA
-              image={hematoImages.cta}
+              image={orlImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
-              titleAccent="evaluación hematológica."
-              paragraph="Cuida tu salud sanguínea con un equipo especializado y tecnología de vanguardia."
+              titleAccent="evaluación ORL."
+              paragraph="Vuelve a respirar, escuchar y vivir mejor con especialistas en oído, nariz y garganta."
             />
 
-            <ServicesCard
-              titlePre="Servicios y procedimientos"
-              titleAccent="disponibles."
-              paragraph="Atención integral con tratamientos avanzados, trasplante de médula y acceso a ensayos clínicos."
-              service={servicios[0]}
+            <ServicesGrid
+              titlePre="Atención integral para"
+              titleAccent="tu salud ORL."
+              paragraph="Diagnóstico, cirugía y rehabilitación con un equipo dedicado a tu bienestar."
+              services={servicios}
+              columns={3}
             />
 
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas más comunes"
-              subtitle="Información clara sobre nuestra atención hematológica."
+              subtitle="Información clara sobre nuestra atención en otorrinolaringología."
               faqs={faqs}
             />
           </main>

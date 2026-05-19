@@ -155,7 +155,7 @@ export default function Publicaciones() {
       </div>
 
       {/* Cuadrícula 3 col → fila 1: 3 cards / fila 2: 2 cards */}
-      <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-5">
         {publications.map((pub, i) => (
           <PubCard key={pub.short} pub={pub} index={i} />
         ))}

@@ -18,7 +18,7 @@ const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 export const hematoImages = {
   heroVideo: `${IMG_BASE}especialidades/hematologia.mp4`,
   side: `${IMG_BASE}especialidades/hematologia.jpg`,
-  cta: `${IMG_BASE}especialidades/hematologiaCta.jpg`,
+  cta: `${IMG_BASE}especialidades/hematologiaCta.webp`,
 }
 
 export const sintomas = [

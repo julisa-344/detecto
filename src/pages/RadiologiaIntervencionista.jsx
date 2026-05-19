@@ -17,16 +17,16 @@ import {
 } from '../components/specialty'
 
 import {
-  hematoImages,
+  radioIntervImages,
   sintomas,
   condiciones,
   servicios,
   stripServicios,
   faqs,
   fortalezas,
-} from '../components/hematologia/data'
+} from '../components/radiologia-intervencionista/data'
 
-export default function Hematologia() {
+export default function RadiologiaIntervencionista() {
   return (
     <ThemeProvider
       theme={BLUE_THEME}
@@ -39,10 +39,11 @@ export default function Hematologia() {
       <HeaderV3 />
 
       <SpecialtyHero
-        video={hematoImages.heroVideo}
-        titlePre="Hematología"
-        titleAccent="clínica."
-        paragraph="Cuidamos tu salud a través del diagnóstico y tratamiento de enfermedades de la sangre y la médula ósea."
+        eyebrow="Diagnóstico y tratamiento avanzado"
+        video={radioIntervImages.heroVideo}
+        titlePre="Radiología"
+        titleAccent="intervencionista."
+        paragraph="Tratamientos mínimamente invasivos guiados por imágenes con precisión, rapidez y menor recuperación."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -52,41 +53,41 @@ export default function Hematologia() {
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <SpecialtyIntro
               titlePre="¿Qué es la"
-              titleAccent="hematología?"
-              paragraph="Especialidad médica que estudia, diagnostica y trata enfermedades de la sangre y la médula ósea, abarcando glóbulos rojos, blancos y plaquetas, tanto en cánceres hematológicos como en trastornos no oncológicos."
+              titleAccent="radiología intervencionista?"
+              paragraph="Subespecialidad médica que utiliza técnicas de imagen guiada (ecografía, tomografía o rayos X) para realizar tratamientos mínimamente invasivos con menor riesgo y dolor."
               listLabel="Motivos de consulta"
               items={sintomas}
-              sideImage={hematoImages.side}
-              sideAlt="Atención hematológica"
+              sideImage={radioIntervImages.side}
+              sideAlt="Atención en radiología intervencionista"
             />
 
             <ConditionsGrid
               eyebrow="CONDICIONES TRATADAS"
-              titlePre="¿Qué tratamos"
-              titleAccent="en hematología?"
+              titlePre="¿Qué"
+              titleAccent="tratamos?"
               items={condiciones}
             />
 
             <MisionCTA
-              image={hematoImages.cta}
+              image={radioIntervImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
-              titleAccent="evaluación hematológica."
-              paragraph="Cuida tu salud sanguínea con un equipo especializado y tecnología de vanguardia."
+              titleAccent="evaluación intervencionista."
+              paragraph="Accede a tratamientos mínimamente invasivos con tecnología de vanguardia y un equipo experto."
             />
 
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención integral con tratamientos avanzados, trasplante de médula y acceso a ensayos clínicos."
+              paragraph="Procedimientos guiados por imagen para diagnósticos precisos y tratamientos efectivos sin cirugía abierta."
               service={servicios[0]}
             />
 
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas más comunes"
-              subtitle="Información clara sobre nuestra atención hematológica."
+              subtitle="Información clara sobre nuestros procedimientos intervencionistas."
               faqs={faqs}
             />
           </main>
@@ -96,6 +97,8 @@ export default function Hematologia() {
           </aside>
         </div>
       </div>
+
+      <FortalezasClinica words={fortalezas} />
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

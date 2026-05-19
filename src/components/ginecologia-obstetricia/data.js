@@ -16,9 +16,9 @@ import {
 const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 
 export const ginecoObsImages = {
-  heroVideo: `${IMG_BASE}especialidades/ginecologiaObstetrica.mp4`,
-  side: `${IMG_BASE}especialidades/ginecologiaObstetrica.jpg`,
-  cta: `${IMG_BASE}especialidades/ginecologiaObstetricaCta.jpg`,
+  heroVideo: `${IMG_BASE}especialidades/ginecologia.mp4`,
+  side: `${IMG_BASE}especialidades/ginecologia.jpg`,
+  cta: `${IMG_BASE}especialidades/ginecologiaCta.jpg`,
 }
 
 export const sintomas = [

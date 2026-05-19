@@ -17,9 +17,9 @@ import {
 const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 
 export const endocrinoImages = {
-  heroVideo: `${IMG_BASE}especialidades/endocrinologia.mp4`,
-  side: `${IMG_BASE}especialidades/endocrinologia.jpg`,
-  cta: `${IMG_BASE}especialidades/endocrinologiaCta.jpg`,
+  heroVideo: `${IMG_BASE}especialidades/endocronologia.mp4`,
+  side: `${IMG_BASE}especialidades/endocronologia.jpg`,
+  cta: `${IMG_BASE}especialidades/endocronologiaCta.jpg`,
 }
 
 export const sintomas = [

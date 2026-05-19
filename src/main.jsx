@@ -40,9 +40,21 @@ import Nefrologia from './pages/Nefrologia'
 import CirugiaPlastica from './pages/CirugiaPlastica'
 import GinecologiaObstetricia from './pages/GinecologiaObstetricia'
 import Odontologia from './pages/Odontologia'
+import Traumatologia from './pages/Traumatologia'
+import Coloproctologia from './pages/Coloproctologia'
+import Neurocirugia from './pages/Neurocirugia'
+import Otorrinolaringologia from './pages/Otorrinolaringologia'
+import Urologia from './pages/Urologia'
+import MedicinaFisica from './pages/MedicinaFisica'
+import Pediatria from './pages/Pediatria'
+import Psiquiatria from './pages/Psiquiatria'
+import Oftalmologia from './pages/Oftalmologia'
+import Psicologia from './pages/Psicologia'
+import RadiologiaIntervencionista from './pages/RadiologiaIntervencionista'
 import ResultadosAnatomia from './pages/ResultadosAnatomia'
 import ResultadosLaboratorio from './pages/ResultadosLaboratorio'
 import PreventivoAzul from './pages/PreventivoAzul'
+import PulmoScan from './pages/PulmoScan'
 import Login from './pages/Login'
 import ScrollToTop from './components/ScrollToTop'
 
@@ -89,9 +101,21 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/cirugia-plastica" element={<CirugiaPlastica />} />
         <Route path="/v4/ginecologia-obstetricia" element={<GinecologiaObstetricia />} />
         <Route path="/v4/odontologia" element={<Odontologia />} />
+        <Route path="/v4/traumatologia" element={<Traumatologia />} />
+        <Route path="/v4/coloproctologia" element={<Coloproctologia />} />
+        <Route path="/v4/neurocirugia" element={<Neurocirugia />} />
+        <Route path="/v4/otorrinolaringologia" element={<Otorrinolaringologia />} />
+        <Route path="/v4/urologia" element={<Urologia />} />
+        <Route path="/v4/medicina-fisica" element={<MedicinaFisica />} />
+        <Route path="/v4/pediatria" element={<Pediatria />} />
+        <Route path="/v4/psiquiatria" element={<Psiquiatria />} />
+        <Route path="/v4/oftalmologia" element={<Oftalmologia />} />
+        <Route path="/v4/psicologia" element={<Psicologia />} />
+        <Route path="/v4/radiologia-intervencionista" element={<RadiologiaIntervencionista />} />
         <Route path="/v4/resultados-anatomia-patologica" element={<ResultadosAnatomia />} />
         <Route path="/v4/resultados-laboratorio-patologico" element={<ResultadosLaboratorio />} />
         <Route path="/v4/preventivo-azul" element={<PreventivoAzul />} />
+        <Route path="/v4/pulmoscan" element={<PulmoScan />} />
         <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>

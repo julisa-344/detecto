@@ -17,16 +17,16 @@ import {
 } from '../components/specialty'
 
 import {
-  hematoImages,
+  coloproctoImages,
   sintomas,
   condiciones,
   servicios,
   stripServicios,
   faqs,
   fortalezas,
-} from '../components/hematologia/data'
+} from '../components/coloproctologia/data'
 
-export default function Hematologia() {
+export default function Coloproctologia() {
   return (
     <ThemeProvider
       theme={BLUE_THEME}
@@ -39,10 +39,11 @@ export default function Hematologia() {
       <HeaderV3 />
 
       <SpecialtyHero
-        video={hematoImages.heroVideo}
-        titlePre="Hematología"
+        eyebrow="Especialidad coloproctológica"
+        video={coloproctoImages.heroVideo}
+        titlePre="Coloproctología"
         titleAccent="clínica."
-        paragraph="Cuidamos tu salud a través del diagnóstico y tratamiento de enfermedades de la sangre y la médula ósea."
+        paragraph="Cuidado experto para la salud del colon, recto y ano con tecnología avanzada y trato cercano."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -52,41 +53,41 @@ export default function Hematologia() {
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <SpecialtyIntro
               titlePre="¿Qué es la"
-              titleAccent="hematología?"
-              paragraph="Especialidad médica que estudia, diagnostica y trata enfermedades de la sangre y la médula ósea, abarcando glóbulos rojos, blancos y plaquetas, tanto en cánceres hematológicos como en trastornos no oncológicos."
+              titleAccent="coloproctología?"
+              paragraph="Especialidad médica enfocada en el manejo de enfermedades benignas y malignas del colon, recto y ano, así como trastornos funcionales del aparato digestivo inferior."
               listLabel="Motivos de consulta"
               items={sintomas}
-              sideImage={hematoImages.side}
-              sideAlt="Atención hematológica"
+              sideImage={coloproctoImages.side}
+              sideAlt="Atención coloproctológica"
             />
 
             <ConditionsGrid
               eyebrow="CONDICIONES TRATADAS"
-              titlePre="¿Qué tratamos"
-              titleAccent="en hematología?"
+              titlePre="¿Qué"
+              titleAccent="tratamos?"
               items={condiciones}
             />
 
             <MisionCTA
-              image={hematoImages.cta}
+              image={coloproctoImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
-              titleAccent="evaluación hematológica."
-              paragraph="Cuida tu salud sanguínea con un equipo especializado y tecnología de vanguardia."
+              titleAccent="evaluación coloproctológica."
+              paragraph="Diagnóstico oportuno y atención cercana con especialistas en salud colorrectal."
             />
 
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención integral con tratamientos avanzados, trasplante de médula y acceso a ensayos clínicos."
+              paragraph="Atención integral con procedimientos endoscópicos, cirugía laparoscópica y seguimiento continuo."
               service={servicios[0]}
             />
 
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas más comunes"
-              subtitle="Información clara sobre nuestra atención hematológica."
+              subtitle="Información clara sobre nuestra atención coloproctológica."
               faqs={faqs}
             />
           </main>

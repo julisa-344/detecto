@@ -98,8 +98,6 @@ export default function GinecologiaObstetricia() {
         </div>
       </div>
 
-      <FortalezasClinica words={fortalezas} />
-
       <FooterV4 showCTA={false} />
       <WhatsAppButton />
     </ThemeProvider>

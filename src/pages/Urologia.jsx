@@ -17,16 +17,16 @@ import {
 } from '../components/specialty'
 
 import {
-  hematoImages,
+  urologiaImages,
   sintomas,
   condiciones,
   servicios,
   stripServicios,
   faqs,
   fortalezas,
-} from '../components/hematologia/data'
+} from '../components/urologia/data'
 
-export default function Hematologia() {
+export default function Urologia() {
   return (
     <ThemeProvider
       theme={BLUE_THEME}
@@ -39,10 +39,11 @@ export default function Hematologia() {
       <HeaderV3 />
 
       <SpecialtyHero
-        video={hematoImages.heroVideo}
-        titlePre="Hematología"
+        eyebrow="Especialidad urológica"
+        video={urologiaImages.heroVideo}
+        titlePre="Urología"
         titleAccent="clínica."
-        paragraph="Cuidamos tu salud a través del diagnóstico y tratamiento de enfermedades de la sangre y la médula ósea."
+        paragraph="Tu salud urinaria y reproductiva en manos expertas, con tecnología avanzada y trato cercano."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -52,41 +53,41 @@ export default function Hematologia() {
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <SpecialtyIntro
               titlePre="¿Qué es la"
-              titleAccent="hematología?"
-              paragraph="Especialidad médica que estudia, diagnostica y trata enfermedades de la sangre y la médula ósea, abarcando glóbulos rojos, blancos y plaquetas, tanto en cánceres hematológicos como en trastornos no oncológicos."
+              titleAccent="urología?"
+              paragraph="Especialidad médica dedicada al diagnóstico y tratamiento de las afecciones del sistema urinario y del aparato reproductor masculino: riñones, uréteres, vejiga, uretra y órganos reproductores."
               listLabel="Motivos de consulta"
               items={sintomas}
-              sideImage={hematoImages.side}
-              sideAlt="Atención hematológica"
+              sideImage={urologiaImages.side}
+              sideAlt="Atención urológica"
             />
 
             <ConditionsGrid
               eyebrow="CONDICIONES TRATADAS"
-              titlePre="¿Qué tratamos"
-              titleAccent="en hematología?"
+              titlePre="¿Qué"
+              titleAccent="tratamos?"
               items={condiciones}
             />
 
             <MisionCTA
-              image={hematoImages.cta}
+              image={urologiaImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
-              titleAccent="evaluación hematológica."
-              paragraph="Cuida tu salud sanguínea con un equipo especializado y tecnología de vanguardia."
+              titleAccent="consulta urológica."
+              paragraph="Acompañamos tu salud urinaria y reproductiva con un equipo experto y atención cercana."
             />
 
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención integral con tratamientos avanzados, trasplante de médula y acceso a ensayos clínicos."
+              paragraph="Atención integral con tecnología avanzada y tratamientos personalizados para cada paciente."
               service={servicios[0]}
             />
 
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas más comunes"
-              subtitle="Información clara sobre nuestra atención hematológica."
+              subtitle="Información clara sobre nuestra atención urológica."
               faqs={faqs}
             />
           </main>

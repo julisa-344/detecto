@@ -17,8 +17,8 @@ const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 
 export const odontoImages = {
   heroVideo: `${IMG_BASE}especialidades/odontologia.mp4`,
-  side: `${IMG_BASE}especialidades/odontologia.jpg`,
-  cta: `${IMG_BASE}especialidades/odontologiaCta.jpg`,
+  side: `${IMG_BASE}especialidades/odontologia.webp`,
+  cta: `${IMG_BASE}especialidades/odontologiaCta.webp`,
 }
 
 export const sintomas = [

@@ -17,16 +17,16 @@ import {
 } from '../components/specialty'
 
 import {
-  hematoImages,
+  psicologiaImages,
   sintomas,
   condiciones,
   servicios,
   stripServicios,
   faqs,
   fortalezas,
-} from '../components/hematologia/data'
+} from '../components/psicologia/data'
 
-export default function Hematologia() {
+export default function Psicologia() {
   return (
     <ThemeProvider
       theme={BLUE_THEME}
@@ -39,10 +39,11 @@ export default function Hematologia() {
       <HeaderV3 />
 
       <SpecialtyHero
-        video={hematoImages.heroVideo}
-        titlePre="Hematología"
+        eyebrow="Especialidad psicológica"
+        video={psicologiaImages.heroVideo}
+        titlePre="Psicología"
         titleAccent="clínica."
-        paragraph="Cuidamos tu salud a través del diagnóstico y tratamiento de enfermedades de la sangre y la médula ósea."
+        paragraph="Bienestar emocional y salud mental para todas las edades con técnicas basadas en evidencia y un trato humano."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -51,42 +52,42 @@ export default function Hematologia() {
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <SpecialtyIntro
-              titlePre="¿Qué es la"
-              titleAccent="hematología?"
-              paragraph="Especialidad médica que estudia, diagnostica y trata enfermedades de la sangre y la médula ósea, abarcando glóbulos rojos, blancos y plaquetas, tanto en cánceres hematológicos como en trastornos no oncológicos."
+              titlePre="¿Qué trata la"
+              titleAccent="psicología?"
+              paragraph="Especialidad enfocada en los procesos mentales y el comportamiento humano. Brindamos atención integral en coordinación con otros profesionales de la salud."
               listLabel="Motivos de consulta"
               items={sintomas}
-              sideImage={hematoImages.side}
-              sideAlt="Atención hematológica"
+              sideImage={psicologiaImages.side}
+              sideAlt="Atención psicológica"
             />
 
             <ConditionsGrid
               eyebrow="CONDICIONES TRATADAS"
-              titlePre="¿Qué tratamos"
-              titleAccent="en hematología?"
+              titlePre="¿Qué"
+              titleAccent="tratamos?"
               items={condiciones}
             />
 
             <MisionCTA
-              image={hematoImages.cta}
+              image={psicologiaImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
-              titlePre="Agenda una"
-              titleAccent="evaluación hematológica."
-              paragraph="Cuida tu salud sanguínea con un equipo especializado y tecnología de vanguardia."
+              titlePre="Agenda tu"
+              titleAccent="consulta psicológica."
+              paragraph="Cuida tu bienestar emocional con un equipo especializado que respeta tu historia y tus tiempos."
             />
 
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención integral con tratamientos avanzados, trasplante de médula y acceso a ensayos clínicos."
+              paragraph="Terapias basadas en evidencia y técnicas adaptadas a cada paciente y momento de vida."
               service={servicios[0]}
             />
 
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas más comunes"
-              subtitle="Información clara sobre nuestra atención hematológica."
+              subtitle="Información clara sobre nuestra atención psicológica."
               faqs={faqs}
             />
           </main>
@@ -96,6 +97,8 @@ export default function Hematologia() {
           </aside>
         </div>
       </div>
+
+      <FortalezasClinica words={fortalezas} />
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

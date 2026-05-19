@@ -17,16 +17,16 @@ import {
 } from '../components/specialty'
 
 import {
-  hematoImages,
+  pediatriaImages,
   sintomas,
   condiciones,
   servicios,
   stripServicios,
   faqs,
   fortalezas,
-} from '../components/hematologia/data'
+} from '../components/pediatria/data'
 
-export default function Hematologia() {
+export default function Pediatria() {
   return (
     <ThemeProvider
       theme={BLUE_THEME}
@@ -39,10 +39,11 @@ export default function Hematologia() {
       <HeaderV3 />
 
       <SpecialtyHero
-        video={hematoImages.heroVideo}
-        titlePre="Hematología"
-        titleAccent="clínica."
-        paragraph="Cuidamos tu salud a través del diagnóstico y tratamiento de enfermedades de la sangre y la médula ósea."
+        eyebrow="Especialidad pediátrica"
+        video={pediatriaImages.heroVideo}
+        titlePre="Pediatría"
+        titleAccent="integral."
+        paragraph="Cuidamos la salud de tus hijos con atención especializada y un trato humano que acompaña a toda la familia."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -51,42 +52,42 @@ export default function Hematologia() {
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <SpecialtyIntro
-              titlePre="¿Qué es la"
-              titleAccent="hematología?"
-              paragraph="Especialidad médica que estudia, diagnostica y trata enfermedades de la sangre y la médula ósea, abarcando glóbulos rojos, blancos y plaquetas, tanto en cánceres hematológicos como en trastornos no oncológicos."
+              titlePre="¿Qué trata la"
+              titleAccent="pediatría?"
+              paragraph="Especialidad médica dedicada al diagnóstico y tratamiento de enfermedades en niños desde el nacimiento hasta la adolescencia, en coordinación con otras especialidades cuando es necesario."
               listLabel="Motivos de consulta"
               items={sintomas}
-              sideImage={hematoImages.side}
-              sideAlt="Atención hematológica"
+              sideImage={pediatriaImages.side}
+              sideAlt="Atención pediátrica"
             />
 
             <ConditionsGrid
               eyebrow="CONDICIONES TRATADAS"
-              titlePre="¿Qué tratamos"
-              titleAccent="en hematología?"
+              titlePre="¿Qué"
+              titleAccent="tratamos?"
               items={condiciones}
             />
 
             <MisionCTA
-              image={hematoImages.cta}
+              image={pediatriaImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
-              titlePre="Agenda una"
-              titleAccent="evaluación hematológica."
-              paragraph="Cuida tu salud sanguínea con un equipo especializado y tecnología de vanguardia."
+              titlePre="Agenda un"
+              titleAccent="control pediátrico."
+              paragraph="Acompañamos el crecimiento, salud y desarrollo de tus hijos con un equipo especializado."
             />
 
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención integral con tratamientos avanzados, trasplante de médula y acceso a ensayos clínicos."
+              paragraph="Atención integral para cada etapa del crecimiento, con seguimiento personalizado y enfoque preventivo."
               service={servicios[0]}
             />
 
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas más comunes"
-              subtitle="Información clara sobre nuestra atención hematológica."
+              subtitle="Información clara sobre nuestra atención pediátrica."
               faqs={faqs}
             />
           </main>
@@ -96,6 +97,8 @@ export default function Hematologia() {
           </aside>
         </div>
       </div>
+
+      <FortalezasClinica words={fortalezas} />
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

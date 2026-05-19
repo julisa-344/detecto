@@ -16,9 +16,9 @@ import {
 const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
 
 export const medGeneralImages = {
-  heroVideo: `${IMG_BASE}especialidades/medicinaGeneral.mp4`,
-  side: `${IMG_BASE}especialidades/medicinaGeneral.jpg`,
-  cta: `${IMG_BASE}especialidades/medicinaGeneralCta.jpg`,
+  heroVideo: `${IMG_BASE}especialidades/general.mp4`,
+  side: `${IMG_BASE}especialidades/general.jpg`,
+  cta: `${IMG_BASE}especialidades/generalCta.jpg`,
 }
 
 export const sintomas = [

@@ -10,23 +10,23 @@ import {
   SpecialtyHero,
   SpecialtyIntro,
   ConditionsGrid,
-  ServicesCard,
+  ServicesGrid,
   FAQs,
   QuickContact,
   FortalezasClinica,
 } from '../components/specialty'
 
 import {
-  hematoImages,
+  traumaImages,
   sintomas,
   condiciones,
   servicios,
   stripServicios,
   faqs,
   fortalezas,
-} from '../components/hematologia/data'
+} from '../components/traumatologia/data'
 
-export default function Hematologia() {
+export default function Traumatologia() {
   return (
     <ThemeProvider
       theme={BLUE_THEME}
@@ -39,10 +39,11 @@ export default function Hematologia() {
       <HeaderV3 />
 
       <SpecialtyHero
-        video={hematoImages.heroVideo}
-        titlePre="Hematología"
-        titleAccent="clínica."
-        paragraph="Cuidamos tu salud a través del diagnóstico y tratamiento de enfermedades de la sangre y la médula ósea."
+        eyebrow="Traumatología y ortopedia"
+        video={traumaImages.heroVideo}
+        titlePre="Traumatología"
+        titleAccent="y ortopedia."
+        paragraph="Recupera tu movilidad con especialistas en sistema músculo-esquelético y tecnología de vanguardia."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -52,41 +53,42 @@ export default function Hematologia() {
           <main className="min-w-0 space-y-20 lg:space-y-24">
             <SpecialtyIntro
               titlePre="¿Qué es la"
-              titleAccent="hematología?"
-              paragraph="Especialidad médica que estudia, diagnostica y trata enfermedades de la sangre y la médula ósea, abarcando glóbulos rojos, blancos y plaquetas, tanto en cánceres hematológicos como en trastornos no oncológicos."
+              titleAccent="traumatología?"
+              paragraph="Especialidad que estudia, diagnostica, trata y rehabilita lesiones y enfermedades del sistema músculo-esquelético: huesos, articulaciones, ligamentos y músculos."
               listLabel="Motivos de consulta"
               items={sintomas}
-              sideImage={hematoImages.side}
-              sideAlt="Atención hematológica"
+              sideImage={traumaImages.side}
+              sideAlt="Atención en traumatología"
             />
 
             <ConditionsGrid
               eyebrow="CONDICIONES TRATADAS"
-              titlePre="¿Qué tratamos"
-              titleAccent="en hematología?"
+              titlePre="¿Qué"
+              titleAccent="tratamos?"
               items={condiciones}
             />
 
             <MisionCTA
-              image={hematoImages.cta}
+              image={traumaImages.cta}
               imageAlt="Compromiso médico Detecta"
               eyebrow=" "
               titlePre="Agenda una"
-              titleAccent="evaluación hematológica."
-              paragraph="Cuida tu salud sanguínea con un equipo especializado y tecnología de vanguardia."
+              titleAccent="evaluación traumatológica."
+              paragraph="Vuelve a moverte con confianza acompañado de un equipo experto en recuperación funcional."
             />
 
-            <ServicesCard
-              titlePre="Servicios y procedimientos"
-              titleAccent="disponibles."
-              paragraph="Atención integral con tratamientos avanzados, trasplante de médula y acceso a ensayos clínicos."
-              service={servicios[0]}
+            <ServicesGrid
+              titlePre="Atención integral para"
+              titleAccent="tu recuperación."
+              paragraph="Diagnóstico, cirugía y rehabilitación con tecnología avanzada y un equipo dedicado a devolverte la movilidad."
+              services={servicios}
+              columns={3}
             />
 
             <FAQs
               eyebrow="Preguntas frecuentes"
               title="Resolvemos tus dudas más comunes"
-              subtitle="Información clara sobre nuestra atención hematológica."
+              subtitle="Información clara sobre nuestra atención en traumatología y ortopedia."
               faqs={faqs}
             />
           </main>

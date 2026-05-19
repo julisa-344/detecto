@@ -99,8 +99,6 @@ export default function Odontologia() {
         </div>
       </div>
 
-      <FortalezasClinica words={fortalezas} />
-
       <FooterV4 showCTA={false} />
       <WhatsAppButton />
     </ThemeProvider>
