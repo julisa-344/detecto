@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowUpRight, User, Lock, Eye, EyeOff } from 'lucide-react'
+import { ArrowUpRight, ArrowLeft, User, Lock, Eye, EyeOff, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import heroVideo from '../assets/login.mp4'
 import logoWhite from '../assets/LogoDetectaHorizontalblanco.png'
@@ -44,12 +44,27 @@ export default function Login() {
         <source src={heroVideo} type="video/mp4" />
       </video>
 
-      {/* Overlays Balanceados: Subimos la opacidad para mejorar lectura */}
-      {/* Capa de tinte general al 40% para rescatar el contraste del texto */}
-      <div className="absolute inset-0 bg-gray-950/40 z-10" /> 
-      
-      {/* Viñeta radial suave para que el centro sea un poco más claro que los bordes */}
+      {/* Overlays Balanceados */}
+      <div className="absolute inset-0 bg-gray-950/35 z-10" />
       <div className="absolute inset-0 bg-[radial-gradient(circle,transparent_20%,rgba(3,7,18,0.4)_100%)] z-10" />
+
+      {/* Top bar: volver + logo */}
+      <div className="absolute top-0 left-0 right-0 z-30 px-6 lg:px-10 pt-6">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <Link
+            to="/v4"
+            className="group inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/25 pl-2 pr-5 py-2 text-[11px] font-semibold tracking-[0.18em] uppercase text-white transition-all hover:bg-white hover:text-slate-900 active:scale-95"
+          >
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 group-hover:bg-slate-900 group-hover:text-white transition-colors">
+              <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+            </span>
+            Volver al inicio
+          </Link>
+          <Link to="/v4" aria-label="Detecta Clínica">
+            <img src={logoWhite} alt="Detecta Clínica" className="h-8 drop-shadow-md hover:opacity-80 transition-opacity" />
+          </Link>
+        </div>
+      </div>
 
       {/* Contenido */}
       <div className="relative z-20 w-full max-w-6xl mx-auto px-6 lg:px-8 grid lg:grid-cols-[1fr_auto] gap-12 items-center">
@@ -59,20 +74,24 @@ export default function Login() {
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:flex flex-col items-start"
+          className="hidden lg:flex flex-col items-start relative"
         >
-          {/* Sombras de texto reforzadas */}
-          <h1 className="text-5xl xl:text-6xl font-extralight text-white leading-[1.05] tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-            Tus resultados<br />
-            <span className="font-medium text-primary">siempre al alcance</span>
-          </h1>
-          <p className="mt-6 text-base text-white/90 font-light max-w-md leading-relaxed drop-shadow-md">
-            Consulta tus exámenes, imágenes e informes clínicos en línea, de forma segura y en cualquier momento.
+          <p className="text-[10px] font-bold tracking-[0.45em] uppercase text-primary drop-shadow-md">
+            Portal del paciente
           </p>
-          
-          {/* Mascota con halo de luz para que destaque del fondo oscurecido */}
-          <div className="relative mt-10 w-80 xl:w-96">
-            <div className="pointer-events-none absolute inset-0 -translate-y-6 bg-[radial-gradient(circle_at_center,rgba(82,192,225,0.4)_0%,rgba(82,192,225,0.1)_40%,transparent_70%)] blur-3xl" />
+
+          <h1 className="mt-5 text-5xl xl:text-6xl font-extralight text-white leading-[1.02] tracking-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+            Tus resultados<br />
+            <span className="font-medium italic text-primary">siempre al alcance.</span>
+          </h1>
+
+          <p className="mt-6 max-w-md text-base text-white/80 font-light leading-relaxed drop-shadow-md">
+            Consulta tus exámenes, imágenes e informes clínicos de forma segura, en cualquier momento.
+          </p>
+
+          {/* Mascota */}
+          <div className="relative mt-8 w-72 xl:w-80">
+            <div className="pointer-events-none absolute inset-0 -translate-y-6 bg-[radial-gradient(circle_at_center,rgba(82,192,225,0.35)_0%,rgba(82,192,225,0.08)_40%,transparent_70%)] blur-3xl" />
 
             <motion.img
               src={detecto}
@@ -82,7 +101,7 @@ export default function Login() {
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
               className="relative w-full drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             />
-            
+
             <motion.div
               animate={{ scaleX: [1, 0.85, 1], opacity: [0.6, 0.3, 0.6] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -105,23 +124,21 @@ export default function Login() {
             className="lg:hidden mx-auto w-32 mb-4 drop-shadow-[0_15px_30px_rgba(82,192,225,0.35)]"
           />
 
-          <div className="relative overflow-hidden rounded-3xl border border-white/20 bg-gray-950/20 backdrop-blur-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 lg:p-10">
-            {/* Brillos decorativos internos ligeramente más intensos */}
+          <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-gray-950/30 backdrop-blur-2xl shadow-[0_25px_60px_-12px_rgba(0,0,0,0.55)] p-8 lg:p-10">
             <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-primary-medium/20 blur-3xl" />
 
             <div className="relative">
-              <div className="flex justify-start mb-6">
-                <Link to="/v4">
-                  <img src={logoWhite} alt="Detecta Clínica" className="h-8 drop-shadow-md" />
-                </Link>
-              </div>
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-primary/15 border border-primary/25 px-3 py-1 text-[9px] font-bold tracking-[0.3em] uppercase text-primary backdrop-blur-md">
+                <ShieldCheck className="h-3 w-3" />
+                Detecta Clínica
+              </span>
 
-              <h2 className="mt-3 text-3xl font-extralight text-white tracking-tight leading-tight drop-shadow-md">
+              <h2 className="mt-5 text-3xl font-extralight text-white tracking-tight leading-tight drop-shadow-md">
                 Accede a tus <span className="font-medium text-primary">resultados</span>
               </h2>
-              <p className="mt-2 text-sm text-white/80 font-light drop-shadow-sm">
-                Ingresa tu DNI y clave de acceso para ver tus resultados.
+              <p className="mt-2 text-sm text-white/75 font-light leading-relaxed">
+                Ingresa tu DNI y clave de acceso para ver tus exámenes.
               </p>
 
               <form onSubmit={handleSubmit} className="mt-8 space-y-5">
@@ -170,16 +187,19 @@ export default function Login() {
                   </div>
                 </div>
 
-                {/* Botón */}
-                <div className="flex justify-center pt-3">
+                {/* Botón estilo sitio */}
+                <div className="flex justify-center pt-2">
                   <button
                     type="submit"
                     className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95"
                   >
-                    <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-primary-dark shadow-xl shadow-primary/30">
-                      VER MIS RESULTADOS
+                    <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] uppercase text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-primary-dark">
+                      Ver mis resultados
                     </span>
-          
+                    <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full bg-primary text-white transition-all duration-500 ease-in-out group-hover:bg-primary-dark">
+                      <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
+                      <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
+                    </div>
                   </button>
                 </div>
               </form>
