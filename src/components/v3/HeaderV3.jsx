@@ -22,10 +22,10 @@ const pacientesCategories = [
       { label: 'Farmacia', to: '/v4/farmacia' },
       { label: 'Hospitalización', to: '/v4/hospitalizacion' },
       { label: 'Quimioterapia', to: '/v4/quimioterapia' },
-            { label: 'Resultados de Laboratorio Clínico', to: '/v4/laboratorio-clinico' },
+            { label: 'Laboratorio Clínico', to: '/v4/laboratorio-clinico' },
 
       { label: 'Sala de Operaciones', to: '/v4/sala-operaciones' },
-      { label: 'Resultados de Laboratorio Patológico', to: '/v4/anatomia-patologica' },
+      { label: 'Laboratorio de Anatomía Patológica', to: '/v4/anatomia-patologica' },
     ],
   },
   {
