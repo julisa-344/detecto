@@ -93,7 +93,7 @@ export default function EnfermedadesInfecciosas() {
         </div>
       </div>
 
-      <FortalezasClinica words={fortalezas} />
+      {/* <FortalezasClinica words={fortalezas} /> */}
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

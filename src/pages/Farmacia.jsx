@@ -51,7 +51,7 @@ export default function Farmacia() {
         </div>
       </div>
 
-      <FortalezasClinica image={detecto} words={fortalezas} />
+      {/* <FortalezasClinica image={detecto} words={fortalezas} /> */}
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />

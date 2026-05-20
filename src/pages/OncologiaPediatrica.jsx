@@ -144,7 +144,7 @@ export default function OncologiaPediatrica() {
         </div>
       </div>
 
-      <FortalezasClinica words={fortalezas} />
+      {/* <FortalezasClinica words={fortalezas} /> */}
 
       <FooterV4 showCTA={false} />
       <WhatsAppButton />
