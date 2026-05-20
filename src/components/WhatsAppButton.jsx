@@ -1,25 +1,21 @@
 export default function WhatsAppButton() {
   const handleClick = () => {
-    window.open('https://wa.me/51999999999', '_blank')
+    window.open('https://wa.me/51922335134', '_blank')
   }
 
   return (
     <button
       onClick={handleClick}
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-6 right-6 z-50 group flex h-14 w-14 items-center justify-center rounded-full cursor-pointer transition-all duration-500 active:scale-95 hover:scale-110"
+      className="fixed bottom-12 right-12 z-50 group flex h-14 w-14 items-center justify-center rounded-full cursor-pointer transition-all duration-500 active:scale-95 hover:scale-110"
       style={{
-        background:
-          'linear-gradient(135deg, rgb(var(--brand-base)) 0%, rgb(var(--brand-dark)) 100%)',
+        background: 'linear-gradient(135deg, #52C0E1 0%, #0070A5 100%)',
         boxShadow:
-          '0 14px 30px -10px rgb(var(--brand-dark) / 0.55), 0 0 0 1px rgb(255 255 255 / 0.15) inset',
+          '0 16px 32px -10px rgba(0,112,165,0.6), 0 0 0 6px rgba(82,192,225,0.20), 0 0 0 1px rgba(255,255,255,0.2) inset',
       }}
     >
-      <span
-        className="pointer-events-none absolute inset-0 rounded-full opacity-60"
-        style={{ background: 'rgb(var(--brand-base) / 0.35)' }}
-      >
-        <span className="absolute inset-0 rounded-full animate-ping" style={{ background: 'rgb(var(--brand-base) / 0.45)' }} />
+      <span className="pointer-events-none absolute inset-0 rounded-full">
+        <span className="absolute inset-0 rounded-full animate-ping bg-primary/45" />
       </span>
 
       <svg viewBox="0 0 24 24" fill="currentColor" className="relative w-7 h-7 text-white transition-transform duration-500 group-hover:scale-110">
