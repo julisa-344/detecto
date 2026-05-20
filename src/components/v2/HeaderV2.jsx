@@ -101,7 +101,9 @@ export default function HeaderV2() {
               </a>
               {/* Botón sharp V2 */}
               <a
-                href="#agendar"
+                href="https://appointments.detecta.pe/login"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-6 py-2.5 bg-primary-dark text-white text-sm font-medium tracking-wide rounded-sm hover:bg-[#005a84] transition-colors duration-200"
               >
                 Agendar cita
@@ -133,7 +135,7 @@ export default function HeaderV2() {
                 {item}
               </a>
             ))}
-            <a href="#agendar" className="mt-2 px-6 py-3 bg-primary-dark text-white text-sm font-medium text-center rounded-sm">
+            <a href="https://appointments.detecta.pe/login" target="_blank" rel="noopener noreferrer" className="mt-2 px-6 py-3 bg-primary-dark text-white text-sm font-medium text-center rounded-sm">
               Agendar cita
             </a>
           </nav>

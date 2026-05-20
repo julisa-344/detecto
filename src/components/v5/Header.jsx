@@ -71,7 +71,7 @@ export default function Header() {
               <a href="tel:+51999999999" className={`text-sm font-medium transition-colors ${scrolled ? 'text-gray-500 hover:text-primary' : 'text-white/80 hover:text-white'}`}>
                 +51 999 999 999
               </a>
-              <a href="#agendar" className="px-6 py-2.5 rounded-full bg-primary-dark text-white text-sm font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-primary/30">
+              <a href="https://appointments.detecta.pe/login" target="_blank" rel="noopener noreferrer" className="px-6 py-2.5 rounded-full bg-primary-dark text-white text-sm font-semibold hover:scale-105 transition-all shadow-lg hover:shadow-primary/30">
                 Agendar cita
               </a>
             </div>

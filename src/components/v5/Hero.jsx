@@ -86,7 +86,9 @@ export default function Hero({ slotRef, splashDone }) {
               className="mt-12 flex gap-4"
             >
               <a
-                href="#agendar"
+                href="https://appointments.detecta.pe/login"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group relative inline-flex items-center gap-4 px-10 py-5 rounded-full bg-[#0070A5] text-white font-semibold text-sm tracking-widest transition-all hover:bg-[#0199C6] hover:scale-105 active:scale-95 shadow-lg shadow-[#0070A5]/20"
               >
                 <span className="relative z-10 uppercase">Agendar cita</span>

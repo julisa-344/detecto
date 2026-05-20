@@ -109,6 +109,36 @@ export const faqs = [
   { q: '¿Cuándo entregan los resultados?', a: 'Los resultados se entregan progresivamente y se complementan con una sesión de lectura para que comprendas cada hallazgo.' },
 ]
 
+export const testimonios = [
+  {
+    paciente: 'Carmen L.',
+    edad: 81,
+    doctor: 'Dr. Mendoza L.',
+    fecha: '20/05/2026',
+    rating: 5,
+    comentario:
+      'Me encantó la atención del doctor. Me brindó confianza, seguridad y demostró mucho profesionalismo durante toda la consulta.',
+  },
+  {
+    paciente: 'Griner G.',
+    edad: 42,
+    doctor: 'Dr. Mendoza',
+    fecha: '20/05/2026',
+    rating: 5,
+    comentario:
+      'La atención fue muy profesional y las instalaciones me parecieron buenas. Considero que podrían seguir fortaleciendo la información sobre los servicios que ofrecen.',
+  },
+  {
+    paciente: 'Isabel R.',
+    edad: 58,
+    doctor: 'Dr. Gastón',
+    fecha: '20/05/2026',
+    rating: 5,
+    comentario:
+      'La experiencia con el doctor fue buena. Recomendaría reforzar una atención más personalizada y empática, así como mejorar los tiempos de espera.',
+  },
+]
+
 export const fortalezas = [
   'Detección temprana',
   'Tecnología de vanguardia',

@@ -171,7 +171,9 @@ export default function HeroV2() {
                   className="mt-10"
                 >
                   <a
-                    href="#agendar"
+                    href={slide.cta === 'Agendar cita' ? 'https://appointments.detecta.pe/login' : '#agendar'}
+                    target={slide.cta === 'Agendar cita' ? '_blank' : undefined}
+                    rel={slide.cta === 'Agendar cita' ? 'noopener noreferrer' : undefined}
                     className="inline-flex items-center gap-3 px-10 py-4 bg-[#0070A5] text-white text-base font-medium tracking-wide rounded-sm hover:bg-[#005a84] transition-colors duration-200 group"
                   >
                     {slide.cta}

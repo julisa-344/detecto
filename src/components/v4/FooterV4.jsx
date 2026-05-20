@@ -69,7 +69,12 @@ export default function FooterV4({ showCTA = true }) {
             transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-wrap justify-center gap-6"
           >
-            <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
+            <a
+              href="https://appointments.detecta.pe/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95 no-underline"
+            >
               <span
                 className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-[#0070A5] transition-all duration-500 ease-in-out bg-[#0070A5]/10 group-hover:bg-[#0070A5] group-hover:text-white"
                 style={{
@@ -80,7 +85,7 @@ export default function FooterV4({ showCTA = true }) {
                   zIndex: 1,
                 }}
               >
-                AGENDAR CITA POR WHATSAPP
+                AGENDAR CITA
               </span>
               <div
                 className="relative flex h-[52px] w-[52px] items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-[#0070A5]/15 text-[#0070A5] group-hover:bg-[#0070A5] group-hover:text-white"
@@ -94,7 +99,7 @@ export default function FooterV4({ showCTA = true }) {
                 <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
                 <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
               </div>
-            </button>
+            </a>
 
             <a href="tel:+5112175100" className="px-10 py-4 bg-slate-50 text-slate-600 border border-slate-200 font-medium rounded-full hover:bg-slate-100 transition-all active:scale-95 text-sm tracking-wide inline-flex items-center">
               Llamar al (01) 217 5100
@@ -134,47 +139,21 @@ export default function FooterV4({ showCTA = true }) {
           <div className="pointer-events-none absolute -top-24 -right-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
           <div className="pointer-events-none absolute -bottom-24 -left-20 h-72 w-72 rounded-full bg-primary-light/20 blur-3xl" />
 
-          <div className="relative z-10 grid gap-10 lg:grid-cols-12">
+          <div className="relative z-10 grid gap-10 lg:grid-cols-12 lg:gap-12">
 
-            {/* Brand + contacto compacto */}
+            {/* Brand statement */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="lg:col-span-5 flex flex-col gap-5"
+              className="lg:col-span-4 flex flex-col gap-5"
             >
-              <img src={logoColor} alt="Detecta Clínica" className="h-9 w-auto object-contain self-start" />
-              <p className="text-[13px] font-light text-slate-600 leading-relaxed max-w-md">
+              <img src={logoColor} alt="Detecta Clínica" className="h-10 w-auto object-contain self-start" />
+              <p className="text-[14px] font-light text-slate-600 leading-relaxed max-w-xs">
                 Líderes en detección temprana e innovación oncológica en el Perú.
               </p>
 
-              {/* Contacto compacto: 3 chips horizontales */}
-              <div className="flex flex-wrap gap-2">
-                <a
-                  href="tel:+5112175100"
-                  className="group inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 backdrop-blur-md px-3.5 py-2 text-[12px] font-medium text-slate-700 transition-all hover:bg-primary-dark hover:text-white hover:border-primary-dark"
-                >
-                  <Phone className="h-3.5 w-3.5 text-primary-dark group-hover:text-white transition-colors" />
-                  (01) 217 5100
-                </a>
-                <a
-                  href="mailto:contacto@detecta.pe"
-                  className="group inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 backdrop-blur-md px-3.5 py-2 text-[12px] font-medium text-slate-700 transition-all hover:bg-primary-dark hover:text-white hover:border-primary-dark"
-                >
-                  <Mail className="h-3.5 w-3.5 text-primary-dark group-hover:text-white transition-colors" />
-                  contacto@detecta.pe
-                </a>
-                <span className="inline-flex items-center gap-2 rounded-full border border-slate-200/70 bg-white/70 backdrop-blur-md px-3.5 py-2 text-[12px] font-medium text-slate-700">
-                  <MapPin className="h-3.5 w-3.5 text-primary-dark" />
-                  Lima, Perú
-                  <span className="inline-flex items-center gap-1 text-[9px] font-bold tracking-[0.18em] uppercase text-primary-dark">
-                    · <Clock className="h-3 w-3" /> 24/7
-                  </span>
-                </span>
-              </div>
-
-              {/* Socials */}
               <div className="flex gap-2 items-center pt-1">
                 {socials.map(({ Icon, label, href }) => (
                   <a
@@ -189,56 +168,77 @@ export default function FooterV4({ showCTA = true }) {
               </div>
             </motion.div>
 
-            {/* Links */}
+            {/* Link columns */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.5, delay: 0.25 }}
-              className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-8"
+              className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-8"
             >
               <div className="flex flex-col gap-4">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.32em] text-primary-dark">Servicios</h3>
                 <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Diagnóstico Precisión <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Oncología <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Select Staff <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Telemedicina <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Diagnóstico Precisión</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Oncología</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Select Staff</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Telemedicina</a></li>
                 </ul>
               </div>
 
               <div className="flex flex-col gap-4">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.32em] text-primary-dark">Nosotros</h3>
                 <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Sobre Detecta <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Investigación <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Sostenibilidad <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Trabaja con nosotros <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Sobre Detecta</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Investigación</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Sostenibilidad</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Trabaja con nosotros</a></li>
+                </ul>
+              </div>
+
+              <div className="flex flex-col gap-4">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.32em] text-primary-dark">Contacto</h3>
+                <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
+                  <li>
+                    <a href="tel:+5112175100" className="hover:text-primary-dark transition-colors">
+                      (01) 217 5100
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://wa.me/51922335134" target="_blank" rel="noopener noreferrer" className="hover:text-primary-dark transition-colors">
+                      WhatsApp +51 922 335 134
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:informes@detecta.pe" className="hover:text-primary-dark transition-colors">
+                      informes@detecta.pe
+                    </a>
+                  </li>
+                  <li className="text-slate-500">Surquillo · San Borja, Lima</li>
                 </ul>
               </div>
 
               <div className="flex flex-col gap-4">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.32em] text-primary-dark">Legal</h3>
                 <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Privacidad <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Ética <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
-                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Libro de Reclamaciones <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Privacidad</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Términos y Condiciones</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Libro de Reclamaciones</a></li>
+                  <li><a href="#" className="hover:text-primary-dark transition-colors">Cookies</a></li>
                 </ul>
               </div>
             </motion.div>
           </div>
 
           {/* Barra inferior */}
-          <div className="relative z-10 mt-8 flex flex-col md:flex-row justify-between items-center border-t border-slate-200/50 pt-5 gap-3 text-[10px] font-medium text-slate-400 tracking-[0.2em] uppercase">
-            <p>© {new Date().getFullYear()} Detecta Clínica — Todos los derechos reservados.</p>
-            <div className="flex gap-6 items-center">
-              <a href="#" className="hover:text-primary-dark transition-colors">Cookies</a>
-              <a href="#" className="hover:text-primary-dark transition-colors">Políticas</a>
-              <div className="flex gap-2 ml-2">
-                <div className="w-1.5 h-1.5 bg-primary-dark rounded-full"></div>
-                <div className="w-1.5 h-1.5 bg-slate-200 rounded-full animate-pulse"></div>
-              </div>
-            </div>
+          <div className="relative z-10 mt-10 flex flex-col sm:flex-row justify-between items-center border-t border-slate-200/50 pt-5 gap-3 text-[10px] font-medium tracking-[0.2em] uppercase">
+            <p className="text-slate-400">
+              © {new Date().getFullYear()} Detecta Clínica · Todos los derechos reservados.
+            </p>
+            <p className="flex items-center gap-2 text-slate-400">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Atención 24/7
+            </p>
           </div>
         </motion.div>
       </div>

@@ -21,6 +21,7 @@ import {
   OneDayBanner,
   PorQueHacerlo,
   ChecklistPreparacion,
+  TestimoniosRosa,
   servicios,
   beneficios,
   faqs,
@@ -74,10 +75,13 @@ export default function PreventivoRosa() {
           </main>
 
           <aside className="hidden self-start lg:sticky lg:top-24 lg:block">
-            <QuickContact
-              title="¿Tienes dudas?"
-              titleAccent="Estamos aquí."
-            />
+            <div className="flex flex-col gap-5">
+              <QuickContact
+                title="¿Tienes dudas?"
+                titleAccent="Estamos aquí."
+              />
+              <TestimoniosRosa />
+            </div>
           </aside>
 
         </div>

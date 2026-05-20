@@ -8,8 +8,17 @@ import logo3 from '../../assets/logo3negro.webp'
 import logo4 from '../../assets/logo4negro.webp'
 import logo5 from '../../assets/logo5negro.webp'
 
+const IMG_BASE = import.meta.env.VITE_BASE_IMAGE_URL
+
 const aseguradoras = [logo1, logo2, logo3, logo4, logo5]
-const aliados = [logo1, logo2, logo3, logo4, logo5]
+const proveedores = [
+  `${IMG_BASE}home/proveedor1.png`,
+  `${IMG_BASE}home/proveedor2.png`,
+  `${IMG_BASE}home/proveedor3.png`,
+  `${IMG_BASE}home/proveedor4.png`,
+  `${IMG_BASE}home/proveedor5.png`,
+  `${IMG_BASE}home/proveedor6.png`,
+]
 
 export default function PartnersV3() {
   return (
@@ -66,13 +75,13 @@ export default function PartnersV3() {
             <span className="h-px w-12 bg-slate-200 md:w-20" />
             <div className="text-center">
               <p className="text-[10px] font-medium uppercase tracking-[0.32em] text-slate-400">
-                Nuestros Aliados
+                Nuestros Proveedores
               </p>
             </div>
             <span className="h-px w-12 bg-slate-200 md:w-20" />
           </div>
 
-          {/* Fila inferior - Aliados */}
+          {/* Fila inferior - Proveedores */}
           <div className="relative h-[54px] overflow-hidden">
             <div
               className="flex h-full items-center gap-20"
@@ -81,12 +90,12 @@ export default function PartnersV3() {
                 animation: 'marquee-v3-reverse 36s linear infinite',
               }}
             >
-              {[...aliados, ...aliados, ...aliados, ...aliados].map((logo, i) => (
+              {[...proveedores, ...proveedores, ...proveedores, ...proveedores].map((logo, i) => (
                 <img
-                  key={`aliado-${i}`}
+                  key={`proveedor-${i}`}
                   src={logo}
-                  alt="Aliado estratégico"
-                  className="h-9 w-auto object-contain opacity-40 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
+                  alt="Proveedor estratégico"
+                  className="h-9 w-auto object-contain opacity-60 grayscale transition-all duration-300 hover:opacity-100 hover:grayscale-0"
                 />
               ))}
             </div>

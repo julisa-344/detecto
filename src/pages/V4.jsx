@@ -6,6 +6,7 @@ import AccionesRapidasV4 from '../components/v4/AccionesRapidasV4'
 import EspecialidadesV4 from '../components/v4/EspecialidadesV4'
 import PartnersV3 from '../components/v3/PartnersV3'
 import AppDetectaV4 from '../components/v4/AppDetectaV4'
+import Testimonios from '../components/v4/Testimonios'
 import FooterV4 from '../components/v4/FooterV4'
 import StaffMedico from '../components/v1/StaffMedico'
 import SplashV3 from '../components/v3/SplashV3'
@@ -31,6 +32,7 @@ export default function V4() {
         <StaffMedico />
         <EspecialidadesV4 />
         <AppDetectaV4 />
+        <Testimonios />
         <PartnersV3 />
         <FooterV4 />
       </div>

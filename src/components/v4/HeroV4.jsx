@@ -475,15 +475,35 @@ export default function HeroV4() {
                   transition={{ duration: 0.35, delay: 0.25 }}
                   className="hidden lg:flex items-center mt-10"
                 >
-                  <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
-                    <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
-                      {slide.isResearch ? 'VER INVESTIGACIONES' : 'AGENDAR CITA'}
-                    </span>
-                    <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-primary text-white group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
-                      <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
-                      <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
-      </div>
-                  </button>
+                  {slide.isResearch ? (
+                    <Link
+                      to="/v4/investigacion"
+                      className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95"
+                    >
+                      <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
+                        VER INVESTIGACIONES
+                      </span>
+                      <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-primary text-white group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
+                        <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
+                        <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
+                      </div>
+                    </Link>
+                  ) : (
+                    <a
+                      href="https://appointments.detecta.pe/login"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95"
+                    >
+                      <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
+                        AGENDAR CITA
+                      </span>
+                      <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-primary text-white group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
+                        <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
+                        <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
+                      </div>
+                    </a>
+                  )}
                 </motion.div>
               </motion.div>
             </AnimatePresence>

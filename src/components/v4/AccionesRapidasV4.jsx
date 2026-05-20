@@ -146,14 +146,20 @@ export default function AccionesRapidasV4() {
           >
             {actions.map((action) => {
               const isActive = activeKey === action.key
+              const isAgendar = action.key === 'agendar'
+              const Card = isAgendar ? motion.a : motion.div
+              const linkProps = isAgendar
+                ? { href: 'https://appointments.detecta.pe/login', target: '_blank', rel: 'noopener noreferrer' }
+                : {}
               return (
-                <motion.div
+                <Card
                   key={action.key}
+                  {...linkProps}
                   variants={cardVariants}
                   whileHover={{ y: -10 }}
                   onMouseEnter={() => setActiveKey(action.key)}
                   onMouseLeave={() => setActiveKey(null)}
-                  className="group relative p-8 rounded-[24px] cursor-pointer overflow-hidden h-[320px] flex flex-col justify-between transition-[background-color,box-shadow] duration-500"
+                  className="group relative p-8 rounded-[24px] cursor-pointer overflow-hidden h-[320px] flex flex-col justify-between transition-[background-color,box-shadow] duration-500 no-underline"
                   style={{
                     backgroundColor: isActive ? action.accent : action.bg,
                     boxShadow: isActive
@@ -205,7 +211,7 @@ export default function AccionesRapidasV4() {
                     </span>
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
-                </motion.div>
+                </Card>
               )
             })}
           </motion.div>
