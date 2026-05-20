@@ -120,20 +120,26 @@ export default function StaffMedico() {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Header */}
-        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start w-full mb-6">
+        <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-end w-full mb-6">
           <div>
             <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-primary-medium mb-4">NUESTRO STAFF</p>
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-light text-slate-900 tracking-tighter leading-[1.05]">
-              Los mejores especialistas{' '}
+              Los mejores especialistas <br />
               <span className="italic text-primary-dark">contigo.</span>
             </h2>
           </div>
 
-          <Link to="/v4/staff-medico" className="group flex items-center gap-3 text-[9px] font-bold tracking-[0.2em] text-primary-dark sm:pt-2 shrink-0">
-            <span className="border-b border-transparent group-hover:border-primary-dark pb-1 transition-all">VER TODO EL STAFF</span>
-            <div className="w-7 h-7 rounded-full bg-primary-lighter flex items-center justify-center border border-primary-light">
-              <Plus className="w-3.5 h-3.5 group-hover:rotate-90 transition-transform" />
-            </div>
+          <Link
+            to="/v4/staff-medico"
+            className="group relative inline-flex items-center gap-0 self-start sm:self-end shrink-0 active:scale-95 transition-all"
+          >
+            <span className="rounded-full bg-primary-dark px-6 py-3 text-[10px] font-semibold tracking-[0.22em] uppercase text-white transition-all duration-500 ease-in-out group-hover:bg-slate-900">
+              Ver todo el staff
+            </span>
+            <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-primary-dark text-white transition-all duration-500 ease-in-out group-hover:bg-slate-900 -ml-0.5">
+              <ArrowRight className="absolute h-4 w-4 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
+              <ArrowRight className="absolute h-4 w-4 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
+            </span>
           </Link>
         </div>
 
