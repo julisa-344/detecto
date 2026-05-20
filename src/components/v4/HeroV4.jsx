@@ -157,7 +157,7 @@ const slides = [
   {
     video: heroVideo3,
     label: 'Detección Temprana',
-    headline: ['Detección que', 'salva vidas', 'hoy.'],
+    headline: ['Detección que', 'salva vidas'],
     highlight: 1,
     sub: 'Nuestros programas de screening preventivo identifican el cáncer en sus etapas más tratables.',
     cta: 'Conoce el programa',

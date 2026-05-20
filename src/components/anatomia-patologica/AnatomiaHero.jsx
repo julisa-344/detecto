@@ -1,20 +1,19 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, MessageCircle } from 'lucide-react'
-import { fadeUp } from '../specialty'
+import { fadeUp, HeroMarquee } from '../specialty'
+
+const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}servicios/patologica.mp4`
 
 const MARQUEE = [
-  'Análisis Confiables',
-  'Tecnología Avanzada',
-  'Resultados Rápidos',
-  'Profesionales Certificados',
-  'Calidad Asegurada',
-  'Entrega Digital',
   'Diagnóstico Preciso',
+  'Patología Oncológica',
+  'Inmunohistoquímica',
+  'Biopsias',
+  'Calidad Asegurada',
+  'Equipo Especializado',
 ]
 
-const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}servicios/clinico.mp4 `
-
-export default function LaboratorioHero() {
+export default function AnatomiaHero() {
   return (
     <section className="relative flex min-h-[70vh] flex-col justify-end overflow-hidden bg-slate-900 pt-24 lg:pt-20">
       <video
@@ -37,36 +36,40 @@ export default function LaboratorioHero() {
           className="max-w-2xl space-y-6"
         >
           <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/70">
-            Laboratorio Clínico
+            Laboratorio de Anatomía Patológica
           </p>
 
-          <h1 className="text-5xl font-extralight leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Análisis clínicos confiables{' '}
+          <h1 className="text-4xl font-extralight leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
+            Diagnóstico preciso{' '}
             <span className="italic font-medium text-[rgb(var(--brand-base))]">
-              para cuidar tu salud.
+              para decisiones acertadas.
             </span>
           </h1>
 
           <p className="max-w-xl text-base font-light leading-relaxed text-slate-200 lg:text-[17px]">
-            Contamos con tecnología avanzada y estricto control de calidad que
-            entrega análisis seguros, precisos y rápidos. Un equipo altamente
-            capacitado revisa e interpreta cada resultado para apoyar decisiones
-            médicas confiables y oportunas.
+            Especialización en cáncer y tecnología avanzada al servicio de tu
+            salud. Patólogos expertos que entregan informes precisos y oportunos
+            para apoyar la elección del mejor tratamiento.
           </p>
 
           <div className="flex flex-wrap items-center gap-4 pt-2">
-            <button className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
+            <a
+              href="https://appointments.detecta.pe/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95"
+            >
               <span className="rounded-full bg-white px-8 py-4 text-[11px] font-semibold tracking-[0.18em] uppercase text-[rgb(var(--brand-dark))] transition-all duration-500 ease-in-out group-hover:bg-[rgb(var(--brand-base))] group-hover:text-white">
-                Agendar análisis
+                Agenda tu estudio
               </span>
               <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full bg-white text-[rgb(var(--brand-dark))] transition-all duration-500 ease-in-out group-hover:bg-[rgb(var(--brand-base))] group-hover:text-white">
                 <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
                 <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
               </div>
-            </button>
+            </a>
 
             <a
-              href="https://wa.me/51000000000"
+              href="https://wa.me/51922335134"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-4 text-[11px] font-semibold tracking-[0.18em] uppercase text-white backdrop-blur-md transition hover:bg-white hover:text-[rgb(var(--brand-dark))]"
@@ -78,25 +81,7 @@ export default function LaboratorioHero() {
         </motion.div>
       </div>
 
-      {/* Cintillo marquee inferior */}
-      <div className="relative z-20 w-full border-t border-white/10 bg-white/5 backdrop-blur-md">
-        <div className="flex overflow-hidden select-none py-4 lg:py-5">
-          <motion.div
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ ease: 'linear', duration: 30, repeat: Infinity }}
-            className="flex whitespace-nowrap"
-          >
-            {[...MARQUEE, ...MARQUEE, ...MARQUEE].map((tag, i) => (
-              <div key={i} className="flex items-center">
-                <span className="px-6 lg:px-10 text-[10px] lg:text-[11px] font-bold tracking-[0.3em] uppercase text-white/45 hover:text-[rgb(var(--brand-base))] transition-colors duration-300 cursor-default">
-                  {tag}
-                </span>
-                <div className="w-1.5 h-1.5 rounded-full bg-[rgb(var(--brand-base)/0.5)] mx-1.5" />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-      </div>
+      <HeroMarquee items={MARQUEE} />
     </section>
   )
 }

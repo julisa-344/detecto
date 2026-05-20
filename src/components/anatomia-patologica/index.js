@@ -1,0 +1,7 @@
+export * from '../specialty'
+export { default as AnatomiaHero } from './AnatomiaHero'
+export { default as PorQueElegirnos } from './PorQueElegirnos'
+export { default as EstudiosRealizamos } from './EstudiosRealizamos'
+export { default as LiderDrTaxa } from './LiderDrTaxa'
+export { default as ConfianzaCta } from './ConfianzaCta'
+export * from './data'

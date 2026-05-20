@@ -58,7 +58,7 @@ export default function Login() {
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-colors duration-300 group-hover:bg-primary">
               <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-x-0.5" />
             </span>
-            Volver al inicio
+            Volver
           </Link>
           <Link to="/v4" aria-label="Detecta Clínica">
             <img src={logoWhite} alt="Detecta Clínica" className="h-8 drop-shadow-md hover:opacity-80 transition-opacity" />

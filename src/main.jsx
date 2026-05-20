@@ -23,6 +23,7 @@ import SalaOperaciones from './pages/SalaOperaciones'
 import Quimioterapia from './pages/Quimioterapia'
 import Farmacia from './pages/Farmacia'
 import LaboratorioClinico from './pages/LaboratorioClinico'
+import AnatomiaPatologica from './pages/AnatomiaPatologica'
 import Proximamente from './pages/Proximamente'
 import OncologiaCabezaCuello from './pages/OncologiaCabezaCuello'
 import MastologiaGinecologia from './pages/MastologiaGinecologia'
@@ -73,7 +74,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/oncologia-medica" element={<OncologiaMedica />} />
         <Route path="/v4/preventivo-rosa" element={<PreventivoRosa />} />
         <Route path="/v4/staff-medico" element={<StaffMedico />} />
-        <Route path="/v4/staff-medico/:slug" element={<DoctorDetail />} />
+        <Route path="/v4/staff-medico/:id" element={<DoctorDetail />} />
         <Route path="/v4/sobre-detecta" element={<SobreDetecta />} />
         <Route path="/v4/dermatologia" element={<Dermatologia />} />
         <Route path="/v4/investigacion" element={<Investigacion />} />
@@ -85,6 +86,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/quimioterapia" element={<Quimioterapia />} />
         <Route path="/v4/farmacia" element={<Farmacia />} />
         <Route path="/v4/laboratorio-clinico" element={<LaboratorioClinico />} />
+        <Route path="/v4/anatomia-patologica" element={<AnatomiaPatologica />} />
         <Route path="/v4/proximamente" element={<Proximamente />} />
         <Route path="/v4/oncologia-cabeza-cuello" element={<OncologiaCabezaCuello />} />
         <Route path="/v4/mastologia-ginecologia" element={<MastologiaGinecologia />} />
