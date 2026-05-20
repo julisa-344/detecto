@@ -1,94 +1,23 @@
-import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, EffectCoverflow, Pagination, Navigation } from 'swiper/modules'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
-
-import 'swiper/css'
-import 'swiper/css/effect-coverflow'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
-
+import { motion } from 'framer-motion'
 import { SectionEyebrow, SectionTitle } from '../specialty'
 import { integrantes } from './data'
 
 const ROLE_TONE = {
-  Presidencia: 'bg-[rgb(var(--brand-base))] text-white',
-  'Secretaría Técnica': 'bg-[rgb(var(--brand-dark))] text-white',
-}
-
-function MemberCard({ m }) {
-  const tone = ROLE_TONE[m.role] ?? 'bg-white text-[rgb(var(--brand-dark))]'
-  const isAccent = !!ROLE_TONE[m.role]
-
-  return (
-    <div
-      className={`flex aspect-3/4 w-full select-none flex-col justify-between rounded-[28px] border p-6 shadow-[0_20px_50px_-25px_rgb(15,23,42/0.35)] ${
-        isAccent ? 'border-transparent' : 'border-slate-100'
-      } ${tone}`}
-    >
-      <div className="flex items-start justify-between">
-        <span
-          className={`flex h-14 w-14 items-center justify-center rounded-2xl text-lg font-semibold tracking-wide ${
-            isAccent
-              ? 'bg-white/15 text-white backdrop-blur'
-              : 'bg-(--brand-bg-ultra) text-[rgb(var(--brand-base))]'
-          }`}
-        >
-          {m.initials}
-        </span>
-        <span
-          className={`font-mono text-[10px] font-semibold uppercase tracking-[0.22em] ${
-            isAccent ? 'text-white/70' : 'text-slate-300'
-          }`}
-        >
-          CIEI
-        </span>
-      </div>
-
-      <div>
-        <p
-          className={`text-[10px] font-semibold uppercase tracking-[0.22em] ${
-            isAccent ? 'text-white/70' : 'text-[rgb(var(--brand-base))]'
-          }`}
-        >
-          {m.role}
-        </p>
-        <h3
-          className={`mt-2 text-[18px] font-light leading-tight tracking-tight ${
-            isAccent ? 'text-white' : 'text-[rgb(var(--brand-dark))]'
-          }`}
-        >
-          {m.name}
-        </h3>
-      </div>
-    </div>
-  )
+  Presidencia: 'bg-[rgb(var(--brand-dark))] text-white',
+  'Secretaría Técnica': 'bg-[rgb(var(--brand-base))] text-white',
+  'Miembro Titular': 'bg-[rgb(var(--brand-base)/0.12)] text-[rgb(var(--brand-dark))]',
+  'Miembro Alterno': 'bg-slate-100 text-slate-600',
 }
 
 export default function Integrantes() {
-  const css = `
-    .integrantes-swiper { width: 100%; padding: 8px 0 64px; }
-    .integrantes-swiper .swiper-slide { width: 280px; }
-    .integrantes-swiper .swiper-slide > div { transition: opacity .4s; opacity: .55; }
-    .integrantes-swiper .swiper-slide-active > div { opacity: 1; }
-    .integrantes-swiper .swiper-slide-next > div,
-    .integrantes-swiper .swiper-slide-prev > div { opacity: .85; }
-    .integrantes-swiper .swiper-3d .swiper-slide-shadow-left,
-    .integrantes-swiper .swiper-3d .swiper-slide-shadow-right { background: none; }
-    .integrantes-swiper .swiper-pagination { bottom: 12px; }
-    .integrantes-swiper .swiper-pagination-bullet { background: rgb(var(--brand-base)); opacity: .25; }
-    .integrantes-swiper .swiper-pagination-bullet-active { opacity: 1; width: 22px; border-radius: 999px; }
-  `
-
   return (
     <section className="relative">
-      <style>{css}</style>
-
       <div className="mb-10 max-w-3xl">
         <SectionEyebrow>El equipo</SectionEyebrow>
         <SectionTitle className="mb-4">
           Integrantes del{' '}
           <em className="not-italic font-medium text-[rgb(var(--brand-base))]">
-            comité
+            comité.
           </em>
         </SectionTitle>
         <p className="text-[15px] font-light leading-7 text-slate-500">
@@ -97,42 +26,42 @@ export default function Integrantes() {
         </p>
       </div>
 
-      <div className="relative">
-        <Swiper
-          className="integrantes-swiper"
-          modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
-          effect="coverflow"
-          centeredSlides
-          loop
-          grabCursor
-          slidesPerView="auto"
-          spaceBetween={24}
-          autoplay={{ delay: 1000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-          coverflowEffect={{ rotate: 0, stretch: 0, depth: 120, modifier: 2.2, slideShadows: false }}
-          pagination={{ clickable: true }}
-          navigation={{ nextEl: '.integrantes-next', prevEl: '.integrantes-prev' }}
-        >
-          {integrantes.map((m) => (
-            <SwiperSlide key={m.name}>
-              <MemberCard m={m} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <div className="overflow-hidden rounded-3xl border border-slate-100 bg-white shadow-[0_20px_50px_-30px_rgba(0,112,165,0.2)]">
+        <ul className="divide-y divide-slate-100">
+          {integrantes.map((m, i) => {
+            const tone = ROLE_TONE[m.role] ?? 'bg-slate-100 text-slate-600'
+            return (
+              <motion.li
+                key={m.name}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex items-center gap-5 px-5 py-4 transition-colors hover:bg-(--brand-bg-soft) lg:px-7 lg:py-5"
+              >
+                <span className="hidden font-mono text-[11px] font-semibold tabular-nums tracking-[0.18em] text-slate-300 sm:block">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
 
-        <button
-          type="button"
-          aria-label="Anterior"
-          className="integrantes-prev absolute left-0 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-[rgb(var(--brand-dark))] shadow-[0_10px_25px_-12px_rgb(15,23,42/0.25)] transition hover:bg-[rgb(var(--brand-base))] hover:text-white lg:-left-4"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <button
-          type="button"
-          aria-label="Siguiente"
-          className="integrantes-next absolute right-0 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-[rgb(var(--brand-dark))] shadow-[0_10px_25px_-12px_rgb(15,23,42/0.25)] transition hover:bg-[rgb(var(--brand-base))] hover:text-white lg:-right-4"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-(--brand-bg-ultra) text-[13px] font-semibold tracking-wide text-[rgb(var(--brand-dark))] ring-1 ring-[rgb(var(--brand-base)/0.2)]">
+                  {m.initials}
+                </span>
+
+                <div className="min-w-0 flex-1">
+                  <h3 className="truncate text-[15px] font-medium leading-tight text-[rgb(var(--brand-dark))] lg:text-base">
+                    {m.name}
+                  </h3>
+                </div>
+
+                <span
+                  className={`shrink-0 rounded-full px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] ${tone}`}
+                >
+                  {m.role}
+                </span>
+              </motion.li>
+            )
+          })}
+        </ul>
       </div>
     </section>
   )

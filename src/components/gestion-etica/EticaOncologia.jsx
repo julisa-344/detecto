@@ -7,28 +7,28 @@ export default function EticaOncologia() {
   return (
     <section className="relative">
       {/* Banner editorial superior */}
-      <div className="relative h-[42vh] min-h-[320px] overflow-hidden rounded-4xl lg:h-[52vh] lg:rounded-[2.5rem]">
+      <div className="relative h-[46vh] min-h-[360px] overflow-hidden rounded-4xl lg:h-[58vh] lg:rounded-[2.5rem]">
         <img
           src={bgImg}
           alt="Ética aplicada en oncología"
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-slate-950/30 via-slate-950/40 to-slate-950/85" />
+        <div className="absolute inset-0 bg-linear-to-b from-slate-950/35 via-slate-950/45 to-slate-950/90" />
 
         {/* Eyebrow + título sobre el banner */}
-        <div className="relative z-10 flex h-full items-end px-8 pb-10 lg:px-14 lg:pb-14">
+        <div className="relative z-10 flex h-full items-center px-8 lg:px-14">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl"
+            className="max-w-3xl"
           >
             <p className="text-[10px] font-semibold uppercase tracking-[0.4em] text-[rgb(var(--brand-base))]">
               Ética aplicada
             </p>
-            <h2 className="mt-4 text-4xl font-extralight leading-[1.02] tracking-tight text-white sm:text-5xl lg:text-7xl">
+            <h2 className="mt-4 text-3xl font-extralight leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl">
               Oncología, prevención y{' '}
               <span className="italic font-medium text-[rgb(var(--brand-base))]">
                 decisiones sensibles.
@@ -39,7 +39,7 @@ export default function EticaOncologia() {
       </div>
 
       {/* Panel inferior con lista editorial + pull quote */}
-      <div className="relative -mt-16 mx-4 rounded-4xl border border-slate-100 bg-white p-8 shadow-[0_30px_60px_-25px_rgb(0,112,165,0.18)] lg:-mt-24 lg:mx-14 lg:p-12">
+      <div className="relative mt-8 mx-4 rounded-4xl border border-slate-100 bg-white p-8 shadow-[0_30px_60px_-25px_rgb(0,112,165,0.18)] lg:mt-10 lg:mx-14 lg:p-12">
         <div className="grid gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
           {/* Compromisos como lista tipográfica */}
           <div>

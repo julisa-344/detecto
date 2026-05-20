@@ -20,13 +20,6 @@ export default function EnsayosClinicos() {
             Participación bajo supervisión médica y comités de ética, con
             seguridad y seguimiento continuo.
           </p>
-
-          <div className="mt-8 inline-flex items-center gap-2.5 rounded-full bg-[rgb(var(--brand-base))] px-5 py-2.5 shadow-[0_10px_25px_-10px_rgb(var(--brand-base)/0.5)]">
-            <ShieldCheck className="h-4 w-4 text-white" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white">
-              Supervisión ética
-            </span>
-          </div>
         </div>
 
         {/* ── DERECHA: CARDS EN ZIGZAG ── */}

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUpRight, ExternalLink, FileText } from 'lucide-react'
 import heroVideo1 from '../../assets/herobg.mp4'
@@ -169,8 +170,13 @@ const RESEARCH_INTERVAL = 12000
 const SLIDE3_INTERVAL = 10000
 
 const medicalTags = [
-  'Detección Temprana', 'Oncología Clínica', 'Investigación',
-  'Medicina Preventiva', 'Quimioterapia', 'Cirugía de Precisión', 'Radioterapia',
+  { label: 'Detección Temprana', to: '/v4/pulmoscan' },
+  { label: 'Oncología Clínica', to: '/v4/oncologia-medica' },
+  { label: 'Investigación', to: '/v4/investigacion' },
+  { label: 'Medicina Preventiva', to: '/v4/preventivo-azul' },
+  { label: 'Quimioterapia', to: '/v4/quimioterapia' },
+  { label: 'Cirugía de Precisión', to: '/v4/sala-operaciones' },
+  { label: 'Diagnóstico por Imágenes', to: '/v4/diagnostico-imagenes' },
 ]
 
 const containerVariants = {
@@ -550,9 +556,12 @@ export default function HeroV4() {
           >
             {[...medicalTags, ...medicalTags].map((tag, i) => (
               <div key={i} className="flex items-center">
-                <span className="px-8 lg:px-12 text-[10px] lg:text-[11px] font-bold tracking-[0.3em] uppercase text-white/30 hover:text-cyan-400 transition-colors duration-300 cursor-default">
-                  {tag}
-                </span>
+                <Link
+                  to={tag.to}
+                  className="px-8 lg:px-12 text-[10px] lg:text-[11px] font-bold tracking-[0.3em] uppercase text-white/30 hover:text-cyan-400 transition-colors duration-300"
+                >
+                  {tag.label}
+                </Link>
                 <div className="w-1.5 h-1.5 rounded-full bg-cyan-500/40 mx-2" />
               </div>
             ))}

@@ -79,16 +79,10 @@ export default function EstudiosImagenes() {
                 </p>
 
                 <div className="mt-6 flex items-center gap-2">
-                  <span
-                    className={`text-[9px] font-bold tracking-widest transition-colors ${
-                      isActive ? 'text-[rgb(var(--brand-base))]' : 'text-[rgb(var(--brand-base)/0.4)]'
-                    }`}
-                  >
-                    SOLICITAR
-                  </span>
+      
                   <div
                     className={`h-px transition-all duration-500 ${
-                      isActive ? 'w-8 bg-[rgb(var(--brand-base))]' : 'w-4 bg-[rgb(var(--brand-base)/0.4)]'
+                      isActive ? 'w-24 bg-[rgb(var(--brand-base))]' : 'w-4 bg-[rgb(var(--brand-base)/0.4)]'
                     }`}
                   />
                 </div>

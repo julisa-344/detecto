@@ -25,6 +25,8 @@ import Farmacia from './pages/Farmacia'
 import LaboratorioClinico from './pages/LaboratorioClinico'
 import AnatomiaPatologica from './pages/AnatomiaPatologica'
 import Proximamente from './pages/Proximamente'
+import Contacto from './pages/Contacto'
+import Neumologia from './pages/Neumologia'
 import OncologiaCabezaCuello from './pages/OncologiaCabezaCuello'
 import MastologiaGinecologia from './pages/MastologiaGinecologia'
 import Psicooncologia from './pages/Psicooncologia'
@@ -88,6 +90,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/laboratorio-clinico" element={<LaboratorioClinico />} />
         <Route path="/v4/anatomia-patologica" element={<AnatomiaPatologica />} />
         <Route path="/v4/proximamente" element={<Proximamente />} />
+        <Route path="/v4/contacto" element={<Contacto />} />
+        <Route path="/v4/neumologia" element={<Neumologia />} />
         <Route path="/v4/oncologia-cabeza-cuello" element={<OncologiaCabezaCuello />} />
         <Route path="/v4/mastologia-ginecologia" element={<MastologiaGinecologia />} />
         <Route path="/v4/psicooncologia" element={<Psicooncologia />} />

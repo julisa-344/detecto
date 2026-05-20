@@ -1,5 +1,6 @@
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { Search } from 'lucide-react'
+import { Search, ChevronLeft, ChevronRight } from 'lucide-react'
 
 export default function SearchFilters({
   query,
@@ -8,6 +9,45 @@ export default function SearchFilters({
   activeChip,
   onChipChange,
 }) {
+  const scrollRef = useRef(null)
+  const [canLeft, setCanLeft] = useState(false)
+  const [canRight, setCanRight] = useState(false)
+  const [expanded, setExpanded] = useState(false)
+
+  const updateArrows = () => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanLeft(el.scrollLeft > 4)
+    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4)
+  }
+
+  useEffect(() => {
+    updateArrows()
+    const el = scrollRef.current
+    if (!el) return
+    el.addEventListener('scroll', updateArrows, { passive: true })
+    window.addEventListener('resize', updateArrows)
+    return () => {
+      el.removeEventListener('scroll', updateArrows)
+      window.removeEventListener('resize', updateArrows)
+    }
+  }, [chips, expanded])
+
+  const scrollBy = (delta) => {
+    scrollRef.current?.scrollBy({ left: delta, behavior: 'smooth' })
+  }
+
+  // Auto-scroll para asegurar visibilidad del chip activo
+  useEffect(() => {
+    if (expanded) return
+    const el = scrollRef.current
+    if (!el) return
+    const activeEl = el.querySelector('[data-chip-active="true"]')
+    if (activeEl && typeof activeEl.scrollIntoView === 'function') {
+      activeEl.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+    }
+  }, [activeChip, expanded])
+
   return (
     <section className="relative -mt-20 sm:-mt-24 lg:-mt-32 z-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-12">
@@ -28,28 +68,91 @@ export default function SearchFilters({
             />
           </div>
 
-          <div
-            className="overflow-x-auto pt-1 [&::-webkit-scrollbar]:hidden"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
-            <div className="flex flex-nowrap gap-2 w-max pr-2">
-              {chips.map((chip) => {
-                const active = chip === activeChip
-                return (
-                  <button
-                    key={chip}
-                    onClick={() => onChipChange(chip)}
-                    className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-[11px] font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
-                      active
-                        ? 'bg-primary-dark text-white shadow-sm'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-primary-dark'
-                    }`}
-                  >
-                    {chip}
-                  </button>
-                )
-              })}
+          <div className="relative">
+            {/* Fade izquierdo */}
+            {!expanded && canLeft && (
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 bg-linear-to-r from-white via-white/85 to-transparent" />
+            )}
+            {/* Fade derecho */}
+            {!expanded && canRight && (
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-linear-to-l from-white via-white/85 to-transparent" />
+            )}
+
+            {/* Flecha izquierda */}
+            {!expanded && canLeft && (
+              <button
+                type="button"
+                onClick={() => scrollBy(-220)}
+                aria-label="Anterior"
+                className="absolute left-0 top-1/2 z-20 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+            )}
+            {/* Flecha derecha */}
+            {!expanded && canRight && (
+              <button
+                type="button"
+                onClick={() => scrollBy(220)}
+                aria-label="Siguiente"
+                className="absolute right-0 top-1/2 z-20 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+            )}
+
+            <div
+              ref={scrollRef}
+              className={
+                expanded
+                  ? 'flex flex-wrap gap-2 pt-1'
+                  : 'overflow-x-auto pt-1 px-8 [&::-webkit-scrollbar]:hidden'
+              }
+              style={
+                expanded
+                  ? undefined
+                  : { scrollbarWidth: 'none', msOverflowStyle: 'none' }
+              }
+            >
+              <div
+                className={
+                  expanded
+                    ? 'contents'
+                    : 'flex flex-nowrap gap-2 w-max'
+                }
+              >
+                {chips.map((chip) => {
+                  const active = chip === activeChip
+                  return (
+                    <button
+                      key={chip}
+                      data-chip-active={active}
+                      onClick={() => onChipChange(chip)}
+                      className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-[11px] font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
+                        active
+                          ? 'bg-primary-dark text-white shadow-sm'
+                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-primary-dark'
+                      }`}
+                    >
+                      {chip}
+                    </button>
+                  )
+                })}
+              </div>
             </div>
+
+            {/* Toggle ver todas */}
+            {chips.length > 6 && (
+              <div className="mt-3 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setExpanded((v) => !v)}
+                  className="text-[10px] font-bold tracking-[0.18em] uppercase text-primary-dark hover:text-slate-900 transition-colors"
+                >
+                  {expanded ? 'Mostrar menos' : 'Ver todas'}
+                </button>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>

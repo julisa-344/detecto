@@ -62,8 +62,6 @@ export default function Hospitalizacion() {
         </div>
       </div>
 
-      <FortalezasClinica image={detecto} words={fortalezas} />
-
       <FooterV4 showCTA={false} />
       <WhatsAppButton />
     </ThemeProvider>

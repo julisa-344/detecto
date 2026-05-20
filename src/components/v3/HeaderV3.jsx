@@ -54,6 +54,7 @@ const pacientesCategories = [
       { label: 'Medicina General', to: '/v4/medicina-general' },
       { label: 'Medicina Interna', to: '/v4/medicina-interna' },
       { label: 'Nefrología', to: '/v4/nefrologia' },
+      { label: 'Neumología', to: '/v4/neumologia' },
     ],
   },
   {
@@ -212,6 +213,7 @@ export default function HeaderV3({ forceLight = false }) {
                   { label: 'Staff Médico', to: '/v4/staff-medico' },
                   { label: 'Investigación', to: '/v4/investigacion' },
                   { label: 'Sobre Detecta', to: '/v4/sobre-detecta' },
+                  { label: 'Contacto', to: '/v4/contacto' },
                 ].map((item) => {
                   const className = `px-4 py-1.5 text-[13px] font-light rounded-full transition-all duration-200 tracking-wide ${scrolled
                       ? 'text-slate-700 hover:text-slate-900 hover:bg-slate-900/5'
@@ -551,6 +553,7 @@ export default function HeaderV3({ forceLight = false }) {
               { label: 'Staff Médico', to: '/v4/staff-medico' },
               { label: 'Investigación', to: '/v4/investigacion' },
               { label: 'Sobre Detecta', to: '/v4/sobre-detecta' },
+              { label: 'Contacto', to: '/v4/contacto' },
             ].map((it) => (
               <Link
                 key={it.label}
