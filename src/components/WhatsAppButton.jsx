@@ -1,6 +1,9 @@
 export default function WhatsAppButton() {
   const handleClick = () => {
-    window.open('https://wa.me/51922335134', '_blank')
+    const message = encodeURIComponent(
+      'Hola, me gustaría recibir más información sobre los servicios de Detecta Clínica.'
+    )
+    window.open(`https://wa.me/51922335134?text=${message}`, '_blank')
   }
 
   return (
