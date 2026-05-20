@@ -26,8 +26,6 @@ const pacientesCategories = [
 
       { label: 'Resultados de Laboratorio Clínico', to: '/v4/proximamente' },
       { label: 'Sala de Operaciones', to: '/v4/sala-operaciones' },
-
-      { label: 'Resultados de Laboratorio Patológico', to: '/v4/resultados-laboratorio-patologico' },
     ],
   },
   {
@@ -402,7 +400,10 @@ export default function HeaderV3({ forceLight = false }) {
 
               {/* Botón CTA con efecto 21st dev + Glass */}
               <div className="hidden lg:flex items-center">
-                <button
+                <a
+                  href="https://appointments.detecta.pe/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onMouseEnter={() => setCtaHover(true)}
                   onMouseLeave={() => setCtaHover(false)}
                   className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95"
@@ -447,7 +448,7 @@ export default function HeaderV3({ forceLight = false }) {
                     <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
                     <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
                   </div>
-                </button>
+                </a>
               </div>
 
               {/* Burger Mobile */}
@@ -599,12 +600,18 @@ export default function HeaderV3({ forceLight = false }) {
 
           {/* CTA + footer */}
           <div className="mt-8 space-y-5">
-            <button className="group w-full flex items-center justify-between rounded-full bg-white pl-7 pr-2 py-2 transition-all active:scale-[0.98]">
+            <a
+              href="https://appointments.detecta.pe/login"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="group w-full flex items-center justify-between rounded-full bg-white pl-7 pr-2 py-2 transition-all active:scale-[0.98]"
+            >
               <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-900">AGENDAR CITA</span>
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white transition-transform group-hover:rotate-45">
                 <ArrowUpRight className="w-4 h-4" />
               </span>
-            </button>
+            </a>
             <p className="text-[10px] tracking-[0.3em] uppercase text-white/30 text-center">
               Detecta Clínica
             </p>

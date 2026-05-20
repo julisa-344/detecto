@@ -53,10 +53,10 @@ export default function Login() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link
             to="/v4"
-            className="group inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/25 pl-2 pr-5 py-2 text-[11px] font-semibold tracking-[0.18em] uppercase text-white transition-all hover:bg-white hover:text-slate-900 active:scale-95"
+            className="group inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/25 pl-2 pr-5 py-2 text-[11px] font-semibold tracking-[0.18em] uppercase text-white transition-all duration-300 hover:bg-white/20 hover:border-white/40 active:scale-95"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 group-hover:bg-slate-900 group-hover:text-white transition-colors">
-              <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-0.5" />
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 transition-colors duration-300 group-hover:bg-primary">
+              <ArrowLeft className="h-3.5 w-3.5 transition-transform duration-300 group-hover:-translate-x-0.5" />
             </span>
             Volver al inicio
           </Link>
