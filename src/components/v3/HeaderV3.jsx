@@ -21,10 +21,11 @@ const pacientesCategories = [
       { label: 'Diagnóstico por Imágenes', to: '/v4/diagnostico-imagenes' },
       { label: 'Farmacia', to: '/v4/farmacia' },
       { label: 'Hospitalización', to: '/v4/hospitalizacion' },
-      { label: 'Resultados de Laboratorio Clínico', to: '/v4/laboratorio-clinico' },
-      { label: 'Resultados de Laboratorio Patológico', to: '/v4/anatomia-patologica' },
       { label: 'Quimioterapia', to: '/v4/quimioterapia' },
+            { label: 'Resultados de Laboratorio Clínico', to: '/v4/laboratorio-clinico' },
+
       { label: 'Sala de Operaciones', to: '/v4/sala-operaciones' },
+      { label: 'Resultados de Laboratorio Patológico', to: '/v4/anatomia-patologica' },
     ],
   },
   {
