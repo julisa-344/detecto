@@ -18,7 +18,13 @@ export default function V4() {
   return (
     <>
       {showSplash && <SplashV3 onComplete={() => setShowSplash(false)} />}
-      <div className="min-h-screen" style={{ background: '#0a0c12' }}>
+      <div
+        className="min-h-screen"
+        style={{
+          background:
+            'linear-gradient(180deg, #0a0c12 0%, #0a0c12 60%, #F7FCFE 80%, #E3F4FB 100%)',
+        }}
+      >
         <HeaderV3 />
         <HeroV4 />
         <AccionesRapidasV4 />
