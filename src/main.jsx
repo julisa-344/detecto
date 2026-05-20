@@ -23,6 +23,7 @@ import SalaOperaciones from './pages/SalaOperaciones'
 import Quimioterapia from './pages/Quimioterapia'
 import Farmacia from './pages/Farmacia'
 import LaboratorioClinico from './pages/LaboratorioClinico'
+import Proximamente from './pages/Proximamente'
 import OncologiaCabezaCuello from './pages/OncologiaCabezaCuello'
 import MastologiaGinecologia from './pages/MastologiaGinecologia'
 import Psicooncologia from './pages/Psicooncologia'
@@ -84,6 +85,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/quimioterapia" element={<Quimioterapia />} />
         <Route path="/v4/farmacia" element={<Farmacia />} />
         <Route path="/v4/laboratorio-clinico" element={<LaboratorioClinico />} />
+        <Route path="/v4/proximamente" element={<Proximamente />} />
         <Route path="/v4/oncologia-cabeza-cuello" element={<OncologiaCabezaCuello />} />
         <Route path="/v4/mastologia-ginecologia" element={<MastologiaGinecologia />} />
         <Route path="/v4/psicooncologia" element={<Psicooncologia />} />

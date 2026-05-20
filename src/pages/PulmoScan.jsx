@@ -43,8 +43,6 @@ export default function PulmoScan() {
         subtitle="Despistaje neumológico integral para detectar a tiempo EPOC, cáncer de pulmón y otras enfermedades respiratorias."
       />
 
-      <ServicesStrip items={servicios} />
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-20 lg:py-28">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
           <main className="min-w-0 space-y-20 lg:space-y-24">

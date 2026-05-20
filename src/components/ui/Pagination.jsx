@@ -4,35 +4,47 @@ function getPageItems(page, totalPages) {
   const items = []
   const add = (v) => items.push(v)
 
-  if (totalPages <= 7) {
+  if (totalPages <= 3) {
     for (let i = 1; i <= totalPages; i++) add(i)
     return items
   }
 
   add(1)
-  if (page > 3) add('ellipsis-l')
+  if (page > 2) add('ellipsis-l')
 
-  const start = Math.max(2, page - 1)
-  const end = Math.min(totalPages - 1, page + 1)
-  for (let i = start; i <= end; i++) add(i)
+  if (page !== 1 && page !== totalPages) add(page)
 
-  if (page < totalPages - 2) add('ellipsis-r')
+  if (page < totalPages - 1) add('ellipsis-r')
   add(totalPages)
 
   return items
 }
 
-function PageButton({ active, children, ...props }) {
+function NavButton({ children, disabled, onClick, ariaLabel }) {
   return (
     <button
       type="button"
+      onClick={onClick}
+      disabled={disabled}
+      aria-label={ariaLabel}
+      className="inline-flex h-9 sm:h-10 shrink-0 items-center gap-1.5 rounded-full px-3 sm:px-4 text-xs sm:text-sm font-medium text-slate-700 transition-all duration-200 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+    >
+      {children}
+    </button>
+  )
+}
+
+function PageButton({ active, children, onClick }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
       aria-current={active ? 'page' : undefined}
-      className={`h-9 min-w-9 sm:h-10 sm:min-w-10 shrink-0 px-2 sm:px-3 inline-flex items-center justify-center rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
+      className={`inline-flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full text-xs sm:text-sm font-medium transition-all duration-200 cursor-pointer ${
         active
           ? 'bg-primary-dark text-white shadow-sm hover:bg-primary-dark/90'
-          : 'text-slate-700 hover:bg-slate-100'
+          : 'border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 hover:border-slate-300'
       }`}
-      {...props}
     >
       {children}
     </button>
@@ -49,17 +61,19 @@ export default function Pagination({ page, totalPages, onChange }) {
       aria-label="Paginación"
       className="mt-14 mx-auto flex w-full justify-center"
     >
-      <ul className="flex flex-row flex-nowrap items-center justify-center gap-0.5 sm:gap-1 max-w-full overflow-x-auto [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: 'none' }}>
+      <ul
+        className="flex flex-row flex-nowrap items-center justify-center gap-1 max-w-full overflow-x-auto [&::-webkit-scrollbar]:hidden"
+        style={{ scrollbarWidth: 'none' }}
+      >
         <li>
-          <button
-            type="button"
+          <NavButton
             onClick={() => onChange(Math.max(1, page - 1))}
             disabled={page === 1}
-            className="h-9 sm:h-10 shrink-0 inline-flex items-center gap-1.5 rounded-full px-2 sm:px-4 text-xs sm:text-sm font-medium text-slate-700 transition-all duration-200 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            ariaLabel="Página anterior"
           >
             <ChevronLeft className="h-4 w-4" />
             <span className="hidden sm:inline">Anterior</span>
-          </button>
+          </NavButton>
         </li>
 
         {items.map((it) =>
@@ -80,15 +94,14 @@ export default function Pagination({ page, totalPages, onChange }) {
         )}
 
         <li>
-          <button
-            type="button"
+          <NavButton
             onClick={() => onChange(Math.min(totalPages, page + 1))}
             disabled={page === totalPages}
-            className="h-9 sm:h-10 shrink-0 inline-flex items-center gap-1.5 rounded-full px-2 sm:px-4 text-xs sm:text-sm font-medium text-slate-700 transition-all duration-200 hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+            ariaLabel="Página siguiente"
           >
             <span className="hidden sm:inline">Siguiente</span>
             <ChevronRight className="h-4 w-4" />
-          </button>
+          </NavButton>
         </li>
       </ul>
     </nav>

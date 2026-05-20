@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import logoColor from '../../assets/logo.png';
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const FacebookIcon = (props) => (
   <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
@@ -116,31 +116,79 @@ export default function FooterV4({ showCTA = true }) {
       </div>
       )}
 
-      {/* --- 2. SECCIÓN INFERIOR: light minimal --- */}
-      <div
-        className="relative w-full px-6 lg:px-10 pb-12 pt-16 lg:pt-20 bg-[#F7FCFE]"
-      >
-        {/* Brillo ambiental suave */}
-        <div className="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-primary/10 blur-3xl -mr-40 -mt-20" />
+      {/* --- 2. SECCIÓN INFERIOR: light editorial --- */}
+      <div className="relative w-full px-6 lg:px-10 pb-10 pt-14 lg:pt-16 bg-[#F7FCFE] overflow-hidden">
+        {/* Grid pattern decorativo */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              'radial-gradient(circle at 1px 1px, rgb(0,112,165) 1px, transparent 0)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+        {/* Brillos ambientales */}
+        <div className="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] rounded-full bg-primary/8 blur-3xl -mr-40 -mt-20" />
         <div className="pointer-events-none absolute bottom-0 left-0 h-80 w-80 rounded-full bg-primary-light/15 blur-3xl -ml-40 -mb-20" />
 
         <div className="max-w-[1400px] mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 pb-12">
 
-            {/* Brand Column */}
+          {/* MIDDLE: contact cards + links */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 pb-10">
+
+            {/* Brand + contact cards */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="lg:col-span-4 flex flex-col gap-7"
+              className="lg:col-span-5 flex flex-col gap-8"
             >
-              <img src={logoColor} alt="Detecta Clínica" className="h-10 w-auto object-contain self-start" />
-              <p className="text-[14px] font-light text-slate-500 leading-relaxed max-w-70">
-                Líderes en detección temprana e innovación oncológica en el Perú. Tecnología que salva vidas.
-              </p>
+              <div className="flex flex-col gap-5">
+                <img src={logoColor} alt="Detecta Clínica" className="h-10 w-auto object-contain self-start" />
+                <p className="text-[14px] font-light text-slate-500 leading-relaxed max-w-md">
+                  Líderes en detección temprana e innovación oncológica en el Perú. Tecnología que salva vidas.
+                </p>
+              </div>
 
-              <div className="flex gap-2.5 items-center">
+              {/* Contact micro-cards */}
+              <div className="grid grid-cols-2 gap-3">
+                <a
+                  href="tel:+5112175100"
+                  className="group flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white/60 backdrop-blur-md p-4 transition-all hover:border-primary-dark/40 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-25px_rgba(0,112,165,0.4)]"
+                >
+                  <Phone className="h-4 w-4 text-primary-dark" />
+                  <div>
+                    <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-slate-400">Atención 24/7</p>
+                    <p className="text-[13px] font-medium text-slate-800 mt-0.5">(01) 217 5100</p>
+                  </div>
+                </a>
+                <a
+                  href="mailto:contacto@detecta.pe"
+                  className="group flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white/60 backdrop-blur-md p-4 transition-all hover:border-primary-dark/40 hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-25px_rgba(0,112,165,0.4)]"
+                >
+                  <Mail className="h-4 w-4 text-primary-dark" />
+                  <div>
+                    <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-slate-400">Escríbenos</p>
+                    <p className="text-[13px] font-medium text-slate-800 mt-0.5 truncate">contacto@detecta.pe</p>
+                  </div>
+                </a>
+                <div className="col-span-2 flex items-start gap-3 rounded-2xl border border-slate-200 bg-white/60 backdrop-blur-md p-4">
+                  <MapPin className="h-4 w-4 text-primary-dark mt-0.5 shrink-0" />
+                  <div className="min-w-0">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-slate-400">Detecta Clínica</p>
+                    <p className="text-[13px] font-light text-slate-700 mt-0.5 leading-relaxed">
+                      Av. Principal · Lima, Perú
+                    </p>
+                  </div>
+                  <span className="ml-auto inline-flex items-center gap-1 text-[10px] font-semibold tracking-[0.18em] uppercase text-primary-dark whitespace-nowrap">
+                    <Clock className="h-3 w-3" /> 24/7
+                  </span>
+                </div>
+              </div>
+
+              {/* Socials */}
+              <div className="flex gap-2.5 items-center pt-2">
                 {socials.map(({ Icon, label, href }) => (
                   <a
                     key={label}
@@ -154,48 +202,48 @@ export default function FooterV4({ showCTA = true }) {
               </div>
             </motion.div>
 
-            {/* Links Grid */}
+            {/* Links grid */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.08 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-10 lg:gap-12"
+              className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-10 lg:gap-12"
             >
               <div className="flex flex-col gap-5">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.35em] text-primary-dark">Servicios</h3>
                 <ul className="flex flex-col gap-3 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Diagnóstico Precisión</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Oncología</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Select Staff</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Telemedicina</a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Diagnóstico Precisión <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Oncología <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Select Staff <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Telemedicina <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
                 </ul>
               </div>
 
               <div className="flex flex-col gap-5">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.35em] text-primary-dark">Nosotros</h3>
                 <ul className="flex flex-col gap-3 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Sobre Detecta</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Investigación</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Sostenibilidad</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Trabaja con nosotros</a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Sobre Detecta <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Investigación <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Sostenibilidad <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Trabaja con nosotros <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
                 </ul>
               </div>
 
               <div className="flex flex-col gap-5">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.35em] text-primary-dark">Legal</h3>
                 <ul className="flex flex-col gap-3 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Privacidad</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Ética</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Libro de Reclamaciones</a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Privacidad <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Ética <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
+                  <li><a href="#" className="group inline-flex items-center gap-1.5 hover:text-primary-dark transition-colors">Libro de Reclamaciones <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-60 group-hover:translate-x-0 transition-all" /></a></li>
                 </ul>
               </div>
             </motion.div>
           </div>
 
-          {/* Barra Inferior Final */}
-          <div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-200/70 pt-8 gap-6 text-[10px] font-medium text-slate-400 tracking-[0.2em] uppercase">
-            <p>© {new Date().getFullYear()} Detecta Clínica — Área de TI.</p>
+          {/* Barra inferior */}
+          <div className="flex flex-col md:flex-row justify-between items-center border-t border-slate-200/70 pt-6 gap-4 text-[10px] font-medium text-slate-400 tracking-[0.2em] uppercase">
+            <p>© {new Date().getFullYear()} Detecta Clínica — Todos los derechos reservados.</p>
             <div className="flex gap-8 items-center">
               <a href="#" className="hover:text-primary-dark transition-colors">Cookies</a>
               <a href="#" className="hover:text-primary-dark transition-colors">Políticas</a>

@@ -2,17 +2,28 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, MessageCircle } from 'lucide-react'
 import { fadeUp } from '../specialty'
 
+const MARQUEE = [
+  'Análisis Confiables',
+  'Tecnología Avanzada',
+  'Resultados Rápidos',
+  'Profesionales Certificados',
+  'Calidad Asegurada',
+  'Entrega Digital',
+  'Diagnóstico Preciso',
+]
+
 const heroImage = `${import.meta.env.VITE_BASE_IMAGE_URL}servicios/laboratorioClinico.webp`
 
 export default function LaboratorioHero() {
   return (
-    <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-slate-900 pb-20 pt-24 lg:items-center lg:pb-0 lg:pt-20">
+    <section className="relative flex min-h-[70vh] flex-col justify-end overflow-hidden bg-slate-900 pt-24 lg:pt-20">
       <img
         src={heroImage}
         alt="Laboratorio Clínico Detecta"
-        className="absolute inset-0 h-full w-full object-cover opacity-55"
+        className="absolute inset-0 h-full w-full object-cover opacity-90"
       />
-      <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-slate-950/50 to-slate-950/10" />
+      <div className="absolute inset-0 bg-linear-to-br from-slate-950/45 via-slate-950/20 to-slate-950/5" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-slate-950/60 to-transparent" />
 
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
         <motion.div
@@ -61,6 +72,26 @@ export default function LaboratorioHero() {
             </a>
           </div>
         </motion.div>
+      </div>
+
+      {/* Cintillo marquee inferior */}
+      <div className="relative z-20 w-full border-t border-white/10 bg-white/5 backdrop-blur-md">
+        <div className="flex overflow-hidden select-none py-4 lg:py-5">
+          <motion.div
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ ease: 'linear', duration: 30, repeat: Infinity }}
+            className="flex whitespace-nowrap"
+          >
+            {[...MARQUEE, ...MARQUEE, ...MARQUEE].map((tag, i) => (
+              <div key={i} className="flex items-center">
+                <span className="px-6 lg:px-10 text-[10px] lg:text-[11px] font-bold tracking-[0.3em] uppercase text-white/45 hover:text-[rgb(var(--brand-base))] transition-colors duration-300 cursor-default">
+                  {tag}
+                </span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[rgb(var(--brand-base)/0.5)] mx-1.5" />
+              </div>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   )

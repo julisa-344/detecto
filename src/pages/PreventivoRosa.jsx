@@ -45,8 +45,6 @@ export default function PreventivoRosa() {
         subtitle="Evaluación preventiva para mama, cuello uterino, ovarios, vagina y vulva. Detectar a tiempo puede cambiarlo todo."
       />
 
-      <ServicesStrip items={servicios} />
-
       <div className="mx-auto max-w-7xl px-4 sm:px-6 py-20 lg:py-28">
         <div className="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_360px] lg:gap-16">
 

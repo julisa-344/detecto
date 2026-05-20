@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { fadeUp } from '../specialty'
 
-const HERO_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}servicios/laboratorioClinico.webp`
+const HERO_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}especialidades/clinico.png`
 
 export default function ConfianzaCta() {
   return (

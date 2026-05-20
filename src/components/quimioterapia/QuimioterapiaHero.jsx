@@ -1,22 +1,23 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight, MessageCircle } from 'lucide-react'
-import { fadeUp } from '../specialty'
+import { fadeUp, HeroMarquee } from '../specialty'
 
 const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}servicios/quimio.mp4 `
 
 export default function QuimioterapiaHero() {
   return (
-    <section className="relative flex min-h-[70vh] items-end overflow-hidden bg-slate-900 pb-20 pt-24 lg:items-center lg:pb-0 lg:pt-20">
+    <section className="relative flex min-h-[70vh] flex-col justify-end overflow-hidden bg-slate-900 pt-24 lg:pt-20">
       <video
         muted
         loop
         autoPlay
         playsInline
-        className="absolute inset-0 h-full w-full object-cover opacity-55"
+        className="absolute inset-0 h-full w-full object-cover opacity-85"
       >
         <source src={heroVideo} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-linear-to-r from-slate-950/75 via-slate-950/50 to-slate-950/10" />
+      <div className="absolute inset-0 bg-linear-to-br from-slate-950/45 via-slate-950/20 to-slate-950/5" />
+      <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-slate-950/60 to-transparent" />
 
       <div className="relative z-20 mx-auto w-full max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
         <motion.div
@@ -65,6 +66,17 @@ export default function QuimioterapiaHero() {
           </div>
         </motion.div>
       </div>
+
+      <HeroMarquee
+        items={[
+          'Tratamiento Personalizado',
+          'Acompañamiento Integral',
+          'Protocolos Internacionales',
+          'Equipo Multidisciplinario',
+          'Comodidad y Seguridad',
+          'Atención Humana',
+        ]}
+      />
     </section>
   )
 }
