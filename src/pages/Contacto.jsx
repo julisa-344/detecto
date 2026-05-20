@@ -414,9 +414,6 @@ export default function Contacto() {
             ))}
           </div>
 
-          <p className="mb-4 text-[13px] font-light text-slate-500">
-            {LOCALES[activeLocal].address}
-          </p>
 
           <div className="relative overflow-hidden rounded-3xl border border-slate-100 shadow-[0_25px_55px_-30px_rgba(0,112,165,0.2)]">
             <iframe

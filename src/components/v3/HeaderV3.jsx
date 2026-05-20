@@ -21,10 +21,9 @@ const pacientesCategories = [
       { label: 'Diagnóstico por Imágenes', to: '/v4/diagnostico-imagenes' },
       { label: 'Farmacia', to: '/v4/farmacia' },
       { label: 'Hospitalización', to: '/v4/hospitalizacion' },
-      { label: 'Resultados de Laboratorio', to: '/login' },
+      { label: 'Resultados de Laboratorio Clínico', to: '/v4/laboratorio-clinico' },
+      { label: 'Resultados de Laboratorio Patológico', to: '/v4/anatomia-patologica' },
       { label: 'Quimioterapia', to: '/v4/quimioterapia' },
-
-      // { label: 'Resultados de Laboratorio Clínico', to: '/v4/proximamente' },
       { label: 'Sala de Operaciones', to: '/v4/sala-operaciones' },
     ],
   },
@@ -308,10 +307,10 @@ export default function HeaderV3({ forceLight = false }) {
                         border: '1px solid rgba(15,23,42,0.08)',
                       }}
                     >
-                      <Link to="/v4/laboratorio-clinico" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                      <Link to="/login" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                         Laboratorio Clínico
                       </Link>
-                      <Link to="/v4/anatomia-patologica" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
+                      <Link to="/v4/proximamente" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
                         Anatomía Patológica
                       </Link>
                     </div>
@@ -594,11 +593,12 @@ export default function HeaderV3({ forceLight = false }) {
             <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'laboratorio' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
               <div className="overflow-hidden">
                 <div className="py-3 pl-3 space-y-1.5">
-                  <Link to="/v4/laboratorio-clinico" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Laboratorio Clínico</Link>
-                  <Link to="/v4/anatomia-patologica" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Anatomía Patológica</Link>
+                  <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Laboratorio Clínico</Link>
+                  <Link to="/v4/proximamente" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Anatomía Patológica</Link>
                 </div>
               </div>
             </div>
+
           </nav>
 
           {/* CTA + footer */}

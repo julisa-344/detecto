@@ -172,9 +172,10 @@ export default function AppDetectaV4() {
         </div>
 
         {/* Sección de Métricas: Animación escalonada */}
-        <div className="pt-12 border-t border-slate-100 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { value: "15", label: "Años de experiencia", prefix: "+" },
+            { value: "8", label: "Años de experiencia", prefix: "+" },
+            { value: "35", label: "Especialidades", prefix: "+" },
             { value: "100000", label: "Pacientes atendidos", prefix: "" },
             { value: "3500", label: "Cirugías anuales", prefix: "+" }
           ].map((stat, idx) => (
