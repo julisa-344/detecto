@@ -1,3 +1,6 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "https://b7xzbqvq4oo56pxuosb2wr2zim0tcots.lambda-url.us-east-1.on.aws/api/:path*" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }

@@ -1,11 +1,8 @@
-// En dev usamos el proxy de Vite (target /api) para evitar CORS.
-// En prod llamamos directo al Lambda (el backend habilita CORS). Usamos ||
-// para que VITE_API_BASE_URL vacío también caiga al default.
-const LAMBDA_URL = 'https://b7xzbqvq4oo56pxuosb2wr2zim0tcots.lambda-url.us-east-1.on.aws'
-const BASE = import.meta.env.DEV ? '' : (import.meta.env.VITE_API_BASE_URL || LAMBDA_URL)
-
+// Siempre usamos rutas relativas (/api/...). En dev las resuelve el proxy de
+// Vite (vite.config), en prod las resuelven los rewrites de vercel.json hacia
+// el Lambda. Así la URL del backend no queda expuesta en el bundle.
 async function request(path, { params, signal } = {}) {
-  const url = new URL(`${BASE}${path}`, window.location.origin)
+  const url = new URL(path, window.location.origin)
   if (params) {
     for (const [key, value] of Object.entries(params)) {
       if (value === undefined || value === null || value === '') continue
