@@ -22,7 +22,7 @@ const slides = [
       'En Detecta Clínica, construiremos una nueva sede principal pensada para ti, donde la atención especializada, la investigación clínica y el diagnóstico se unirán para cuidar mejor de tu salud.',
     accent: '#52C0E1',
     image: torre2,
-    year: '2028',
+    year: '2030',
   },
 ]
 

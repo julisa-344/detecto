@@ -93,8 +93,8 @@ export default function AreasEstudio() {
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-slate-950/90 via-slate-950/70 to-slate-950/20" />
-        <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-r from-[#031D2E]/95 via-[#072A40]/75 to-[#072A40]/25" />
+        <div className="absolute inset-0 bg-linear-to-t from-[#031D2E]/80 via-transparent to-transparent" />
 
         <div className="relative z-10 flex min-h-105 flex-col justify-end p-8 lg:p-14">
           <div className="max-w-xl">

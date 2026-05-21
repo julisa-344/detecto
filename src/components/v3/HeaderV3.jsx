@@ -478,22 +478,22 @@ export default function HeaderV3({ forceLight = false }) {
         className={`lg:hidden fixed inset-0 z-60 transition-all duration-500 ${mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
         style={{
-          background: 'linear-gradient(160deg, #0A2A3F 0%, #0F172A 60%, #0A2A3F 100%)',
+          background: 'linear-gradient(160deg, #FFFFFF 0%, #F8FBFD 60%, #EAF4F9 100%)',
         }}
       >
         {/* Blobs decorativos */}
-        <div className="pointer-events-none absolute -top-32 -right-20 h-80 w-80 rounded-full bg-primary-medium/25 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 -left-24 h-96 w-96 rounded-full bg-primary-dark/30 blur-3xl" />
+        <div className="pointer-events-none absolute -top-32 -right-20 h-80 w-80 rounded-full bg-[rgb(var(--brand-base)/0.18)] blur-3xl" />
+        <div className="pointer-events-none absolute bottom-0 -left-24 h-96 w-96 rounded-full bg-primary-dark/15 blur-3xl" />
 
         <div className="relative h-full flex flex-col pt-6 pb-8 px-7 overflow-y-auto">
           <div className="flex items-center justify-between mb-8">
-            <p className="text-[10px] font-semibold tracking-[0.4em] uppercase text-white/40">
+            <p className="text-[10px] font-semibold tracking-[0.4em] uppercase text-primary-dark">
               Menú
             </p>
             <button
               onClick={() => setMobileOpen(false)}
               aria-label="Cerrar menú"
-              className="p-2 -mr-2 text-white/80 hover:text-white"
+              className="p-2 -mr-2 text-slate-600 hover:text-primary-dark"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 6l12 12M6 18L18 6" />
@@ -505,10 +505,10 @@ export default function HeaderV3({ forceLight = false }) {
             {/* Pacientes */}
             <button
               onClick={() => setMobileSection((s) => (s === 'pacientes' ? null : 'pacientes'))}
-              className="group flex items-center justify-between py-4 border-b border-white/10 text-left"
+              className="group flex items-center justify-between py-4 border-b border-slate-200/70 text-left"
             >
-              <span className="text-2xl font-light tracking-tight text-white">Pacientes</span>
-              <ChevronRight className={`w-5 h-5 text-white/40 transition-all duration-300 ${mobileSection === 'pacientes' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
+              <span className="text-2xl font-light tracking-tight text-primary-dark">Pacientes</span>
+              <ChevronRight className={`w-5 h-5 text-slate-400 transition-all duration-300 ${mobileSection === 'pacientes' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
             </button>
             <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'pacientes' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
               <div className="overflow-hidden">
@@ -516,13 +516,13 @@ export default function HeaderV3({ forceLight = false }) {
                   {pacientesCategories.map((cat) => {
                     const expanded = mobileCategory === cat.id
                     return (
-                      <div key={cat.id} className="border-b border-white/5 last:border-b-0">
+                      <div key={cat.id} className="border-b border-slate-200/60 last:border-b-0">
                         <button
                           onClick={() => setMobileCategory((c) => (c === cat.id ? null : cat.id))}
                           className="w-full flex items-center justify-between py-3 text-left"
                         >
-                          <span className="text-sm font-medium text-white/90">{cat.title}</span>
-                          <ChevronRight className={`w-4 h-4 text-white/40 transition-transform duration-300 ${expanded ? 'rotate-90 text-[rgb(var(--brand-base))]' : ''}`} />
+                          <span className="text-sm font-medium text-slate-800">{cat.title}</span>
+                          <ChevronRight className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${expanded ? 'rotate-90 text-[rgb(var(--brand-base))]' : ''}`} />
                         </button>
                         <div className={`grid transition-all duration-400 ease-out ${expanded ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                           <div className="overflow-hidden">
@@ -532,7 +532,7 @@ export default function HeaderV3({ forceLight = false }) {
                                   <Link
                                     to={it.to}
                                     onClick={() => { setMobileOpen(false); setMobileSection(null); setMobileCategory(null) }}
-                                    className="block py-1.5 text-sm font-light text-white/65 hover:text-white transition-colors"
+                                    className="block py-1.5 text-sm font-light text-slate-600 hover:text-primary-dark transition-colors"
                                   >
                                     {it.label}
                                   </Link>
@@ -559,26 +559,26 @@ export default function HeaderV3({ forceLight = false }) {
                 key={it.label}
                 to={it.to}
                 onClick={() => setMobileOpen(false)}
-                className="group flex items-center justify-between py-4 border-b border-white/10"
+                className="group flex items-center justify-between py-4 border-b border-slate-200/70"
               >
-                <span className="text-2xl font-light tracking-tight text-white">{it.label}</span>
-                <ArrowUpRight className="w-5 h-5 text-white/40 transition-all duration-300 group-hover:text-[rgb(var(--brand-base))] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <span className="text-2xl font-light tracking-tight text-primary-dark">{it.label}</span>
+                <ArrowUpRight className="w-5 h-5 text-slate-400 transition-all duration-300 group-hover:text-[rgb(var(--brand-base))] group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </Link>
             ))}
 
             {/* Ética */}
             <button
               onClick={() => setMobileSection((s) => (s === 'ethics' ? null : 'ethics'))}
-              className="group flex items-center justify-between py-4 border-b border-white/10 text-left"
+              className="group flex items-center justify-between py-4 border-b border-slate-200/70 text-left"
             >
-              <span className="text-2xl font-light tracking-tight text-white">Ética</span>
-              <ChevronRight className={`w-5 h-5 text-white/40 transition-all duration-300 ${mobileSection === 'ethics' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
+              <span className="text-2xl font-light tracking-tight text-primary-dark">Ética</span>
+              <ChevronRight className={`w-5 h-5 text-slate-400 transition-all duration-300 ${mobileSection === 'ethics' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
             </button>
             <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'ethics' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
               <div className="overflow-hidden">
                 <div className="py-3 pl-3 space-y-1.5">
-                  <Link to="/v4/comite-etica" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Comité de ética</Link>
-                  <Link to="/v4/gestion-etica" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Gestión ética</Link>
+                  <Link to="/v4/comite-etica" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-slate-600 hover:text-primary-dark">Comité de ética</Link>
+                  <Link to="/v4/gestion-etica" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-slate-600 hover:text-primary-dark">Gestión ética</Link>
                 </div>
               </div>
             </div>
@@ -586,16 +586,16 @@ export default function HeaderV3({ forceLight = false }) {
             {/* Laboratorio */}
             <button
               onClick={() => setMobileSection((s) => (s === 'laboratorio' ? null : 'laboratorio'))}
-              className="group flex items-center justify-between py-4 border-b border-white/10 text-left"
+              className="group flex items-center justify-between py-4 border-b border-slate-200/70 text-left"
             >
-              <span className="text-2xl font-light tracking-tight text-white">Resultados</span>
-              <ChevronRight className={`w-5 h-5 text-white/40 transition-all duration-300 ${mobileSection === 'laboratorio' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
+              <span className="text-2xl font-light tracking-tight text-primary-dark">Resultados</span>
+              <ChevronRight className={`w-5 h-5 text-slate-400 transition-all duration-300 ${mobileSection === 'laboratorio' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
             </button>
             <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'laboratorio' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
               <div className="overflow-hidden">
                 <div className="py-3 pl-3 space-y-1.5">
-                  <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Laboratorio Clínico</Link>
-                  <Link to="/v4/proximamente" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-white/70 hover:text-white">Anatomía Patológica</Link>
+                  <Link to="/login" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-slate-600 hover:text-primary-dark">Laboratorio Clínico</Link>
+                  <Link to="/v4/proximamente" onClick={() => setMobileOpen(false)} className="block py-1 text-sm font-light text-slate-600 hover:text-primary-dark">Anatomía Patológica</Link>
                 </div>
               </div>
             </div>
@@ -609,14 +609,14 @@ export default function HeaderV3({ forceLight = false }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileOpen(false)}
-              className="group w-full flex items-center justify-between rounded-full bg-white pl-7 pr-2 py-2 transition-all active:scale-[0.98]"
+              className="group w-full flex items-center justify-between rounded-full bg-primary-dark pl-7 pr-2 py-2 transition-all active:scale-[0.98] shadow-lg shadow-primary-dark/20"
             >
-              <span className="text-[11px] font-semibold tracking-[0.18em] text-slate-900">AGENDAR CITA</span>
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white transition-transform group-hover:rotate-45">
+              <span className="text-[11px] font-semibold tracking-[0.18em] text-white">AGENDAR CITA</span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-primary-dark transition-transform group-hover:rotate-45">
                 <ArrowUpRight className="w-4 h-4" />
               </span>
             </a>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-white/30 text-center">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-slate-400 text-center">
               Detecta Clínica
             </p>
           </div>

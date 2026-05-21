@@ -50,7 +50,7 @@ export default function SearchFilters({
 
   return (
     <section className="relative -mt-20 sm:-mt-24 lg:-mt-32 z-20">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-12">
+      <div className="mx-auto max-w-6xl px-3 sm:px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,11 +72,11 @@ export default function SearchFilters({
             <div className="relative">
               {/* Fade izquierdo */}
               {!expanded && canLeft && (
-                <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 bg-linear-to-r from-white via-white/85 to-transparent" />
+                <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-14 bg-linear-to-r from-white from-60% to-transparent hidden sm:block" />
               )}
               {/* Fade derecho */}
               {!expanded && canRight && (
-                <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-linear-to-l from-white via-white/85 to-transparent" />
+                <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-14 bg-linear-to-l from-white from-60% to-transparent hidden sm:block" />
               )}
 
               {/* Flecha izquierda */}
@@ -85,7 +85,7 @@ export default function SearchFilters({
                   type="button"
                   onClick={() => scrollBy(-220)}
                   aria-label="Anterior"
-                  className="absolute left-0 top-1/2 z-20 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
+                  className="absolute left-0 top-1/2 z-20 -translate-y-1/2 hidden sm:flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
@@ -96,7 +96,7 @@ export default function SearchFilters({
                   type="button"
                   onClick={() => scrollBy(220)}
                   aria-label="Siguiente"
-                  className="absolute right-0 top-1/2 z-20 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
+                  className="absolute right-0 top-1/2 z-20 -translate-y-1/2 hidden sm:flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
@@ -107,7 +107,7 @@ export default function SearchFilters({
                 className={
                   expanded
                     ? 'flex flex-wrap gap-2 py-1'
-                    : 'overflow-x-auto py-1 px-12 [&::-webkit-scrollbar]:hidden'
+                    : 'overflow-x-auto py-1 px-1 sm:px-12 [&::-webkit-scrollbar]:hidden'
                 }
                 style={
                   expanded

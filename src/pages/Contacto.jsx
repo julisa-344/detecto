@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   ArrowUpRight,
@@ -274,13 +275,13 @@ export default function Contacto() {
                 />
                 <span className="text-[12px] font-light leading-relaxed text-slate-500">
                   Acepto las{' '}
-                  <a href="#" className="font-medium text-primary-dark underline-offset-4 hover:underline">
+                  <Link to="/v4/terminos-y-condiciones#proteccion-datos" className="font-medium text-primary-dark underline-offset-4 hover:underline">
                     condiciones de protección de datos
-                  </a>{' '}
+                  </Link>{' '}
                   y los{' '}
-                  <a href="#" className="font-medium text-primary-dark underline-offset-4 hover:underline">
+                  <Link to="/v4/terminos-y-condiciones#terminos" className="font-medium text-primary-dark underline-offset-4 hover:underline">
                     Términos y Condiciones
-                  </a>.
+                  </Link>.
                 </span>
               </label>
 

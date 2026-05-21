@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { SectionEyebrow, SectionTitle } from '../specialty'
 import { CardClipDef, CARD_CLIP_ID } from '../staff-medico'
 import { pilares } from './data'
@@ -11,9 +12,24 @@ const CLIP_STYLE = {
 function PilarCard({ item, index }) {
   const Icon = item.icon
   const num = String(index + 1).padStart(2, '0')
+  const ref = useRef(null)
+  const inView = useInView(ref, { margin: '-40% 0px -40% 0px' })
+  const [isTouch, setIsTouch] = useState(false)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: none)')
+    const update = () => setIsTouch(mq.matches)
+    update()
+    mq.addEventListener?.('change', update)
+    return () => mq.removeEventListener?.('change', update)
+  }, [])
+
+  const active = isTouch && inView
 
   return (
     <motion.article
+      ref={ref}
+      data-active={active}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -31,25 +47,25 @@ function PilarCard({ item, index }) {
             alt=""
             aria-hidden="true"
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-data-[active=true]:opacity-100"
           />
-          <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/40 to-slate-950/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/40 to-slate-950/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-data-[active=true]:opacity-100" />
 
           <div className="relative flex h-full w-full flex-col justify-between p-7 lg:p-8">
             <div className="flex items-start justify-between">
-              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-(--brand-bg-ultra) text-[rgb(var(--brand-med))] transition-colors duration-500 group-hover:bg-white/15 group-hover:text-white">
+              <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-(--brand-bg-ultra) text-[rgb(var(--brand-med))] transition-colors duration-500 group-hover:bg-white/15 group-hover:text-white group-data-[active=true]:bg-white/15 group-data-[active=true]:text-white">
                 <Icon className="h-5 w-5" />
               </span>
-              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 transition-colors duration-500 group-hover:text-white/70">
+              <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-300 transition-colors duration-500 group-hover:text-white/70 group-data-[active=true]:text-white/70">
                 {num}
               </span>
             </div>
 
             <div className="pr-[18%]">
-              <h3 className="text-2xl font-light leading-tight tracking-tight text-[rgb(var(--brand-dark))] transition-colors duration-500 group-hover:text-white lg:text-3xl">
+              <h3 className="text-2xl font-light leading-tight tracking-tight text-[rgb(var(--brand-dark))] transition-colors duration-500 group-hover:text-white group-data-[active=true]:text-white lg:text-3xl">
                 {item.title}
               </h3>
-              <p className="mt-3 text-[13px] font-light leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/85">
+              <p className="mt-3 text-[13px] font-light leading-relaxed text-slate-500 transition-colors duration-500 group-hover:text-white/85 group-data-[active=true]:text-white/85">
                 {item.desc}
               </p>
             </div>
@@ -58,7 +74,7 @@ function PilarCard({ item, index }) {
 
         <span
           aria-hidden="true"
-          className="absolute bottom-[2%] right-[2%] flex h-[11%] w-[16%] items-center justify-center rounded-full bg-[rgb(var(--brand-base))] transition-all duration-500 group-hover:scale-105 group-hover:bg-primary-dark"
+          className="absolute bottom-[2%] right-[2%] flex h-[11%] w-[16%] items-center justify-center rounded-full bg-[rgb(var(--brand-base))] transition-all duration-500 group-hover:scale-105 group-hover:bg-primary-dark group-data-[active=true]:scale-105 group-data-[active=true]:bg-primary-dark"
         />
       </div>
     </motion.article>

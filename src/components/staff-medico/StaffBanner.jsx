@@ -27,7 +27,7 @@ export default function StaffBanner() {
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-center lg:px-12">
+      <div className="relative mx-auto max-w-7xl px-3 sm:px-6 text-center lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}

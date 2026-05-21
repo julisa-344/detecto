@@ -21,7 +21,7 @@ export default function OneDayBanner() {
       <div className="pointer-events-none absolute -bottom-24 -left-12 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
 
       <div className="grid items-stretch lg:grid-cols-[1.25fr_1fr]">
-        <div className="relative px-8 py-14 text-white sm:px-12 sm:py-16 lg:px-16 lg:py-20">
+        <div className="relative px-8 pt-14 pb-0 text-white sm:px-12 sm:pt-16 lg:px-16 lg:py-20">
           <h2 className="text-3xl font-light uppercase leading-[1.05] tracking-tight sm:text-4xl lg:text-[2.75rem]">
             Todo en un solo lugar,{' '}
             <span className="italic font-medium">en un solo día.</span>
@@ -44,14 +44,14 @@ export default function OneDayBanner() {
           </button>
         </div>
 
-        <div className="relative min-h-80 overflow-hidden lg:min-h-full">
+        <div className="relative min-h-96 overflow-hidden sm:min-h-112 lg:min-h-full">
           <img
             src={MAN_IMG}
             alt="Preventivo Azul"
-            className="absolute inset-0 h-full w-[80%] object-cover object-center"
+            className="absolute inset-0 h-full w-full object-cover object-top"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#52C0E1/45 lg:to-[#52C0E1]/30" />
+          <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#52C0E1]/45 lg:to-[#52C0E1]/30" />
         </div>
       </div>
     </motion.section>

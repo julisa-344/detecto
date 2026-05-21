@@ -101,6 +101,7 @@ export default function AppDetectaV4() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center lg:text-left"
           >
             <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6">
               Aplicativo Móvil
@@ -109,11 +110,11 @@ export default function AppDetectaV4() {
               Tu salud, <br />
               <span className="font-normal text-slate-900">en tu bolsillo.</span>
             </h2>
-            <p className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mb-12">
+            <p className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mx-auto lg:mx-0 mb-12">
               Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Todo el control de tu bienestar en un solo lugar.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start">
               <motion.a 
                 href="#" 
                 whileHover={{ scale: 1.05 }}
@@ -172,16 +173,15 @@ export default function AppDetectaV4() {
         </div>
 
         {/* Sección de Métricas: Animación escalonada */}
-        <div className="pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             { value: "8", label: "Años de experiencia", prefix: "+" },
             { value: "35", label: "Especialidades", prefix: "+" },
             { value: "100000", label: "Pacientes atendidos", prefix: "" },
-            { value: "3500", label: "Cirugías anuales", prefix: "+" }
           ].map((stat, idx) => (
-            <motion.div 
-              key={idx} 
-              className="text-center"
+            <motion.div
+              key={idx}
+              className={`text-center ${idx === 2 ? 'col-span-2 lg:col-span-1' : ''}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

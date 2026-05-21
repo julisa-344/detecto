@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import logoColor from '../../assets/logo.png';
 import { ArrowUpRight, MapPin, Phone, Mail, Clock } from "lucide-react";
@@ -221,8 +222,8 @@ export default function FooterV4({ showCTA = true }) {
               <div className="flex flex-col gap-4">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.32em] text-primary-dark">Legal</h3>
                 <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Privacidad</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Términos y Condiciones</a></li>
+                  <li><Link to="/v4/terminos-y-condiciones#proteccion-datos" className="hover:text-primary-dark transition-colors">Privacidad</Link></li>
+                  <li><Link to="/v4/terminos-y-condiciones#terminos" className="hover:text-primary-dark transition-colors">Términos y Condiciones</Link></li>
                   <li><a href="#" className="hover:text-primary-dark transition-colors">Libro de Reclamaciones</a></li>
                   <li><a href="#" className="hover:text-primary-dark transition-colors">Cookies</a></li>
                 </ul>
@@ -235,10 +236,7 @@ export default function FooterV4({ showCTA = true }) {
             <p className="text-slate-400">
               © {new Date().getFullYear()} Detecta Clínica · Todos los derechos reservados.
             </p>
-            <p className="flex items-center gap-2 text-slate-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Atención 24/7
-            </p>
+          
           </div>
         </motion.div>
       </div>

@@ -21,7 +21,7 @@ export default function OneDayBanner() {
       <div className="pointer-events-none absolute -bottom-24 -left-12 h-72 w-72 rounded-full bg-white/15 blur-3xl" />
 
       <div className="grid items-stretch lg:grid-cols-[1.25fr_1fr]">
-        <div className="relative px-8 py-14 text-white sm:px-12 sm:py-16 lg:px-16 lg:py-20">
+        <div className="relative px-8 pt-14 pb-0 text-white sm:px-12 sm:pt-16 lg:px-16 lg:py-20">
           <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/80">
             Promoción hasta el 31 de julio 2025
           </p>
@@ -47,11 +47,11 @@ export default function OneDayBanner() {
           </button>
         </div>
 
-        <div className="relative min-h-112 lg:min-h-full">
+        <div className="relative min-h-96 lg:min-h-full">
           <img
             src={HERO_IMG}
             alt="PulmoScan"
-            className="absolute inset-0 h-full w-full object-contain object-bottom-right"
+            className="absolute inset-0 h-full w-full object-contain object-bottom"
             loading="lazy"
           />
           <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-[#34D399]/45 lg:to-[#34D399]/30" />
