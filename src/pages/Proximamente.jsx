@@ -12,7 +12,7 @@ export default function Proximamente() {
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
       <HeaderV3 forceLight />
-      <ProximamenteScreen pageName="Resultados Laboratorio Clínico" />
+      <ProximamenteScreen pageName="Resultados de Laboratorio de Anatomía Patológica" />
       <FooterV4 showCTA={false} />
       <WhatsAppButton />
     </ThemeProvider>

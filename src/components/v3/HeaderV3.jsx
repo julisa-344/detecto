@@ -287,7 +287,7 @@ export default function HeaderV3({ forceLight = false }) {
                           : 'text-white/80 hover:text-white hover:bg-white/15'
                       }`}
                   >
-                    Laboratorio
+                    Resultados
                     <svg
                       className={`w-3 h-3 transition-transform ${openMenu === 'laboratorio' ? 'rotate-180' : ''}`}
                       viewBox="0 0 12 12"
@@ -588,7 +588,7 @@ export default function HeaderV3({ forceLight = false }) {
               onClick={() => setMobileSection((s) => (s === 'laboratorio' ? null : 'laboratorio'))}
               className="group flex items-center justify-between py-4 border-b border-white/10 text-left"
             >
-              <span className="text-2xl font-light tracking-tight text-white">Laboratorio</span>
+              <span className="text-2xl font-light tracking-tight text-white">Resultados</span>
               <ChevronRight className={`w-5 h-5 text-white/40 transition-all duration-300 ${mobileSection === 'laboratorio' ? 'rotate-90 text-[rgb(var(--brand-base))]' : 'group-hover:translate-x-1'}`} />
             </button>
             <div className={`grid transition-all duration-500 ease-out ${mobileSection === 'laboratorio' ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
