@@ -1,6 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './index.css'
 import VersionPicker from './pages/VersionPicker'
 import V1 from './pages/V1'
@@ -67,7 +67,8 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<VersionPicker />} />
+        <Route path="/" element={<Navigate to="/v4" replace />} />
+        <Route path="/versions" element={<VersionPicker />} />
         <Route path="/v1" element={<V1 />} />
         <Route path="/v2" element={<V2 />} />
         <Route path="/v3" element={<V3 />} />
