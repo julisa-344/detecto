@@ -68,76 +68,78 @@ export default function SearchFilters({
             />
           </div>
 
-          <div className="relative">
-            {/* Fade izquierdo */}
-            {!expanded && canLeft && (
-              <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 bg-linear-to-r from-white via-white/85 to-transparent" />
-            )}
-            {/* Fade derecho */}
-            {!expanded && canRight && (
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-linear-to-l from-white via-white/85 to-transparent" />
-            )}
+          <div>
+            <div className="relative">
+              {/* Fade izquierdo */}
+              {!expanded && canLeft && (
+                <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-12 bg-linear-to-r from-white via-white/85 to-transparent" />
+              )}
+              {/* Fade derecho */}
+              {!expanded && canRight && (
+                <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-12 bg-linear-to-l from-white via-white/85 to-transparent" />
+              )}
 
-            {/* Flecha izquierda */}
-            {!expanded && canLeft && (
-              <button
-                type="button"
-                onClick={() => scrollBy(-220)}
-                aria-label="Anterior"
-                className="absolute left-0 top-1/2 z-20 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </button>
-            )}
-            {/* Flecha derecha */}
-            {!expanded && canRight && (
-              <button
-                type="button"
-                onClick={() => scrollBy(220)}
-                aria-label="Siguiente"
-                className="absolute right-0 top-1/2 z-20 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </button>
-            )}
+              {/* Flecha izquierda */}
+              {!expanded && canLeft && (
+                <button
+                  type="button"
+                  onClick={() => scrollBy(-220)}
+                  aria-label="Anterior"
+                  className="absolute left-0 top-1/2 z-20 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+              )}
+              {/* Flecha derecha */}
+              {!expanded && canRight && (
+                <button
+                  type="button"
+                  onClick={() => scrollBy(220)}
+                  aria-label="Siguiente"
+                  className="absolute right-0 top-1/2 z-20 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-600 shadow-sm transition hover:bg-primary-dark hover:text-white hover:border-primary-dark"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              )}
 
-            <div
-              ref={scrollRef}
-              className={
-                expanded
-                  ? 'flex flex-wrap gap-2 pt-1'
-                  : 'overflow-x-auto pt-1 px-8 [&::-webkit-scrollbar]:hidden'
-              }
-              style={
-                expanded
-                  ? undefined
-                  : { scrollbarWidth: 'none', msOverflowStyle: 'none' }
-              }
-            >
               <div
+                ref={scrollRef}
                 className={
                   expanded
-                    ? 'contents'
-                    : 'flex flex-nowrap gap-2 w-max'
+                    ? 'flex flex-wrap gap-2 py-1'
+                    : 'overflow-x-auto py-1 px-12 [&::-webkit-scrollbar]:hidden'
+                }
+                style={
+                  expanded
+                    ? undefined
+                    : { scrollbarWidth: 'none', msOverflowStyle: 'none' }
                 }
               >
-                {chips.map((chip) => {
-                  const active = chip === activeChip
-                  return (
-                    <button
-                      key={chip}
-                      data-chip-active={active}
-                      onClick={() => onChipChange(chip)}
-                      className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-[11px] font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
-                        active
-                          ? 'bg-primary-dark text-white shadow-sm'
-                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-primary-dark'
-                      }`}
-                    >
-                      {chip}
-                    </button>
-                  )
-                })}
+                <div
+                  className={
+                    expanded
+                      ? 'contents'
+                      : 'flex flex-nowrap gap-2 w-max'
+                  }
+                >
+                  {chips.map((chip) => {
+                    const active = chip === activeChip
+                    return (
+                      <button
+                        key={chip}
+                        data-chip-active={active}
+                        onClick={() => onChipChange(chip)}
+                        className={`shrink-0 whitespace-nowrap rounded-full px-4 py-2 text-[11px] font-semibold tracking-wide transition-all duration-300 cursor-pointer ${
+                          active
+                            ? 'bg-primary-dark text-white shadow-sm'
+                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-primary-dark'
+                        }`}
+                      >
+                        {chip}
+                      </button>
+                    )
+                  })}
+                </div>
               </div>
             </div>
 
@@ -147,7 +149,7 @@ export default function SearchFilters({
                 <button
                   type="button"
                   onClick={() => setExpanded((v) => !v)}
-                  className="text-[10px] font-bold tracking-[0.18em] uppercase text-primary-dark hover:text-slate-900 transition-colors"
+                  className="text-[10px] font-bold tracking-[0.18em] uppercase text-primary-dark hover:text-slate-900 transition-colors cursor-pointer"
                 >
                   {expanded ? 'Mostrar menos' : 'Ver todas'}
                 </button>
