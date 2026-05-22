@@ -95,6 +95,17 @@ export const PRIVACIDAD = [
 
 export const HERO_BG = `${import.meta.env.VITE_BASE_IMAGE_URL}ethical-committee/terminos.jpg`
 
+export const MARQUEE_ITEMS = [
+  'Transparencia',
+  'Protección de Datos',
+  'Ley N.° 29733',
+  'Confidencialidad',
+  'Uso Responsable',
+  'Derechos del Usuario',
+  'Información Clara',
+  'Compromiso Ético',
+]
+
 export const TOC = [
   {
     group: 'Términos y Condiciones',

@@ -2,17 +2,18 @@ import { useMemo } from 'react'
 import HeaderV3 from '../components/v3/HeaderV3'
 import FooterV4 from '../components/v4/FooterV4'
 import WhatsAppButton from '../components/WhatsAppButton'
+import ctaImg from '../assets/transparencia.jpg'
 import {
   ThemeProvider,
   BLUE_THEME,
   SectionEyebrow,
   SectionTitle,
+  MisionCTA,
 } from '../components/specialty'
 import {
   HeroTerminos,
   Sidebar,
   Seccion,
-  ContactoCTA,
   useActiveSection,
   TERMINOS,
   PRIVACIDAD,
@@ -71,7 +72,17 @@ export default function TerminosCondiciones() {
                 ))}
               </div>
 
-              <ContactoCTA />
+              <div className="mt-16">
+                <MisionCTA
+                  image={ctaImg}
+                  imageAlt="Protección de datos Detecta Clínica"
+                  eyebrow="¿Dudas o consultas?"
+                  titlePre="Escríbenos para ejercer"
+                  titleAccent="tus derechos sobre tus datos."
+                  paragraph="Nuestro equipo te responderá en un plazo razonable y atenderá cualquier solicitud relacionada con el tratamiento de tu información."
+                  ctaLabel="IR A CONTACTO"
+                />
+              </div>
             </div>
           </div>
         </div>

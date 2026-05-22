@@ -200,12 +200,7 @@ export default function ContactoForm() {
             aria-invalid={!!showError('comentarios')}
             className={`${inputClsFor(showError('comentarios'))} resize-none`}
           />
-          <div className="mt-1.5 flex items-center justify-between">
-            <FieldError msg={showError('comentarios')} />
-            <span className={`ml-auto text-[11px] font-light ${form.comentarios.length > 480 ? 'text-rose-500' : 'text-slate-400'}`}>
-              {form.comentarios.length}/500
-            </span>
-          </div>
+ 
         </label>
 
         <div className="sm:col-span-2 mt-2">
@@ -238,10 +233,7 @@ export default function ContactoForm() {
               </svg>
             </span>
             <span className="flex-1 text-[12.5px] font-light leading-relaxed text-slate-500">
-              Acepto las{' '}
-              <Link to="/v4/terminos-y-condiciones#proteccion-datos" className="font-medium text-primary-dark underline-offset-4 hover:underline">
-                condiciones de protección de datos
-              </Link>{' '}
+              Acepto las condiciones de protección de datos{' '}
               y los{' '}
               <Link to="/v4/terminos-y-condiciones#terminos" className="font-medium text-primary-dark underline-offset-4 hover:underline">
                 Términos y Condiciones
