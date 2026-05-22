@@ -256,19 +256,21 @@ export default function HeaderV3({ forceLight = false }) {
                   </button>
                   {openMenu === 'ethics' && (
                     <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 py-2 rounded-2xl overflow-hidden shadow-2xl"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-60 p-2 rounded-2xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(15,23,42,0.25)]"
                       style={{
-                        background: 'rgba(255,255,255,0.95)',
+                        background: 'rgba(255,255,255,0.98)',
                         backdropFilter: 'blur(24px)',
                         WebkitBackdropFilter: 'blur(24px)',
-                        border: '1px solid rgba(15,23,42,0.08)',
+                        border: '1px solid rgba(15,23,42,0.06)',
                       }}
                     >
-                      <Link to="/v4/comite-etica" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
-                        Comité de ética
+                      <Link to="/v4/comite-etica" onClick={() => setOpenMenu(null)} className="group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-light text-slate-600 hover:text-primary-dark hover:bg-slate-50 transition-all">
+                        <span>Comité de ética</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-slate-300 -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-medium transition-all" />
                       </Link>
-                      <Link to="/v4/gestion-etica" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
-                        Gestión ética
+                      <Link to="/v4/gestion-etica" onClick={() => setOpenMenu(null)} className="group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-light text-slate-600 hover:text-primary-dark hover:bg-slate-50 transition-all">
+                        <span>Gestión ética</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-slate-300 -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-medium transition-all" />
                       </Link>
                     </div>
                   )}
@@ -300,77 +302,94 @@ export default function HeaderV3({ forceLight = false }) {
                   </button>
                   {openMenu === 'laboratorio' && (
                     <div
-                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 py-2 rounded-2xl overflow-hidden shadow-2xl"
+                      className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-60 p-2 rounded-2xl overflow-hidden shadow-[0_20px_50px_-15px_rgba(15,23,42,0.25)]"
                       style={{
-                        background: 'rgba(255,255,255,0.95)',
+                        background: 'rgba(255,255,255,0.98)',
                         backdropFilter: 'blur(24px)',
                         WebkitBackdropFilter: 'blur(24px)',
-                        border: '1px solid rgba(15,23,42,0.08)',
+                        border: '1px solid rgba(15,23,42,0.06)',
                       }}
                     >
-                      <Link to="/login" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
-                        Laboratorio Clínico
+                      <p className="px-3 pt-2 pb-3 text-[9px] font-bold uppercase tracking-[0.32em] text-slate-400">
+                        Portal de resultados
+                      </p>
+                      <Link to="/login" onClick={() => setOpenMenu(null)} className="group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-light text-slate-600 hover:text-primary-dark hover:bg-slate-50 transition-all">
+                        <span>Laboratorio Clínico</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-slate-300 -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-medium transition-all" />
                       </Link>
-                      <Link to="/v4/proximamente" onClick={() => setOpenMenu(null)} className="block px-4 py-2.5 text-sm text-slate-600 hover:text-primary-dark hover:bg-slate-100/70 transition-colors">
-                        Anatomía Patológica
+                      <Link to="/v4/proximamente" onClick={() => setOpenMenu(null)} className="group flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-light text-slate-600 hover:text-primary-dark hover:bg-slate-50 transition-all">
+                        <span>Anatomía Patológica</span>
+                        <ChevronRight className="w-3.5 h-3.5 text-slate-300 -translate-x-1 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-medium transition-all" />
                       </Link>
                     </div>
                   )}
                 </div>
 
-                {/* Mega-menu Pacientes — light glass consistente con Ética */}
+                {/* Mega-menu Pacientes — editorial layout */}
                 {openMenu === 'pacientes' && (
                   <div
-                    className="fixed left-1/2 -translate-x-1/2 top-20 w-[min(1240px,calc(100vw-48px))] rounded-3xl overflow-hidden shadow-2xl"
+                    className="fixed left-1/2 -translate-x-1/2 top-20 w-[min(1240px,calc(100vw-48px))] rounded-3xl overflow-hidden shadow-[0_40px_80px_-30px_rgba(15,23,42,0.25)]"
                     style={{
-                      background: 'rgba(255,255,255,0.95)',
+                      background: 'rgba(255,255,255,0.98)',
                       backdropFilter: 'blur(24px)',
                       WebkitBackdropFilter: 'blur(24px)',
-                      border: '1px solid rgba(15,23,42,0.08)',
+                      border: '1px solid rgba(15,23,42,0.06)',
                     }}
                   >
-                    <div className="grid grid-cols-[300px_1fr]">
+                    <div className="grid grid-cols-[320px_1fr]">
                       {/* Sidebar de categorías */}
-                      <div className="p-6 border-r border-slate-200/70">
-                        <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-slate-400 mb-4 px-3">
+                      <div className="relative py-7 pl-7 pr-4 bg-gradient-to-b from-slate-50/80 to-white">
+                        <p className="text-[10px] font-bold tracking-[0.32em] uppercase text-slate-400 mb-5 pl-4">
                           Categorías
                         </p>
                         <ul className="space-y-0.5">
-                          {pacientesCategories.map((cat) => (
-                            <li key={cat.id}>
-                              <button
-                                onMouseEnter={() => setActiveCategory(cat.id)}
-                                onFocus={() => setActiveCategory(cat.id)}
-                                onClick={() => setActiveCategory(cat.id)}
-                                className={`w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-left text-sm transition-all duration-200 ${activeCategory === cat.id
-                                    ? 'bg-slate-100 text-primary-medium font-medium'
-                                    : 'text-slate-500 hover:text-slate-800 hover:bg-slate-100/70'
-                                  }`}
-                              >
-                                <span>{cat.title}</span>
-                                <ChevronRight
-                                  className={`w-4 h-4 transition-all ${activeCategory === cat.id ? 'text-primary-medium opacity-100' : 'text-slate-300 opacity-70'
+                          {pacientesCategories.map((cat) => {
+                            const isActive = activeCategory === cat.id
+                            return (
+                              <li key={cat.id}>
+                                <button
+                                  onMouseEnter={() => setActiveCategory(cat.id)}
+                                  onFocus={() => setActiveCategory(cat.id)}
+                                  onClick={() => setActiveCategory(cat.id)}
+                                  className={`group relative w-full flex items-center justify-between pl-4 pr-3 py-3 rounded-xl text-left text-sm transition-all duration-300 ${isActive
+                                      ? 'bg-white text-primary-dark font-medium shadow-[0_2px_8px_-4px_rgba(15,23,42,0.12)]'
+                                      : 'text-slate-500 hover:text-primary-dark hover:bg-white/60'
                                     }`}
-                                />
-                              </button>
-                            </li>
-                          ))}
+                                >
+                                  <span
+                                    className={`absolute left-0 top-1/2 -translate-y-1/2 w-[3px] rounded-full bg-primary-medium transition-all duration-300 ${isActive ? 'h-6 opacity-100' : 'h-0 opacity-0 group-hover:h-3 group-hover:opacity-40'
+                                      }`}
+                                  />
+                                  <span className="tracking-wide">{cat.title}</span>
+                                  <ChevronRight
+                                    className={`w-4 h-4 transition-all duration-300 ${isActive
+                                        ? 'text-primary-medium translate-x-0 opacity-100'
+                                        : 'text-slate-300 -translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-100'
+                                      }`}
+                                  />
+                                </button>
+                              </li>
+                            )
+                          })}
                         </ul>
                       </div>
 
                       {/* Items de la categoría activa */}
-                      <div className="p-8">
-                        <p className="text-[10px] font-semibold tracking-[0.3em] uppercase text-primary-medium mb-5">
-                          {activeCategoryData?.title}
-                        </p>
-                        <div className="grid grid-cols-2 gap-x-10 gap-y-3">
+                      <div className="p-9">
+                        <div className="flex items-center gap-3 mb-6">
+                          <span className="h-px w-8 bg-primary-medium" />
+                          <p className="text-[10px] font-bold tracking-[0.32em] uppercase text-primary-medium">
+                            {activeCategoryData?.title}
+                          </p>
+                        </div>
+                        <div className="grid grid-cols-2 gap-x-10 gap-y-1">
                           {activeCategoryData?.items.map((item) => {
                             const cls =
-                              'group flex items-center gap-3 text-sm text-slate-600 hover:text-primary-dark transition-colors duration-200'
+                              'group flex items-center gap-3 py-2 text-sm font-light text-slate-600 hover:text-primary-dark transition-all duration-200'
                             const inner = (
                               <>
-                                <span className="w-1.5 h-1.5 rounded-full bg-slate-300 group-hover:bg-primary-medium transition-colors" />
-                                {item.label}
+                                <span className="w-1 h-1 rounded-full bg-slate-300 group-hover:bg-primary-medium group-hover:w-4 transition-all duration-300" />
+                                <span className="group-hover:translate-x-0.5 transition-transform duration-300">{item.label}</span>
                               </>
                             )
                             return item.to && item.to.startsWith('/') ? (

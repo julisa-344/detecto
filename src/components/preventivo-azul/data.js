@@ -53,11 +53,13 @@ export const perfilPaciente = [
 export const planes = [
   {
     badge: 'Para menores de 40 años',
-    price: 'S/ 360.00',
+    price: 'S/ 450.00',
     priceNote: '(IGV incl.)',
     items: [
-      'Triaje',
       'Consulta oncológica',
+      'Hemograma completo',
+      'Creatinina y urea',
+      'Ecografía de abdomen completo',
       'Ecografía testicular',
       'Lectura de resultados',
     ],
@@ -65,13 +67,16 @@ export const planes = [
   },
   {
     badge: 'Para mayores de 40 años',
-    price: 'S/ 520.00',
+    price: 'S/ 580.00',
     priceNote: '(IGV incl.)',
     items: [
-      'Triaje',
       'Consulta oncológica',
-      'PSA Total y PSA Libre',
-      'Ecografía prostática',
+      'Hemograma completo',
+      'Creatinina y urea',
+      'PSA total y PSA libre',
+      'Ecografía de abdomen completo',
+      'Ecografía de próstata',
+      'Ecografía testicular',
       'Lectura de resultados',
     ],
     highlighted: true,

@@ -31,7 +31,7 @@ export default function PlanesPreventivo() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className={`relative overflow-hidden rounded-[28px] border p-8 transition-all duration-500 hover:-translate-y-1 ${
+              className={`relative flex flex-col overflow-hidden rounded-[28px] border p-8 transition-all duration-500 hover:-translate-y-1 ${
                 featured
                   ? 'border-transparent text-white shadow-[0_25px_60px_-15px_rgb(var(--brand-med)/0.45)]'
                   : 'border-[rgb(var(--brand-base)/0.25)] bg-white shadow-[0_18px_50px_-20px_rgb(var(--brand-med)/0.25)] hover:border-[rgb(var(--brand-base)/0.6)]'
@@ -52,7 +52,7 @@ export default function PlanesPreventivo() {
                 </>
               )}
 
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-1 flex-col">
                 <p
                   className={`text-[10px] font-semibold uppercase tracking-[0.3em] ${
                     featured ? 'text-white/80' : 'text-[rgb(var(--brand-med))]'
@@ -84,7 +84,7 @@ export default function PlanesPreventivo() {
                   }`}
                 />
 
-                <ul className="space-y-3">
+                <ul className="flex-1 space-y-3">
                   {plan.items.map((it, idx) => (
                     <li key={idx} className="flex items-start gap-3">
                       <span
@@ -107,8 +107,8 @@ export default function PlanesPreventivo() {
                   ))}
                 </ul>
 
-                <div className="mt-8">
-                  <CTAButton label="AGENDA HOY" />
+                <div className="mt-8 pt-2">
+                  <CTAButton label="AGENDA HOY" variant={featured ? 'white' : 'brand'} />
                 </div>
               </div>
             </motion.div>
