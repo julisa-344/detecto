@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Calendar, Heart, Shield, Wind } from 'lucide-react'
 const detectoRosa = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/detecta.gif`
@@ -33,6 +34,8 @@ const actions = [
     accent: '#0070A5',
     bg: '#C8E9F2',
     hoverImage: detectoAgendar,
+    href: 'https://appointments.detecta.pe/login',
+    external: true,
   },
   {
     key: 'rosa',
@@ -43,6 +46,7 @@ const actions = [
     accent: '#E5739A',
     bg: '#D6EFF5',
     hoverImage: detectoRosa,
+    href: '/v4/preventivo-rosa',
   },
   {
     key: 'azul',
@@ -53,6 +57,7 @@ const actions = [
     accent: '#0199C6',
     bg: '#BFE4EF',
     hoverImage: detectoAzul,
+    href: '/v4/preventivo-azul',
   },
   {
     key: 'pulmon',
@@ -63,6 +68,7 @@ const actions = [
     accent: '#4F8A9F',
     bg: '#CCEDF7',
     hoverImage: detectoPulmon,
+    href: '/v4/pulmoscan',
   },
 ]
 
@@ -146,11 +152,10 @@ export default function AccionesRapidasV4() {
           >
             {actions.map((action) => {
               const isActive = activeKey === action.key
-              const isAgendar = action.key === 'agendar'
-              const Card = isAgendar ? motion.a : motion.div
-              const linkProps = isAgendar
-                ? { href: 'https://appointments.detecta.pe/login', target: '_blank', rel: 'noopener noreferrer' }
-                : {}
+              const Card = action.external ? motion.a : motion(Link)
+              const linkProps = action.external
+                ? { href: action.href, target: '_blank', rel: 'noopener noreferrer' }
+                : { to: action.href }
               return (
                 <Card
                   key={action.key}

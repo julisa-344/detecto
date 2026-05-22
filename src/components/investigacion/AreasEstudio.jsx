@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '../specialty'
@@ -135,7 +136,10 @@ export default function AreasEstudio() {
               ideal para desarrollar estudios observacionales.
             </p>
 
-            <button className="group mt-8 flex cursor-pointer items-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95">
+            <Link
+              to="/v4/contacto"
+              className="group mt-8 flex cursor-pointer items-center gap-0 rounded-full border-none bg-transparent p-0 no-underline transition-all active:scale-95"
+            >
               <span className="rounded-full bg-primary px-7 py-3.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-500 group-hover:bg-[rgb(var(--brand-base))] group-hover:text-primary-dark">
                 Solicitar más información
               </span>
@@ -143,7 +147,7 @@ export default function AreasEstudio() {
                 <ArrowUpRight className="absolute h-4 w-4 transition-all duration-500 group-hover:translate-x-10 group-hover:-translate-y-10" />
                 <ArrowUpRight className="absolute h-4 w-4 -translate-x-10 translate-y-10 transition-all duration-500 group-hover:translate-x-0 group-hover:translate-y-0" />
               </div>
-            </button>
+            </Link>
           </div>
         </div>
       </motion.div>
