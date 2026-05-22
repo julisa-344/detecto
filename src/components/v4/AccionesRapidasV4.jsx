@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Calendar, Heart, Shield, Wind } from 'lucide-react'
+
 const detectoRosa = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/detecta.gif`
 const detectoAzul = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/preventivoAzul.gif`
 const detectoPulmon = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/pulmonSano.gif`
@@ -152,26 +153,25 @@ export default function AccionesRapidasV4() {
           >
             {actions.map((action) => {
               const isActive = activeKey === action.key
-              const Card = action.external ? motion.a : motion(Link)
-              const linkProps = action.external
+              const Wrapper = action.external ? 'a' : Link
+              const wrapperProps = action.external
                 ? { href: action.href, target: '_blank', rel: 'noopener noreferrer' }
                 : { to: action.href }
               return (
-                <Card
-                  key={action.key}
-                  {...linkProps}
-                  variants={cardVariants}
-                  whileHover={{ y: -10 }}
-                  onMouseEnter={() => setActiveKey(action.key)}
-                  onMouseLeave={() => setActiveKey(null)}
-                  className="group relative p-8 rounded-[24px] cursor-pointer overflow-hidden h-[320px] flex flex-col justify-between transition-[background-color,box-shadow] duration-500 no-underline"
-                  style={{
-                    backgroundColor: isActive ? action.accent : action.bg,
-                    boxShadow: isActive
-                      ? `0 24px 48px -18px ${action.accent}80`
-                      : '0 1px 2px rgba(0,0,0,0.02)',
-                  }}
-                >
+                <Wrapper key={action.key} {...wrapperProps} className="no-underline block">
+                  <motion.div
+                    variants={cardVariants}
+                    whileHover={{ y: -10 }}
+                    onMouseEnter={() => setActiveKey(action.key)}
+                    onMouseLeave={() => setActiveKey(null)}
+                    className="group relative p-8 rounded-[24px] cursor-pointer overflow-hidden h-[320px] flex flex-col justify-between transition-[background-color,box-shadow] duration-500"
+                    style={{
+                      backgroundColor: isActive ? action.accent : action.bg,
+                      boxShadow: isActive
+                        ? `0 24px 48px -18px ${action.accent}80`
+                        : '0 1px 2px rgba(0,0,0,0.02)',
+                    }}
+                  >
                   <div className="relative z-10">
                     <div className="flex justify-between items-start mb-8">
                       <motion.div
@@ -216,7 +216,8 @@ export default function AccionesRapidasV4() {
                     </span>
                     <ArrowUpRight className="w-4 h-4" />
                   </div>
-                </Card>
+                  </motion.div>
+                </Wrapper>
               )
             })}
           </motion.div>
