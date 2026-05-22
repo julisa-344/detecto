@@ -117,13 +117,6 @@ export default function Login() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="relative w-full max-w-md mx-auto"
         >
-          {/* Mascota en móvil */}
-          <img
-            src={detecto}
-            alt="Detecto"
-            className="lg:hidden mx-auto w-32 mb-4 drop-shadow-[0_15px_30px_rgba(82,192,225,0.35)]"
-          />
-
           <div className="relative overflow-hidden rounded-3xl border border-white/15 bg-gray-950/30 backdrop-blur-2xl shadow-[0_25px_60px_-12px_rgba(0,0,0,0.55)] p-8 lg:p-10">
             <div className="pointer-events-none absolute -top-24 -right-24 h-64 w-64 rounded-full bg-primary/20 blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-primary-medium/20 blur-3xl" />

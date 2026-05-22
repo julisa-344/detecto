@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { SectionEyebrow, SectionTitle } from '../specialty'
@@ -6,6 +6,28 @@ import { areasEstudio, investigacionImages } from './data'
 
 export default function AreasEstudio() {
   const [activeIdx, setActiveIdx] = useState(0)
+  const itemRefs = useRef([])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(min-width: 640px)')
+    if (mq.matches) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(entry.target.dataset.index)
+            if (!Number.isNaN(idx)) setActiveIdx(idx)
+          }
+        })
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+    )
+
+    itemRefs.current.forEach((el) => el && observer.observe(el))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section className="relative">
@@ -26,6 +48,8 @@ export default function AreasEstudio() {
           return (
             <motion.div
               key={s.title}
+              ref={(el) => (itemRefs.current[index] = el)}
+              data-index={index}
               onMouseEnter={() => setActiveIdx(index)}
               onFocus={() => setActiveIdx(index)}
               tabIndex={0}

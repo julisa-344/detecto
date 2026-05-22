@@ -80,7 +80,8 @@ export default function FuturoTimeline() {
   const current = slides[currentIndex]
 
   const css = `
-    .ft-section { position: relative; }
+    .ft-section { position: relative; height: 320vh; }
+    @media (max-width: 639px) { .ft-section { height: 240vh; } }
     .ft-bg-base { position: absolute; inset: 0; background: linear-gradient(180deg, #F5FBFE 0%, #DCF1F8 50%, #F5FBFE 100%); z-index: 0; }
     .ft-bg-wash { position: absolute; inset: 0; transition: background 1.2s ease; pointer-events: none; z-index: 1; }
     .ft-grid { position: absolute; inset: 0; opacity: .05; pointer-events: none; z-index: 1;
@@ -97,12 +98,14 @@ export default function FuturoTimeline() {
       text-transform: uppercase; color: #0199C6; margin-bottom: 24px; }
     .ft-title-h { font-size: clamp(40px, 6vw, 88px); font-weight: 200; line-height: 1.02;
       letter-spacing: -0.025em; color: #0070A5; max-width: 980px; }
+    @media (max-width: 639px) { .ft-title-h { font-size: 34px; line-height: 1.1; } }
     .ft-title-h em { font-style: italic; font-weight: 500; color: #0199C6; }
     .ft-title-sub { margin-top: 24px; max-width: 580px; font-size: clamp(14px, 1.1vw, 17px);
       font-weight: 300; line-height: 1.7; color: #475569; }
     .ft-scroll-hint { margin-top: 56px; display: inline-flex; flex-direction: column; align-items: center;
       gap: 10px; font-size: 10px; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase;
       color: #94A3B8; }
+    @media (max-width: 639px) { .ft-scroll-hint { margin-top: 28px; } }
     .ft-scroll-hint .line { width: 1px; height: 36px; background: linear-gradient(180deg, transparent, #0199C6);
       animation: ftScrollLine 1.8s ease-in-out infinite; }
     @keyframes ftScrollLine {
@@ -128,6 +131,9 @@ export default function FuturoTimeline() {
     @media (max-width: 768px) {
       .ft-mascot-wrap { width: 180px; }
     }
+    @media (max-width: 639px) {
+      .ft-mascot-wrap { width: 150px; margin-top: 16px; }
+    }
     @keyframes ftMascotFloat {
       0%, 100% { transform: translateY(0) rotate(-2deg); }
       50% { transform: translateY(-14px) rotate(2deg); }
@@ -137,6 +143,7 @@ export default function FuturoTimeline() {
 
     .ft-inner { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px;
       display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 639px) { .ft-inner { gap: 20px; padding: 0 20px; } }
     @media (min-width: 1024px) {
       .ft-inner { grid-template-columns: 1fr 1.05fr; gap: 80px; padding: 0 48px; }
     }
@@ -150,11 +157,13 @@ export default function FuturoTimeline() {
 
     .ft-year { font-size: clamp(64px, 9vw, 132px); font-weight: 200; line-height: 1; letter-spacing: -0.04em;
       color: #0070A5; margin-top: 8px; transition: opacity .55s ease, transform .55s ease; }
+    @media (max-width: 639px) { .ft-year { font-size: 52px; margin-top: 4px; } }
     .ft-year.transitioning { opacity: 0; transform: translateY(20px); }
 
     .ft-title { font-size: clamp(28px, 3.5vw, 44px); font-weight: 300; line-height: 1.05;
       letter-spacing: -0.01em; color: #0070A5; margin-top: 16px;
       transition: opacity .55s .05s ease, transform .55s .05s ease; }
+    @media (max-width: 639px) { .ft-title { font-size: 24px; margin-top: 10px; } }
     .ft-title.transitioning { opacity: 0; transform: translateY(12px); }
     .ft-title em { font-style: italic; font-weight: 500; }
 
@@ -164,9 +173,11 @@ export default function FuturoTimeline() {
 
     .ft-desc { max-width: 460px; margin-top: 20px; font-size: 15px; font-weight: 300; line-height: 1.7;
       color: #475569; transition: opacity .55s .15s ease, transform .55s .15s ease; }
+    @media (max-width: 639px) { .ft-desc { font-size: 13.5px; line-height: 1.6; margin-top: 14px; } }
     .ft-desc.transitioning { opacity: 0; transform: translateY(8px); }
 
     .ft-arrows { display: flex; gap: 12px; margin-top: 36px; }
+    @media (max-width: 639px) { .ft-arrows { margin-top: 20px; } }
     .ft-arrow { width: 48px; height: 48px; border-radius: 999px; border: 1px solid rgba(0,112,165,0.18);
       background: rgba(255,255,255,0.6); backdrop-filter: blur(8px); display: inline-flex;
       align-items: center; justify-content: center; color: #0070A5; cursor: pointer; transition: all .4s; }
@@ -175,6 +186,7 @@ export default function FuturoTimeline() {
     .ft-arrow:disabled:hover { background: rgba(255,255,255,0.6); border-color: rgba(0,112,165,0.18); color: #0070A5; transform: none; }
 
     .ft-image-wrap { position: relative; aspect-ratio: 4/5; width: 100%; max-width: 560px; margin: 0 auto; }
+    @media (max-width: 639px) { .ft-image-wrap { aspect-ratio: 4/3; max-width: 320px; } }
     @media (min-width: 1024px) { .ft-image-wrap { margin-left: auto; margin-right: 0; } }
 
     .ft-image-frame { position: absolute; inset: 0; border-radius: 36px; overflow: hidden;
@@ -206,7 +218,6 @@ export default function FuturoTimeline() {
     <section
       ref={sectionRef}
       className="ft-section"
-      style={{ height: '320vh' }}
       id="futuro-detecta"
     >
       <style>{css}</style>
