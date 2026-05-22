@@ -54,7 +54,7 @@ export default function Investigacion() {
             titleAccent="altamente capacitado"
             paragraphs={[
               'Contamos con un equipo multidisciplinario compuesto por médicos especialistas, coordinadores de estudio, farmacéuticos, personal de enfermería y administrativos, todos certificados en Buenas Prácticas Clínicas (BPC), Ética en la Investigación y Conducta Responsable en Investigación.',
-              'Nuestras instalaciones están equipadas con tecnología avanzada y áreas dedicadas exclusivamente a investigación clínica que aseguran la trazabilidad y la integridad de los datos.',
+              'Nuestras instalaciones están equipadas con Innovación Tecnológica y áreas dedicadas exclusivamente a investigación clínica que aseguran la trazabilidad y la integridad de los datos.',
             ]}
             image={investigacionImages.equipo}
             imageAlt="Equipo de investigación Detecta"

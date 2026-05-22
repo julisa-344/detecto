@@ -43,7 +43,7 @@ export default function Coloproctologia() {
         video={coloproctoImages.heroVideo}
         titlePre="Coloproctología"
         titleAccent="clínica."
-        paragraph="Cuidado experto para la salud del colon, recto y ano con tecnología avanzada y trato cercano."
+        paragraph="Cuidado experto para la salud del colon, recto y ano con Innovación Tecnológica y trato cercano."
       />
 
       <ServicesStrip items={stripServicios} />

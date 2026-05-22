@@ -32,7 +32,7 @@ export const beneficios = [
   },
   {
     icon: Cpu,
-    title: 'Tecnología de vanguardia',
+    title: 'Innovación Tecnológica',
     text: 'Equipos de última generación que respaldan diagnósticos más confiables.',
   },
   {

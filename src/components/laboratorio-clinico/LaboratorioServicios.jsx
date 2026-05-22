@@ -15,7 +15,7 @@ export default function LaboratorioServicios() {
           </em>
         </SectionTitle>
         <p className="max-w-xl text-[15px] font-light leading-7 text-slate-500">
-          Análisis confiables y oportunos respaldados por tecnología avanzada y
+          Análisis confiables y oportunos respaldados por Tecnología de Alta Precisión y
           un equipo médico especializado en diagnóstico.
         </p>
       </div>

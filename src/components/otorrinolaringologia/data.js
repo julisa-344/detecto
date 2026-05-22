@@ -114,5 +114,5 @@ export const fortalezas = [
   'Microcirugía laríngea',
   'Manejo de apnea',
   'Atención humana',
-  'Tecnología avanzada',
+  'Innovación Tecnológica',
 ]

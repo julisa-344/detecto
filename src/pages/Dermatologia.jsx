@@ -42,7 +42,7 @@ export default function Dermatologia() {
         video={dermaImages.heroVideo}
         titlePre="Dermatología"
         titleAccent="clínica y estética."
-        paragraph="Cuidamos tu piel con tecnología avanzada y atención cercana en cada etapa del tratamiento."
+        paragraph="Cuidamos tu piel con Innovación Tecnológica y atención cercana en cada etapa del tratamiento."
       />
 
       <ServicesStrip items={stripServicios} />

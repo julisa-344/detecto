@@ -38,7 +38,7 @@ const actions = [
     key: 'rosa',
     number: '02',
     title: 'Preventivo Rosa',
-    description: 'Detección temprana de cáncer de mama con tecnología de vanguardia.',
+    description: 'Detección temprana de cáncer de mama con Innovación Tecnológica.',
     icon: <Heart className="w-6 h-6" />,
     accent: '#E5739A',
     bg: '#D6EFF5',

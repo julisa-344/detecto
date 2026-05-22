@@ -41,7 +41,7 @@ export default function HeroBanner() {
 
           <p className="mt-6 max-w-2xl text-base lg:text-lg font-light text-white/85 leading-relaxed">
             8 años acompañando a pacientes con atención médica especializada,
-            tecnología avanzada y un equipo humano comprometido con tu bienestar.
+            Innovación Tecnológica y un equipo humano comprometido con tu bienestar.
           </p>
         </motion.div>
       </div>

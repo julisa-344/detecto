@@ -43,7 +43,7 @@ export default function Traumatologia() {
         video={traumaImages.heroVideo}
         titlePre="Traumatología"
         titleAccent="y ortopedia."
-        paragraph="Recupera tu movilidad con especialistas en sistema músculo-esquelético y tecnología de vanguardia."
+        paragraph="Recupera tu movilidad con especialistas en sistema músculo-esquelético y Innovación Tecnológica."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -80,7 +80,7 @@ export default function Traumatologia() {
             <ServicesGrid
               titlePre="Atención integral para"
               titleAccent="tu recuperación."
-              paragraph="Diagnóstico, cirugía y rehabilitación con tecnología avanzada y un equipo dedicado a devolverte la movilidad."
+              paragraph="Diagnóstico, cirugía y rehabilitación con Innovación Tecnológica y un equipo dedicado a devolverte la movilidad."
               services={servicios}
               columns={3}
             />

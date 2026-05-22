@@ -34,7 +34,7 @@ export default function OncologiaHero() {
           </h1>
 
           <p className="max-w-xl text-base font-light leading-relaxed text-slate-200 lg:text-[17px]">
-            Tecnología de vanguardia y calidez humana para acompañarte en cada
+            Tecnología de Alta Precisión y calidez humana para acompañarte en cada
             etapa de tu recuperación, con un equipo multidisciplinario enfocado
             en tu bienestar.
           </p>

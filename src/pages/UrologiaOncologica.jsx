@@ -43,7 +43,7 @@ export default function UrologiaOncologica() {
         video={urologiaImages.heroVideo}
         titlePre="Urología"
         titleAccent="oncológica."
-        paragraph="Tu salud en manos expertas. Experiencia médica y tecnología de vanguardia con trato humano en cada etapa."
+        paragraph="Tu salud en manos expertas. Experiencia médica y Tecnología de Alta Precisión con trato humano en cada etapa."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -75,7 +75,7 @@ export default function UrologiaOncologica() {
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Tecnología de vanguardia y un equipo especializado en cada etapa del tratamiento urológico oncológico."
+              paragraph="Tecnología de Alta Precisión y un equipo especializado en cada etapa del tratamiento urológico oncológico."
               service={servicios[0]}
             />
 

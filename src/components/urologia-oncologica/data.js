@@ -86,7 +86,7 @@ export const fortalezas = [
   'Salud urológica',
   'Diagnóstico preciso',
   'Cirugía mínimamente invasiva',
-  'Tecnología avanzada',
+  'Tecnología de Alta Precisión',
   'Acompañamiento integral',
   'Equipo experto',
   'Atención humana',

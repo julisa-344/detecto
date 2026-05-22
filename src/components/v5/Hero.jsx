@@ -76,7 +76,7 @@ export default function Hero({ slotRef, splashDone }) {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
               className="mt-8 text-lg lg:text-xl font-light text-slate-700 max-w-xl leading-relaxed"
             >
-              Tecnología de vanguardia para diagnósticos rápidos, precisos y confiables respaldados por expertos.
+              Innovación Tecnológica para diagnósticos rápidos, precisos y confiables respaldados por expertos.
             </motion.p>
 
             <motion.div

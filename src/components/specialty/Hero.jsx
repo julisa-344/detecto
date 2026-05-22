@@ -4,7 +4,7 @@ import CTAButton from './CTAButton'
 
 const DEFAULT_MARQUEE = [
   'Detección Temprana',
-  'Tecnología Avanzada',
+  'Innovación Tecnológica',
   'Equipo Especializado',
   'Atención Integral',
   'Resultados Confiables',

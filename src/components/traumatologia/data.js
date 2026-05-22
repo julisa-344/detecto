@@ -114,5 +114,5 @@ export const fortalezas = [
   'Prótesis articulares',
   'Rehabilitación funcional',
   'Atención humana',
-  'Tecnología avanzada',
+  'Innovación Tecnológica',
 ]

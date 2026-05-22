@@ -54,7 +54,7 @@ export default function Otorrinolaringologia() {
             <SpecialtyIntro
               titlePre="¿Qué es la"
               titleAccent="otorrinolaringología?"
-              paragraph="Especialidad médica que previene, diagnostica y trata enfermedades del oído, nariz y garganta en niños y adultos, con tecnología avanzada y especialistas experimentados."
+              paragraph="Especialidad médica que previene, diagnostica y trata enfermedades del oído, nariz y garganta en niños y adultos, con Innovación Tecnológica y especialistas experimentados."
               listLabel="Motivos de consulta"
               items={sintomas}
               sideImage={orlImages.side}

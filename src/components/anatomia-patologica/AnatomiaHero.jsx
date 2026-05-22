@@ -47,7 +47,7 @@ export default function AnatomiaHero() {
           </h1>
 
           <p className="max-w-xl text-base font-light leading-relaxed text-slate-200 lg:text-[17px]">
-            Especialización en cáncer y tecnología avanzada al servicio de tu
+            Especialización en cáncer y Tecnología de Alta Precisión al servicio de tu
             salud. Patólogos expertos que entregan informes precisos y oportunos
             para apoyar la elección del mejor tratamiento.
           </p>

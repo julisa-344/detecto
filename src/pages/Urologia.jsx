@@ -43,7 +43,7 @@ export default function Urologia() {
         video={urologiaImages.heroVideo}
         titlePre="Urología"
         titleAccent="clínica."
-        paragraph="Tu salud urinaria y reproductiva en manos expertas, con tecnología avanzada y trato cercano."
+        paragraph="Tu salud urinaria y reproductiva en manos expertas, con Innovación Tecnológica y trato cercano."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -80,7 +80,7 @@ export default function Urologia() {
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención integral con tecnología avanzada y tratamientos personalizados para cada paciente."
+              paragraph="Atención integral con Innovación Tecnológica y tratamientos personalizados para cada paciente."
               service={servicios[0]}
             />
 

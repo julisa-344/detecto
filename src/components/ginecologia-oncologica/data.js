@@ -119,7 +119,7 @@ export const fortalezas = [
   'Salud femenina',
   'Diagnóstico preciso',
   'Cirugía oncológica',
-  'Tecnología avanzada',
+  'Tecnología de Alta Precisión',
   'Acompañamiento integral',
   'Equipo especializado',
   'Atención humana',

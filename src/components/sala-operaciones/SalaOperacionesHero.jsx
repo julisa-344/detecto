@@ -31,7 +31,7 @@ export default function SalaOperacionesHero() {
           <h1 className="text-5xl font-extralight leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
             Tu cirugía con respaldo experto y{' '}
             <span className="italic font-medium text-[rgb(var(--brand-base))]">
-              tecnología avanzada.
+              Tecnología de Alta Precisión.
             </span>
           </h1>
 

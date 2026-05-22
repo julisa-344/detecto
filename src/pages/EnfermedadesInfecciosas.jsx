@@ -44,7 +44,7 @@ export default function EnfermedadesInfecciosas() {
         video={infeccionesImages.heroVideo}
         titlePre="Enfermedades infecciosas"
         titleAccent="y tropicales."
-        paragraph="Atención especializada para tu salud inmunológica con tecnología avanzada y protocolos actualizados."
+        paragraph="Atención especializada para tu salud inmunológica con Innovación Tecnológica y protocolos actualizados."
       />
 
       <ServicesStrip items={stripServicios} />

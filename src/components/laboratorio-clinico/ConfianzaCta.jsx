@@ -30,7 +30,7 @@ export default function ConfianzaCta() {
             <span className="italic font-medium">en cada resultado.</span>
           </h2>
           <p className="mt-6 text-[14.5px] font-light leading-relaxed text-white/90">
-            Haz tus análisis con tecnología avanzada y personal especializado.
+            Haz tus análisis con Tecnología de Alta Precisión y personal especializado.
           </p>
           <p className="mt-1 text-[13.5px] font-light leading-relaxed text-white/75">
             Resultados confiables y a tiempo para tu tranquilidad y la de tu médico.

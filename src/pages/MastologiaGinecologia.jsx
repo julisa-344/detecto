@@ -43,7 +43,7 @@ export default function MastologiaGinecologia() {
         video={mastoImages.heroVideo}
         titlePre="Mastología y"
         titleAccent="ginecología oncológica."
-        paragraph="Cuidado especializado de la salud mamaria con tecnología avanzada y atención cercana."
+        paragraph="Cuidado especializado de la salud mamaria con Tecnología de Alta Precisión y atención cercana."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -54,7 +54,7 @@ export default function MastologiaGinecologia() {
             <SpecialtyIntro
               titlePre="¿Qué es la"
               titleAccent="mastología?"
-              paragraph="Especialidad médica dedicada a la prevención, diagnóstico y tratamiento de enfermedades de la mama, incluyendo el cáncer de mama, con tecnología avanzada y atención cercana."
+              paragraph="Especialidad médica dedicada a la prevención, diagnóstico y tratamiento de enfermedades de la mama, incluyendo el cáncer de mama, con Tecnología de Alta Precisión y atención cercana."
               listLabel="Señales de alerta"
               items={sintomas}
               sideImage={mastoImages.side}
@@ -75,7 +75,7 @@ export default function MastologiaGinecologia() {
             <ServicesGrid
               titlePre="Atención integral en"
               titleAccent="cada etapa."
-              paragraph="Diagnóstico, cirugía y acompañamiento con tecnología de vanguardia y un equipo dedicado a tu bienestar."
+              paragraph="Diagnóstico, cirugía y acompañamiento con Tecnología de Alta Precisión y un equipo dedicado a tu bienestar."
               services={servicios}
               columns={3}
             />

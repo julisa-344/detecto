@@ -79,7 +79,7 @@ export default function Endocrinologia() {
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención integral en endocrinología con tecnología avanzada y tratamientos personalizados."
+              paragraph="Atención integral en endocrinología con Innovación Tecnológica y tratamientos personalizados."
               service={servicios[0]}
             />
 

@@ -19,7 +19,7 @@ const doctors = [
     name: 'Dr. Alexis Alva Pinto',
     specialty: 'Urología Oncológica',
     reg: 'RNE 011507',
-    description: 'Dedicado al diagnóstico y tratamiento de enfermedades prostáticas complejas. Su práctica integra tecnología de vanguardia y criterios clínicos internacionales.',
+    description: 'Dedicado al diagnóstico y tratamiento de enfermedades prostáticas complejas. Su práctica integra Innovación Tecnológica y criterios clínicos internacionales.',
     image: doctor2,
     bg: '#F0F9FF',
   },

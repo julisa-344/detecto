@@ -38,7 +38,7 @@ const specialties = [
   {
     number: '05',
     title: 'Radioterapia',
-    description: 'Tratamiento de alta precisión con tecnología avanzada para eliminar células cancerosas protegiendo el tejido sano circundante.',
+    description: 'Tratamiento de alta precisión con Innovación Tecnológica para eliminar células cancerosas protegiendo el tejido sano circundante.',
     icon: (
       <svg viewBox="0 0 64 64" fill="none" className="w-full h-full"><circle cx="32" cy="32" r="8" stroke="currentColor" strokeWidth="1.5" /><path d="M32 8v10M32 46v10M8 32h10M46 32h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><path d="M15.5 15.5l7 7M41.5 41.5l7 7M48.5 15.5l-7 7M22.5 41.5l-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /><circle cx="32" cy="32" r="3" fill="currentColor" /></svg>
     ),

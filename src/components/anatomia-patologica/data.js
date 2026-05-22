@@ -18,7 +18,7 @@ export const porQue = [
     icon: ShieldCheck,
   },
   {
-    title: 'Tecnología avanzada',
+    title: 'Tecnología de Alta Precisión',
     desc: 'Sistemas automatizados para procesamiento, tinción y análisis de tejidos que brindan resultados rápidos y confiables.',
     icon: Cpu,
   },

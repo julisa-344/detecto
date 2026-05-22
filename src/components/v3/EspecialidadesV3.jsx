@@ -53,7 +53,7 @@ export default function EspecialidadesV3() {
             className="hidden lg:flex flex-col items-start pt-12"
           >
             <p className="text-sm font-light text-slate-400 leading-relaxed border-l border-[#C0DDE5] pl-8 mb-12 max-w-sm">
-              En Detecta Clínica, combinamos el rigor científico con tecnología avanzada para ofrecer resultados exactos cuando más se necesitan.
+              En Detecta Clínica, combinamos el rigor científico con Innovación Tecnológica para ofrecer resultados exactos cuando más se necesitan.
             </p>
 
             <button className="group flex cursor-pointer items-center gap-4 bg-transparent p-0 transition-all active:scale-95">

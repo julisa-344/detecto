@@ -78,7 +78,7 @@ export const stripServicios = [
   { title: 'Cirugía conservadora', icon: Scissors },
   { title: 'Reconstrucción mamaria', icon: Heart },
   { title: 'Equipo multidisciplinario', icon: Users2 },
-  { title: 'Tecnología avanzada', icon: Microscope },
+  { title: 'Tecnología de Alta Precisión', icon: Microscope },
 ]
 
 export const faqs = [
@@ -106,6 +106,6 @@ export const fortalezas = [
   'Cirugía oncológica',
   'Reconstrucción',
   'Atención humana',
-  'Tecnología avanzada',
+  'Tecnología de Alta Precisión',
   'Acompañamiento integral',
 ]

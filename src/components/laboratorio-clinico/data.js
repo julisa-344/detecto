@@ -15,7 +15,7 @@ export const servicios = [
     icon: Droplet,
     image: `${IMG_BASE}servicios/lab1.jpg`,
     bullets: [
-      'Hemogramas, perfiles bioquímicos y pruebas hormonales con tecnología avanzada.',
+      'Hemogramas, perfiles bioquímicos y pruebas hormonales con Tecnología de Alta Precisión.',
       'Marcadores tumorales que garantizan precisión y seguridad.',
       'Interpretación a cargo de médicos especialistas.',
     ],
@@ -44,7 +44,7 @@ export const servicios = [
 
 export const compromisos = [
   {
-    title: 'Tecnología avanzada y confiable',
+    title: 'Tecnología de Alta Precisión y confiable',
     desc: 'Equipos de alta sensibilidad que reducen errores y aseguran resultados precisos desde la primera toma.',
     icon: Cpu,
   },
@@ -63,7 +63,7 @@ export const compromisos = [
 export const faqs = [
   {
     q: '¿Qué hace diferente al Laboratorio Clínico de Detecta?',
-    a: 'Combinamos tecnología avanzada, controles de calidad rigurosos y un equipo de especialistas que interpreta cada resultado para apoyar decisiones médicas confiables y oportunas.',
+    a: 'Combinamos Tecnología de Alta Precisión, controles de calidad rigurosos y un equipo de especialistas que interpreta cada resultado para apoyar decisiones médicas confiables y oportunas.',
   },
   {
     q: '¿En cuánto tiempo entregan los resultados?',
@@ -85,7 +85,7 @@ export const faqs = [
 
 export const fortalezas = [
   'Análisis confiables',
-  'Tecnología avanzada',
+  'Tecnología de Alta Precisión',
   'Resultados rápidos',
   'Profesionales certificados',
   'Calidad asegurada',

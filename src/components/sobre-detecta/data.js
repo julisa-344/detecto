@@ -33,7 +33,7 @@ export const MISION = {
   eyebrow: 'Misión',
   titlePre: 'Cuidado integral con',
   titleAccent: 'excelencia médica.',
-  body: 'Brindar atención médica especializada en prevención, diagnóstico, tratamiento y seguimiento del cáncer, abordando además otras enfermedades complejas con tecnología avanzada, un equipo altamente calificado y un enfoque centrado en el paciente.',
+  body: 'Brindar atención médica especializada en prevención, diagnóstico, tratamiento y seguimiento del cáncer, abordando además otras enfermedades complejas con Innovación Tecnológica, un equipo altamente calificado y un enfoque centrado en el paciente.',
 }
 
 export const VISION = {

@@ -43,7 +43,7 @@ export default function Odontologia() {
         video={odontoImages.heroVideo}
         titlePre="Odontología"
         titleAccent="integral."
-        paragraph="Sonríe con confianza. Atención preventiva, reconstructiva y estética con tecnología avanzada y trato cercano."
+        paragraph="Sonríe con confianza. Atención preventiva, reconstructiva y estética con Innovación Tecnológica y trato cercano."
       />
 
       <ServicesStrip items={stripServicios} />

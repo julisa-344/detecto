@@ -43,7 +43,7 @@ export default function MedicinaFisica() {
         video={fisicaImages.heroVideo}
         titlePre="Medicina física"
         titleAccent="y rehabilitación."
-        paragraph="Atención especializada para tu recuperación, movilidad y bienestar con tecnología avanzada y trato cercano."
+        paragraph="Atención especializada para tu recuperación, movilidad y bienestar con Innovación Tecnológica y trato cercano."
       />
 
       <ServicesStrip items={stripServicios} />

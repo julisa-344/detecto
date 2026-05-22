@@ -93,6 +93,6 @@ export const fortalezas = [
   'Tratamientos avanzados',
   'Trasplante de médula',
   'Atención humana',
-  'Tecnología de vanguardia',
+  'Innovación Tecnológica',
   'Equipo especializado',
 ]

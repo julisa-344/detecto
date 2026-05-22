@@ -42,7 +42,7 @@ export default function Neumologia() {
         video={neumoImages.heroVideo}
         titlePre="Neumología:"
         titleAccent="cuidamos tu salud respiratoria."
-        paragraph="Diagnóstico y tratamiento integral de enfermedades respiratorias con tecnología avanzada y un equipo médico especializado."
+        paragraph="Diagnóstico y tratamiento integral de enfermedades respiratorias con Innovación Tecnológica y un equipo médico especializado."
       />
 
       <ServicesStrip items={stripServicios} />

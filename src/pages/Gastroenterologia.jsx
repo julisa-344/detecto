@@ -42,7 +42,7 @@ export default function Gastroenterologia() {
         video={gastroImages.heroVideo}
         titlePre="Gastroenterología"
         titleAccent="y hepatología."
-        paragraph="Atención especializada para tu salud digestiva y hepática con tecnología avanzada y trato cercano."
+        paragraph="Atención especializada para tu salud digestiva y hepática con Innovación Tecnológica y trato cercano."
       />
 
       <ServicesStrip items={stripServicios} />

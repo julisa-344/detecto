@@ -43,7 +43,7 @@ export default function Neurocirugia() {
         video={neuroImages.heroVideo}
         titlePre="Neurocirugía"
         titleAccent="especializada."
-        paragraph="Cuidado especializado del sistema nervioso con tecnología de vanguardia para cirugías complejas y funcionales."
+        paragraph="Cuidado especializado del sistema nervioso con Tecnología de Alta Precisión para cirugías complejas y funcionales."
       />
 
       <ServicesStrip items={stripServicios} />
@@ -74,7 +74,7 @@ export default function Neurocirugia() {
               eyebrow=" "
               titlePre="Agenda una"
               titleAccent="evaluación neuroquirúrgica."
-              paragraph="Atención cercana con neurocirujanos especializados y tecnología de vanguardia para tu salud neurológica."
+              paragraph="Atención cercana con neurocirujanos especializados y Tecnología de Alta Precisión para tu salud neurológica."
             />
 
             <ServicesGrid

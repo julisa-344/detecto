@@ -149,7 +149,7 @@ const slides = [
   },
   {
     video: heroVideo2,
-    label: 'Tecnología de Vanguardia',
+    label: 'Innovación Tecnológica',
     headline: ['Precisión tecnológica', 'para tu diagnóstico'],
     highlight: 1,
     sub: 'Incorporamos los avances más recientes en imagenología y cirugía robótica para tratamientos más precisos.',

@@ -38,7 +38,7 @@ export const beneficios = [
   },
   {
     icon: Cpu,
-    title: 'Tecnología de vanguardia',
+    title: 'Innovación Tecnológica',
     text: 'Equipos de última generación que respaldan diagnósticos más confiables.',
   },
   {
@@ -52,7 +52,7 @@ export const perfilPaciente = [
   'Quieres una evaluación integral en un solo día',
   'Buscas detectar a tiempo cualquier indicio para actuar con tranquilidad',
   'Necesitas orientación clara con la lectura de tus resultados',
-  'Deseas un seguimiento ginecológico y mamario con tecnología de vanguardia',
+  'Deseas un seguimiento ginecológico y mamario con Innovación Tecnológica',
   'Tienes antecedentes familiares y quieres asesoramiento experto',
 ]
 
@@ -139,7 +139,7 @@ export const testimonios = [
 
 export const fortalezas = [
   'Detección temprana',
-  'Tecnología de vanguardia',
+  'Innovación Tecnológica',
   'Atención humana',
   'Resultados confiables',
   'Equipo gineco-oncológico',

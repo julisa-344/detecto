@@ -12,7 +12,7 @@ export default function LoQueOfrecemos() {
         <SectionEyebrow>Servicios</SectionEyebrow>
         <SectionTitle className="mb-3">Lo que ofrecemos</SectionTitle>
         <p className="max-w-xl text-[15px] font-light leading-7 text-slate-500">
-          Tratamientos oncológicos respaldados por tecnología avanzada y un
+          Tratamientos oncológicos respaldados por Tecnología de Alta Precisión y un
           equipo multidisciplinario.
         </p>
       </div>

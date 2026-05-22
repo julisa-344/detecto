@@ -108,7 +108,7 @@ export const stripServicios = [
   { title: 'Preservación funcional', icon: ShieldCheck },
   { title: 'Equipo multidisciplinario', icon: Users2 },
   { title: 'Rehabilitación postoperatoria', icon: HeartHandshake },
-  { title: 'Tecnología de vanguardia', icon: Microscope },
+  { title: 'Tecnología de Alta Precisión', icon: Microscope },
 ]
 
 export const faqs = [
@@ -138,5 +138,5 @@ export const fortalezas = [
   'Equipo multidisciplinario',
   'Rehabilitación integral',
   'Cuidado humano',
-  'Tecnología de vanguardia',
+  'Tecnología de Alta Precisión',
 ]

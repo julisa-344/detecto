@@ -75,7 +75,7 @@ export const faqs = [
   },
   {
     q: '¿Realizan cirugías en la clínica?',
-    a: 'Sí. Realizamos cirugía de cataratas, láser ocular y otros procedimientos con tecnología de vanguardia.',
+    a: 'Sí. Realizamos cirugía de cataratas, láser ocular y otros procedimientos con Innovación Tecnológica.',
   },
 ]
 
@@ -86,5 +86,5 @@ export const fortalezas = [
   'Diagnóstico avanzado',
   'Atención pediátrica visual',
   'Atención humana',
-  'Tecnología de vanguardia',
+  'Innovación Tecnológica',
 ]

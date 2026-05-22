@@ -86,7 +86,7 @@ export const faqs = [
 
 export const fortalezas = [
   'Diagnóstico preciso',
-  'Tecnología avanzada',
+  'Tecnología de Alta Precisión',
   'Resultados rápidos',
   'Radiólogos especializados',
   'Atención humana',

@@ -74,7 +74,7 @@ export default function Oftalmologia() {
               eyebrow=" "
               titlePre="Agenda un"
               titleAccent="examen visual."
-              paragraph="Cuida tu visión con un equipo experto y tecnología avanzada para preservar tu salud ocular."
+              paragraph="Cuida tu visión con un equipo experto y Innovación Tecnológica para preservar tu salud ocular."
             />
 
             <ServicesCard

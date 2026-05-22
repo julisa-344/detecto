@@ -88,7 +88,7 @@ export const faqs = [
 export const fortalezas = [
   'Excelencia neumológica',
   'Diagnóstico temprano',
-  'Tecnología avanzada',
+  'Innovación Tecnológica',
   'Cuidado personalizado',
   'Atención humana',
   'Prevención del cáncer de pulmón',

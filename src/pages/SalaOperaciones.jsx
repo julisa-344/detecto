@@ -48,7 +48,7 @@ export default function SalaOperaciones() {
               eyebrow="Lo que más valoran los pacientes"
               titlePre="Confianza y precisión"
               titleAccent="en cada resultado."
-              paragraph="Un equipo quirúrgico comprometido con tu seguridad, respaldado por tecnología avanzada y procesos clínicos rigurosos."
+              paragraph="Un equipo quirúrgico comprometido con tu seguridad, respaldado por Tecnología de Alta Precisión y procesos clínicos rigurosos."
             />
 
             <BeneficiosPaciente />

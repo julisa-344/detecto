@@ -93,5 +93,5 @@ export const fortalezas = [
   'Trasplante renal',
   'Atención humana',
   'Equipo multidisciplinario',
-  'Tecnología avanzada',
+  'Innovación Tecnológica',
 ]

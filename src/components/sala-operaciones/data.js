@@ -140,7 +140,7 @@ export const faqs = [
 
 export const fortalezas = [
   'Seguridad quirúrgica',
-  'Tecnología avanzada',
+  'Tecnología de Alta Precisión',
   'Equipo preparado',
   'Precisión',
   'Acompañamiento integral',

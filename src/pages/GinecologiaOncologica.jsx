@@ -45,7 +45,7 @@ export default function GinecologiaOncologica() {
         video={ginecoImages.heroVideo}
         titlePre="Ginecología"
         titleAccent="oncológica."
-        paragraph="Cuidado experto para la salud femenina con tecnología avanzada y trato personalizado."
+        paragraph="Cuidado experto para la salud femenina con Tecnología de Alta Precisión y trato personalizado."
       />
 
       <ServicesStrip items={stripServicios} />

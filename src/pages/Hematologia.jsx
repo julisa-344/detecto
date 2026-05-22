@@ -73,7 +73,7 @@ export default function Hematologia() {
               eyebrow=" "
               titlePre="Agenda una"
               titleAccent="evaluación hematológica."
-              paragraph="Cuida tu salud sanguínea con un equipo especializado y tecnología de vanguardia."
+              paragraph="Cuida tu salud sanguínea con un equipo especializado y Innovación Tecnológica."
             />
 
             <ServicesCard

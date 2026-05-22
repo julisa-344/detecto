@@ -40,14 +40,14 @@ const stripServicios = [
   { title: 'Oncología médica', icon: Stethoscope },
   { title: 'Equipo multidisciplinario', icon: Users2 },
   { title: 'Tratamientos personalizados', icon: Sparkles },
-  { title: 'Tecnología de vanguardia', icon: Microscope },
+  { title: 'Tecnología de Alta Precisión', icon: Microscope },
   { title: 'Acompañamiento integral', icon: HeartHandshake },
   { title: 'Detección temprana', icon: ShieldCheck },
 ]
 
 const fortalezasWords = [
   'Excelencia médica',
-  'Tecnología de vanguardia',
+  'Tecnología de Alta Precisión',
   'Atención humana',
   'Diagnóstico preciso',
   'Innovación continua',

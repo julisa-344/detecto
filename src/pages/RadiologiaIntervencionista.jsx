@@ -74,7 +74,7 @@ export default function RadiologiaIntervencionista() {
               eyebrow=" "
               titlePre="Agenda una"
               titleAccent="evaluación intervencionista."
-              paragraph="Accede a tratamientos mínimamente invasivos con tecnología de vanguardia y un equipo experto."
+              paragraph="Accede a tratamientos mínimamente invasivos con Tecnología de Alta Precisión y un equipo experto."
             />
 
             <ServicesCard

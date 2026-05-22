@@ -34,7 +34,7 @@ export const pilares = [
   },
   {
     title: 'Innovación',
-    desc: 'Tecnología avanzada y áreas dedicadas que aseguran trazabilidad e integridad de los datos.',
+    desc: 'Innovación Tecnológica y áreas dedicadas que aseguran trazabilidad e integridad de los datos.',
     icon: Sparkles,
     image: tecnologiaImg,
   },

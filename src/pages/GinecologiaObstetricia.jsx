@@ -80,7 +80,7 @@ export default function GinecologiaObstetricia() {
             <ServicesCard
               titlePre="Servicios y procedimientos"
               titleAccent="disponibles."
-              paragraph="Atención integral con tecnología avanzada para cada etapa de la salud femenina."
+              paragraph="Atención integral con Innovación Tecnológica para cada etapa de la salud femenina."
               service={servicios[0]}
             />
 

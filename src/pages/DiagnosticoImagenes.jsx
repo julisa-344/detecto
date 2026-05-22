@@ -43,10 +43,10 @@ export default function DiagnosticoImagenes() {
             <MisionCTA
               image={tecnologiaImg}
               imageAlt="Tecnología de diagnóstico por imágenes"
-              eyebrow="Tecnología avanzada"
+              eyebrow="Tecnología de Alta Precisión"
               titlePre="Equipos de"
               titleAccent="última generación."
-              paragraph="Trabajamos con tecnología de vanguardia y especialistas radiólogos para entregarte imágenes claras y diagnósticos confiables que respaldan cada decisión clínica."
+              paragraph="Trabajamos con Tecnología de Alta Precisión y especialistas radiólogos para entregarte imágenes claras y diagnósticos confiables que respaldan cada decisión clínica."
             />
 
             <PasosRapido />

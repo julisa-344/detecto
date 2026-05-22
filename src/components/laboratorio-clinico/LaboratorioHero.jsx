@@ -4,7 +4,7 @@ import { fadeUp } from '../specialty'
 
 const MARQUEE = [
   'Análisis Confiables',
-  'Tecnología Avanzada',
+  'Tecnología de Alta Precisión',
   'Resultados Rápidos',
   'Profesionales Certificados',
   'Calidad Asegurada',
@@ -48,7 +48,7 @@ export default function LaboratorioHero() {
           </h1>
 
           <p className="max-w-xl text-base font-light leading-relaxed text-slate-200 lg:text-[17px]">
-            Contamos con tecnología avanzada y estricto control de calidad que
+            Contamos con Tecnología de Alta Precisión y estricto control de calidad que
             entrega análisis seguros, precisos y rápidos. Un equipo altamente
             capacitado revisa e interpreta cada resultado para apoyar decisiones
             médicas confiables y oportunas.

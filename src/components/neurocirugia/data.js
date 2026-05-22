@@ -114,5 +114,5 @@ export const fortalezas = [
   'Diagnóstico avanzado',
   'Rehabilitación neurológica',
   'Atención humana',
-  'Tecnología de vanguardia',
+  'Tecnología de Alta Precisión',
 ]

@@ -50,7 +50,7 @@ export const servicios = [
       'Terapia física y ocupacional.',
       'Ejercicios terapéuticos personalizados.',
       'Terapia manual y técnicas de movilización.',
-      'Estimulación eléctrica funcional y tecnología avanzada.',
+      'Estimulación eléctrica funcional y Innovación Tecnológica.',
       'Entrenamiento en el uso de prótesis y órtesis.',
       'Programas de rehabilitación para lesiones medulares.',
       'Rehabilitación vestibular y del equilibrio.',
@@ -94,5 +94,5 @@ export const fortalezas = [
   'Manejo del dolor',
   'Atención humana',
   'Equipo multidisciplinario',
-  'Tecnología avanzada',
+  'Innovación Tecnológica',
 ]
