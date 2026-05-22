@@ -1,0 +1,6 @@
+export { default as HeroTerminos } from './HeroTerminos'
+export { default as Sidebar } from './Sidebar'
+export { default as Seccion } from './Seccion'
+export { default as ContactoCTA } from './ContactoCTA'
+export { default as useActiveSection } from './useActiveSection'
+export * from './data'

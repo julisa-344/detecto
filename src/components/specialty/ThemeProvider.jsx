@@ -1,7 +1,7 @@
 export default function ThemeProvider({ theme, children, className = '', style = {} }) {
   return (
     <div
-      className={`overflow-x-hidden ${className}`}
+      className={`overflow-x-clip ${className}`}
       style={{
         '--brand-base': theme.base,
         '--brand-med':  theme.med,
