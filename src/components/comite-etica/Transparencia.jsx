@@ -139,10 +139,8 @@ export default function Transparencia() {
               <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">
                 Canal de consultas
               </p>
-              <p className="mt-2 text-base font-medium uppercase tracking-wide leading-tight break-all">
-                comitedeetica
-                <br />
-                @detecta.pe
+              <p className="mt-2 text-[15px] font-medium normal-case leading-tight break-all">
+                comitedeetica@detecta.pe
               </p>
               <div className="mt-4 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.22em] text-white/80">
                 Escribir
