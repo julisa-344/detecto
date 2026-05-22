@@ -9,7 +9,7 @@ export default function RequisitosFormatos() {
   const active = requisitosTabs.find((t) => t.key === activeKey) ?? requisitosTabs[0]
 
   return (
-    <section className="relative">
+    <section id="requisitos-formatos" className="relative scroll-mt-24">
       <div className="mb-10 grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
         <div>
           <SectionEyebrow>Documentación requerida</SectionEyebrow>

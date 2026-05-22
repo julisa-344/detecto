@@ -104,7 +104,7 @@ export default function ContactoMapa() {
   }
 
   return (
-    <section className="relative">
+    <section id="escribenos-comite" className="relative scroll-mt-24">
       <div className="mb-12 max-w-2xl">
         <SectionEyebrow>Contacto</SectionEyebrow>
         <SectionTitle className="mb-3">

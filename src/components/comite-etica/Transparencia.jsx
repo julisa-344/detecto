@@ -8,7 +8,7 @@ export default function Transparencia() {
   const [activeIdx, setActiveIdx] = useState(0)
 
   return (
-    <section className="relative">
+    <section id="transparencia" className="relative scroll-mt-24">
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_1.15fr] lg:items-stretch">
         {/* Lado izquierdo — imagen con título overlay */}
         <motion.div

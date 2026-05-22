@@ -11,7 +11,7 @@ const ROLE_TONE = {
 
 export default function Integrantes() {
   return (
-    <section className="relative">
+    <section id="integrantes" className="relative scroll-mt-24">
       <div className="mb-10 max-w-3xl">
         <SectionEyebrow>El equipo</SectionEyebrow>
         <SectionTitle className="mb-4">

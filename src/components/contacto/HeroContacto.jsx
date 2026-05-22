@@ -41,11 +41,13 @@ export default function HeroContacto() {
           </p>
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <a
-              href="#formulario"
+              href="https://wa.me/51922335134"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95 no-underline"
             >
               <span className="rounded-full bg-white px-8 py-4 text-[11px] font-semibold tracking-[0.18em] uppercase text-[rgb(var(--brand-dark))] transition-all duration-500 ease-in-out group-hover:bg-[rgb(var(--brand-base))] group-hover:text-white">
-                Escríbenos ahora
+                Consulta por WhatsApp
               </span>
               <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full bg-white text-[rgb(var(--brand-dark))] transition-all duration-500 ease-in-out group-hover:bg-[rgb(var(--brand-base))] group-hover:text-white">
                 <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
@@ -53,15 +55,6 @@ export default function HeroContacto() {
               </div>
             </a>
 
-            <a
-              href="https://wa.me/51922335134"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-4 text-[11px] font-semibold tracking-[0.18em] uppercase text-white backdrop-blur-md transition hover:bg-white hover:text-[rgb(var(--brand-dark))]"
-            >
-              <MessageCircle className="h-4 w-4" />
-              Consulta por WhatsApp
-            </a>
           </div>
         </motion.div>
       </div>

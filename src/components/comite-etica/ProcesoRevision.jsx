@@ -5,7 +5,7 @@ import eticaBg from '../../assets/eticabg.png'
 
 export default function ProcesoRevision() {
   return (
-    <section className="relative -mx-6 overflow-hidden rounded-4xl bg-[rgb(var(--brand-dark))] lg:-mx-12">
+    <section id='proceso' className="relative -mx-6 overflow-hidden rounded-4xl bg-[rgb(var(--brand-dark))] lg:-mx-12">
 
       <div className="pointer-events-none absolute inset-0 w-full">
         <img
