@@ -300,7 +300,7 @@ export default function TerminosCondiciones() {
       </section>
 
       {/* Contenido + Sidebar */}
-      <section className="relative pb-24 lg:pb-32">
+      <section className="relative pt-16 pb-24 lg:pt-24 lg:pb-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[260px_1fr] lg:gap-14">
             <Sidebar activeId={activeId} />

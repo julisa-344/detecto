@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import SectionEyebrow from './SectionEyebrow'
 import SectionTitle from './SectionTitle'
@@ -15,6 +15,28 @@ export default function BeneficiosGrid({
   collapsedTextColor = '#C1436D',
 }) {
   const [active, setActive] = useState(0)
+  const itemRefs = useRef([])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(min-width: 640px)')
+    if (mq.matches) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Number(entry.target.dataset.index)
+            if (!Number.isNaN(idx)) setActive(idx)
+          }
+        })
+      },
+      { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+    )
+
+    itemRefs.current.forEach((el) => el && observer.observe(el))
+    return () => observer.disconnect()
+  }, [items.length])
 
   return (
     <motion.section
@@ -42,6 +64,8 @@ export default function BeneficiosGrid({
           return (
             <motion.div
               key={i}
+              ref={(el) => (itemRefs.current[i] = el)}
+              data-index={i}
               custom={i}
               variants={fadeUp}
               initial="hidden"

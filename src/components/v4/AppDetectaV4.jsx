@@ -3,12 +3,77 @@ import { motion, animate, useInView } from 'framer-motion'
 import mockHome from '../../assets/home.webp'
 import mockTipocita from '../../assets/tipocita.webp'
 import mockDoctores from '../../assets/doctores.webp'
+import RocketReveal from './RocketReveal'
 
 const mockups = [
   { id: 0, img: mockTipocita },
   { id: 1, img: mockHome },
   { id: 2, img: mockDoctores },
 ]
+
+const LAUNCH_DATE = new Date('2026-06-12T00:00:00')
+
+function getTimeLeft(target) {
+  const diff = Math.max(0, target.getTime() - Date.now())
+  const days    = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const hours   = Math.floor((diff / (1000 * 60 * 60)) % 24)
+  const minutes = Math.floor((diff / (1000 * 60)) % 60)
+  const seconds = Math.floor((diff / 1000) % 60)
+  return { days, hours, minutes, seconds, finished: diff === 0 }
+}
+
+function CountdownLaunch() {
+  const [t, setT] = useState(() => getTimeLeft(LAUNCH_DATE))
+
+  useEffect(() => {
+    const id = setInterval(() => setT(getTimeLeft(LAUNCH_DATE)), 1000)
+    return () => clearInterval(id)
+  }, [])
+
+  const units = [
+    { value: t.days,    label: 'Días' },
+    { value: t.hours,   label: 'Horas' },
+    { value: t.minutes, label: 'Min' },
+    { value: t.seconds, label: 'Seg' },
+  ]
+
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-[#CFEAFB] bg-gradient-to-br from-white via-[#F4FAFE] to-[#E5F3FE] px-6 py-5 max-w-md mx-auto lg:mx-0 shadow-[0_8px_28px_rgba(0,153,198,0.10)]">
+      <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#52C0E1]/15 blur-3xl rounded-full pointer-events-none" />
+
+      <div className="relative flex items-center justify-between gap-4 mb-4">
+        <div className="text-left">
+          <p className="text-[9px] font-bold tracking-[0.32em] uppercase text-[#0199C6]">
+            Próximamente
+          </p>
+          <p className="text-sm font-medium text-slate-700 mt-1">
+            Lanzamiento · <span className="text-[#0070A5] font-semibold">12 de Junio</span>
+          </p>
+        </div>
+        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/80 border border-[#CFEAFB] text-[10px] font-medium text-[#0199C6]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#0199C6] animate-pulse" />
+          En cuenta regresiva
+        </span>
+      </div>
+
+      <div className="relative grid grid-cols-4 gap-2">
+        {units.map((u) => (
+          <div
+            key={u.label}
+            className="flex flex-col items-center justify-center rounded-xl bg-white/90 backdrop-blur-sm border border-white py-3 shadow-[0_2px_8px_rgba(0,153,198,0.06)]"
+          >
+            <span className="text-2xl lg:text-3xl font-light text-[#0070A5] tracking-tight tabular-nums leading-none">
+              {String(u.value).padStart(2, '0')}
+            </span>
+            <span className="mt-1.5 text-[9px] font-semibold tracking-[0.18em] uppercase text-slate-400">
+              {u.label}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const getMockupVariants = (offset) => ({
   center: { x: 0, scale: 1, zIndex: 10, opacity: 1 },
@@ -93,84 +158,96 @@ export default function AppDetectaV4() {
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24">
-          
-          {/* Columna Izquierda: Texto */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center lg:text-left"
-          >
-            <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6">
-              Aplicativo Móvil
-            </p>
-            <h2 className="text-5xl lg:text-7xl font-light text-[#0070A5] tracking-tighter leading-none uppercase mb-8">
-              Tu salud, <br />
-              <span className="font-normal text-slate-900">en tu bolsillo.</span>
-            </h2>
-            <p className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mx-auto lg:mx-0 mb-12">
-              Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Todo el control de tu bienestar en un solo lugar.
-            </p>
+        <RocketReveal className="mb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-            <div className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start">
-              <motion.a 
-                href="#" 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors"
-              >
-                <AppleIcon />
-                <div className="text-left">
-                  <p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p>
-                  <p className="text-sm font-medium leading-none">App Store</p>
+            {/* Columna Izquierda: Texto */}
+            <div className="text-center lg:text-left">
+              <RocketReveal.Item delay={0}>
+                <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6">
+                  Aplicativo Móvil
+                </p>
+              </RocketReveal.Item>
+
+              <RocketReveal.Item delay={0.1}>
+                <h2 className="text-5xl lg:text-7xl font-light text-[#0070A5] tracking-tighter leading-none uppercase mb-8">
+                  Tu salud, <br />
+                  <span className="font-normal text-slate-900">en tu bolsillo.</span>
+                </h2>
+              </RocketReveal.Item>
+
+              <RocketReveal.Item delay={0.25}>
+                <p className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mx-auto lg:mx-0 mb-8">
+                  Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Todo el control de tu bienestar en un solo lugar.
+                </p>
+              </RocketReveal.Item>
+
+              <RocketReveal.Item delay={0.35}>
+                <CountdownLaunch />
+              </RocketReveal.Item>
+
+              <RocketReveal.Item delay={0.5}>
+                <div className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start">
+                  <motion.a
+                    href="#"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors"
+                  >
+                    <AppleIcon />
+                    <div className="text-left">
+                      <p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p>
+                      <p className="text-sm font-medium leading-none">App Store</p>
+                    </div>
+                  </motion.a>
+                  <motion.a
+                    href="#"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all"
+                  >
+                    <GooglePlayIcon />
+                    <div className="text-left">
+                      <p className="text-[10px] text-gray-400 leading-none mb-0.5">Disponible en</p>
+                      <p className="text-sm font-medium leading-none">Google Play</p>
+                    </div>
+                  </motion.a>
                 </div>
-              </motion.a>
-              <motion.a 
-                href="#" 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all"
-              >
-                <GooglePlayIcon />
-                <div className="text-left">
-                  <p className="text-[10px] text-gray-400 leading-none mb-0.5">Disponible en</p>
-                  <p className="text-sm font-medium leading-none">Google Play</p>
-                </div>
-              </motion.a>
+              </RocketReveal.Item>
             </div>
-          </motion.div>
 
-          {/* Columna Derecha: Mockups con foco interactivo */}
-          <div
-            className="relative flex justify-center items-center h-110 sm:h-150 overflow-hidden"
-            onMouseEnter={() => setIsAutoPlaying(false)}
-            onMouseLeave={() => setIsAutoPlaying(true)}
-          >
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#EEFBFF] blur-[100px] rounded-full -z-10" />
-            {mockups.map((mock, index) => (
-              <motion.div
-                key={mock.id}
-                variants={mockupVariants}
-                animate={getVariant(index)}
-                initial={false}
-                transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                onClick={() => setActiveIndex(index)}
-                className="absolute cursor-pointer will-change-transform"
-                style={{ width: `${mockupWidth}px` }}
+            {/* Columna Derecha: Mockups con foco interactivo */}
+            <RocketReveal.Item delay={0.65}>
+              <div
+                className="relative flex justify-center items-center h-110 sm:h-150 overflow-hidden"
+                onMouseEnter={() => setIsAutoPlaying(false)}
+                onMouseLeave={() => setIsAutoPlaying(true)}
               >
-                <div className={`relative transition-all duration-500 ${activeIndex === index ? 'drop-shadow-2xl' : 'drop-shadow-md'}`}>
-                  <img
-                    src={mock.img}
-                    alt="App Detecta"
-                    className="w-full h-auto rounded-[2.5rem]"
-                  />
-                </div>
-              </motion.div>
-            ))}
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#EEFBFF] blur-[100px] rounded-full -z-10" />
+                {mockups.map((mock, index) => (
+                  <motion.div
+                    key={mock.id}
+                    variants={mockupVariants}
+                    animate={getVariant(index)}
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                    onClick={() => setActiveIndex(index)}
+                    className="absolute cursor-pointer will-change-transform"
+                    style={{ width: `${mockupWidth}px` }}
+                  >
+                    <div className={`relative transition-all duration-500 ${activeIndex === index ? 'drop-shadow-2xl' : 'drop-shadow-md'}`}>
+                      <img
+                        src={mock.img}
+                        alt="App Detecta"
+                        className="w-full h-auto rounded-[2.5rem]"
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </RocketReveal.Item>
           </div>
-        </div>
+        </RocketReveal>
 
         {/* Sección de Métricas: Animación escalonada */}
         <div className="pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-3 gap-8">

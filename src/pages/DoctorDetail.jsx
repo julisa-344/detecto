@@ -176,12 +176,12 @@ export default function DoctorDetail() {
             Volver al staff
           </Link>
 
-          <div className="grid items-end gap-10 lg:grid-cols-[1fr_480px] lg:gap-16">
+          <div className="grid items-end lg:grid-cols-[1fr_480px] lg:gap-16">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="pb-16 lg:pb-24"
+              className="lg:pb-24"
             >
               <span className="inline-flex items-center rounded-full border border-white/30 bg-white/15 px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-white shadow-sm backdrop-blur-md">
                 {doctor.specialty}
