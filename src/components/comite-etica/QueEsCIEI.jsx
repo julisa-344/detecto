@@ -1,18 +1,15 @@
 import { motion } from 'framer-motion'
 import { ArrowUpRight } from 'lucide-react'
 import { pilaresFuncionamiento } from './data'
-import clinicaImg from '../../assets/clinica.jpg'
-import tecnologiaImg from '../../assets/tecnologia.jpg'
-import doctoresImg from '../../assets/doctores.webp'
-import insImg from '../../assets/ins.webp'
 
-const CARD_IMAGES = [clinicaImg, tecnologiaImg, doctoresImg, insImg]
-const CARD_TONES = [
-  { chip: 'bg-[rgb(var(--brand-base))]', tint: 'from-[rgb(var(--brand-dark)/0.9)] via-[rgb(var(--brand-dark)/0.7)] to-[rgb(var(--brand-dark)/0.5)]' },
-  { chip: 'bg-[rgb(var(--brand-med))]', tint: 'from-[rgb(var(--brand-dark)/0.85)] via-[rgb(var(--brand-base)/0.6)] to-[rgb(var(--brand-med)/0.45)]' },
-  { chip: 'bg-[rgb(var(--brand-dark))]', tint: 'from-[rgb(var(--brand-dark)/0.92)] via-[rgb(var(--brand-dark)/0.65)] to-[rgb(var(--brand-base)/0.4)]' },
-  { chip: 'bg-[rgb(var(--brand-base))]', tint: 'from-[rgb(var(--brand-dark)/0.9)] via-[rgb(var(--brand-med)/0.55)] to-[rgb(var(--brand-base)/0.4)]' },
+const BASE = import.meta.env.VITE_BASE_IMAGE_URL
+const CARD_IMAGES = [
+  `${BASE}gestion-etica/protocolos.jpg`,
+  `${BASE}gestion-etica/riesgos.jpg`,
+  `${BASE}gestion-etica/estudios.jpg`,
+  `${BASE}gestion-etica/asesora.jpg`,
 ]
+const CHIP_CLASS = 'bg-primary'
 
 export default function QueEsCIEI() {
   return (
@@ -62,7 +59,6 @@ export default function QueEsCIEI() {
         {/* Lado derecho — cards con imágenes */}
         <div className="flex flex-col gap-4">
           {pilaresFuncionamiento.map((p, i) => {
-            const tone = CARD_TONES[i % CARD_TONES.length]
             const img = CARD_IMAGES[i % CARD_IMAGES.length]
             return (
               <motion.div
@@ -80,12 +76,13 @@ export default function QueEsCIEI() {
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className={`absolute inset-0 bg-linear-to-r ${tone.tint}`} />
+                <div className="absolute inset-0 bg-linear-to-tr from-slate-950/75 via-slate-950/35 to-transparent" />
+                <div className="absolute inset-0 bg-linear-to-t from-slate-950/55 via-transparent to-transparent" />
 
                 <div className="relative z-10 flex items-center justify-between gap-4 p-6 lg:p-7">
                   <div className="min-w-0">
                     <span
-                      className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-white shadow-sm ${tone.chip}`}
+                      className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.22em] text-white shadow-sm ${CHIP_CLASS}`}
                     >
                       Pilar 0{p.num}
                     </span>

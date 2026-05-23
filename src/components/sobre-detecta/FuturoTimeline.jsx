@@ -449,7 +449,7 @@ function FuturoTimelineMobile() {
     .ftm-h { font-size: 34px; font-weight: 200; line-height: 1.1; letter-spacing: -0.02em;
       color: #0070A5; margin: 0; }
     .ftm-h em { font-style: italic; font-weight: 500; color: #0199C6; }
-    .ftm-mascot-wrap { position: relative; width: 160px; aspect-ratio: 1/1; margin: 28px auto 0; }
+    .ftm-mascot-wrap { position: relative; width: 110px; aspect-ratio: 1/1; margin: 56px auto 0; }
     .ftm-mascot-wrap::before { content: ''; position: absolute; inset: -10%;
       background: radial-gradient(circle at 50% 55%, rgba(1,153,198,0.22) 0%, rgba(82,192,225,0.05) 60%, transparent 75%);
       filter: blur(10px); z-index: -1; }
