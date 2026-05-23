@@ -31,11 +31,20 @@ const TITLE_END = 0.42 // 0 → 0.42: el título tiene bastante tiempo de leerse
 const SLIDE_1 = [0.46, 0.56]
 const SLIDE_2 = [0.58, 0.68]
 
+function useIsMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < breakpoint : false
+  )
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < breakpoint)
+    window.addEventListener('resize', onResize)
+    return () => window.removeEventListener('resize', onResize)
+  }, [breakpoint])
+  return isMobile
+}
+
 export default function FuturoTimeline() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const sectionRef = useRef(null)
-  const transitionTimers = useRef([])
+  const isMobile = useIsMobile()
 
   // Pre-carga las imágenes para evitar el flash borroso al cambiar de slide
   useEffect(() => {
@@ -44,6 +53,16 @@ export default function FuturoTimeline() {
       img.src = s.image
     })
   }, [])
+
+  if (isMobile) return <FuturoTimelineMobile />
+  return <FuturoTimelineDesktop />
+}
+
+function FuturoTimelineDesktop() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const sectionRef = useRef(null)
+  const transitionTimers = useRef([])
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -100,7 +119,6 @@ export default function FuturoTimeline() {
 
   const css = `
     .ft-section { position: relative; height: 280vh; }
-    @media (max-width: 639px) { .ft-section { height: 200vh; } }
     .ft-bg-base { position: absolute; inset: 0; background: linear-gradient(180deg, #F5FBFE 0%, #DCF1F8 50%, #F5FBFE 100%); z-index: 0; }
     .ft-bg-wash { position: absolute; inset: 0; transition: background 1.2s ease; pointer-events: none; z-index: 1; }
     .ft-grid { position: absolute; inset: 0; opacity: .05; pointer-events: none; z-index: 1;
@@ -410,6 +428,153 @@ export default function FuturoTimeline() {
             </div>
           </div>
         </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function FuturoTimelineMobile() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const current = slides[currentIndex]
+
+  const next = () => setCurrentIndex((i) => Math.min(i + 1, slides.length - 1))
+  const prev = () => setCurrentIndex((i) => Math.max(i - 1, 0))
+
+  const css = `
+    .ftm { position: relative; padding: 72px 20px 96px; overflow: hidden;
+      background: linear-gradient(180deg, #F5FBFE 0%, #DCF1F8 50%, #F5FBFE 100%); }
+    .ftm-grid { position: absolute; inset: 0; opacity: .05; pointer-events: none;
+      background-image: radial-gradient(circle at 1px 1px, #0070A5 1px, transparent 0);
+      background-size: 32px 32px; }
+    .ftm-wash { position: absolute; inset: 0; pointer-events: none; transition: background .8s ease; }
+
+    .ftm-inner { position: relative; max-width: 480px; margin: 0 auto; }
+
+    .ftm-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.4em;
+      text-transform: uppercase; color: #0199C6; margin-bottom: 18px; text-align: center; }
+    .ftm-h { font-size: 34px; font-weight: 200; line-height: 1.1; letter-spacing: -0.02em;
+      color: #0070A5; text-align: center; margin: 0 0 14px; }
+    .ftm-h em { font-style: italic; font-weight: 500; color: #0199C6; }
+    .ftm-mascot-wrap { position: relative; width: 130px; aspect-ratio: 1/1; margin: 18px auto 32px; }
+    .ftm-mascot-wrap::before { content: ''; position: absolute; inset: -10%;
+      background: radial-gradient(circle at 50% 55%, rgba(1,153,198,0.22) 0%, rgba(82,192,225,0.05) 60%, transparent 75%);
+      filter: blur(10px); z-index: -1; }
+    .ftm-mascot { width: 100%; height: 100%; object-fit: contain;
+      filter: drop-shadow(0 16px 28px rgba(0,112,165,0.3));
+      animation: ftmFloat 4.5s ease-in-out infinite; }
+    @keyframes ftmFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
+    }
+
+    .ftm-card { position: relative; background: #fff; border-radius: 28px; overflow: hidden;
+      box-shadow: 0 30px 60px -30px rgba(0,112,165,0.35); }
+    .ftm-image-wrap { position: relative; aspect-ratio: 4/3; overflow: hidden; background: #DCF1F8; }
+    .ftm-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .ftm-image-overlay { position: absolute; inset: 0; pointer-events: none;
+      transition: background .8s ease; }
+    .ftm-year-badge { position: absolute; right: 14px; top: 14px; padding: 6px 12px;
+      border-radius: 999px; background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
+      font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+      color: #0070A5; }
+
+    .ftm-body { padding: 24px 22px 26px; }
+    .ftm-year { font-size: 48px; font-weight: 200; line-height: 1; letter-spacing: -0.03em;
+      color: #0070A5; margin: 0; }
+    .ftm-title { font-size: 22px; font-weight: 300; line-height: 1.15; letter-spacing: -0.01em;
+      color: #0070A5; margin: 10px 0 0; }
+    .ftm-title em { font-style: italic; font-weight: 500; }
+    .ftm-subtitle { font-size: 10px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase;
+      margin-top: 10px; }
+    .ftm-desc { font-size: 13.5px; font-weight: 300; line-height: 1.65; color: #475569;
+      margin: 14px 0 0; }
+
+    .ftm-nav { display: flex; align-items: center; justify-content: space-between;
+      margin-top: 24px; gap: 14px; }
+    .ftm-arrows { display: flex; gap: 10px; }
+    .ftm-arrow { width: 44px; height: 44px; border-radius: 999px;
+      border: 1px solid rgba(0,112,165,0.2); background: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      color: #0070A5; cursor: pointer; transition: all .3s; }
+    .ftm-arrow:active { transform: scale(0.95); }
+    .ftm-arrow:disabled { opacity: .3; cursor: not-allowed; }
+
+    .ftm-dots { display: flex; gap: 8px; }
+    .ftm-dot { width: 24px; height: 3px; border-radius: 999px; background: rgba(0,112,165,0.18);
+      border: none; padding: 0; cursor: pointer; transition: all .4s; }
+    .ftm-dot.active { width: 36px; }
+  `
+
+  return (
+    <section className="ftm" id="futuro-detecta">
+      <style>{css}</style>
+      <div className="ftm-grid" />
+      <div
+        className="ftm-wash"
+        style={{ background: `radial-gradient(ellipse at 50% 10%, ${current.accent}22 0%, transparent 70%)` }}
+      />
+
+      <div className="ftm-inner">
+        <p className="ftm-eyebrow">El futuro</p>
+        <h2 className="ftm-h">
+          Innovación que <em>transforma la salud.</em>
+        </h2>
+        <span className="ftm-mascot-wrap">
+          <img src={detectoMascot} alt="Detecto en construcción" className="ftm-mascot" loading="lazy" />
+        </span>
+
+        <motion.div
+          key={current.year}
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="ftm-card"
+        >
+          <div className="ftm-image-wrap">
+            <img src={current.image} alt={current.title} className="ftm-image" />
+            <div
+              className="ftm-image-overlay"
+              style={{ background: `linear-gradient(135deg, ${current.accent}22 0%, transparent 60%)` }}
+            />
+            <span className="ftm-year-badge">{current.subtitle}</span>
+          </div>
+
+          <div className="ftm-body">
+            <p className="ftm-year">{current.year}</p>
+            <h3 className="ftm-title">
+              {current.title.split(' ').slice(0, -1).join(' ')}{' '}
+              <em style={{ color: current.accent }}>
+                {current.title.split(' ').slice(-1)}
+              </em>
+            </h3>
+            <p className="ftm-subtitle" style={{ color: current.accent }}>
+              {current.subtitle}
+            </p>
+            <p className="ftm-desc">{current.description}</p>
+          </div>
+        </motion.div>
+
+        <div className="ftm-nav">
+          <div className="ftm-dots">
+            {slides.map((s, i) => (
+              <button
+                key={s.year}
+                onClick={() => setCurrentIndex(i)}
+                className={`ftm-dot ${i === currentIndex ? 'active' : ''}`}
+                style={i === currentIndex ? { background: current.accent } : undefined}
+                aria-label={`Ir a ${s.year}`}
+              />
+            ))}
+          </div>
+          <div className="ftm-arrows">
+            <button onClick={prev} disabled={currentIndex === 0} className="ftm-arrow" aria-label="Anterior">
+              <ArrowLeft size={18} />
+            </button>
+            <button onClick={next} disabled={currentIndex === slides.length - 1} className="ftm-arrow" aria-label="Siguiente">
+              <ArrowRight size={18} />
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   )
