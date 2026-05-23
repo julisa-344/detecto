@@ -1,5 +1,40 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight } from 'lucide-react'
+import { useState, useEffect } from 'react'
+
+const LAUNCH_DATE = new Date('2026-06-12T00:00:00')
+
+function useCountdown(target) {
+  const calc = () => {
+    const diff = target - Date.now()
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
+    }
+  }
+  const [time, setTime] = useState(calc)
+  useEffect(() => {
+    const id = setInterval(() => setTime(calc()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  return time
+}
+
+function CountUnit({ value, label }) {
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <span className="tabular-nums text-5xl font-extralight leading-none tracking-tight text-[rgb(var(--brand-dark))] sm:text-6xl lg:text-7xl">
+        {String(value).padStart(2, '0')}
+      </span>
+      <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-slate-400">
+        {label}
+      </span>
+    </div>
+  )
+}
 
 const DETECTO_IMG = `${import.meta.env.VITE_BASE_IMAGE_URL}detectos/proximamente.png`
 
@@ -41,6 +76,7 @@ function Ribbon({ text, angle = -6, duration = 30, reverse = false, offsetY = 0 
 }
 
 export default function Proximamente({ pageName = 'Próximamente' }) {
+  const { days, hours, minutes, seconds } = useCountdown(LAUNCH_DATE)
   return (
     <section
       className="relative isolate flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-b from-white via-(--brand-bg-ultra) to-white pt-28 pb-16"
@@ -86,6 +122,21 @@ export default function Proximamente({ pageName = 'Próximamente' }) {
 
         <p className="mt-4 max-w-md text-[14px] font-light leading-relaxed text-slate-500">
           Estamos preparando esta experiencia para ti. Vuelve pronto.
+        </p>
+
+        {/* Countdown */}
+        <div className="mt-10 flex items-start gap-6 sm:gap-10">
+          <CountUnit value={days} label="Días" />
+          <span className="mt-2 text-4xl font-extralight text-slate-300 sm:text-5xl lg:text-6xl">:</span>
+          <CountUnit value={hours} label="Horas" />
+          <span className="mt-2 text-4xl font-extralight text-slate-300 sm:text-5xl lg:text-6xl">:</span>
+          <CountUnit value={minutes} label="Minutos" />
+          <span className="mt-2 text-4xl font-extralight text-slate-300 sm:text-5xl lg:text-6xl">:</span>
+          <CountUnit value={seconds} label="Segundos" />
+        </div>
+
+        <p className="mt-3 text-[11px] font-medium uppercase tracking-[0.22em] text-[rgb(var(--brand-base))]">
+          Lanzamiento 12 de junio
         </p>
 
         <Link
