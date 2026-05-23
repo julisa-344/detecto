@@ -4,6 +4,40 @@ import mockHome from '../../assets/home.webp'
 import mockTipocita from '../../assets/tipocita.webp'
 import mockDoctores from '../../assets/doctores.webp'
 
+const LAUNCH_DATE = new Date('2026-06-12T00:00:00')
+
+function useCountdown(target) {
+  const calc = () => {
+    const diff = target - Date.now()
+    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
+    }
+  }
+  const [time, setTime] = useState(calc)
+  useEffect(() => {
+    const id = setInterval(() => setTime(calc()), 1000)
+    return () => clearInterval(id)
+  }, [])
+  return time
+}
+
+function CountUnit({ value, label }) {
+  return (
+    <div className="flex flex-col items-center gap-1 min-w-[52px]">
+      <span className="tabular-nums text-3xl lg:text-4xl font-light leading-none tracking-tight text-[#0070A5]">
+        {String(value).padStart(2, '0')}
+      </span>
+      <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-slate-400">
+        {label}
+      </span>
+    </div>
+  )
+}
+
 const mockups = [
   { id: 0, img: mockTipocita },
   { id: 1, img: mockHome },
@@ -64,6 +98,7 @@ export default function AppDetectaV4() {
   const [activeIndex, setActiveIndex] = useState(1)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
+  const { days, hours, minutes, seconds } = useCountdown(LAUNCH_DATE)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640)
@@ -128,6 +163,26 @@ export default function AppDetectaV4() {
             >
               Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Todo el control de tu bienestar en un solo lugar.
             </motion.p>
+
+            {/* Cuenta regresiva */}
+            <motion.div
+              variants={fadeUp}
+              transition={{ duration: 0.6 }}
+              className="mt-8 inline-flex flex-col items-center lg:items-start gap-3"
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
+                Lanzamiento · 12 de junio
+              </p>
+              <div className="flex items-start gap-3 sm:gap-4">
+                <CountUnit value={days} label="Días" />
+                <span className="text-2xl font-extralight text-slate-300 mt-0.5">:</span>
+                <CountUnit value={hours} label="Horas" />
+                <span className="text-2xl font-extralight text-slate-300 mt-0.5">:</span>
+                <CountUnit value={minutes} label="Minutos" />
+                <span className="text-2xl font-extralight text-slate-300 mt-0.5">:</span>
+                <CountUnit value={seconds} label="Segundos" />
+              </div>
+            </motion.div>
 
             <motion.div
               variants={fadeUp}
