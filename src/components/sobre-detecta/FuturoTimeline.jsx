@@ -1,6 +1,6 @@
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
 import torre1 from '../../assets/torre1.png'
 import torre2 from '../../assets/torre2.png'
 import detectoMascot from '../../assets/detectoConstruccion.png'
@@ -35,6 +35,15 @@ export default function FuturoTimeline() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const sectionRef = useRef(null)
+  const transitionTimers = useRef([])
+
+  // Pre-carga las imágenes para evitar el flash borroso al cambiar de slide
+  useEffect(() => {
+    slides.forEach((s) => {
+      const img = new Image()
+      img.src = s.image
+    })
+  }, [])
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -45,13 +54,23 @@ export default function FuturoTimeline() {
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
     const next = v < SLIDE_2[0] ? 0 : 1
     if (next !== currentIndex) {
+      transitionTimers.current.forEach(clearTimeout)
+      transitionTimers.current = []
       setIsTransitioning(true)
-      setTimeout(() => {
-        setCurrentIndex(next)
-        setTimeout(() => setIsTransitioning(false), 50)
-      }, 240)
+      transitionTimers.current.push(
+        setTimeout(() => {
+          setCurrentIndex(next)
+          transitionTimers.current.push(
+            setTimeout(() => setIsTransitioning(false), 40)
+          )
+        }, 180)
+      )
     }
   })
+
+  useEffect(() => () => {
+    transitionTimers.current.forEach(clearTimeout)
+  }, [])
 
   // Progreso de cada slide individual (como cadenas CSS width)
   const progress0Width = useTransform(scrollYProgress, SLIDE_1, ['0%', '100%'], { clamp: true })
@@ -80,8 +99,8 @@ export default function FuturoTimeline() {
   const current = slides[currentIndex]
 
   const css = `
-    .ft-section { position: relative; height: 320vh; }
-    @media (max-width: 639px) { .ft-section { height: 240vh; } }
+    .ft-section { position: relative; height: 280vh; }
+    @media (max-width: 639px) { .ft-section { height: 200vh; } }
     .ft-bg-base { position: absolute; inset: 0; background: linear-gradient(180deg, #F5FBFE 0%, #DCF1F8 50%, #F5FBFE 100%); z-index: 0; }
     .ft-bg-wash { position: absolute; inset: 0; transition: background 1.2s ease; pointer-events: none; z-index: 1; }
     .ft-grid { position: absolute; inset: 0; opacity: .05; pointer-events: none; z-index: 1;
@@ -191,8 +210,8 @@ export default function FuturoTimeline() {
 
     .ft-image-frame { position: absolute; inset: 0; border-radius: 36px; overflow: hidden;
       background: #fff; box-shadow: 0 50px 100px -40px rgba(0,112,165,0.35);
-      transition: opacity .65s ease, transform .65s ease; }
-    .ft-image-frame.transitioning { opacity: 0; transform: scale(0.97); }
+      transition: opacity .35s ease; }
+    .ft-image-frame.transitioning { opacity: 0; }
 
     .ft-image { width: 100%; height: 100%; object-fit: cover; display: block; }
     .ft-image-overlay { position: absolute; inset: 0; transition: background .8s ease; pointer-events: none; }
@@ -201,17 +220,25 @@ export default function FuturoTimeline() {
       background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); font-size: 11px;
       font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #0070A5; }
 
-    .ft-progress { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-      max-width: 320px; }
+    .ft-progress { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+      max-width: 360px; }
     @media (min-width: 1024px) { .ft-progress { margin-left: auto; margin-right: 0; } }
+    @media (max-width: 639px) { .ft-progress { margin-top: 24px; gap: 20px; max-width: 100%; } }
 
-    .ft-progress-item { display: flex; flex-direction: column; gap: 8px; cursor: pointer;
-      background: none; border: none; padding: 0; text-align: left; }
-    .ft-progress-track { width: 100%; height: 3px; background: rgba(0,112,165,0.15); border-radius: 999px; overflow: hidden; }
-    .ft-progress-fill { height: 100%; border-radius: 999px; }
-    .ft-progress-label { font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
-      text-transform: uppercase; color: #94A3B8; transition: color .6s ease; }
-    .ft-progress-item.active .ft-progress-label { color: #0070A5; }
+    .ft-progress-item { display: flex; flex-direction: column; cursor: pointer;
+      background: none; border: none; padding: 0; text-align: left;
+      transition: opacity .5s ease; opacity: .35; }
+    .ft-progress-item.active, .ft-progress-item.past { opacity: 1; }
+    .ft-progress-item:hover { opacity: .85; }
+    .ft-progress-item.active:hover { opacity: 1; }
+
+    .ft-progress-year { font-size: 13px; font-weight: 500; letter-spacing: 0.32em;
+      color: #0F172A; line-height: 1; transition: color .5s ease;
+      font-family: ui-monospace, SFMono-Regular, monospace; }
+
+    .ft-progress-track { width: 100%; height: 1px; background: rgba(15,23,42,0.12);
+      overflow: hidden; margin-top: 14px; }
+    .ft-progress-fill { height: 100%; }
   `
 
   return (
@@ -350,30 +377,32 @@ export default function FuturoTimeline() {
                   const isActive = i === currentIndex
                   const isPast = i < currentIndex
                   const motionWidth = i === 0 ? progress0Width : progress1Width
+                  const stateClass = isActive ? 'active' : isPast ? 'past' : ''
                   return (
                     <button
                       key={s.year}
                       onClick={() => goToSlide(i)}
-                      className={`ft-progress-item ${isActive ? 'active' : ''}`}
+                      className={`ft-progress-item ${stateClass}`}
+                      aria-label={`Ir a ${s.year}`}
                     >
+                      <span className="ft-progress-year">{s.year}</span>
                       <div className="ft-progress-track">
                         {isActive ? (
                           <motion.div
                             className="ft-progress-fill"
-                            style={{ width: motionWidth, backgroundColor: current.accent }}
+                            style={{ width: motionWidth, backgroundColor: s.accent }}
                           />
                         ) : (
                           <div
                             className="ft-progress-fill"
                             style={{
                               width: isPast ? '100%' : '0%',
-                              backgroundColor: 'rgba(0,112,165,0.35)',
-                              transition: 'width .4s ease, background-color .4s ease',
+                              backgroundColor: '#0F172A',
+                              transition: 'width .4s ease',
                             }}
                           />
                         )}
                       </div>
-                      <span className="ft-progress-label">{s.year}</span>
                     </button>
                   )
                 })}

@@ -120,20 +120,20 @@ export const testimonios = [
   {
     paciente: 'Griner G.',
     edad: 42,
-    doctor: 'Dr. Mendoza',
+    doctor: 'Dr. Mendoza L.',
     fecha: '20/05/2026',
     rating: 5,
     comentario:
       'La atención fue muy profesional y las instalaciones me parecieron buenas. Considero que podrían seguir fortaleciendo la información sobre los servicios que ofrecen.',
   },
   {
-    paciente: 'Isabel R.',
+    paciente: 'Milagros P.',
     edad: 58,
-    doctor: 'Dr. Gastón',
-    fecha: '20/05/2026',
+    doctor: 'Dr. Mendoza L.',
+    fecha: '23/05/2026',
     rating: 5,
     comentario:
-      'La experiencia con el doctor fue buena. Recomendaría reforzar una atención más personalizada y empática, así como mejorar los tiempos de espera.',
+      'Me gustó mucho la atención que recibí. Todo el personal me trató muy bien y la persona que me realizó la mamografía fue muy atenta, paciente y amable. También quiero destacar al Dr. Mendoza, quien me pareció un excelente profesional y me brindó mucha confianza.',
   },
 ]
 

@@ -32,6 +32,12 @@ const TESTIMONIOS = [
     author: 'Cristina B.',
     date: '20/05/2026',
   },
+  {
+    quote:
+      'Fue la primera vez que me atendí en Detecta Clínica y, para mi sorpresa, todo fue muy rápido y ágil. La atención que recibí fue muy buena y las instalaciones me parecieron cómodas, limpias',
+    author: 'Edith P.',
+    date: '23/05/2026',
+  },
 ]
 
 function Stars() {
