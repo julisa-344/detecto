@@ -29,7 +29,7 @@ const FEATURED = [
     id: 'featured-alexis',
     name: 'Dr. Alexis Alva Pinto',
     specialty: 'Urología Oncológica',
-    reg: 'RNE 011507',
+    reg: 'CMP 027856 | RNE 025416',
     description:
       'Dedicado al diagnóstico y tratamiento de enfermedades prostáticas complejas.',
     image: doctor2,
@@ -39,7 +39,7 @@ const FEATURED = [
     id: 'featured-gaston',
     name: 'Dr. Gastón Mendoza de Lama',
     specialty: 'Cirugía Oncológica y Mastología',
-    reg: 'CMP 25779 | RNE 11470',
+    reg: 'CMP 026363  | RNE 014449',
     description:
       'Especialista en tratamiento integral con énfasis en patologías mamarias.',
     image: doctor1,
@@ -49,7 +49,7 @@ const FEATURED = [
     id: 'featured-victor',
     name: 'Dr. Victor Castro',
     specialty: 'Oncología Médica',
-    reg: 'CMP 031518',
+    reg: 'CMP 031518 | RNE 16102',
     description:
       'Reconocido por su enfoque en personalización terapéutica e inmunoterapia.',
     image: doctor3,
@@ -59,7 +59,7 @@ const FEATURED = [
     id: 'featured-carlos',
     name: 'Dr. Carlos Oleachea Matto',
     specialty: 'Cirugía de Cabeza y Cuello',
-    reg: 'CMP 018493 | RNE 029918',
+    reg: 'CMP 029918 | RNE 018493',
     description:
       'Especialista en patologías complejas de alta precisión anatómica.',
     image: doctor5,
