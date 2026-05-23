@@ -19,7 +19,7 @@ const FEATURED = [
     id: 'featured-nicanor',
     name: 'Dr. Nicanor Rodríguez Gutarra',
     specialty: 'Urología General y Oncológica',
-    reg: 'CMP 025867',
+    reg: 'CMP 025867 | RNE 013271',
     description:
       'Pionero en cirugía robótica en el Perú. Referente en técnicas de mínima invasión.',
     image: doctor4,
@@ -29,7 +29,7 @@ const FEATURED = [
     id: 'featured-alexis',
     name: 'Dr. Alexis Alva Pinto',
     specialty: 'Urología Oncológica',
-    reg: 'CMP 027856 | RNE 025416',
+    reg: 'CMP 027856 | RNE 011507',
     description:
       'Dedicado al diagnóstico y tratamiento de enfermedades prostáticas complejas.',
     image: doctor2,
