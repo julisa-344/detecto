@@ -27,10 +27,14 @@ function useCountdown(target) {
 
 function CountUnit({ value, label }) {
   return (
-    <div className="flex flex-col items-center gap-1 min-w-[52px]">
-      <span className="tabular-nums text-3xl lg:text-4xl font-light leading-none tracking-tight text-[#0070A5]">
-        {String(value).padStart(2, '0')}
-      </span>
+    <div className="flex flex-col items-center gap-2">
+      <div className="relative flex items-center justify-center w-[68px] h-[68px] lg:w-[80px] lg:h-[80px] rounded-2xl bg-gradient-to-b from-[#0199C6] to-[#0070A5] shadow-lg shadow-[#0199C6]/30">
+        {/* shine top */}
+        <div className="absolute inset-x-2 top-1.5 h-px rounded-full bg-white/30" />
+        <span className="tabular-nums text-3xl lg:text-4xl font-light leading-none tracking-tight text-white drop-shadow-sm">
+          {String(value).padStart(2, '0')}
+        </span>
+      </div>
       <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-slate-400">
         {label}
       </span>
@@ -170,16 +174,20 @@ export default function AppDetectaV4() {
               transition={{ duration: 0.6 }}
               className="mt-8 inline-flex flex-col items-center lg:items-start gap-3"
             >
-              <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
-                Lanzamiento · 12 de junio
-              </p>
-              <div className="flex items-start gap-3 sm:gap-4">
+              <div className="flex items-center gap-2">
+                <span className="inline-block w-4 h-px bg-[#0199C6]" />
+                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
+                  Lanzamiento · 12 de junio 2026
+                </p>
+                <span className="inline-block w-4 h-px bg-[#0199C6]" />
+              </div>
+              <div className="flex items-start gap-2 sm:gap-3">
                 <CountUnit value={days} label="Días" />
-                <span className="text-2xl font-extralight text-slate-300 mt-0.5">:</span>
+                <span className="text-2xl font-extralight text-[#0199C6] mt-4 select-none">:</span>
                 <CountUnit value={hours} label="Horas" />
-                <span className="text-2xl font-extralight text-slate-300 mt-0.5">:</span>
+                <span className="text-2xl font-extralight text-[#0199C6] mt-4 select-none">:</span>
                 <CountUnit value={minutes} label="Minutos" />
-                <span className="text-2xl font-extralight text-slate-300 mt-0.5">:</span>
+                <span className="text-2xl font-extralight text-[#0199C6] mt-4 select-none">:</span>
                 <CountUnit value={seconds} label="Segundos" />
               </div>
             </motion.div>
