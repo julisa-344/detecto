@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useRef } from 'react'
+import { useEffect, useMemo, useState, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Plus } from 'lucide-react'
@@ -7,75 +7,177 @@ import doctor2 from '../../assets/doctor2.webp'
 import doctor3 from '../../assets/doctor3.webp'
 import doctor4 from '../../assets/doctor4.webp'
 import doctor5 from '../../assets/doctor5.webp'
-import nancyMunoz from '../../assets/doctores/nancymuñozquispe1.webp'
-import claudiaJimenez from '../../assets/doctores/claudiajimenezorozco1.webp'
-import franciscoBerrospi from '../../assets/doctores/franciscoberrospiespinoza1.webp'
-import luisOjeda from '../../assets/doctores/luisojedamedina1.webp'
-import jorgeCalderon from '../../assets/doctores/jorgecalderonmorales1.webp'
+import { useStaffDoctors } from '../../hooks/useStaffDoctors'
+import { getFileUrl } from '../../lib/images'
 
-const placeholderDesc = 'Especialista del staff médico de Detecta con amplia trayectoria clínica.'
-const placeholderReg = 'CMP 026465 / RNE 13976'
+const CARD_WIDTH = 322
+const TOTAL_LIMIT = 20
 
-const doctors = [
-  { name: 'Dr. Nicanor Rodríguez Gutarra', specialty: 'Urología General y Oncológica', reg: 'CMP 025867 | RNE 027671', description: 'Pionero en cirugía robótica en el Perú. Referente en técnicas de mínima invasión.', image: doctor4, bg: '#0199C6' },
-  { name: 'Dr. Alexis Alva Pinto', specialty: 'Urología Oncológica', reg: 'RNE 011507', description: 'Dedicado al diagnóstico y tratamiento de enfermedades prostáticas complejas.', image: doctor2, bg: '#0199C6' },
-  { name: 'Dr. Gastón Mendoza de Lama', specialty: 'Cirugía Oncológica y Mastología', reg: 'CMP 25779 | RNE 11470', description: 'Especialista en tratamiento integral con énfasis en patologías mamarias.', image: doctor1, bg: '#0199C6' },
-  { name: 'Dr. Victor Castro', specialty: 'Oncología Médica', reg: 'CMP 031518', description: 'Reconocido por su enfoque en personalización terapéutica e inmunoterapia.', image: doctor3, bg: '#0199C6' },
-  { name: 'Dr. Carlos Oleachea Matto', specialty: 'Cirugía de Cabeza y Cuello', reg: 'CMP 018493 | RNE 029918', description: 'Especialista en patologías complejas de alta precisión anatómica.', image: doctor5, bg: '#0199C6' },
-  { name: 'Dra. Nancy Muñoz Quispe', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: nancyMunoz, bg: '#0199C6' },
-  { name: 'Dra. Claudia Jiménez Orozco', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: claudiaJimenez, bg: '#0199C6' },
-  { name: 'Dr. Francisco Berrospi Espinoza', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: franciscoBerrospi, bg: '#0199C6' },
-  { name: 'Dr. Luis Ojeda Medina', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: luisOjeda, bg: '#0199C6' },
-  { name: 'Dr. Jorge Calderón Morales', specialty: 'Oncología', reg: placeholderReg, description: placeholderDesc, image: jorgeCalderon, bg: '#0199C6' },
+const FEATURED = [
+  {
+    id: 'featured-nicanor',
+    name: 'Dr. Nicanor Rodríguez Gutarra',
+    specialty: 'Urología General y Oncológica',
+    reg: 'CMP 025867',
+    description:
+      'Pionero en cirugía robótica en el Perú. Referente en técnicas de mínima invasión.',
+    image: doctor4,
+    bg: '#0199C6',
+  },
+  {
+    id: 'featured-alexis',
+    name: 'Dr. Alexis Alva Pinto',
+    specialty: 'Urología Oncológica',
+    reg: 'RNE 011507',
+    description:
+      'Dedicado al diagnóstico y tratamiento de enfermedades prostáticas complejas.',
+    image: doctor2,
+    bg: '#0199C6',
+  },
+  {
+    id: 'featured-gaston',
+    name: 'Dr. Gastón Mendoza de Lama',
+    specialty: 'Cirugía Oncológica y Mastología',
+    reg: 'CMP 25779 | RNE 11470',
+    description:
+      'Especialista en tratamiento integral con énfasis en patologías mamarias.',
+    image: doctor1,
+    bg: '#0199C6',
+  },
+  {
+    id: 'featured-victor',
+    name: 'Dr. Victor Castro',
+    specialty: 'Oncología Médica',
+    reg: 'CMP 031518',
+    description:
+      'Reconocido por su enfoque en personalización terapéutica e inmunoterapia.',
+    image: doctor3,
+    bg: '#0199C6',
+  },
+  {
+    id: 'featured-carlos',
+    name: 'Dr. Carlos Oleachea Matto',
+    specialty: 'Cirugía de Cabeza y Cuello',
+    reg: 'CMP 018493 | RNE 029918',
+    description:
+      'Especialista en patologías complejas de alta precisión anatómica.',
+    image: doctor5,
+    bg: '#0199C6',
+  },
 ]
 
-const N = doctors.length
-const tripled = [...doctors, ...doctors, ...doctors]
-const CARD_WIDTH = 322 
+const FEATURED_KEYS = FEATURED.map((d) =>
+  d.name.toLowerCase().replace(/^dra?\.?\s+/, '').split(/\s+/).slice(0, 2).join(' ')
+)
+
+function isFeatured(name = '') {
+  const lower = name.toLowerCase()
+  return FEATURED_KEYS.some((key) => lower.includes(key))
+}
+
+function buildDescription(doc) {
+  if (doc.bio?.trim()) {
+    const clean = doc.bio.replace(/\s+/g, ' ').trim()
+    return clean.length > 180 ? clean.slice(0, 177).trimEnd() + '…' : clean
+  }
+  const parts = []
+  if (doc.specialty) parts.push(doc.specialty)
+  if (doc.careType) parts.push(doc.careType)
+  return parts.join(' · ') || 'Especialista del staff médico de Detecta.'
+}
+
+function buildReg(doc) {
+  const parts = []
+  if (doc.cmp) parts.push(`CMP ${doc.cmp}`)
+  const rne = (doc.specialties ?? []).map((s) => s?.rne).filter(Boolean)
+  if (rne.length) parts.push(`RNE ${rne.join(' / ')}`)
+  return parts.join(' | ') || '—'
+}
 
 export default function StaffMedicoV4() {
-  const [virtIdx, setVirtIdx] = useState(N)
+  const { doctors: apiDoctors } = useStaffDoctors({ pageSize: TOTAL_LIMIT })
+
+  const doctors = useMemo(() => {
+    const apiList = (apiDoctors ?? [])
+      .filter((d) => d?.name && !isFeatured(d.name))
+      .map((d, i) => ({
+        id: d.id ?? `api-${i}`,
+        name: d.name.trim(),
+        specialty: d.specialty || d.careType || 'Especialista',
+        reg: buildReg(d),
+        description: buildDescription(d),
+        image: getFileUrl(d.image),
+        bg: '#0199C6',
+      }))
+    return [...FEATURED, ...apiList].slice(0, TOTAL_LIMIT)
+  }, [apiDoctors])
+
+  const N = doctors.length
+  const tripled = useMemo(() => [...doctors, ...doctors, ...doctors], [doctors])
+
+  const [virtIdx, setVirtIdx] = useState(FEATURED.length)
   const [animated, setAnimated] = useState(true)
   const [paused, setPaused] = useState(false)
   const isJumping = useRef(false)
+  const prevN = useRef(N)
 
-  const activeIndex = virtIdx % N
-
-  const handleCardClick = (clickedRealIdx) => {
-    if (isJumping.current) return
-    const diff = clickedRealIdx - activeIndex
-    setVirtIdx(virtIdx + diff)
-  }
-
-  const nextDoctor = useCallback(() => {
-    if (isJumping.current) return
-    setVirtIdx(prev => prev + 1)
-  }, [])
-
-  const prevDoctor = useCallback(() => {
-    if (isJumping.current) return
-    setVirtIdx(prev => prev - 1)
-  }, [])
-
+  // Sync virtIdx when N changes (API loads -> N grows)
   useEffect(() => {
+    if (N === 0) return
+    if (prevN.current !== N) {
+      isJumping.current = true
+      setAnimated(false)
+      setVirtIdx(N)
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          setAnimated(true)
+          isJumping.current = false
+        })
+      )
+      prevN.current = N
+    }
+  }, [N])
+
+  // Wrap-around at edges of the middle copy
+  useEffect(() => {
+    if (N === 0 || prevN.current !== N) return
     if (virtIdx >= N * 2 || virtIdx < N) {
       isJumping.current = true
       const t = setTimeout(() => {
         setAnimated(false)
-        setVirtIdx(N + (virtIdx % N))
-        requestAnimationFrame(() => {
+        setVirtIdx(N + (((virtIdx % N) + N) % N))
+        requestAnimationFrame(() =>
           requestAnimationFrame(() => {
             setAnimated(true)
             isJumping.current = false
           })
-        })
+        )
       }, 700)
       return () => clearTimeout(t)
     }
-  }, [virtIdx])
+  }, [virtIdx, N])
+
+  const activeIndex = N > 0 ? ((virtIdx % N) + N) % N : 0
+  const active = doctors[activeIndex]
+
+  const handleCardClick = (clickedRealIdx) => {
+    if (isJumping.current || N === 0) return
+    const diff = clickedRealIdx - activeIndex
+    setVirtIdx((prev) => prev + diff)
+  }
+
+  const nextDoctor = useCallback(() => {
+    if (isJumping.current || N === 0) return
+    setVirtIdx((prev) => prev + 1)
+  }, [N])
+
+  const prevDoctor = useCallback(() => {
+    if (isJumping.current || N === 0) return
+    setVirtIdx((prev) => prev - 1)
+  }, [N])
 
   const sectionRef = useRef(null)
-  const isInView = useInView(sectionRef, { once: true, margin: "-100px" })
+  const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
   return (
     <section
@@ -86,26 +188,24 @@ export default function StaffMedicoV4() {
         background: 'linear-gradient(100deg, #ffffff 0%, #EEFBFF 50%, #DCF1F8 100%)',
       }}
     >
-      {/* Decoración de fondo */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full bg-[#52C0E1]/15 blur-[120px]" />
         <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full bg-[#0199C6]/10 blur-[140px]" />
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage:
-              'radial-gradient(circle at 1px 1px, #0070A5 1px, transparent 0)',
+            backgroundImage: 'radial-gradient(circle at 1px 1px, #0070A5 1px, transparent 0)',
             backgroundSize: '32px 32px',
           }}
         />
       </div>
+
       <motion.div
         className="max-w-[1400px] mx-auto w-full h-full flex flex-col relative z-10"
         initial={{ opacity: 0, y: 40 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
-        {/* Header */}
         <div className="flex justify-between items-start w-full mb-6">
           <div>
             <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-4">NUESTRO STAFF</p>
@@ -124,13 +224,12 @@ export default function StaffMedicoV4() {
         </div>
 
         <div className="grid lg:grid-cols-[1fr_2.5fr] gap-32 items-center flex-grow pb-4">
-          
-          {/* Panel Izquierdo: Info Detallada */}
+          {/* Panel Izquierdo */}
           <div className="flex flex-col h-[430px] justify-end pb-4">
             <p className="text-[9px] tracking-[0.3em] uppercase text-[#0199C6] font-bold mb-8">PERFIL PROFESIONAL</p>
             <AnimatePresence mode="wait">
               <motion.div
-                key={activeIndex}
+                key={active?.id ?? activeIndex}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -138,20 +237,20 @@ export default function StaffMedicoV4() {
               >
                 <div>
                   <h3 className="text-3xl font-normal text-slate-900 leading-tight uppercase tracking-tight">
-                    {doctors[activeIndex].name}
+                    {active?.name}
                   </h3>
                   <p className="text-xs text-[#0199C6] font-medium mt-1 uppercase tracking-wider">
-                    {doctors[activeIndex].specialty}
+                    {active?.specialty}
                   </p>
                 </div>
                 <p className="text-sm font-light text-slate-500 leading-relaxed max-w-[280px]">
-                  {doctors[activeIndex].description}
+                  {active?.description}
                 </p>
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* Carrusel: Con especialidad y registro en card */}
+          {/* Carrusel */}
           <div className="relative overflow-hidden h-[430px] flex items-center" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
             <div
               className="flex gap-8"
@@ -164,20 +263,25 @@ export default function StaffMedicoV4() {
                 const isActive = index === virtIdx
                 return (
                   <div
-                    key={index}
+                    key={`${doctor.id}-${index}`}
                     onClick={() => handleCardClick(index % N)}
                     className={`relative flex-shrink-0 w-[290px] h-[430px] rounded-[40px] overflow-hidden transition-all duration-700 cursor-pointer ${
                       isActive ? 'scale-100 shadow-xl shadow-blue-900/10' : 'scale-[0.9] opacity-20 grayscale'
                     }`}
                     style={{ backgroundColor: doctor.bg }}
                   >
-                    <img 
-                      src={doctor.image} 
-                      alt={doctor.name} 
-                      className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[92%] object-contain pointer-events-none transition-transform duration-700 hover:scale-105" 
-                    />
-                    
-                    {/* Overlay con Información */}
+                    {doctor.image ? (
+                      <img
+                        src={doctor.image}
+                        alt={doctor.name}
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[92%] object-contain pointer-events-none transition-transform duration-700 hover:scale-105"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-white/60 text-xs uppercase tracking-widest">
+                        Sin foto
+                      </div>
+                    )}
+
                     <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/40 to-transparent">
                       <div className="border-l-2 border-[#0199C6] pl-4 text-white">
                         <h4 className="text-xs font-bold uppercase tracking-wide leading-tight">
@@ -195,7 +299,7 @@ export default function StaffMedicoV4() {
           </div>
         </div>
 
-        {/* Navegación Inferior */}
+        {/* Navegación */}
         <div className="flex items-center justify-between mt-auto pb-12 w-full">
           <div className="flex items-center gap-5">
             <span className="text-[10px] font-bold text-[#0070A5] tracking-[0.4em]">{String(activeIndex + 1).padStart(2, '0')}</span>

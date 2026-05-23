@@ -6,7 +6,7 @@ import { ArrowUpRight, ExternalLink, FileText } from 'lucide-react'
 import heroVideo1 from '../../assets/herobg.mp4'
 import heroVideo2 from '../../assets/herobg1.mp4'
 import heroVideo3 from '../../assets/herobg2.mp4'
-import heroVideo4 from '../../assets/herobg3.mov'
+const heroVideo4 = `${import.meta.env.VITE_BASE_IMAGE_URL}home-videos/hero1.mp4`
 import portada1 from '../../assets/portada1.webp'
 import portada2 from '../../assets/portada2.webp'
 import portada3 from '../../assets/portada3.webp'
@@ -424,8 +424,8 @@ export default function HeroV4() {
       ))}
 
       {/* Overlays */}
-      <div className={`absolute inset-0 z-10 transition-colors duration-700 ${slide.isResearch ? 'bg-gray-950/65' : 'bg-gray-950/45'}`} />
-      <div className="absolute bottom-0 left-0 right-0 h-64 bg-linear-to-t from-gray-950/40 to-transparent z-10" />
+      <div className={`absolute inset-0 z-10 transition-colors duration-700 ${slide.isResearch ? 'bg-gray-950/40' : 'bg-gray-950/25'}`} />
+      <div className="absolute bottom-0 left-0 right-0 h-64 bg-linear-to-t from-gray-950/25 to-transparent z-10" />
 
       {/* Contenido */}
       <div className="relative z-20 grow flex items-center">
