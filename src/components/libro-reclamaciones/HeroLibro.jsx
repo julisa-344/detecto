@@ -39,16 +39,6 @@ export default function HeroLibro() {
             según lo dispuesto por la normativa vigente.
           </p>
 
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 text-[11px] font-medium uppercase tracking-[0.24em] text-white/60">
-            <span className="inline-flex items-center gap-2">
-              <BookOpen className="h-3.5 w-3.5" />
-              Decreto Supremo N.° 011-2011-PCM
-            </span>
-            <span className="inline-flex items-center gap-2">
-              <ShieldCheck className="h-3.5 w-3.5" />
-              Indecopi · Defensa del consumidor
-            </span>
-          </div>
         </motion.div>
       </div>
 

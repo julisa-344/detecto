@@ -53,4 +53,4 @@ export const MARQUEE_ITEMS = [
   'Indecopi',
 ]
 
-export const HERO_BG = `${import.meta.env.VITE_BASE_IMAGE_URL}libro-reclamaciones/hero.jpg`
+export const HERO_BG = `${import.meta.env.VITE_BASE_IMAGE_URL}gestion-etica/libroReclamaciones.jpg`
