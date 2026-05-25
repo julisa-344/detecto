@@ -275,6 +275,14 @@ export default function RocketReveal({
 
   useEffect(() => {
     if (!inView) return
+    // Snap inmediato al tope de la sección (sin smooth, sin permitir scroll
+    // intermedio). Cuando termine la animación, el usuario quedará justo
+    // mirando el bloque del Aplicativo.
+    if (ref.current) {
+      const rect = ref.current.getBoundingClientRect()
+      const targetY = window.scrollY + rect.top
+      window.scrollTo({ top: targetY, behavior: 'auto' })
+    }
     const timers = [
       setTimeout(() => setPhase('hover'),  hoverAt),
       setTimeout(() => setPhase('launch'), launchAt),
@@ -287,15 +295,58 @@ export default function RocketReveal({
   const revealed = phase === 'reveal' || phase === 'done'
   const animating = phase !== 'idle' && phase !== 'done'
 
-  // Bloquear el scroll del body mientras la animación cubre todo el viewport
+  // Lock TOTAL del scroll mientras dura la animación.
+  // CSS overflow:hidden no es 100% confiable en mobile, así que también
+  // capturamos wheel/touchmove/teclas con preventDefault.
+  const lockScroll = inView && phase !== 'done'
   useEffect(() => {
-    if (!animating) return
-    const original = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => {
-      document.body.style.overflow = original
+    if (!lockScroll) return
+
+    const scrollY = window.scrollY
+    const html = document.documentElement
+    const body = document.body
+    const orig = {
+      htmlOverflow: html.style.overflow,
+      bodyOverflow: body.style.overflow,
+      bodyPosition: body.style.position,
+      bodyTop: body.style.top,
+      bodyWidth: body.style.width,
+      bodyTouch: body.style.touchAction,
     }
-  }, [animating])
+
+    html.style.overflow = 'hidden'
+    body.style.overflow = 'hidden'
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.width = '100%'
+    body.style.touchAction = 'none'
+
+    const prevent = (e) => e.preventDefault()
+    const SCROLL_KEYS = new Set([
+      'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
+      'PageUp', 'PageDown', 'Home', 'End', ' ', 'Spacebar',
+    ])
+    const preventKey = (e) => {
+      if (SCROLL_KEYS.has(e.key)) e.preventDefault()
+    }
+
+    window.addEventListener('wheel', prevent, { passive: false })
+    window.addEventListener('touchmove', prevent, { passive: false })
+    window.addEventListener('keydown', preventKey, { passive: false })
+
+    return () => {
+      html.style.overflow = orig.htmlOverflow
+      body.style.overflow = orig.bodyOverflow
+      body.style.position = orig.bodyPosition
+      body.style.top = orig.bodyTop
+      body.style.width = orig.bodyWidth
+      body.style.touchAction = orig.bodyTouch
+      window.scrollTo({ top: scrollY, behavior: 'auto' })
+      window.removeEventListener('wheel', prevent)
+      window.removeEventListener('touchmove', prevent)
+      window.removeEventListener('keydown', preventKey)
+    }
+  }, [lockScroll])
 
   return (
     <RevealCtx.Provider value={{ revealed, phase }}>

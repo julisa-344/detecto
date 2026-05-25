@@ -135,7 +135,7 @@ const slides = [
     label: 'Investigación Clínica',
     headline: ['Innovación que marca', 'un hito en el Perú'],
     highlight: 1,
-    sub: 'Nuestros estudios forman parte de publicaciones internacionales orientadas a mejorar la atención del paciente oncológico.',
+    sub: '',
     cta: 'Ver todas las publicaciones',
     isResearch: true,
   },
