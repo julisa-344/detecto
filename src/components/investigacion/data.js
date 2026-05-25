@@ -13,10 +13,12 @@ import {
 } from 'lucide-react'
 
 import insImg from '../../assets/ins.webp'
-import staffImg from '../../assets/staff.webp'
 import ensayosImg from '../../assets/ensayosClínicos.jpg'
 import eticaImg from '../../assets/eticajpg.jpg'
 import tecnologiaImg from '../../assets/tecnologia.jpg'
+
+const BASE = import.meta.env.VITE_BASE_IMAGE_URL
+const staffImg = `${BASE}investigacion/staff.png`
 
 export const investigacionImages = {
   centro: insImg,

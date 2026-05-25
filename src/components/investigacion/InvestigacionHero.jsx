@@ -2,7 +2,8 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, MessageCircle } from 'lucide-react'
 import { fadeUp, HeroMarquee } from '../specialty'
-import heroVideo from '../../assets/investigacion.mp4'
+
+const heroVideo = `${import.meta.env.VITE_BASE_IMAGE_URL}investigacion/investigacionBanner.mp4`
 
 export default function InvestigacionHero() {
   return (
