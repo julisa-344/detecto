@@ -180,20 +180,20 @@ export default function FooterV4({ showCTA = true }) {
               <div className="flex flex-col gap-4">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.32em] text-primary-dark">Servicios</h3>
                 <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Diagnóstico Precisión</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Oncología</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Select Staff</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Telemedicina</a></li>
+                  <li><Link to="/v4/oncologia-medica" className="hover:text-primary-dark transition-colors">Oncología Médica</Link></li>
+                  <li><Link to="/v4/diagnostico-imagenes" className="hover:text-primary-dark transition-colors">Diagnóstico por Imágenes</Link></li>
+                  <li><Link to="/v4/laboratorio-clinico" className="hover:text-primary-dark transition-colors">Laboratorio Clínico</Link></li>
+                  <li><Link to="/v4/hospitalizacion" className="hover:text-primary-dark transition-colors">Hospitalización</Link></li>
                 </ul>
               </div>
 
               <div className="flex flex-col gap-4">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.32em] text-primary-dark">Nosotros</h3>
                 <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Sobre Detecta</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Investigación</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Sostenibilidad</a></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Trabaja con nosotros</a></li>
+                  <li><Link to="/v4/sobre-detecta" className="hover:text-primary-dark transition-colors">Sobre Detecta</Link></li>
+                  <li><Link to="/v4/staff-medico" className="hover:text-primary-dark transition-colors">Staff Médico</Link></li>
+                  <li><Link to="/v4/investigacion" className="hover:text-primary-dark transition-colors">Investigación</Link></li>
+                  <li><Link to="/v4/comite-etica" className="hover:text-primary-dark transition-colors">Comité de Ética</Link></li>
                 </ul>
               </div>
 
@@ -222,10 +222,10 @@ export default function FooterV4({ showCTA = true }) {
               <div className="flex flex-col gap-4">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.32em] text-primary-dark">Legal</h3>
                 <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
-                  <li><Link to="/v4/terminos-y-condiciones#proteccion-datos" className="hover:text-primary-dark transition-colors">Privacidad</Link></li>
-                  <li><Link to="/v4/terminos-y-condiciones#terminos" className="hover:text-primary-dark transition-colors">Términos y Condiciones</Link></li>
+                  <li><Link to="/v4/privacidad" className="hover:text-primary-dark transition-colors">Privacidad</Link></li>
+                  <li><Link to="/v4/terminos-y-condiciones" className="hover:text-primary-dark transition-colors">Términos y Condiciones</Link></li>
                   <li><Link to="/v4/libro-reclamaciones" className="hover:text-primary-dark transition-colors">Libro de Reclamaciones</Link></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Cookies</a></li>
+                  <li><Link to="/v4/contacto" className="hover:text-primary-dark transition-colors">Contacto</Link></li>
                 </ul>
               </div>
             </motion.div>

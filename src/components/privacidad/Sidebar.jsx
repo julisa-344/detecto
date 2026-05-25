@@ -1,9 +1,33 @@
 import { TOC } from './data'
 
+const SCROLLBAR_CSS = `
+  .privacidad-sidebar-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--brand-med) / 0.35) transparent;
+    scrollbar-gutter: stable;
+  }
+  .privacidad-sidebar-scroll::-webkit-scrollbar {
+    width: 6px;
+  }
+  .privacidad-sidebar-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 8px 0;
+  }
+  .privacidad-sidebar-scroll::-webkit-scrollbar-thumb {
+    background: rgb(var(--brand-med) / 0.25);
+    border-radius: 999px;
+    transition: background .2s;
+  }
+  .privacidad-sidebar-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--brand-base) / 0.6);
+  }
+`
+
 export default function Sidebar({ activeId }) {
   return (
     <aside className="hidden lg:block">
-      <div className="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto space-y-7 rounded-3xl border border-[rgb(var(--brand-med)/0.2)] bg-white/80 p-6 backdrop-blur-xl shadow-[0_20px_50px_-20px_rgb(var(--brand-med)/0.18)]">
+      <style>{SCROLLBAR_CSS}</style>
+      <div className="privacidad-sidebar-scroll sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto space-y-7 rounded-3xl border border-[rgb(var(--brand-med)/0.2)] bg-white/80 p-6 pr-3 backdrop-blur-xl shadow-[0_20px_50px_-20px_rgb(var(--brand-med)/0.18)]">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[0.32em] text-[rgb(var(--brand-base))]">
             Índice

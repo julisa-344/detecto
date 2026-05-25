@@ -62,6 +62,7 @@ import PulmoScan from './pages/PulmoScan'
 import Login from './pages/Login'
 import TerminosCondiciones from './pages/TerminosCondiciones'
 import LibroReclamaciones from './pages/LibroReclamaciones'
+import Privacidad from './pages/Privacidad'
 import ScrollToTop from './components/ScrollToTop'
 
 createRoot(document.getElementById('root')).render(
@@ -130,6 +131,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login />} />
         <Route path="/v4/terminos-y-condiciones" element={<TerminosCondiciones />} />
         <Route path="/v4/libro-reclamaciones" element={<LibroReclamaciones />} />
+        <Route path="/v4/privacidad" element={<Privacidad />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

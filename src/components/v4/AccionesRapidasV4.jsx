@@ -99,12 +99,12 @@ export default function AccionesRapidasV4() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="flex flex-col items-center lg:items-start text-center lg:text-left lg:h-full"
+            className="flex flex-col items-center lg:items-start text-center lg:text-left lg:h-full lg:justify-center"
           >
             <motion.div
               animate={{ scale: [1, 1.05, 1], y: [0, -20, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-              className="relative w-155 h-155 lg:w-full lg:h-auto lg:max-w-234 lg:aspect-square lg:flex-1 lg:min-h-0 mb-2 mx-auto"
+              className="relative w-155 h-155 lg:w-full lg:h-auto lg:max-w-120 lg:aspect-square mb-2 mx-auto"
             >
               {actions.map((a) => {
                 const isCurrent = (activeKey ?? 'agendar') === a.key

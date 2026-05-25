@@ -1,0 +1,5 @@
+export { default as HeroPrivacidad } from './HeroPrivacidad'
+export { default as Sidebar } from './Sidebar'
+export { default as Seccion } from './Seccion'
+export { default as useActiveSection } from '../terminos-condiciones/useActiveSection'
+export * from './data'

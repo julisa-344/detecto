@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { motion, animate, useInView } from 'framer-motion'
+import { motion, animate, useInView, AnimatePresence } from 'framer-motion'
 import mockHome from '../../assets/home.webp'
 import mockTipocita from '../../assets/tipocita.webp'
 import mockDoctores from '../../assets/doctores.webp'
@@ -100,6 +100,149 @@ const getMockupVariants = (offset) => ({
   left: { x: -offset, scale: 0.82, zIndex: 5, opacity: 0.35 },
   right: { x: offset, scale: 0.82, zIndex: 5, opacity: 0.35 },
 })
+
+// Lista (fake) de especialidades y subespecialidades agrupadas
+const ESPECIALIDADES_GROUPS = [
+  {
+    name: 'Oncología',
+    items: [
+      'Oncología Médica',
+      'Oncología Cabeza y Cuello',
+      'Oncología Pediátrica',
+      'Mastología y Ginecología',
+      'Ginecología Oncológica',
+      'Urología Oncológica',
+      'Psicooncología',
+    ],
+  },
+  {
+    name: 'Diagnóstico',
+    items: [
+      'Diagnóstico por Imágenes',
+      'Laboratorio Clínico',
+      'Anatomía Patológica',
+      'Radiología Intervencionista',
+    ],
+  },
+  {
+    name: 'Medicina Interna',
+    items: [
+      'Enfermedades Infecciosas',
+      'Geriatría',
+      'Endocrinología',
+      'Gastroenterología',
+      'Hematología',
+      'Nefrología',
+      'Neumología',
+    ],
+  },
+  {
+    name: 'Cirugía',
+    items: [
+      'Cirugía Plástica',
+      'Neurocirugía',
+      'Coloproctología',
+      'Traumatología',
+      'Sala de Operaciones',
+    ],
+  },
+  {
+    name: 'Salud de la mujer y niño',
+    items: ['Ginecología y Obstetricia', 'Pediatría'],
+  },
+  {
+    name: 'Salud mental',
+    items: ['Psicología', 'Psiquiatría'],
+  },
+  {
+    name: 'Otras especialidades',
+    items: [
+      'Dermatología',
+      'Oftalmología',
+      'Otorrinolaringología',
+      'Odontología',
+      'Urología',
+      'Medicina Física',
+      'Medicina General',
+    ],
+  },
+]
+
+function MetricCard({ stat, idx }) {
+  const [open, setOpen] = useState(false)
+  const closeTimer = useRef(null)
+
+  const handleEnter = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current)
+    if (stat.list) setOpen(true)
+  }
+  const handleLeave = () => {
+    if (!stat.list) return
+    closeTimer.current = setTimeout(() => setOpen(false), 120)
+  }
+
+  return (
+    <motion.div
+      className={`relative text-center ${idx === 2 ? 'col-span-2 lg:col-span-1' : ''}`}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: idx * 0.15 }}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+    >
+      <div className={stat.list ? 'cursor-default' : ''}>
+        <h3 className="text-4xl lg:text-5xl font-light text-primary-medium mb-2 tracking-tighter">
+          <NumberCounter value={stat.value} prefix={stat.prefix} />
+        </h3>
+        <p className="text-sm font-medium uppercase tracking-widest text-slate-400">
+          {stat.label}
+        </p>
+        {stat.list && (
+          <span className="mt-2 inline-block text-[10px] font-semibold tracking-[0.22em] uppercase text-primary-medium/70">
+          </span>
+        )}
+      </div>
+
+      <AnimatePresence>
+        {open && stat.list && (
+          <motion.div
+            key="popover"
+            initial={{ opacity: 0, y: 10, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.98 }}
+            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+            className="absolute left-1/2 top-full z-30 mt-4 w-[min(640px,92vw)] -translate-x-1/2 rounded-3xl border border-slate-100 bg-white p-6 text-left shadow-[0_30px_60px_-25px_rgba(0,112,165,0.25)]"
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
+          >
+            <span className="pointer-events-none absolute left-1/2 -top-2 h-4 w-4 -translate-x-1/2 rotate-45 border-l border-t border-slate-100 bg-white" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 max-h-[60vh] overflow-y-auto pr-1">
+              {stat.list.map((group) => (
+                <div key={group.name}>
+                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-dark">
+                    {group.name}
+                  </h4>
+                  <ul className="mt-2 space-y-1.5">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className="text-[12.5px] font-light leading-snug text-slate-500"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
 
 // Componente de Contador optimizado para activarse al hacer scroll
 function NumberCounter({ value, prefix = "", suffix = "" }) {
@@ -270,25 +413,18 @@ export default function AppDetectaV4() {
         </RocketReveal>
 
         {/* Sección de Métricas: Animación escalonada */}
-        <div className="pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="relative pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { value: "8", label: "Años de experiencia", prefix: "+" },
-            { value: "35", label: "Especialidades", prefix: "+" },
-            { value: "100000", label: "Pacientes atendidos", prefix: "" },
+            { value: '8', label: 'Años de experiencia', prefix: '+' },
+            {
+              value: '35',
+              label: 'Especialidades y subespecialidades',
+              prefix: '+',
+              list: ESPECIALIDADES_GROUPS,
+            },
+            { value: '100000', label: 'Pacientes atendidos', prefix: '' },
           ].map((stat, idx) => (
-            <motion.div
-              key={idx}
-              className={`text-center ${idx === 2 ? 'col-span-2 lg:col-span-1' : ''}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }} // Staggered delay
-            >
-              <h3 className="text-4xl lg:text-5xl font-light text-[#0199C6] mb-2 tracking-tighter">
-                <NumberCounter value={stat.value} prefix={stat.prefix} />
-              </h3>
-              <p className="text-sm font-medium uppercase tracking-[0.1em] text-slate-400">{stat.label}</p>
-            </motion.div>
+            <MetricCard key={idx} stat={stat} idx={idx} />
           ))}
         </div>
       </div>
