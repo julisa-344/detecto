@@ -266,10 +266,11 @@ export default function RocketReveal({
   launchAt = 1100,
   revealAt = 1800,
   doneAt   = 2900,
-  amount   = 0.7,
+  amount   = 0.15,
+  margin   = '0px 0px -200px 0px',
 }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, amount })
+  const inView = useInView(ref, { once: true, amount, margin })
   const [phase, setPhase] = useState('idle')
 
   useEffect(() => {
