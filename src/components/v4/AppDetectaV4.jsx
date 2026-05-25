@@ -394,7 +394,7 @@ function MetricCard({ stat, idx }) {
 
   return (
     <motion.div
-      className={`relative text-center ${idx === 2 ? 'col-span-2 lg:col-span-1' : ''}`}
+      className="relative text-center"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -412,7 +412,7 @@ function MetricCard({ stat, idx }) {
         >
           <NumberCounter value={stat.value} prefix={stat.prefix} />
         </h3>
-        <p className="text-sm font-medium uppercase tracking-widest text-slate-400">
+        <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.18em] sm:tracking-widest text-slate-400 wrap-break-word px-2">
           {stat.label}
         </p>
         {stat.catalogo && (
@@ -605,7 +605,7 @@ export default function AppDetectaV4() {
         </RocketReveal>
 
         {/* Sección de Métricas: Animación escalonada */}
-        <div className="relative pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="relative pt-12 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-3 gap-10 sm:gap-8">
           {[
             { value: '8', label: 'Años de experiencia', prefix: '+' },
             {
