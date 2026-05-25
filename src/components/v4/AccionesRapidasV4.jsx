@@ -48,6 +48,7 @@ const actions = [
     bg: '#D6EFF5',
     hoverImage: detectoRosa,
     href: '/v4/preventivo-rosa',
+    imageScale: 1.23,
   },
   {
     key: 'azul',
@@ -103,10 +104,11 @@ export default function AccionesRapidasV4() {
             <motion.div
               animate={{ scale: [1, 1.05, 1], y: [0, -20, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-              className="relative w-80 h-80 lg:w-full lg:h-auto lg:max-w-[636px] lg:flex-1 lg:min-h-0 mb-2 mx-auto"
+              className="relative w-155 h-155 lg:w-full lg:h-auto lg:max-w-234 lg:aspect-square lg:flex-1 lg:min-h-0 mb-2 mx-auto"
             >
               {actions.map((a) => {
                 const isCurrent = (activeKey ?? 'agendar') === a.key
+                const baseScale = a.imageScale ?? 1
                 return (
                   <motion.img
                     key={a.key}
@@ -114,7 +116,10 @@ export default function AccionesRapidasV4() {
                     alt="Detecto"
                     loading="eager"
                     decoding="async"
-                    animate={{ opacity: isCurrent ? 1 : 0, scale: isCurrent ? 1 : 0.97 }}
+                    animate={{
+                      opacity: isCurrent ? 1 : 0,
+                      scale: isCurrent ? baseScale : baseScale * 0.97,
+                    }}
                     transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0 w-full h-full object-contain"
                     style={{ pointerEvents: isCurrent ? 'auto' : 'none' }}
@@ -149,7 +154,7 @@ export default function AccionesRapidasV4() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-5 content-start"
           >
             {actions.map((action) => {
               const isActive = activeKey === action.key
