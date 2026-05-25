@@ -57,7 +57,7 @@ export default function QuienesSomos() {
             </p>
             <h2 className="text-4xl lg:text-5xl font-light text-slate-900 tracking-tighter leading-[1.05]">
               Experiencia y dedicación en{' '}
-              <span className="italic text-primary-dark">
+              <span className=" text-primary-dark">
                 atención especializada.
               </span>
             </h2>

@@ -17,8 +17,8 @@ const LAUNCH_DATE = new Date('2026-06-12T00:00:00')
 
 function getTimeLeft(target) {
   const diff = Math.max(0, target.getTime() - Date.now())
-  const days    = Math.floor(diff / (1000 * 60 * 60 * 24))
-  const hours   = Math.floor((diff / (1000 * 60 * 60)) % 24)
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
   const minutes = Math.floor((diff / (1000 * 60)) % 60)
   const seconds = Math.floor((diff / 1000) % 60)
   return { days, hours, minutes, seconds, finished: diff === 0 }
@@ -33,8 +33,8 @@ function CountdownLaunch() {
   }, [])
 
   const units = [
-    { value: t.days,    label: 'Días' },
-    { value: t.hours,   label: 'Horas' },
+    { value: t.days, label: 'Días' },
+    { value: t.hours, label: 'Horas' },
     { value: t.minutes, label: 'Min' },
     { value: t.seconds, label: 'Seg' },
   ]
@@ -101,85 +101,296 @@ const getMockupVariants = (offset) => ({
   right: { x: offset, scale: 0.82, zIndex: 5, opacity: 0.35 },
 })
 
-// Lista (fake) de especialidades y subespecialidades agrupadas
-const ESPECIALIDADES_GROUPS = [
-  {
-    name: 'Oncología',
-    items: [
-      'Oncología Médica',
-      'Oncología Cabeza y Cuello',
-      'Oncología Pediátrica',
-      'Mastología y Ginecología',
-      'Ginecología Oncológica',
-      'Urología Oncológica',
-      'Psicooncología',
-    ],
-  },
-  {
-    name: 'Diagnóstico',
-    items: [
-      'Diagnóstico por Imágenes',
-      'Laboratorio Clínico',
-      'Anatomía Patológica',
-      'Radiología Intervencionista',
-    ],
-  },
-  {
-    name: 'Medicina Interna',
-    items: [
-      'Enfermedades Infecciosas',
-      'Geriatría',
-      'Endocrinología',
-      'Gastroenterología',
-      'Hematología',
-      'Nefrología',
-      'Neumología',
-    ],
-  },
-  {
-    name: 'Cirugía',
-    items: [
-      'Cirugía Plástica',
-      'Neurocirugía',
-      'Coloproctología',
-      'Traumatología',
-      'Sala de Operaciones',
-    ],
-  },
-  {
-    name: 'Salud de la mujer y niño',
-    items: ['Ginecología y Obstetricia', 'Pediatría'],
-  },
-  {
-    name: 'Salud mental',
-    items: ['Psicología', 'Psiquiatría'],
-  },
-  {
-    name: 'Otras especialidades',
-    items: [
-      'Dermatología',
-      'Oftalmología',
-      'Otorrinolaringología',
-      'Odontología',
-      'Urología',
-      'Medicina Física',
-      'Medicina General',
-    ],
-  },
-]
+// Catálogo médico real
+const CATALOGO_MEDICO = {
+  especialidades: [
+    'Cirugía Oncológica de Mamas, Tejidos Blandos y Piel',
+    'Coloproctología',
+    'Ginecología Oncológica',
+    'Radiología Intervencionista',
+    'Urología Oncológica',
+  ],
+  subespecialidades: [
+    'Anatomía Patológica',
+    'Anestesiología',
+    'Cardiología',
+    'Cirugía de Cabeza y Cuello',
+    'Cirugía de Colon y Recto',
+    'Cirugía General',
+    'Cirugía General y Oncológica',
+    'Cirugía Hepatopancreatobiliar y Transplante',
+    'Cirugía Oncológica',
+    'Cirugía Oncológica Abdominal',
+    'Cirugía Oncológica de Cabeza y Cuello',
+    'Cirugía Pediátrica',
+    'Cirugía Plástica y Reparadora',
+    'Cirugía Torácica y Cardiovascular',
+    'Dermatología',
+    'Endocrinología',
+    'Enfermedades Infecciosas y Tropicales',
+    'Gastroenterología',
+    'Geriatría',
+    'Ginecología y Obstetricia',
+    'Hematología',
+    'Infectología',
+    'Mastología / Gineco Onco',
+    'Medicina Física y Rehabilitación',
+    'Medicina General',
+    'Medicina Intensiva',
+    'Medicina Interna',
+    'Medicina Nuclear',
+    'Medicina Oncológica',
+    'Nefrología',
+    'Neonatología',
+    'Neumología',
+    'Neurocirugía',
+    'Neurología',
+    'Nutrición',
+    'Odontología',
+    'Oftalmología',
+    'Oftalmología Oncológica',
+    'Oncología Médica',
+    'Oncología Pediátrica',
+    'Oncología Quirúrgica',
+    'Otorrinolaringología',
+    'Pediatría',
+    'Psicología',
+    'Psicología Oncológica',
+    'Psiquiatría',
+    'Radiología',
+    'Radioterapia',
+    'Reumatología',
+    'Traumatología y Ortopedia',
+    'Urología General',
+  ],
+}
+
+const TOTAL_CATALOGO =
+  CATALOGO_MEDICO.especialidades.length + CATALOGO_MEDICO.subespecialidades.length
+
+const CATALOGO_SCROLL_CSS = `
+  .catalogo-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--brand-med) / 0.4) transparent;
+    scrollbar-gutter: stable;
+  }
+  .catalogo-scroll::-webkit-scrollbar { width: 6px; }
+  .catalogo-scroll::-webkit-scrollbar-track { background: transparent; margin: 8px 0; }
+  .catalogo-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgb(var(--brand-base) / 0.5), rgb(var(--brand-med) / 0.4));
+    border-radius: 999px;
+    transition: background .2s;
+  }
+  .catalogo-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgb(var(--brand-base) / 0.8), rgb(var(--brand-med) / 0.7));
+  }
+`
+
+function CatalogoModal({ catalogo, onClose }) {
+  const [tab, setTab] = useState('all') // all | esp | sub
+  const [query, setQuery] = useState('')
+
+  // Cerrar con ESC + bloquear scroll del body
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose()
+    document.addEventListener('keydown', onKey)
+    const original = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = original
+    }
+  }, [onClose])
+
+  const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+  const q = norm(query.trim())
+
+  const especialidades = catalogo.especialidades.filter(
+    (n) => !q || norm(n).includes(q)
+  )
+  const subespecialidades = catalogo.subespecialidades.filter(
+    (n) => !q || norm(n).includes(q)
+  )
+
+  const visibleEsp = tab === 'sub' ? [] : especialidades
+  const visibleSub = tab === 'esp' ? [] : subespecialidades
+  const totalVisible = visibleEsp.length + visibleSub.length
+
+  const tabs = [
+    { key: 'all', label: 'Todas', count: catalogo.especialidades.length + catalogo.subespecialidades.length },
+    { key: 'esp', label: 'Especialidades', count: catalogo.especialidades.length },
+    { key: 'sub', label: 'Sub especialidades', count: catalogo.subespecialidades.length },
+  ]
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center p-0 sm:p-6"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+    >
+      <style>{CATALOGO_SCROLL_CSS}</style>
+
+      {/* Backdrop */}
+      <motion.div
+        className="absolute inset-0 bg-slate-950/55 backdrop-blur-md"
+        onClick={onClose}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      />
+
+      {/* Panel glass */}
+      <motion.div
+        initial={{ y: '100%', opacity: 0, scale: 0.98 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        exit={{ y: '100%', opacity: 0, scale: 0.98 }}
+        transition={{ type: 'spring', stiffness: 240, damping: 28 }}
+        className="relative w-full max-w-3xl max-h-[90vh] sm:max-h-[82vh] overflow-hidden flex flex-col rounded-t-3xl sm:rounded-3xl border border-white/40 shadow-[0_40px_100px_-30px_rgba(0,112,165,0.35)]"
+        style={{
+          background: 'rgba(255,255,255,0.78)',
+          backdropFilter: 'blur(28px) saturate(160%)',
+          WebkitBackdropFilter: 'blur(28px) saturate(160%)',
+        }}
+      >
+        {/* Glow decorativos */}
+        <div className="pointer-events-none absolute -top-24 -right-20 h-72 w-72 rounded-full bg-primary/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-20 h-72 w-72 rounded-full bg-primary-light/30 blur-3xl" />
+
+        {/* Drag handle (mobile) */}
+        <div className="sm:hidden flex justify-center pt-3 pb-1">
+          <span className="h-1 w-12 rounded-full bg-slate-300/70" />
+        </div>
+
+        {/* Header */}
+        <div className="relative z-10 px-6 pt-5 pb-5 sm:px-8 sm:pt-8 sm:pb-6 border-b border-white/40">
+          {/* Close button minimalista */}
+          <button
+            onClick={onClose}
+            aria-label="Cerrar"
+            className="absolute right-5 top-5 sm:right-7 sm:top-7 flex h-8 w-8 items-center justify-center text-slate-400 transition hover:text-primary-dark hover:rotate-90"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5">
+              <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
+            </svg>
+          </button>
+
+          {/* Título centrado */}
+          <div className="text-center">
+            <h3 className="text-2xl sm:text-[28px] font-light text-primary-dark">
+              Especialidades y subespecialidades
+            </h3>
+          </div>
+
+          {/* Search */}
+          <div className="relative mt-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-3.5-3.5" strokeLinecap="round" />
+            </svg>
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Buscar especialidad..."
+              className="w-full rounded-2xl border border-white/60 bg-white/70 py-2.5 pl-10 pr-4 text-[14px] font-light text-slate-700 placeholder:text-slate-400 outline-none transition focus:border-primary-medium focus:ring-2 focus:ring-primary-medium/20"
+              autoFocus
+            />
+          </div>
+
+          {/* Filtros como chips */}
+          <div className="mt-4 flex flex-wrap gap-2 justify-center">
+            {tabs.map((t) => {
+              const active = tab === t.key
+              return (
+                <button
+                  key={t.key}
+                  onClick={() => setTab(t.key)}
+                  className={`inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] transition-all ${active
+                      ? 'bg-primary-dark text-white shadow-[0_8px_20px_-8px_rgba(0,112,165,0.5)]'
+                      : 'bg-white/60 text-slate-500 border border-white/70 hover:bg-white/90 hover:text-primary-dark'
+                    }`}
+                >
+                  <span>{t.label}</span>
+                  <span
+                    className={`font-mono text-[10px] ${active ? 'text-white/70' : 'text-slate-400'
+                      }`}
+                  >
+                    {String(t.count).padStart(2, '0')}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+
+        {/* Body con scroll */}
+        <div className="catalogo-scroll relative z-10 flex-1 overflow-y-auto px-6 py-6 sm:px-8 sm:py-7">
+          {totalVisible === 0 ? (
+            <p className="py-12 text-center text-[13px] font-light text-slate-400">
+              Sin resultados para “{query}”.
+            </p>
+          ) : (
+            <div className="space-y-7">
+              {visibleEsp.length > 0 && (
+                <div>
+                  <div className="mb-4 flex items-center gap-3">
+                    <p className="text-[14px] font-bold uppercase tracking-[0.32em] text-primary-medium">
+                      Especialidades
+                    </p>
+
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                    {visibleEsp.map((name, i) => (
+                      <motion.li
+                        key={name}
+                        initial={{ opacity: 0, x: -4 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.22, delay: i * 0.01, ease: 'easeOut' }}
+                        className="group flex items-start gap-2.5 border-b border-slate-200/50 py-2 text-left text-[13px] font-light leading-snug text-slate-600 transition-colors hover:text-primary-dark"
+                      >
+                        <span className="mt-1.75 h-1 w-1 shrink-0 rounded-full bg-slate-400 transition-colors group-hover:bg-primary-medium" />
+                        <span className="flex-1 text-left">{name}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {visibleSub.length > 0 && (
+                <div>
+                  <div className="mb-4 flex items-center gap-3">
+                    <p className="text-[14px] font-bold uppercase tracking-[0.32em] text-primary-medium">
+                      Subespecialidades
+                    </p>
+                  </div>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6">
+                    {visibleSub.map((name, i) => (
+                      <motion.li
+                        key={name}
+                        initial={{ opacity: 0, x: -4 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.22, delay: i * 0.01, ease: 'easeOut' }}
+                        className="group flex items-start gap-2.5 border-b border-slate-200/50 py-2 text-left text-[13px] font-light leading-snug text-slate-600 transition-colors hover:text-primary-dark"
+                      >
+                        <span className="mt-1.75 h-1 w-1 shrink-0 rounded-full bg-slate-400 transition-colors group-hover:bg-primary-medium" />
+                        <span className="flex-1 text-left">{name}</span>
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
 
 function MetricCard({ stat, idx }) {
   const [open, setOpen] = useState(false)
-  const closeTimer = useRef(null)
-
-  const handleEnter = () => {
-    if (closeTimer.current) clearTimeout(closeTimer.current)
-    if (stat.list) setOpen(true)
-  }
-  const handleLeave = () => {
-    if (!stat.list) return
-    closeTimer.current = setTimeout(() => setOpen(false), 120)
-  }
 
   return (
     <motion.div
@@ -188,58 +399,39 @@ function MetricCard({ stat, idx }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: idx * 0.15 }}
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
     >
-      <div className={stat.list ? 'cursor-default' : ''}>
-        <h3 className="text-4xl lg:text-5xl font-light text-primary-medium mb-2 tracking-tighter">
+      <button
+        type="button"
+        onClick={() => stat.catalogo && setOpen(true)}
+        disabled={!stat.catalogo}
+        className={`block w-full text-center ${stat.catalogo ? 'cursor-pointer group' : 'cursor-default'}`}
+      >
+        <h3
+          className={`text-4xl lg:text-5xl font-light text-primary-medium mb-2 tracking-tighter transition-transform ${stat.catalogo ? 'group-hover:scale-105' : ''
+            }`}
+        >
           <NumberCounter value={stat.value} prefix={stat.prefix} />
         </h3>
         <p className="text-sm font-medium uppercase tracking-widest text-slate-400">
           {stat.label}
         </p>
-        {stat.list && (
-          <span className="mt-2 inline-block text-[10px] font-semibold tracking-[0.22em] uppercase text-primary-medium/70">
+        {stat.catalogo && (
+          <span className="mt-2 inline-flex items-center gap-1 text-[10px] font-semibold tracking-[0.22em] uppercase text-primary-medium/80 transition-colors group-hover:text-primary-dark">
+            Ver catálogo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="h-3 w-3 transition-transform group-hover:translate-x-0.5">
+              <path d="M5 12h14M13 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </span>
         )}
-      </div>
+      </button>
 
-      <AnimatePresence>
-        {open && stat.list && (
-          <motion.div
-            key="popover"
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.98 }}
-            transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="absolute left-1/2 top-full z-30 mt-4 w-[min(640px,92vw)] -translate-x-1/2 rounded-3xl border border-slate-100 bg-white p-6 text-left shadow-[0_30px_60px_-25px_rgba(0,112,165,0.25)]"
-            onMouseEnter={handleEnter}
-            onMouseLeave={handleLeave}
-          >
-            <span className="pointer-events-none absolute left-1/2 -top-2 h-4 w-4 -translate-x-1/2 rotate-45 border-l border-t border-slate-100 bg-white" />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 max-h-[60vh] overflow-y-auto pr-1">
-              {stat.list.map((group) => (
-                <div key={group.name}>
-                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary-dark">
-                    {group.name}
-                  </h4>
-                  <ul className="mt-2 space-y-1.5">
-                    {group.items.map((item) => (
-                      <li
-                        key={item}
-                        className="text-[12.5px] font-light leading-snug text-slate-500"
-                      >
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {stat.catalogo && (
+        <AnimatePresence>
+          {open && (
+            <CatalogoModal catalogo={stat.catalogo} onClose={() => setOpen(false)} />
+          )}
+        </AnimatePresence>
+      )}
     </motion.div>
   )
 }
@@ -316,8 +508,8 @@ export default function AppDetectaV4() {
   }
 
   return (
-    <section 
-      className="w-full bg-white py-24" 
+    <section
+      className="w-full bg-white py-24"
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-20">
@@ -417,10 +609,10 @@ export default function AppDetectaV4() {
           {[
             { value: '8', label: 'Años de experiencia', prefix: '+' },
             {
-              value: '35',
+              value: '50',
               label: 'Especialidades y subespecialidades',
               prefix: '+',
-              list: ESPECIALIDADES_GROUPS,
+              catalogo: CATALOGO_MEDICO,
             },
             { value: '100000', label: 'Pacientes atendidos', prefix: '' },
           ].map((stat, idx) => (
