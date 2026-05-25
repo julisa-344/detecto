@@ -61,7 +61,6 @@ export const planes = [
     badge: 'Para menores de 39 años',
     price: 'S/ 399.00',
     priceNote: '(IGV incl.)',
-    priceRegular: 'S/ 512.00',
     items: [
       'Consulta oncológica',
       'Ecografía mamaria con Shear Wave',
@@ -76,7 +75,6 @@ export const planes = [
     badge: 'Para mayores de 40 años',
     price: 'S/ 620.00',
     priceNote: '(IGV incl.)',
-    priceRegular: 'S/ 832.00',
     items: [
       'Consulta oncológica',
       'Mamografía 3D + IA',

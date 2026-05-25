@@ -78,11 +78,11 @@ function SmokePuff({ w, h, x, y, driftX, driftY, delay, tint, shape, z, phase, s
 
   // Easings curvas largas y suaves; sin ease "sharp"
   const transitions = {
-    idle:   { duration: 0.6,  ease: 'easeOut' },
-    hover:  { duration: 1.3,  ease: [0.32, 0.72, 0.36, 1] },
-    launch: { duration: 1.7,  ease: [0.4, 0.0, 0.2, 1] },
-    reveal: { duration: 1.3,  ease: [0.4, 0, 0.2, 1] },
-    done:   { duration: 0.6,  ease: 'easeIn' },
+    idle:   { duration: 0.5,  ease: 'easeOut' },
+    hover:  { duration: 1.0,  ease: [0.32, 0.72, 0.36, 1] },
+    launch: { duration: 1.3,  ease: [0.4, 0.0, 0.2, 1] },
+    reveal: { duration: 1.0,  ease: [0.4, 0, 0.2, 1] },
+    done:   { duration: 0.5,  ease: 'easeIn' },
   }
 
   // Stagger natural: el delay base + un offset chiquito según seed
@@ -130,11 +130,11 @@ function Rocket({ phase }) {
   }
 
   const transitions = {
-    idle:   { duration: 0.5 },
-    hover:  { duration: 0.9, ease: [0.16, 1, 0.3, 1] },
-    launch: { duration: 1.0, ease: [0.55, 0.05, 0.55, 1] },
-    reveal: { duration: 1.1, ease: 'easeOut' },
-    done:   { duration: 0.4 },
+    idle:   { duration: 0.4 },
+    hover:  { duration: 0.7, ease: [0.16, 1, 0.3, 1] },
+    launch: { duration: 0.8, ease: [0.55, 0.05, 0.55, 1] },
+    reveal: { duration: 0.85, ease: 'easeOut' },
+    done:   { duration: 0.3 },
   }
 
   return (
@@ -262,10 +262,10 @@ function ResidualSmoke() {
 export default function RocketReveal({
   children,
   className = '',
-  hoverAt  = 200,
-  launchAt = 1500,
-  revealAt = 2300,
-  doneAt   = 3600,
+  hoverAt  = 150,
+  launchAt = 1100,
+  revealAt = 1800,
+  doneAt   = 2900,
   amount   = 0.7,
 }) {
   const ref = useRef(null)

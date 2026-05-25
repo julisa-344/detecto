@@ -104,7 +104,7 @@ export default function AccionesRapidasV4() {
             <motion.div
               animate={{ scale: [1, 1.05, 1], y: [0, -20, 0] }}
               transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut' }}
-              className="relative w-155 h-155 lg:w-full lg:h-auto lg:max-w-120 lg:aspect-square mb-2 mx-auto"
+              className="relative w-full max-w-105 aspect-square lg:max-w-120 mb-2 mx-auto"
             >
               {actions.map((a) => {
                 const isCurrent = (activeKey ?? 'agendar') === a.key
