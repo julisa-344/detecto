@@ -3,50 +3,97 @@ import { motion, animate, useInView } from 'framer-motion'
 import mockHome from '../../assets/home.webp'
 import mockTipocita from '../../assets/tipocita.webp'
 import mockDoctores from '../../assets/doctores.webp'
+import RocketReveal from './RocketReveal'
 
-const LAUNCH_DATE = new Date('2026-06-12T00:00:00')
-
-function useCountdown(target) {
-  const calc = () => {
-    const diff = target - Date.now()
-    if (diff <= 0) return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-    return {
-      days: Math.floor(diff / 86400000),
-      hours: Math.floor((diff % 86400000) / 3600000),
-      minutes: Math.floor((diff % 3600000) / 60000),
-      seconds: Math.floor((diff % 60000) / 1000),
-    }
-  }
-  const [time, setTime] = useState(calc)
-  useEffect(() => {
-    const id = setInterval(() => setTime(calc()), 1000)
-    return () => clearInterval(id)
-  }, [])
-  return time
-}
-
-function CountUnit({ value, label }) {
-  return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="relative flex items-center justify-center w-[68px] h-[68px] lg:w-[80px] lg:h-[80px] rounded-2xl bg-gradient-to-b from-[#0199C6] to-[#0070A5] shadow-lg shadow-[#0199C6]/30">
-        {/* shine top */}
-        <div className="absolute inset-x-2 top-1.5 h-px rounded-full bg-white/30" />
-        <span className="tabular-nums text-3xl lg:text-4xl font-light leading-none tracking-tight text-white drop-shadow-sm">
-          {String(value).padStart(2, '0')}
-        </span>
-      </div>
-      <span className="text-[9px] font-semibold uppercase tracking-[0.22em] text-slate-400">
-        {label}
-      </span>
-    </div>
-  )
-}
+const BOMBA_URL = `${import.meta.env.VITE_BASE_IMAGE_URL}home/bombaFinal.png`
 
 const mockups = [
   { id: 0, img: mockTipocita },
   { id: 1, img: mockHome },
   { id: 2, img: mockDoctores },
 ]
+
+const LAUNCH_DATE = new Date('2026-06-12T00:00:00')
+
+function getTimeLeft(target) {
+  const diff = Math.max(0, target.getTime() - Date.now())
+  const days    = Math.floor(diff / (1000 * 60 * 60 * 24))
+  const hours   = Math.floor((diff / (1000 * 60 * 60)) % 24)
+  const minutes = Math.floor((diff / (1000 * 60)) % 60)
+  const seconds = Math.floor((diff / 1000) % 60)
+  return { days, hours, minutes, seconds, finished: diff === 0 }
+}
+
+function CountdownLaunch() {
+  const [t, setT] = useState(() => getTimeLeft(LAUNCH_DATE))
+
+  useEffect(() => {
+    const id = setInterval(() => setT(getTimeLeft(LAUNCH_DATE)), 1000)
+    return () => clearInterval(id)
+  }, [])
+
+  const units = [
+    { value: t.days,    label: 'Días' },
+    { value: t.hours,   label: 'Horas' },
+    { value: t.minutes, label: 'Min' },
+    { value: t.seconds, label: 'Seg' },
+  ]
+
+  return (
+    <div className="relative w-full max-w-2xl mx-auto lg:mx-0">
+
+      <p className="mb-5 text-2xl lg:text-3xl font-light text-primary text-center lg:text-left tracking-tight">
+        Lanzamos el{' '}
+        <span className="font-medium text-primary-dark">12 de junio</span>
+      </p>
+
+      {/* Contenedor con la imagen como fondo y los números superpuestos */}
+      <div className="relative w-full">
+        <img
+          src={BOMBA_URL}
+          alt="Cuenta regresiva del lanzamiento"
+          className="w-full h-auto select-none pointer-events-none"
+          draggable={false}
+        />
+
+        {/* Numeros superpuestos sobre los 4 cuadrados de la imagen */}
+        <div
+          className="absolute grid grid-cols-4 pointer-events-none"
+          style={{
+            left: '23%',
+            right: '32%',
+            top: '56%',
+            bottom: '24%',
+            gap: '1.5%',
+          }}
+        >
+          {units.map((u) => (
+            <div
+              key={u.label}
+              className="flex flex-col items-center justify-center"
+            >
+              <span
+                className="font- text-white tabular-nums leading-none"
+                style={{
+                  fontSize: 'clamp(10px, 2vw, 28px)',
+                  textShadow: '0 0 12px rgba(82,192,225,0.85), 0 0 24px rgba(82,192,225,0.45)',
+                }}
+              >
+                {String(u.value).padStart(2, '0')}
+              </span>
+              <span
+                className="mt-1 font-semibold uppercase text-primary/80 tracking-[0.18em]"
+                style={{ fontSize: 'clamp(7px, 0.8vw, 10px)' }}
+              >
+                {u.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const getMockupVariants = (offset) => ({
   center: { x: 0, scale: 1, zIndex: 10, opacity: 1 },
@@ -55,28 +102,31 @@ const getMockupVariants = (offset) => ({
 })
 
 // Componente de Contador optimizado para activarse al hacer scroll
-function NumberCounter({ value, prefix = '', suffix = '' }) {
-  const nodeRef = useRef(null)
-  const isInView = useInView(nodeRef, { once: true, margin: '-50px' })
-  const numericValue = parseInt(value.replace(/[^0-9]/g, ''))
+function NumberCounter({ value, prefix = "", suffix = "" }) {
+  const nodeRef = useRef(null);
+  // Detecta si el elemento está en pantalla (se activa una sola vez)
+  const isInView = useInView(nodeRef, { once: true, margin: "-50px" });
+  const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
 
   useEffect(() => {
+    // Solo inicia la animación si el elemento está visible
     if (isInView) {
-      const node = nodeRef.current
+      const node = nodeRef.current;
       const controls = animate(0, numericValue, {
         duration: 2.5,
-        ease: [0.16, 1, 0.3, 1],
+        ease: [0.16, 1, 0.3, 1], // Un ease-out más suave
         onUpdate(val) {
-          node.textContent = `${prefix}${Math.floor(val).toLocaleString()}${suffix}`
-        },
-      })
-      return () => controls.stop()
+          node.textContent = `${prefix}${Math.floor(val).toLocaleString()}${suffix}`;
+        }
+      });
+      return () => controls.stop();
     }
-  }, [isInView, numericValue, prefix, suffix])
+  }, [isInView, numericValue, prefix, suffix]);
 
-  return <span ref={nodeRef}>0</span>
+  return <span ref={nodeRef}>0</span>; // Empieza en 0 visualmente
 }
 
+// Iconos
 function AppleIcon() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -93,16 +143,10 @@ function GooglePlayIcon() {
   )
 }
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-}
-
 export default function AppDetectaV4() {
   const [activeIndex, setActiveIndex] = useState(1)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
-  const { days, hours, minutes, seconds } = useCountdown(LAUNCH_DATE)
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640)
@@ -123,145 +167,114 @@ export default function AppDetectaV4() {
   }, [isAutoPlaying])
 
   const getVariant = (index) => {
-    if (index === activeIndex) return 'center'
-    if ((activeIndex + 1) % mockups.length === index) return 'right'
-    return 'left'
+    if (index === activeIndex) return "center"
+    if ((activeIndex + 1) % mockups.length === index) return "right"
+    return "left"
   }
 
   return (
-    <section
-      className="w-full bg-white py-24"
+    <section 
+      className="w-full bg-white py-24" 
       style={{ fontFamily: 'Lexend, sans-serif' }}
     >
       <div className="max-w-[1400px] mx-auto px-6 lg:px-20">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ staggerChildren: 0.12, ease: [0.16, 1, 0.3, 1] }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-24"
-        >
-          {/* Columna Izquierda: Texto */}
-          <div className="text-center lg:text-left">
-            <motion.p
-              variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6"
-            >
-              Aplicativo Móvil
-            </motion.p>
+        <RocketReveal className="mb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-            <motion.h2
-              variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="text-5xl lg:text-7xl font-light text-[#0070A5] tracking-tighter leading-none uppercase mb-8"
-            >
-              Tu salud, <br />
-              <span className="font-normal text-slate-900">en tu bolsillo.</span>
-            </motion.h2>
-
-            <motion.p
-              variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mx-auto lg:mx-0 mb-8"
-            >
-              Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Todo el control de tu bienestar en un solo lugar.
-            </motion.p>
-
-            {/* Cuenta regresiva */}
-            <motion.div
-              variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="mt-8 inline-flex flex-col items-center lg:items-start gap-3"
-            >
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-4 h-px bg-[#0199C6]" />
-                <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-[#0199C6]">
-                  Lanzamiento · 12 de junio 2026
+            {/* Columna Izquierda: Texto */}
+            <div className="text-center lg:text-left">
+              <RocketReveal.Item delay={0}>
+                <p className="text-[10px] font-medium tracking-[0.4em] uppercase text-[#0199C6] mb-6">
+                  Aplicativo Móvil
                 </p>
-                <span className="inline-block w-4 h-px bg-[#0199C6]" />
-              </div>
-              <div className="flex items-start gap-2 sm:gap-3">
-                <CountUnit value={days} label="Días" />
-                <span className="text-2xl font-extralight text-[#0199C6] mt-4 select-none">:</span>
-                <CountUnit value={hours} label="Horas" />
-                <span className="text-2xl font-extralight text-[#0199C6] mt-4 select-none">:</span>
-                <CountUnit value={minutes} label="Minutos" />
-                <span className="text-2xl font-extralight text-[#0199C6] mt-4 select-none">:</span>
-                <CountUnit value={seconds} label="Segundos" />
-              </div>
-            </motion.div>
+              </RocketReveal.Item>
 
-            <motion.div
-              variants={fadeUp}
-              transition={{ duration: 0.6 }}
-              className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start"
-            >
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors"
-              >
-                <AppleIcon />
-                <div className="text-left">
-                  <p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p>
-                  <p className="text-sm font-medium leading-none">App Store</p>
+              <RocketReveal.Item delay={0.1}>
+                <h2 className="text-5xl lg:text-7xl font-light text-[#0070A5] tracking-tighter leading-none uppercase mb-8">
+                  Tu salud, <br />
+                  <span className="font-normal text-slate-900">en tu bolsillo.</span>
+                </h2>
+              </RocketReveal.Item>
+
+              <RocketReveal.Item delay={0.25}>
+                <p className="text-base lg:text-lg font-light text-slate-500 leading-relaxed max-w-md mx-auto lg:mx-0 mb-8">
+                  Agenda citas, consulta tus resultados y habla con tu médico desde la app de Detecta. Todo el control de tu bienestar en un solo lugar.
+                </p>
+              </RocketReveal.Item>
+
+              <RocketReveal.Item delay={0.35}>
+                <CountdownLaunch />
+              </RocketReveal.Item>
+
+              <RocketReveal.Item delay={0.5}>
+                <div className="mt-10 flex flex-wrap gap-4 justify-center lg:justify-start">
+                  <motion.a
+                    href="#"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex w-50 items-center justify-center gap-3 px-5 py-3.5 bg-gray-900 text-white text-sm font-medium rounded-sm hover:bg-gray-700 transition-colors"
+                  >
+                    <AppleIcon />
+                    <div className="text-left">
+                      <p className="text-[10px] text-white/50 leading-none mb-0.5">Disponible en</p>
+                      <p className="text-sm font-medium leading-none">App Store</p>
+                    </div>
+                  </motion.a>
+                  <motion.a
+                    href="#"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex w-50 items-center justify-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all"
+                  >
+                    <GooglePlayIcon />
+                    <div className="text-left">
+                      <p className="text-[10px] text-gray-400 leading-none mb-0.5">Disponible en</p>
+                      <p className="text-sm font-medium leading-none">Google Play</p>
+                    </div>
+                  </motion.a>
                 </div>
-              </motion.a>
-              <motion.a
-                href="#"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-3 px-5 py-3.5 border-2 border-gray-900 text-gray-900 text-sm font-medium rounded-sm hover:bg-gray-900 hover:text-white transition-all"
+              </RocketReveal.Item>
+            </div>
+
+            {/* Columna Derecha: Mockups con foco interactivo */}
+            <RocketReveal.Item delay={0.65}>
+              <div
+                className="relative flex justify-center items-center h-110 sm:h-150 overflow-hidden"
+                onMouseEnter={() => setIsAutoPlaying(false)}
+                onMouseLeave={() => setIsAutoPlaying(true)}
               >
-                <GooglePlayIcon />
-                <div className="text-left">
-                  <p className="text-[10px] text-gray-400 leading-none mb-0.5">Disponible en</p>
-                  <p className="text-sm font-medium leading-none">Google Play</p>
-                </div>
-              </motion.a>
-            </motion.div>
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#EEFBFF] blur-[100px] rounded-full -z-10" />
+                {mockups.map((mock, index) => (
+                  <motion.div
+                    key={mock.id}
+                    variants={mockupVariants}
+                    animate={getVariant(index)}
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                    onClick={() => setActiveIndex(index)}
+                    className="absolute cursor-pointer will-change-transform"
+                    style={{ width: `${mockupWidth}px` }}
+                  >
+                    <div className={`relative transition-all duration-500 ${activeIndex === index ? 'drop-shadow-2xl' : 'drop-shadow-md'}`}>
+                      <img
+                        src={mock.img}
+                        alt="App Detecta"
+                        className="w-full h-auto rounded-[2.5rem]"
+                      />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </RocketReveal.Item>
           </div>
+        </RocketReveal>
 
-          {/* Columna Derecha: Mockups con foco interactivo */}
-          <motion.div
-            variants={fadeUp}
-            transition={{ duration: 0.6 }}
-            className="relative flex justify-center items-center h-110 sm:h-150 overflow-hidden"
-            onMouseEnter={() => setIsAutoPlaying(false)}
-            onMouseLeave={() => setIsAutoPlaying(true)}
-          >
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#EEFBFF] blur-[100px] rounded-full -z-10" />
-            {mockups.map((mock, index) => (
-              <motion.div
-                key={mock.id}
-                variants={mockupVariants}
-                animate={getVariant(index)}
-                initial={false}
-                transition={{ type: 'spring', stiffness: 200, damping: 25 }}
-                onClick={() => setActiveIndex(index)}
-                className="absolute cursor-pointer will-change-transform"
-                style={{ width: `${mockupWidth}px` }}
-              >
-                <div className={`relative transition-all duration-500 ${activeIndex === index ? 'drop-shadow-2xl' : 'drop-shadow-md'}`}>
-                  <img
-                    src={mock.img}
-                    alt="App Detecta"
-                    className="w-full h-auto rounded-[2.5rem]"
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
-
-        {/* Sección de Métricas */}
+        {/* Sección de Métricas: Animación escalonada */}
         <div className="pt-12 border-t border-slate-100 grid grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { value: '8', label: 'Años de experiencia', prefix: '+' },
-            { value: '35', label: 'Especialidades', prefix: '+' },
-            { value: '100000', label: 'Pacientes atendidos', prefix: '' },
+            { value: "8", label: "Años de experiencia", prefix: "+" },
+            { value: "35", label: "Especialidades", prefix: "+" },
+            { value: "100000", label: "Pacientes atendidos", prefix: "" },
           ].map((stat, idx) => (
             <motion.div
               key={idx}
@@ -269,7 +282,7 @@ export default function AppDetectaV4() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
+              transition={{ duration: 0.6, delay: idx * 0.15 }} // Staggered delay
             >
               <h3 className="text-4xl lg:text-5xl font-light text-[#0199C6] mb-2 tracking-tighter">
                 <NumberCounter value={stat.value} prefix={stat.prefix} />
