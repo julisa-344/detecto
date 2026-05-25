@@ -181,6 +181,29 @@ export default function StaffMedico() {
   const sectionRef = useRef(null)
   const isInView = useInView(sectionRef, { once: true, margin: '-100px' })
 
+  // Swipe táctil
+  const touchStartX = useRef(null)
+  const touchStartY = useRef(null)
+  const SWIPE_THRESHOLD = 45
+
+  const handleTouchStart = (e) => {
+    const t = e.touches[0]
+    touchStartX.current = t.clientX
+    touchStartY.current = t.clientY
+  }
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current == null) return
+    const t = e.changedTouches[0]
+    const dx = t.clientX - touchStartX.current
+    const dy = t.clientY - touchStartY.current
+    touchStartX.current = null
+    touchStartY.current = null
+    // Solo procesar como swipe horizontal si el gesto fue mayormente horizontal
+    if (Math.abs(dx) < SWIPE_THRESHOLD || Math.abs(dx) < Math.abs(dy)) return
+    if (dx < 0) nextDoctor()
+    else prevDoctor()
+  }
+
   return (
     <section
       ref={sectionRef}
@@ -243,9 +266,11 @@ export default function StaffMedico() {
 
           {/* Carrusel */}
           <div
-            className="relative overflow-hidden h-107.5 flex items-center"
+            className="relative overflow-hidden h-107.5 flex items-center touch-pan-y"
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <div
               className="flex gap-8"
