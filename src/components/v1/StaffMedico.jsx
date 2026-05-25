@@ -198,7 +198,7 @@ export default function StaffMedico() {
             <p className="text-[9px] font-medium tracking-[0.4em] uppercase text-primary-medium mb-4">NUESTRO STAFF</p>
             <h2 className="text-3xl sm:text-4xl lg:text-6xl font-light text-slate-900 tracking-tighter leading-[1.05]">
               Los mejores especialistas <br />
-              <span className="italic text-primary-dark">contigo.</span>
+              <span className=" text-primary-dark">contigo.</span>
             </h2>
           </div>
 
