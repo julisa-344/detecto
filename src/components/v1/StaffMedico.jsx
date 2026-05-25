@@ -100,7 +100,7 @@ export default function StaffMedico() {
 
   const doctors = useMemo(() => {
     const apiList = (apiDoctors ?? [])
-      .filter((d) => d?.name && !isFeatured(d.name))
+      .filter((d) => d?.name && d?.image && !isFeatured(d.name))
       .map((d, i) => ({
         id: d.id ?? `api-${i}`,
         name: d.name.trim(),
@@ -110,6 +110,7 @@ export default function StaffMedico() {
         image: getFileUrl(d.image),
         bg: i % 2 === 0 ? '#E0F2FE' : '#F0F9FF',
       }))
+      .filter((d) => d.image)
     return [...FEATURED, ...apiList].slice(0, TOTAL_LIMIT)
   }, [apiDoctors])
 
