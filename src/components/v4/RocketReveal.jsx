@@ -266,7 +266,7 @@ export default function RocketReveal({
   launchAt = 1500,
   revealAt = 2300,
   doneAt   = 3600,
-  amount   = 0.2,
+  amount   = 0.5,
 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount })

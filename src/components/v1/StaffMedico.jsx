@@ -209,10 +209,7 @@ export default function StaffMedico() {
             <span className="rounded-full bg-primary-dark px-6 py-3 text-[10px] font-semibold tracking-[0.22em] uppercase text-white transition-all duration-500 ease-in-out group-hover:bg-slate-900">
               Ver todo el staff
             </span>
-            <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-full bg-primary-dark text-white transition-all duration-500 ease-in-out group-hover:bg-slate-900 -ml-0.5">
-              <ArrowRight className="absolute h-4 w-4 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
-              <ArrowRight className="absolute h-4 w-4 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
-            </span>
+    
           </Link>
         </div>
 
