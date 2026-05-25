@@ -224,7 +224,7 @@ export default function FooterV4({ showCTA = true }) {
                 <ul className="flex flex-col gap-2.5 text-[13px] font-light text-slate-600">
                   <li><Link to="/v4/terminos-y-condiciones#proteccion-datos" className="hover:text-primary-dark transition-colors">Privacidad</Link></li>
                   <li><Link to="/v4/terminos-y-condiciones#terminos" className="hover:text-primary-dark transition-colors">Términos y Condiciones</Link></li>
-                  <li><a href="#" className="hover:text-primary-dark transition-colors">Libro de Reclamaciones</a></li>
+                  <li><Link to="/v4/libro-reclamaciones" className="hover:text-primary-dark transition-colors">Libro de Reclamaciones</Link></li>
                   <li><a href="#" className="hover:text-primary-dark transition-colors">Cookies</a></li>
                 </ul>
               </div>
