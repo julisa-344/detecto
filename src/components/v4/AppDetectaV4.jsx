@@ -104,13 +104,6 @@ const getMockupVariants = (offset) => ({
 // Catálogo médico real
 const CATALOGO_MEDICO = {
   especialidades: [
-    'Cirugía Oncológica de Mamas, Tejidos Blandos y Piel',
-    'Coloproctología',
-    'Ginecología Oncológica',
-    'Radiología Intervencionista',
-    'Urología Oncológica',
-  ],
-  subespecialidades: [
     'Anatomía Patológica',
     'Anestesiología',
     'Cardiología',
@@ -162,6 +155,13 @@ const CATALOGO_MEDICO = {
     'Reumatología',
     'Traumatología y Ortopedia',
     'Urología General',
+  ],
+  subespecialidades: [
+    'Cirugía Oncológica de Mamas, Tejidos Blandos y Piel',
+    'Coloproctología',
+    'Ginecología Oncológica',
+    'Radiología Intervencionista',
+    'Urología Oncológica',
   ],
 }
 
@@ -333,16 +333,15 @@ function CatalogoModal({ catalogo, onClose }) {
             </p>
           ) : (
             <div className="space-y-7">
-              {visibleEsp.length > 0 && (
+              {visibleSub.length > 0 && (
                 <div>
                   <div className="mb-4 flex items-center gap-3">
                     <p className="text-[14px] font-bold uppercase tracking-[0.32em] text-primary-medium">
-                      Especialidades
+                      Subespecialidades
                     </p>
-
                   </div>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
-                    {visibleEsp.map((name, i) => (
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6">
+                    {visibleSub.map((name, i) => (
                       <motion.li
                         key={name}
                         initial={{ opacity: 0, x: -4 }}
@@ -358,15 +357,16 @@ function CatalogoModal({ catalogo, onClose }) {
                 </div>
               )}
 
-              {visibleSub.length > 0 && (
+              {visibleEsp.length > 0 && (
                 <div>
                   <div className="mb-4 flex items-center gap-3">
                     <p className="text-[14px] font-bold uppercase tracking-[0.32em] text-primary-medium">
-                      Subespecialidades
+                      Especialidades
                     </p>
+
                   </div>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6">
-                    {visibleSub.map((name, i) => (
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6">
+                    {visibleEsp.map((name, i) => (
                       <motion.li
                         key={name}
                         initial={{ opacity: 0, x: -4 }}
