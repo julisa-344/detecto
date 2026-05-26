@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Calendar, Heart, Shield, Wind } from 'lucide-react'
@@ -77,12 +77,46 @@ const actions = [
 export default function AccionesRapidasV4() {
   const [activeKey, setActiveKey] = useState(null)
   const activeAction = actions.find((a) => a.key === activeKey)
+  const cardRefs = useRef({}) // key -> HTMLElement
 
   useEffect(() => {
     actions.forEach((a) => {
       const img = new Image()
       img.src = a.hoverImage
     })
+  }, [])
+
+  // En dispositivos táctiles (sin hover) activamos las cards según cuál
+  // esté más visible en el viewport al hacer scroll.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches
+    if (!isTouch) return
+
+    const visibilityMap = new Map()
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          visibilityMap.set(e.target.dataset.actionKey, e.intersectionRatio)
+        })
+        // Elegir la card con mayor ratio visible
+        let bestKey = null
+        let bestRatio = 0
+        for (const [key, ratio] of visibilityMap.entries()) {
+          if (ratio > bestRatio) {
+            bestRatio = ratio
+            bestKey = key
+          }
+        }
+        if (bestRatio >= 0.55 && bestKey) {
+          setActiveKey(bestKey)
+        }
+      },
+      { threshold: [0, 0.25, 0.5, 0.6, 0.75, 1] }
+    )
+
+    Object.values(cardRefs.current).forEach((el) => el && observer.observe(el))
+    return () => observer.disconnect()
   }, [])
 
   return (
@@ -163,7 +197,13 @@ export default function AccionesRapidasV4() {
                 ? { href: action.href, target: '_blank', rel: 'noopener noreferrer' }
                 : { to: action.href }
               return (
-                <Wrapper key={action.key} {...wrapperProps} className="no-underline block">
+                <Wrapper
+                  key={action.key}
+                  {...wrapperProps}
+                  ref={(el) => { cardRefs.current[action.key] = el }}
+                  data-action-key={action.key}
+                  className="no-underline block"
+                >
                   <motion.div
                     variants={cardVariants}
                     whileHover={{ y: -10 }}
