@@ -48,7 +48,7 @@ const actions = [
     bg: '#D6EFF5',
     hoverImage: detectoRosa,
     href: '/v4/preventivo-rosa',
-    imageScale: 1.23,
+    imageScale: 0.85,
   },
   {
     key: 'azul',
@@ -142,7 +142,7 @@ export default function AccionesRapidasV4() {
             >
               {actions.map((a) => {
                 const isCurrent = (activeKey ?? 'agendar') === a.key
-                const baseScale = a.imageScale ?? 1
+                const baseScale = a.imageScale ?? 1.2
                 return (
                   <motion.img
                     key={a.key}

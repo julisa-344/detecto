@@ -42,7 +42,7 @@ export default function PorQueHacerlo() {
             <img
               src={quienesImg}
               alt="Despistaje preventivo rosa"
-              className="w-full h-full object-contain scale-150 lg:scale-[2.2] drop-shadow-[0_10px_6px_rgba(123,0,20,0.13)]"
+              className="w-full h-full object-contain scale-100 lg:scale-[1.3] drop-shadow-[0_10px_6px_rgba(123,0,20,0.13)]"
               loading="lazy"
             />
 
