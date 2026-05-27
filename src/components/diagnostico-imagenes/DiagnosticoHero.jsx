@@ -31,9 +31,9 @@ export default function DiagnosticoHero() {
           </p>
 
           <h1 className="text-5xl font-extralight leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
-            Imágenes precisas y rápidas{' '}
+            Claridad y precisión para {' '}
             <span className="italic font-medium text-[rgb(var(--brand-base))]">
-              para tu salud.
+              tu diagnóstico.
             </span>
           </h1>
 
