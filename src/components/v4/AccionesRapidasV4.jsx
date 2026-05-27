@@ -37,6 +37,7 @@ const actions = [
     hoverImage: detectoAgendar,
     href: 'https://appointments.detecta.pe/login',
     external: true,
+    headline: ['¿Quieres agendar', 'tu cita?'],
   },
   {
     key: 'rosa',
@@ -49,6 +50,7 @@ const actions = [
     hoverImage: detectoRosa,
     href: '/v4/preventivo-rosa',
     imageScale: 0.85,
+    headline: ['Descubre el', 'Preventivo Rosa'],
   },
   {
     key: 'azul',
@@ -60,6 +62,7 @@ const actions = [
     bg: '#BFE4EF',
     hoverImage: detectoAzul,
     href: '/v4/preventivo-azul',
+    headline: ['Descubre el', 'Preventivo Azul'],
   },
   {
     key: 'pulmon',
@@ -71,6 +74,7 @@ const actions = [
     bg: '#CCEDF7',
     hoverImage: detectoPulmon,
     href: '/v4/pulmoscan',
+    headline: ['Evalúa tu', 'salud pulmonar'],
   },
 ]
 
@@ -163,16 +167,25 @@ export default function AccionesRapidasV4() {
             </motion.div>
 
             <h2 className="text-4xl lg:text-5xl font-light text-[#0070A5] mb-4 tracking-tight leading-[1.1]">
-              ¿En qué puede ayudarte <br />
               <motion.span
                 key={activeKey ?? 'default'}
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="font-bold italic transition-colors duration-300"
+                className="transition-colors duration-300"
                 style={{ color: activeAction ? activeAction.accent : '#0070A5' }}
               >
-                {activeAction ? activeAction.title : 'Detecto hoy?'}
+                {activeAction ? (
+                  <>
+                    {activeAction.headline[0]} <br />
+                    <span className="font-bold italic">{activeAction.headline[1]}</span>
+                  </>
+                ) : (
+                  <>
+                    ¿En qué puede ayudarte <br />
+                    <span className="font-bold italic">Detecto hoy?</span>
+                  </>
+                )}
               </motion.span>
             </h2>
             <p className="text-base font-light text-slate-500 leading-relaxed max-w-md min-h-[3.5rem]">
