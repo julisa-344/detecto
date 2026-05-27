@@ -7,6 +7,7 @@ import portada3 from '../../assets/portada3.webp'
 import portada4 from '../../assets/portada4.webp'
 import portada5 from '../../assets/portada5.webp'
 import gaston from '../../assets/gaston.jpg'
+import samanthaMendoza from '../../assets/doctores/samanthamendozarivera1.webp'
 
 const publications = [
   {
@@ -15,7 +16,7 @@ const publications = [
     tag: 'Research / Open access',
     authors:
       'G. Mendoza, N. Muñoz, J. Aguilar, S. Mendoza, R. Hidalgo, D. Díaz-Llontop, R. Castillo, J. Trejo, E. Bedoya & L. Taxa.',
-    lead: { name: 'Gastón Mendoza De Lama', role: 'Investigador principal', photo: gaston },
+    lead: { name: 'Dr. Gaston Mendoza De Lama', role: 'Investigador principal', photo: gaston },
     link: 'https://link.springer.com/article/10.1186/s12957-025-04183-5',
     image: portada1,
   },
@@ -23,9 +24,10 @@ const publications = [
     short: 'Tumori',
     title: 'Tumori Journal',
     tag: 'Abstract Book / Supplement',
-    presentedAt: '18th BGIICC 2026',
-    authors: 'Gastón Wilmer Mendoza De Lama',
-    lead: { name: 'Gastón Mendoza De Lama', role: 'Investigador principal', photo: gaston },
+    presentedAt: '18.ª Conferencia Internacional sobre Cáncer de Mama, Ginecología e Inmunooncología — BGIICC 2026, 22–23 de enero de 2026, Hotel Hilton Heliopolis, El Cairo, Egipto.',
+    authors:
+      'G. Mendoza, N. Muñoz-Quispe, D. Díaz-Llontop, S. Mendoza-Rivera, C. Quiñones, R. Castillo-Laborio, R. Hidalgo & L. Taxa.',
+    lead: { name: 'Dr. Gaston Mendoza De Lama', role: 'Investigador principal', photo: gaston },
     link: 'https://journals.sagepub.com/toc/tmja/112/1_suppl',
     image: portada2,
   },
@@ -33,9 +35,10 @@ const publications = [
     short: 'EJC',
     title: 'European Journal of Cancer',
     tag: 'Conference Supplement',
-    presentedAt: '15th European Breast Cancer Conference (EBCC-15)',
-    authors: 'Gastón Wilmer Mendoza De Lama',
-    lead: { name: 'Gastón Mendoza De Lama', role: 'Investigador principal', photo: gaston },
+    presentedAt: '15th European Breast Cancer Conference (EBCC-15), 25–27 de marzo de 2026, Barcelona, España.',
+    authors:
+      'G. Mendoza, N.E. Muñoz Quispe, J.M. Aguilar Cosme, J. Ayon Seminario, D. Diaz Llontop, S.E. Mendoza Rivera, C.S. Quiñones Pereyra, R.E. Castillo Laborio & L.M. Taxa Rojas.',
+    lead: { name: 'Dr. Gaston Mendoza De Lama', role: 'Investigador principal', photo: gaston },
     link: 'https://www.ejcancer.com/issue/S0959-8049(26)X2004-4',
     image: portada3,
   },
@@ -45,7 +48,7 @@ const publications = [
     tag: 'Article / Ahead of Print',
     authors:
       'G. Mendoza, N. Muñoz, J. Aguilar, J. Ayón, D. Díaz-Llontop, S. Mendoza, C. Quiñones, R. Castillo & L. Taxa.',
-    lead: { name: 'Gastón Mendoza De Lama', role: 'Investigador principal', photo: gaston },
+    lead: { name: 'Dr. Gaston Mendoza De Lama', role: 'Investigador principal', photo: gaston },
     link: 'https://reference-global.com/article/10.2478/raon-2026-0018?tab=article',
     image: portada4,
   },
@@ -53,8 +56,8 @@ const publications = [
     short: 'PPCR',
     title: 'Clinical Research',
     tag: 'Journal Article',
-    authors: 'Gastón Wilmer Mendoza De Lama.',
-    lead: { name: 'Gastón Mendoza De Lama', role: 'Investigador principal', photo: gaston },
+    authors: 'S. Mendoza, G. Mendoza De Lama & E.O. Bedoya Ismodes.',
+    lead: { name: 'Dra. Samantha Mendoza', role: 'Investigadora principal', photo: samanthaMendoza },
     link: 'https://journal.ppcr.org/index.php/ppcrjournal/article/view/433',
     image: portada5,
   },
