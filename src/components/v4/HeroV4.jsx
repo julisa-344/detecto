@@ -170,10 +170,10 @@ const RESEARCH_INTERVAL = 12000
 const SLIDE3_INTERVAL = 10000
 
 const medicalTags = [
-  { label: 'Detección Temprana', to: '/v4/pulmoscan' },
+  { label: 'Preventivo Rosa', to: '/v4/preventivo-rosa' },
   { label: 'Oncología Clínica', to: '/v4/oncologia-medica' },
   { label: 'Investigación', to: '/v4/investigacion' },
-  { label: 'Medicina Preventiva', to: '/v4/preventivo-azul' },
+  { label: 'Preventivo Azul', to: '/v4/preventivo-azul' },
   { label: 'Quimioterapia', to: '/v4/quimioterapia' },
   { label: 'Cirugía de Precisión', to: '/v4/sala-operaciones' },
   { label: 'Diagnóstico por Imágenes', to: '/v4/diagnostico-imagenes' },
