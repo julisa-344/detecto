@@ -45,6 +45,7 @@ const pacientesCategories = [
     id: 'medicas',
     title: 'Especialidades Médicas',
     items: [
+      { label: 'Cardiología', to: '/v4/cardiologia' },
       { label: 'Dermatología', to: '/v4/dermatologia' },
       { label: 'Endocrinología', to: '/v4/endocrinologia' },
       { label: 'Enfermedades Infecciosas', to: '/v4/enfermedades-infecciosas' },

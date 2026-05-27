@@ -14,6 +14,7 @@ import StaffMedico from './pages/StaffMedico'
 import DoctorDetail from './pages/DoctorDetail'
 import SobreDetecta from './pages/SobreDetecta'
 import Dermatologia from './pages/Dermatologia'
+import Cardiologia from './pages/Cardiologia'
 import Investigacion from './pages/Investigacion'
 import ComiteEtica from './pages/ComiteEtica'
 import GestionEtica from './pages/GestionEtica'
@@ -83,6 +84,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/staff-medico/:id" element={<DoctorDetail />} />
         <Route path="/v4/sobre-detecta" element={<SobreDetecta />} />
         <Route path="/v4/dermatologia" element={<Dermatologia />} />
+        <Route path="/v4/cardiologia" element={<Cardiologia />} />
         <Route path="/v4/investigacion" element={<Investigacion />} />
         <Route path="/v4/comite-etica" element={<ComiteEtica />} />
         <Route path="/v4/gestion-etica" element={<GestionEtica />} />
