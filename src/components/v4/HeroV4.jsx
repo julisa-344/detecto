@@ -424,7 +424,7 @@ export default function HeroV4() {
       ))}
 
       {/* Overlays */}
-      <div className={`absolute inset-0 z-10 transition-colors duration-700 ${slide.isResearch ? 'bg-gray-950/40' : 'bg-gray-950/25'}`} />
+      <div className={`absolute inset-0 z-10 transition-colors duration-700 ${slide.isResearch ? 'bg-gray-950/60' : 'bg-gray-950/45'}`} />
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-linear-to-t from-gray-950/25 to-transparent z-10" />
 
       {/* Contenido */}
@@ -447,7 +447,7 @@ export default function HeroV4() {
                 <motion.h1
                   variants={itemVariants}
                   transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-                  className={`${slide.isResearch ? 'text-3xl sm:text-5xl lg:text-6xl xl:text-7xl' : 'text-4xl sm:text-6xl lg:text-7xl xl:text-8xl'} font-extralight text-white tracking-tight leading-[1.05] wrap-break-word hyphens-auto`}
+                  className={`${slide.isResearch ? 'text-3xl sm:text-5xl lg:text-6xl xl:text-7xl' : 'text-4xl sm:text-6xl lg:text-7xl xl:text-8xl'} font-normal text-white tracking-tight leading-[1.05] wrap-break-word hyphens-auto`}
                 >
                   {slide.headline.map((line, i) => (
                     <span
@@ -462,7 +462,7 @@ export default function HeroV4() {
                 <motion.p
                   variants={itemVariants}
                   transition={{ duration: 0.4 }}
-                  className="mt-6 text-base lg:text-lg text-white/60 font-light max-w-xl leading-relaxed"
+                  className="mt-6 text-lg lg:text-xl text-white font-light max-w-xl leading-relaxed [text-shadow:0_1px_6px_rgba(0,0,0,0.55)]"
                 >
                   {slide.sub}
                 </motion.p>
