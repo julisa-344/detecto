@@ -65,6 +65,7 @@ import TerminosCondiciones from './pages/TerminosCondiciones'
 import LibroReclamaciones from './pages/LibroReclamaciones'
 import Privacidad from './pages/Privacidad'
 import ScrollToTop from './components/ScrollToTop'
+import ResponsabilidadSocial from './pages/ResponsabilidadSocial'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -134,6 +135,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/v4/terminos-y-condiciones" element={<TerminosCondiciones />} />
         <Route path="/v4/libro-reclamaciones" element={<LibroReclamaciones />} />
         <Route path="/v4/privacidad" element={<Privacidad />} />
+        <Route path="/v4/responsabilidad-social" element={<ResponsabilidadSocial />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
