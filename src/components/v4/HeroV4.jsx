@@ -258,18 +258,33 @@ function ResearchBar() {
         </motion.div>
       </div>
 
-      {/* Card estática: Próximamente — fuera del loop */}
-      <div className="mt-3 flex items-center gap-2 max-w-full lg:w-fit pl-1 pr-4 lg:pr-5 py-1 rounded-2xl border border-primary/30 bg-white/5 backdrop-blur-xl shadow-[0_0_24px_rgba(82,192,225,0.15)] cursor-default select-none overflow-hidden">
-        {/* Imagen */}
-        <div className="relative h-12 w-16 lg:h-14 lg:w-24 shrink-0 overflow-hidden rounded-xl">
-          <img src={proximamente} alt="Próximamente" className="h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
+      {/* Card estática: Próximamente + CTA — en la misma fila */}
+      <div className="mt-3 flex flex-wrap items-center gap-4">
+        <div className="flex items-center gap-2 max-w-full lg:w-fit pl-1 pr-4 lg:pr-5 py-1 rounded-2xl border border-primary/30 bg-white/5 backdrop-blur-xl shadow-[0_0_24px_rgba(82,192,225,0.15)] cursor-default select-none overflow-hidden">
+          {/* Imagen */}
+          <div className="relative h-12 w-16 lg:h-14 lg:w-24 shrink-0 overflow-hidden rounded-xl">
+            <img src={proximamente} alt="Próximamente" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/40" />
+          </div>
+          <span className="flex flex-col gap-0.5 min-w-0">
+            <span className="text-[9px] font-semibold tracking-[0.25em] uppercase text-[#52C0E1]">Próximamente</span>
+            <span className="text-white/80 text-xs font-medium">Dr. Francis Martinez</span>
+            <span className="text-white/45 text-[11px] font-light">Cirugía de implante coclear con exoscopio</span>
+          </span>
         </div>
-        <span className="flex flex-col gap-0.5 min-w-0">
-          <span className="text-[9px] font-semibold tracking-[0.25em] uppercase text-[#52C0E1]">Próximamente</span>
-          <span className="text-white/80 text-xs font-medium">Dr. Francis Martinez</span>
-          <span className="text-white/45 text-[11px] font-light">Cirugía de implante coclear con exoscopio</span>
-        </span>
+
+        <Link
+          to="/v4/investigacion"
+          className="group relative hidden lg:flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95"
+        >
+          <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
+            VER INVESTIGACIONES
+          </span>
+          <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-primary text-white group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
+            <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
+            <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
+          </div>
+        </Link>
       </div>
 
       {/* Tooltip portaled — fuera del marquee transformado para que el backdrop-blur funcione */}
@@ -469,26 +484,13 @@ export default function HeroV4() {
 
                 {slide.isResearch && <ResearchBar />}
 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.35, delay: 0.25 }}
-                  className="hidden lg:flex items-center mt-10"
-                >
-                  {slide.isResearch ? (
-                    <Link
-                      to="/v4/investigacion"
-                      className="group relative flex cursor-pointer items-center justify-center gap-0 rounded-full border-none bg-transparent p-0 transition-all active:scale-95"
-                    >
-                      <span className="rounded-full px-8 py-4 text-[11px] font-semibold tracking-[0.18em] text-white transition-all duration-500 ease-in-out bg-primary group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
-                        VER INVESTIGACIONES
-                      </span>
-                      <div className="relative flex h-13 w-13 items-center justify-center overflow-hidden rounded-full transition-all duration-500 ease-in-out bg-primary text-white group-hover:bg-primary-dark group-hover:text-white backdrop-blur-md border border-primary/0">
-                        <ArrowUpRight className="absolute h-5 w-5 transition-all duration-500 ease-in-out group-hover:translate-x-10 group-hover:-translate-y-10" />
-                        <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
-                      </div>
-                    </Link>
-                  ) : (
+                {!slide.isResearch && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, delay: 0.25 }}
+                    className="hidden lg:flex items-center mt-10"
+                  >
                     <a
                       href="https://appointments.detecta.pe/login"
                       target="_blank"
@@ -503,8 +505,8 @@ export default function HeroV4() {
                         <ArrowUpRight className="absolute h-5 w-5 -translate-x-10 translate-y-10 transition-all duration-500 ease-in-out group-hover:translate-x-0 group-hover:translate-y-0" />
                       </div>
                     </a>
-                  )}
-                </motion.div>
+                  </motion.div>
+                )}
               </motion.div>
             </AnimatePresence>
 

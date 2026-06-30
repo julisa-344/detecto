@@ -25,7 +25,7 @@ const ResponsabilidadSocial = () => (
     </PageContainer>
 
     <ImpactClosing />
-    <FooterV4 />
+    <FooterV4 showCTA={false} />
   </div>
 )
 

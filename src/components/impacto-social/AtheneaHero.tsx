@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { BRAND } from '../../lib/brand'
-import { INTRO_SPLASH_EVENT, isIntroSplashDone } from '../../components/shared/PageTransition'
 import bgSocial from "../../assets/responsabilidad/bg_social.mp4";
 
 const fadeUp = {
@@ -14,19 +12,6 @@ const fadeUp = {
 }
 
 export default function AtheneaHero() {
-  // Espera a que el splash blanco de entrada termine antes de animar: si no,
-  // la animación corre y se asienta mientras el splash todavía la tapa.
-  const [introReady, setIntroReady] = useState(isIntroSplashDone)
-
-  useEffect(() => {
-    if (introReady) return
-    const handleDone = () => setIntroReady(true)
-    window.addEventListener(INTRO_SPLASH_EVENT, handleDone)
-    return () => window.removeEventListener(INTRO_SPLASH_EVENT, handleDone)
-  }, [introReady])
-
-  const heroAnimate = introReady ? 'visible' : 'hidden'
-
   return (
     <section className="relative flex h-screen min-h-screen flex-col overflow-hidden bg-slate-950">
       {/* Video de fondo */}
@@ -51,7 +36,7 @@ export default function AtheneaHero() {
               variants={fadeUp}
               custom={0}
               initial="hidden"
-              animate={heroAnimate}
+              animate="visible"
               className="mb-4 flex items-center gap-3"
             >
               <span className="h-px w-8" style={{ background: BRAND.base }} />
@@ -59,7 +44,7 @@ export default function AtheneaHero() {
                 className="text-[11px] font-semibold uppercase tracking-[0.35em]"
                 style={{ color: BRAND.base }}
               >
-                Proyecto Athenea Perú
+                El cáncer no espera
               </span>
             </motion.div>
 
@@ -67,26 +52,18 @@ export default function AtheneaHero() {
               <motion.span
                 className="block"
                 initial={{ opacity: 0, y: 22, filter: 'blur(14px)' }}
-                animate={
-                  introReady
-                    ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-                    : { opacity: 0, y: 22, filter: 'blur(14px)' }
-                }
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                 transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               >
-                El cáncer
+                Proyecto
               </motion.span>
               <motion.span
                 className="block"
                 initial={{ opacity: 0, y: 22, filter: 'blur(14px)' }}
-                animate={
-                  introReady
-                    ? { opacity: 1, y: 0, filter: 'blur(0px)' }
-                    : { opacity: 0, y: 22, filter: 'blur(14px)' }
-                }
-                transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               >
-                no espera.
+                Athenea
               </motion.span>
             </h1>
           </div>
@@ -99,10 +76,7 @@ export default function AtheneaHero() {
             className="max-w-md border-l pl-6 lg:mb-2"
             style={{ borderColor: `${BRAND.base}55` }}
           >
-            <p className="mb-4 text-2xl font-light leading-snug" style={{ color: BRAND.base }}>
-              El acceso tampoco debería hacerlo.
-            </p>
-            <p className="text-base font-light leading-relaxed text-slate-300">
+            <p className="text-sm font-light leading-relaxed text-slate-300">
               En el Perú, miles de mujeres reciben un diagnóstico de cáncer de cuello uterino
               cuando la enfermedad ya está avanzada. Athenea trabaja para cerrar esa brecha de
               acceso a la detección oportuna.
